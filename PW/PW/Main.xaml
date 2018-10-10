@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="PW.Main"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PW"
+             Loaded="Main_Loaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1130"
+             Background="Transparent">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="600"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lbl_sMainHeaderTnmtName" Content="Tunier Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="720" Margin="210,10,210,27" HorizontalContentAlignment="Center"/>
+        <GroupBox x:Name="gb_sTnmtInfo" Header="Tunier-Information" HorizontalAlignment="Left" Height="525" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1110" FontSize="20">
+            <Canvas Margin="0,0,0,4">
+                <GroupBox Header="Allgemeine Informationen" Height="205" Canvas.Left="10" Canvas.Top="246" Width="1078">
+                    <Canvas>
+                        <Label x:Name="lbl_sRunCnt" Content="Anzahl Durchgänge:" Canvas.Left="10" Canvas.Top="22"/>
+                        <Label x:Name="lbl_oRunCnt" Content=" " Canvas.Left="201" Canvas.Top="22"/>
+                        <Label x:Name="lbl_sGamePerRunCnt" Content="Anzahl Spiele pro Durchgang:" Canvas.Left="8" Canvas.Top="73"/>
+                        <Label x:Name="lbl_oGamePerRunCnt" Content=" " Canvas.Left="285" Canvas.Top="73"/>
+                        <Label x:Name="lbl_sTeamCnt" Content="Anzahl Teams:" Canvas.Left="11" Canvas.Top="124"/>
+                        <Label x:Name="lbl_oTeamCnt" Content=" " Canvas.Left="150" Canvas.Top="124"/>
+                        <Label x:Name="lbl_sTableCnt" Content="Anzahl Tische:" Canvas.Left="553" Canvas.Top="22"/>
+                        <Label x:Name="lbl_oTableCnt" Content=" " Canvas.Left="692" Canvas.Top="22"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox Header="Aktuelle Informationen" Height="168" Canvas.Left="10" Canvas.Top="38" Width="1078">
+                    <Canvas>
+                        <Label x:Name="lbl_sActRun" Content="Aktueller Durchgang:" Canvas.Left="8" Canvas.Top="21"/>
+                        <Label x:Name="lbl_oActRun" Content=" " Canvas.Left="209" Canvas.Top="21"/>
+                        <Label x:Name="lbl_sfinishedGamesCnt" Content="Abgeschlossene Spiele:" Canvas.Left="9" Canvas.Top="80"/>
+                        <Label x:Name="lbl_ofinishedGamesAct" Content=" " Canvas.Left="239" Canvas.Top="80"/>
+                        <Label x:Name="lbl_sfinishedGamesSeperator" Content="/" Canvas.Left="281" Canvas.Top="80"/>
+                        <Label x:Name="lbl_sfinishedGamesOverall" Content=" " Canvas.Left="325" Canvas.Top="80"/>
+                        <ProgressBar x:Name="pgb_ActRun" Height="33" Canvas.Left="604" Canvas.Top="25" Width="394"/>
+                        <Label x:Name="lbl_sPGB_ActRun" Content="Act Run" Canvas.Left="604" Canvas.Top="22" Width="394" HorizontalContentAlignment="Center"/>
+                        <ProgressBar x:Name="pgb_Tournament" Height="37" Canvas.Left="604" Canvas.Top="70" Width="394"/>
+                        <Label x:Name="lbl_sPGB_Tournament" Content="Tournament Name" Canvas.Left="604" Canvas.Top="70" Width="394" HorizontalContentAlignment="Center"/>
+                    </Canvas>
+                </GroupBox>
+            </Canvas>
+        </GroupBox>
+        <Button x:Name="btn_QuitTnmt" Content="Tunier Beenden" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="452,111,0,-110" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="100" FontSize="22">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFAE0000" Offset="1"/>
+                    <GradientStop Color="#FFFF5252"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</UserControl>

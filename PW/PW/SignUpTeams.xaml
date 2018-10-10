@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="PW.SignUpTeams"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PW"
+             mc:Ignorable="d" 
+             Loaded="SignUpTeams_Loaded"
+            d:DesignHeight="1000" d:DesignWidth="1130"
+             Background="Transparent">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="780"/>
+            <RowDefinition Height="85"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lbl_sSignUpTeamHeader" Content="Team anmelden" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="1110" Margin="10,10,10,27"/>
+        <GroupBox x:Name="gB_sSignUpTeam" Header="Team-Nummer " HorizontalAlignment="Left" Height="579" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1120" FontSize="20">
+            <GroupBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF040000" Offset="0.991"/>
+                    <GradientStop Color="#FFA02222" Offset="0.36"/>
+                    <GradientStop Color="#FFFF0404" Offset="0.657"/>
+                </LinearGradientBrush>
+            </GroupBox.BorderBrush>
+            <Canvas HorizontalAlignment="Left" Height="644" VerticalAlignment="Top" Width="1110" Margin="0,0,-2,0">
+                <GroupBox x:Name="gB_sSignUpPlayer1" Header="Spieler 1" Height="268" Canvas.Left="10" Canvas.Top="89" Width="524" FontSize="20">
+                    <GroupBox.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF03636" Offset="0"/>
+                            <GradientStop Color="#FF040000" Offset="0.991"/>
+                            <GradientStop Color="#FF1D1D1D"/>
+                            <GradientStop Color="#FFFF0404" Offset="0.542"/>
+                        </LinearGradientBrush>
+                    </GroupBox.BorderBrush>
+                    <Canvas>
+                        <Label x:Name="lbl_sSUTP1Firstname" Content="Vorname:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="10" Canvas.Top="51" Width="109"/>
+                        <Label x:Name="lbl_sSUTP1Lastname" Content="Nachname:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="10" Canvas.Top="93"/>
+                        <TextBox x:Name="tbx_iSUTP1Firstname" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbx_iSUTP1Lastname" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="CreateTeamName"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox x:Name="gB_sSignUpPlayer2" Header="Spieler 2" Height="268" Canvas.Left="576" Canvas.Top="89" Width="524" FontSize="20">
+                    <GroupBox.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF03636" Offset="0"/>
+                            <GradientStop Color="#FF040000" Offset="0.991"/>
+                            <GradientStop Color="#FF1D1D1D"/>
+                            <GradientStop Color="#FFFF0404" Offset="0.542"/>
+                        </LinearGradientBrush>
+                    </GroupBox.BorderBrush>
+                    <Canvas>
+                        <Label x:Name="lbl_sSUTP2Firstname" Content="Vorname:" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="51" Width="109" Canvas.Left="10"/>
+                        <Label x:Name="lbl_sSUTP2Lastname" Content="Nachname:" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="93" Canvas.Left="10"/>
+                        <TextBox x:Name="tbx_iSUTP2Firstname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" Canvas.Left="124"/>
+                        <TextBox x:Name="tbx_iSUTP2Lastname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" Canvas.Left="124" TextChanged="CreateTeamName"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox x:Name="gB_sSignUpExtraInfo" Header="Zusatzinformationen" Height="114" Canvas.Left="19" Canvas.Top="410" Width="1091" FontSize="20">
+                    <GroupBox.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF03636" Offset="0"/>
+                            <GradientStop Color="#FF040000" Offset="0.991"/>
+                            <GradientStop Color="#FF1D1D1D"/>
+                            <GradientStop Color="#FFFF0404" Offset="0.542"/>
+                        </LinearGradientBrush>
+                    </GroupBox.BorderBrush>
+                    <Canvas Margin="0,0,0,6">
+                        <Label x:Name="lbl_sTeamName" Content="Teamname: " Canvas.Left="10" Canvas.Top="27"/>
+
+                    </Canvas>
+                </GroupBox>
+                <TextBox x:Name="tbx_oTeamName" Height="33" Canvas.Left="154" TextWrapping="Wrap" Text="" Canvas.Top="468" Width="323"/>
+            </Canvas>
+        </GroupBox>
+        <Button x:Name="btn_MainMenue" Content="Zurück" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="190,721,0,0" Click="btn_MainMenue_Click" FontSize="22" Grid.RowSpan="2">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FE636363"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_Save" Content="Speichern" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="440,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Save_Click" FontSize="22" Grid.RowSpan="2">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FE636363"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_Clear" Content="Abbrechen" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="690,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Clear_Click" FontSize="22" Grid.RowSpan="2">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FE636363"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</UserControl>

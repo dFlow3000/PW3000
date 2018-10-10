@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="PW.PrepaireMenue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PW"
+             mc:Ignorable="d" 
+             Loaded="PrepaireMenue_Loaded"
+             d:DesignHeight="1000" d:DesignWidth="1130" FontSize="72">
+    <Grid>
+        <Button x:Name="btn_SignUpTeams" Content="Vorläufige Teamanmeldung" HorizontalAlignment="Left" Margin="152,528,0,0" VerticalAlignment="Top" Width="326" Height="160" Foreground="WhiteSmoke" FontSize="24" Click="btn_SignUpTeams_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FE636363"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_StartTournament" Content="Tunier beginnen!" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_StartTournament_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF68D40E" Offset="0.998"/>
+                    <GradientStop Color="#FE5F7E45"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_endTournament" Content="Tunier auflösen!" HorizontalAlignment="Left" Margin="400,726,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_endTournament_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBF1D03" Offset="1"/>
+                    <GradientStop Color="#FE764740"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label x:Name="lbl_oPrepMenueHeader" Content="Preiswatten 2019" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="122" Width="1110" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Label.Effect>
+                <DropShadowEffect Color="#FF8B8B8B" ShadowDepth="10"/>
+            </Label.Effect>
+        </Label>
+    </Grid>
+</UserControl>
