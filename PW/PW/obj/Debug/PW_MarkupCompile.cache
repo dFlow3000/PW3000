@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\
 PW
 none
 false
 DEBUG;TRACE
-C:\Users\dawo\Documents\DaWo\Test\PW\PW\App.xaml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\App.xaml
 11127480077
 
-271365182514
+31-1592178933
 151270957945
 AddTeam.xaml;AddTournament.xaml;Evaluation.xaml;InsertRunData.xaml;Main.xaml;MainWindow.xaml;PlayedGameInfo.xaml;PrepaireMenue.xaml;RunMenue.xaml;ShowTeam.xaml;SignUpTeams.xaml;
 
-False
+True
 
