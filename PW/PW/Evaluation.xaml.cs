@@ -50,6 +50,8 @@ namespace PW
                 Label lbl_gamePoints = new Label();
 
                 int x = 0;
+                do
+                {
                     foreach (Team team in allTeams)
                     {
                         Separator sep = new Separator();
@@ -78,7 +80,27 @@ namespace PW
                         lbl_winPoints.HorizontalContentAlignment = HorizontalAlignment.Center;
                         lbl_gamePoints.HorizontalContentAlignment = HorizontalAlignment.Center;
 
-                        lbl_rowNumber.BorderBrush = Brushes.Black;
+                        switch (x)
+                        {
+                            case 1:
+                                lbl_rowNumber.Background = Brushes.Gold;
+                                lbl_teamName.Background = Brushes.Gold;
+                                lbl_winPoints.Background = Brushes.Gold;
+                                lbl_gamePoints.Background = Brushes.Gold;
+                                break;
+                            case 2:
+                                lbl_rowNumber.Background = Brushes.Silver;
+                                lbl_teamName.Background = Brushes.Silver;
+                                lbl_winPoints.Background = Brushes.Silver;
+                                lbl_gamePoints.Background = Brushes.Silver;
+                                break;
+                            case 3:
+                                lbl_rowNumber.Background = Brushes.SandyBrown;
+                                lbl_teamName.Background = Brushes.SandyBrown;
+                                lbl_winPoints.Background = Brushes.SandyBrown;
+                                lbl_gamePoints.Background = Brushes.SandyBrown;
+                                break;
+                        }
 
 
                         stp_posNumber.Children.Add(lbl_rowNumber);
@@ -96,6 +118,7 @@ namespace PW
 
 
                     }
+                } while (x < 20);
             }
         }
 

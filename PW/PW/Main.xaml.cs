@@ -96,6 +96,19 @@ namespace PW
             }
             pgb_Tournament.Value = value;
             lbl_sPGB_Tournament.Content = tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtName);
+
+            if(pgb_Tournament.Value == 100)
+            {
+                // Farbverlauf
+                LinearGradientBrush lgbrush = new LinearGradientBrush();
+                lgbrush.StartPoint = new Point(0.5, 0);
+                lgbrush.EndPoint = new Point(0.5, 1);
+                lgbrush.GradientStops.Add(new GradientStop(Colors.White, 1.0));
+                lgbrush.GradientStops.Add(new GradientStop(Colors.LimeGreen, 0.0));
+                
+                mnwd.btn_GoToEvaluation.Background = lgbrush;
+            }
+
             // Overall Section
             lbl_oRunCnt.Content = Convert.ToString(runCnt);
             lbl_oGamePerRunCnt.Content = Convert.ToString(gamePerRunCnt);

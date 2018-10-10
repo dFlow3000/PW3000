@@ -51,7 +51,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToEvaluation" Content="Auswertung" HorizontalAlignment="Left" Width="245" Height="242" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="242" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>

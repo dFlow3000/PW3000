@@ -24,6 +24,8 @@ namespace PW
         int runId = 0;
         MainWindow mnwd;
         bool team1Selected, team2Selected, tableSelected, createdRun = false;
+        int[,] prevTableValues = new int[4, 2];
+        int[] prevTableValueGamePointsTotal = new int[2];
 
         public InsertRunData(MainWindow i_mnwd, int i_runId)
         {
@@ -343,11 +345,13 @@ namespace PW
                     allreadyfilled = false;
                     cmbx_selectTeam1.Visibility = Visibility.Visible;
                     cmbx_selectTeam2.Visibility = Visibility.Visible;
+                    btn_Edit_GameData.Visibility = Visibility.Hidden;
                     break;
                 } else
                 {
                     cmbx_selectTeam1.Visibility = Visibility.Hidden;
                     cmbx_selectTeam2.Visibility = Visibility.Hidden;
+                    btn_Edit_GameData.Visibility = Visibility.Visible;
                 }
             }
 
@@ -378,11 +382,107 @@ namespace PW
                 btn_Edit_GameData_Clear.Visibility = Visibility.Visible;
                 btn_Edit_GameData_Autorisation.Visibility = Visibility.Hidden;
                 pwbx_EditPassword.Visibility = Visibility.Hidden;
+
+                // Enable Textboxes
+                tbx_1GamePoints1Team.IsEnabled = true;
+                tbx_1GamePoints2Team.IsEnabled = true;
+                tbx_2GamePoints1Team.IsEnabled = true;
+                tbx_2GamePoints2Team.IsEnabled = true;
+                tbx_3GamePoints1Team.IsEnabled = true;
+                tbx_3GamePoints2Team.IsEnabled = true;
+                tbx_iWinPointsTeam1.IsEnabled = true;
+                tbx_iWinPointsTeam2.IsEnabled = true;
+
+                // [0,0] WinPoints Team1
+                prevTableValues[0, 0] = Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+                // [0,1] WinPoints Team2
+                prevTableValues[0, 1] = Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                // [1,0] Game1Points Team1
+                prevTableValues[1, 0] = Convert.ToInt32(tbx_1GamePoints1Team.Text);
+                // [1,1] Game1Points Team2
+                prevTableValues[1, 1] = Convert.ToInt32(tbx_1GamePoints2Team.Text);
+                // [2,0] Game2Points Team1
+                prevTableValues[2, 0] = Convert.ToInt32(tbx_2GamePoints1Team.Text);
+                // [2,1] Game2Points Team2
+                prevTableValues[2, 1] = Convert.ToInt32(tbx_2GamePoints2Team.Text);
+                // [3,0] Game3Points Team1
+                prevTableValues[3, 0] = Convert.ToInt32(tbx_3GamePoints1Team.Text);
+                // [3,1] Game3Points Team2
+                prevTableValues[3, 1] = Convert.ToInt32(tbx_3GamePoints2Team.Text);
+
+                for(int i = 1; i <= 3; i++)
+                {
+                    prevTableValueGamePointsTotal[0] += prevTableValues[i, 0];
+                    prevTableValueGamePointsTotal[1] += prevTableValues[i, 1];
+                }
+
+            } else
+            {
+                MessageBox.Show("Das eingegebene Passwort ist flasch!",
+                                "Bearbeitung nicht erlaubt!",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Stop);
+                pwbx_EditPassword.Password = String.Empty;
             }
         }
 
         private void btn_Edit_GameData_Save_Click(object sender, RoutedEventArgs e)
         {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            int maxGamePerRound = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
+            int[] newTableValueGamePointsTotal = new int[2];
+            Table updateTable = new Table();
+            updateTable.Getter(cmbx_selectTable.SelectedIndex + 1, runId);
+
+            Game[] updateGames = new Game[maxGamePerRound];
+            Game addGame = new Game();
+
+            TextBox[,] updateInput = new TextBox[3, 2] { { tbx_1GamePoints1Team, tbx_1GamePoints2Team },
+                                                         { tbx_2GamePoints1Team, tbx_2GamePoints2Team },
+                                                         { tbx_3GamePoints1Team, tbx_3GamePoints2Team } };
+            Team updateTeam1 = new Team();
+            updateTeam1.Getter(updateTable.teamsOnTable[0]);
+            Team updateTeam2 = new Team();
+            updateTeam2.Getter(updateTable.teamsOnTable[1]);
+
+            for(int i = 0; i < maxGamePerRound; i++)
+            {
+                addGame.Getter(updateTable.tableGameIds[i]);
+                updateGames[i] = addGame;
+                updateGames[i].gamePoints[0] = Convert.ToInt32(updateInput[i, 0].Text);
+                newTableValueGamePointsTotal[0] += Convert.ToInt32(updateInput[i, 0].Text);
+                updateGames[i].gamePoints[1] = Convert.ToInt32(updateInput[i, 1].Text);
+                newTableValueGamePointsTotal[1] += Convert.ToInt32(updateInput[i, 1].Text);
+                updateGames[i].Setter();
+            }
+
+            updateTable.winPointsAtGame[0] = Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+            updateTable.winPointsAtGame[1] = Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+            updateTable.Setter();
+
+            if (updateTeam1.gamePointsTotal > 0)
+            {
+                updateTeam1.gamePointsTotal -= prevTableValueGamePointsTotal[0];
+            }
+            updateTeam1.gamePointsTotal += newTableValueGamePointsTotal[0];
+            if (updateTeam1.winPoints > 0)
+            {
+                updateTeam1.winPoints -= prevTableValues[0, 0];
+            }
+            updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+            updateTeam1.Setter();
+            if (updateTeam2.gamePointsTotal > 0)
+            {
+                updateTeam2.gamePointsTotal -= prevTableValueGamePointsTotal[1];
+            }
+            updateTeam2.gamePointsTotal += newTableValueGamePointsTotal[1];
+            if (updateTeam2.winPoints > 0)
+            {
+                updateTeam2.winPoints -= prevTableValues[0, 1];
+            }
+            updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+            updateTeam2.Setter();
+
 
         }
 
