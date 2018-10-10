@@ -17,6 +17,8 @@ namespace PW
         public const string fsX_prepMode_def = "1";
         public const string fsX_allKey = "@";
         public const string fsX_allKey_def = "TzSaarkufVsxv0Fr2z+SQQ==";
+        public const string fsX_SpecTnmtPath = "Specific-Tournament-Path";
+        public const string fsX_SpecTnmtPath_def = "C:/";
         // .ini-File - Section - Tournament Section
         public const string tnmtSec = "tournament-section";
         public const string tnS_tnmtName = "Name";
@@ -40,6 +42,12 @@ namespace PW
         public int tnmtTeamCnt;
         public int tnmtRunCnt;
         public int tnmtGameProRunCnt;
+        public string tnmtSpecPath;
+        public int tnmtActRun;
+
+        public Tournament()
+        {
+        }
 
         public Tournament(string i_tnmtName, int i_tnmtRunCnt, int i_tnmtGameProRunCnt)
         {
@@ -58,6 +66,17 @@ namespace PW
             Run newRun = new Run(i_id, true);
             return newRun;
 
+        }
+
+        public void Getter()
+        {
+            INIFile tnIni = new INIFile(iniPath);
+            tnmtName = tnIni.GetValue(tnmtSec, tnS_tnmtName);
+            tnmtTeamCnt = Convert.ToInt32(tnIni.GetValue(tnmtSec, tnS_tnmtTeamCnt));
+            tnmtRunCnt = Convert.ToInt32(tnIni.GetValue(tnmtSec, tnS_tnmtRunCnt));
+            tnmtGameProRunCnt = Convert.ToInt32(tnIni.GetValue(tnmtSec, tnS_tnmtGameProRunCnt));
+            tnmtSpecPath = tnIni.GetValue(Const.fileSec, fsX_SpecTnmtPath);
+            tnmtActRun = Convert.ToInt32(tnIni.GetValue(tnmtSec, tnS_tnmtRunCntAct));
         }
 
     }

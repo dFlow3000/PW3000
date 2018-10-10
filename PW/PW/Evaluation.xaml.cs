@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using PdfSharp.Fonts;
+using System.IO;
 
 namespace PW
 {
@@ -161,6 +165,78 @@ namespace PW
         {
             UserControl main = new Main(mnwd);
             mnwd.MainContent.Content = main;
+        }
+
+        private void btn_PrintEvaluation_Click(object sender, RoutedEventArgs e)
+        {
+            Tournament tnmt = new Tournament();
+            tnmt.Getter();
+            SaveEva();
+            MessageBox.Show("Rangliste wurde gespeichert!" +
+                            "Speicherort: " + tnmt.tnmtSpecPath,
+                            "Speichern erfolgreich",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+        }
+
+        public static void SaveEva()
+        {
+            Tournament tnmt = new Tournament();
+            tnmt.Getter();
+            Team[] evaTeams = new Team[tnmt.tnmtTeamCnt];
+            for (int i = 0; i < evaTeams.Length; i++)
+            {
+                Team addTeam = new Team();
+                addTeam.Getter(i + 1);
+                evaTeams[i] = addTeam;
+            }
+
+            SortTeamsByWinAndGamePoints(evaTeams);
+
+            PdfDocument pdf = new PdfDocument();
+            PdfPage page = pdf.AddPage();
+
+            XGraphics graph = XGraphics.FromPdfPage(page);
+
+            XFont fontHeader = new XFont("Verdana", 20, XFontStyle.Bold);
+            XFont fontLine = new XFont("Courier New", 12, XFontStyle.Regular);
+            XFont fontLineInfo = new XFont("Courier New", 12, XFontStyle.Regular);
+
+            graph.DrawString("Ranglist " + tnmt.tnmtName, fontHeader, XBrushes.Black, new XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.TopCenter);
+
+            string line = "";
+            int yPoint = 40;
+
+            line = "Allgemine Daten:";
+            graph.DrawString(line, fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            yPoint += 20;
+            line = "    Anzahl Durchgänge: " + Convert.ToString(tnmt.tnmtRunCnt);
+            graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            yPoint += 20;
+            line = "    Anzahl Spiel/Druchgang: " + Convert.ToString(tnmt.tnmtGameProRunCnt);
+            graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            yPoint += 20;
+            line = "    Anzahl Teams: " + Convert.ToString(tnmt.tnmtTeamCnt);
+            graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            yPoint += 50;
+            int x = 0;
+            line = "";
+            foreach (Team team in evaTeams)
+            {
+                x++;
+                line += Convert.ToString(x) + "." + " | ";
+                line += team.teamName + " | #";
+                line += Convert.ToString(team.teamId) + " | ";
+                line += Convert.ToString(team.winPoints) + " | ";
+                line += Convert.ToString(team.gamePointsTotal);
+                graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                yPoint += 20;
+                line = "";
+            }
+
+
+            string pdfFilename = System.IO.Path.Combine(tnmt.tnmtSpecPath, "Rangliste_" + tnmt.tnmtName + "_" + DateTime.Now.ToShortDateString() + ".pdf");
+            pdf.Save(pdfFilename);
         }
     }
 }

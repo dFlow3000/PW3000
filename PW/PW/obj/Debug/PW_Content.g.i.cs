@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("watten_mai_icon.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pw3000_l2n_icon.ico")]
 
 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
+using System.IO;
 
 namespace PW
 {
@@ -116,6 +117,60 @@ namespace PW
             lbl_oTableCnt.Content = tableIni.GetValue(Const.fileSec, Table.fsX_tableCnt);
     
 
+
+        }
+
+        private void btn_QuitTnmt_Click(object sender, RoutedEventArgs e)
+        {
+            Tournament tnmt = new Tournament();
+            tnmt.Getter();
+
+            if (tnmt.tnmtRunCnt == tnmt.tnmtActRun)
+            {
+
+                if (MessageBox.Show("Wollen Sie das Tunier wirklich beenden?" +
+                                   "\nDie Daten und die finale Rangliste werden gespeichert" +
+                                   "\nSpeicherort: " + tnmt.tnmtSpecPath,
+                                   "Tunier wirklich beenden?",
+                                   MessageBoxButton.YesNo,
+                                   MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    Evaluation.SaveEva();
+                    switchToFinishFolder(tnmt);
+                }
+            } else
+            {
+                if (MessageBox.Show("Das Tunier ist noch nicht abgeschlossen!" + 
+                                    "\nWollen Sie das Tunier wirklich beenden?" +
+                                    "\nDie Daten und die aktuelle Rangliste werden gespeichert" +
+                                    "\nSpeicherort: " + tnmt.tnmtSpecPath,
+                                    "Tunier wirklich beenden?",
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    Evaluation.SaveEva();
+                    switchToFinishFolder(tnmt);
+                }
+            }
+
+
+        }
+
+        private void switchToFinishFolder(Tournament tnmt)
+        {
+            string finishedFolderPath = System.IO.Path.Combine(tnmt.tnmtSpecPath, "Finished_Tournament_Data");
+            Directory.CreateDirectory(finishedFolderPath);
+
+            foreach (var srcPath in Directory.GetFiles(Const.iniFolderPath))
+            {
+                //Copy the file from sourcepath and place into mentioned target path, 
+                //Overwrite the file if same file is exist in target path
+                File.Copy(srcPath, srcPath.Replace(Const.iniFolderPath, finishedFolderPath), true);
+                File.Delete(srcPath);
+            }
+
+            Directory.Delete(Const.iniFolderPath);
+            mnwd.Close();
 
         }
     }

@@ -77,8 +77,8 @@
             </ComboBox.Background>
         </ComboBox>
         <Label x:Name="lbl_sTableNumber" Content="Tisch-Nr.:" HorizontalAlignment="Left" Margin="478,58,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Height="31" Width="76"/>
-        <Label x:Name="lbl_sRunNumber" Content=". Durchgang" HorizontalAlignment="Left" Margin="547,20,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Height="31" Width="102"/>
-        <Label x:Name="lbl_oRunNumber" Content="" HorizontalAlignment="Left" Margin="500,22,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="0.412,0.526" Width="26" HorizontalContentAlignment="Right" FontSize="16" Height="31"/>
+        <Label x:Name="lbl_sRunNumber" Content=". Durchgang" HorizontalAlignment="Left" Margin="520,19,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Height="31" Width="102"/>
+        <Label x:Name="lbl_oRunNumber" Content="1" HorizontalAlignment="Left" Margin="500,19,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="0.412,0.526" Width="30" HorizontalContentAlignment="Right" FontSize="16" Height="31"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Margin="514,151,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="98"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Margin="514,276,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="98"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Margin="514,401,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="98"/>
@@ -132,6 +132,8 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Label x:Name="lbl_oTeam1Number" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="25,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="410" FontSize="16" Height="31"/>
+        <Label x:Name="lbl_oTeam2Number" Visibility="Hidden" Content="" HorizontalAlignment="Left" Margin="668,15,0,0" Grid.Row="1" VerticalAlignment="Top" Width="410" FontSize="16" Height="31"/>
 
     </Grid>
 </UserControl>

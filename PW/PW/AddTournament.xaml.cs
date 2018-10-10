@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
+using System.IO;
 
 namespace PW
 {
@@ -34,6 +35,13 @@ namespace PW
             {
                 INIFile tnmtIni = new INIFile(Tournament.iniPath);
                 Tournament newTnmt = new Tournament(tbx_TnmtName.Text, Convert.ToInt32(tbx_TnmtRunCnt.Text), Convert.ToInt32(tbx_TnmtGameCnt.Text));
+
+                if (tbx_TnmtName.Text != null)
+                {
+                    string specificTnmntPath = System.IO.Path.Combine(Const.CurDirPath, tbx_TnmtName.Text);
+                    Directory.CreateDirectory(specificTnmntPath);
+                    tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
+                }
 
                 UserControl prepMenue = new PrepaireMenue(mnwd);
                 mnwd.MainContent.Content = prepMenue;

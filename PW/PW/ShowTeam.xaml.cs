@@ -188,7 +188,7 @@ namespace PW
             foreach(string teamName in allTeams)
             {
                 x++;
-                cmbx_oiTeamShowerSelectTeam.Items.Add(x + ". " + teamName);
+                cmbx_oiTeamShowerSelectTeam.Items.Add(x + " - " + teamName);
             }
         }
 

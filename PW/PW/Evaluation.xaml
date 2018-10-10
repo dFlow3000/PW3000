@@ -80,7 +80,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_PrintEvaluation" Content="Drucken" HorizontalAlignment="Left" Foreground="WhiteSmoke" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="822,721,0,0" Grid.RowSpan="2" Click="btn_MainMenue_Click" FontSize="22">
+        <Button x:Name="btn_PrintEvaluation" Content="Als PDF speichern" HorizontalAlignment="Left" Foreground="WhiteSmoke" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="822,721,0,0" Grid.RowSpan="2" Click="btn_PrintEvaluation_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>

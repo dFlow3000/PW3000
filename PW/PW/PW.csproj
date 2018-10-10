@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>watten_mAI_icon.ico</ApplicationIcon>
+    <ApplicationIcon>pw3000_L2n_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -68,6 +68,12 @@
     </Compile>
     <Compile Include="InsertRunData.xaml.cs">
       <DependentUpon>InsertRunData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadOrCreateTournament.xaml.cs">
+      <DependentUpon>LoadOrCreateTournament.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadTournament.xaml.cs">
+      <DependentUpon>LoadTournament.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -105,6 +111,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InsertRunData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadOrCreateTournament.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadTournament.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +199,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="watten_mAI_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pw3000_L2n_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\DaWo\PDFsharp\src\PdfSharp\PdfSharp.csproj">
+      <Project>{5a6055bc-bf86-4fdd-9f62-0109db7a303b}</Project>
+      <Name>PdfSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,11 +42,18 @@ namespace PW
             INIFile tableData = IniFileDataTemplate.CheckIfIniExists(Table.iniPath);
             INIFile signedUpTeamsData = IniFileDataTemplate.CheckIfIniExists(SignedUpTeam.iniPath);
 
+            UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
+            MainContent.Content = creOLoaTnmt;
+
             if (!checkIfTournamentIsRuning(tournamentData))
             {
                 // No running Tournament! Start New One and get needed Parameters
-                UserControl addTnmt = new AddTournament(this);
-                MainContent.Content = addTnmt;
+                //UserControl addTnmt = new AddTournament(this);
+                //MainContent.Content = addTnmt;
+
+                Tournament tnmt = new Tournament();
+                tnmt.Getter();
+
 
                 ActionMenue.Visibility = Visibility.Hidden;
                 txbl_Logo.Visibility = Visibility.Visible;

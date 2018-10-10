@@ -96,7 +96,7 @@ namespace PW
             List<string> allTeams = new List<string>();
             for(int i = 1; i <= Convert.ToInt32(i_ini.GetValue(Const.fileSec, Team.fsX_teamCnt)); i++)
             {
-                allTeams.Add(Convert.ToString(i) + ". " + i_ini.GetValue(Team.teamSec + Convert.ToInt32(i), Team.tS_teamName));
+                allTeams.Add(Convert.ToString(i) + " - " + i_ini.GetValue(Team.teamSec + Convert.ToInt32(i), Team.tS_teamName));
             }
 
             foreach(string teamName in allTeams)
@@ -352,6 +352,10 @@ namespace PW
                     cmbx_selectTeam1.Visibility = Visibility.Hidden;
                     cmbx_selectTeam2.Visibility = Visibility.Hidden;
                     btn_Edit_GameData.Visibility = Visibility.Visible;
+                    lbl_oTeam1Number.Visibility = Visibility.Visible;
+                    lbl_oTeam2Number.Visibility = Visibility.Visible;
+                    lbl_oTeam1Number.Content = Convert.ToString(selectedTable.teamsOnTable[0]);
+                    lbl_oTeam2Number.Content = Convert.ToString(selectedTable.teamsOnTable[1]);
                 }
             }
 

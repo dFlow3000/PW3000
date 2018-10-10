@@ -85,3 +85,11 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.GenerateResource
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CoreCompileInputs.cache
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.exe
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.pdb
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.dll
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.pdb
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CopyComplete
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadOrCreateTournament.g.cs
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadTournament.g.cs
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadOrCreateTournament.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadTournament.baml
