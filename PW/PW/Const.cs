@@ -6,6 +6,8 @@ namespace PW
 {
     class Const
     {
+        // Try out
+        public static string tryout = "tryOut";
         // 1 - .ini-File Ordner
         public static string iniFileFolder = "iniFiles";
         public static string CurDirPath = Directory.GetCurrentDirectory();
