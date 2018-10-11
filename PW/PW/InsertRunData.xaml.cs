@@ -242,9 +242,11 @@ namespace PW
             }
         }
 
-        private void btn_Clear_Click(object sender, RoutedEventArgs e)
+        private void btn_ToRun_Click(object sender, RoutedEventArgs e)
         {
             switchTbx(false);
+            UserControl runMenue = new RunMenue(mnwd);
+            mnwd.MainContent.Content = runMenue;
         }
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
@@ -271,6 +273,15 @@ namespace PW
                         team1.gamePointsTotal += gamesOnTable[i].gamePoints[0];
                         gamesOnTable[i].gamePoints[1] = Convert.ToInt32(gamepoints[i,1]);
                         team2.gamePointsTotal += gamesOnTable[i].gamePoints[1];
+
+                        if (gamesOnTable[i].gamePoints[0] > gamesOnTable[i].gamePoints[1])
+                        {
+                            team1.gamePointsTotalDiff += gamesOnTable[i].gamePoints[0] - gamesOnTable[i].gamePoints[1];
+                        } else
+                        {
+                            team2.gamePointsTotalDiff += gamesOnTable[i].gamePoints[1] - gamesOnTable[i].gamePoints[0];
+                        }
+
                         gamesOnTable[i].dpndRun = runId;
                         gamesOnTable[i].Setter();
                     }
@@ -352,6 +363,7 @@ namespace PW
                     cmbx_selectTeam1.Visibility = Visibility.Hidden;
                     cmbx_selectTeam2.Visibility = Visibility.Hidden;
                     btn_Edit_GameData.Visibility = Visibility.Visible;
+                    btn_Save.Visibility = Visibility.Hidden;
                     lbl_oTeam1Number.Visibility = Visibility.Visible;
                     lbl_oTeam2Number.Visibility = Visibility.Visible;
                     lbl_oTeam1Number.Content = Convert.ToString(selectedTable.teamsOnTable[0]);
@@ -386,6 +398,7 @@ namespace PW
                 btn_Edit_GameData_Clear.Visibility = Visibility.Visible;
                 btn_Edit_GameData_Autorisation.Visibility = Visibility.Hidden;
                 pwbx_EditPassword.Visibility = Visibility.Hidden;
+                pwbx_EditPassword.Password = String.Empty;
 
                 // Enable Textboxes
                 tbx_1GamePoints1Team.IsEnabled = true;
@@ -492,7 +505,11 @@ namespace PW
 
         private void btn_Edit_GameData_Clear_Click(object sender, RoutedEventArgs e)
         {
-
+            Table selectedTable = new Table(cmbx_selectTable.SelectedIndex + 1, runId);
+            showGatheredInfo(selectedTable);
+            btn_Edit_GameData.Visibility = Visibility.Visible;
+            btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
+            btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
         }
 
         private void showGatheredInfo(Table selectedTable)

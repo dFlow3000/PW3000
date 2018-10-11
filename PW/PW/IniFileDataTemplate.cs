@@ -41,6 +41,8 @@ namespace PW
             {
                 newIniFile.SetValue(Const.fileSec, Tournament.fsX_prepMode, Tournament.fsX_prepMode_def);
                 newIniFile.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, Tournament.fsX_SpecTnmtPath_def);
+                newIniFile.SetValue(Const.fileSec, Tournament.fsX_allKey, Tournament.fsX_allKey_def);
+                newIniFile.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Tournament.fsX_ColorMode_def);
             } else if (i_iniPath == SignedUpTeam.iniPath)
             {
                 newIniFile.SetValue(Const.fileSec, SignedUpTeam.fsX_suTeamCnt, SignedUpTeam.fsX_suTeamCnt_def);

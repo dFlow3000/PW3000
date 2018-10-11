@@ -16,9 +16,11 @@ namespace PW
         public const string fsX_prepMode = "Prepare-Mode";
         public const string fsX_prepMode_def = "1";
         public const string fsX_allKey = "@";
-        public const string fsX_allKey_def = "TzSaarkufVsxv0Fr2z+SQQ==";
+        public const string fsX_allKey_def = "§%,^^^\"#°~/%?$";
         public const string fsX_SpecTnmtPath = "Specific-Tournament-Path";
         public const string fsX_SpecTnmtPath_def = "C:/";
+        public const string fsX_ColorMode = "Color-Mode";
+        public const string fsX_ColorMode_def = Const.Red.colorRed;
         // .ini-File - Section - Tournament Section
         public const string tnmtSec = "tournament-section";
         public const string tnS_tnmtName = "Name";
@@ -66,6 +68,13 @@ namespace PW
             Run newRun = new Run(i_id, true);
             return newRun;
 
+        }
+
+        public void Setter()
+        {
+            INIFile tnIni = new INIFile(iniPath);
+            tnIni.SetValue(tnmtSec, tnS_tnmtName, tnmtName);
+            tnIni.SetValue(tnmtSec, tnS_tnmtRunCnt, Convert.ToString(tnmtRunCnt));
         }
 
         public void Getter()

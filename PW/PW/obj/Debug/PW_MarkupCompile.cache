@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\App.xaml
-131227567342
-
-29541191689
+15-721844919
+1154062384
+312069388922
 16747554655
-AddTeam.xaml;AddTournament.xaml;Evaluation.xaml;InsertRunData.xaml;LoadOrCreateTournament.xaml;LoadTournament.xaml;Main.xaml;MainWindow.xaml;PlayedGameInfo.xaml;PrepaireMenue.xaml;RunMenue.xaml;ShowTeam.xaml;SignUpTeams.xaml;
+AddTeam.xaml;AddTournament.xaml;Evaluation.xaml;Eva_Team_Data.xaml;InsertRunData.xaml;LoadOrCreateTournament.xaml;LoadTournament.xaml;Main.xaml;MainWindow.xaml;PlayedGameInfo.xaml;PrepaireMenue.xaml;RunMenue.xaml;Settings.xaml;ShowTeam.xaml;SignUpTeams.xaml;
 
 False
 

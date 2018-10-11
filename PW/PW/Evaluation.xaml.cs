@@ -51,78 +51,97 @@ namespace PW
                 Label lbl_rowNumber = new Label();
                 Label lbl_teamName = new Label();
                 Label lbl_winPoints = new Label();
-                Label lbl_gamePoints = new Label();
+                Label lbl_gamePointsDiff = new Label();
 
                 int x = 0;
-                do
+                //do
+                //{
+                foreach (Team team in allTeams)
                 {
-                    foreach (Team team in allTeams)
+                    Separator sep = new Separator();
+                    Button btn_teamGameInfo = new Button();
+                    x++;
+                    lbl_rowNumber = new Label();
+                    lbl_teamName = new Label();
+                    lbl_winPoints = new Label();
+                    lbl_gamePointsDiff = new Label();
+
+                    lbl_rowNumber.Content = Convert.ToString(x);
+                    lbl_teamName.Content = team.teamName;
+                    lbl_winPoints.Content = Convert.ToString(team.winPoints);
+                    lbl_gamePointsDiff.Content = Convert.ToString(team.gamePointsTotalDiff);
+
+                    btn_teamGameInfo.Uid = Convert.ToString(team.teamId);
+                    btn_teamGameInfo.Content = "i";
+                    btn_teamGameInfo.Height = 31.28;
+                    btn_teamGameInfo.FontWeight = FontWeights.Bold;
+                    btn_teamGameInfo.FontFamily = new FontFamily("Courier New");
+                    btn_teamGameInfo.FontSize = 16;
+                    btn_teamGameInfo.Foreground = Brushes.WhiteSmoke;
+                    LinearGradientBrush lgbrushRed = new LinearGradientBrush();
+                    lgbrushRed.StartPoint = new Point(0.5, 0);
+                    lgbrushRed.EndPoint = new Point(0.5, 1);
+                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.DarkBlue, 1.0));
+                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.LightBlue, 0.0));
+
+                    btn_teamGameInfo.Background = lgbrushRed;
+                    btn_teamGameInfo.Click += new RoutedEventHandler(OpenTeamGameInfo);
+
+                    lbl_rowNumber.FontSize = 16;
+                    lbl_teamName.FontSize = 16;
+                    lbl_winPoints.FontSize = 16;
+                    lbl_gamePointsDiff.FontSize = 16;
+                    //lbl_rowNumber.FontWeight = FontWeights.Bold;
+                    //lbl_teamName.FontWeight = FontWeights.Bold;
+                    //lbl_winPoints.FontWeight = FontWeights.Bold;
+                    //lbl_gamePoints.FontWeight = FontWeights.Bold;
+
+                    lbl_rowNumber.HorizontalContentAlignment = HorizontalAlignment.Right;
+                    lbl_teamName.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    lbl_winPoints.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    lbl_gamePointsDiff.HorizontalContentAlignment = HorizontalAlignment.Center;
+
+                    switch (x)
                     {
-                        Separator sep = new Separator();
-                        x++;
-                        lbl_rowNumber = new Label();
-                        lbl_teamName = new Label();
-                        lbl_winPoints = new Label();
-                        lbl_gamePoints = new Label();
-
-                        lbl_rowNumber.Content = Convert.ToString(x);
-                        lbl_teamName.Content = team.teamName;
-                        lbl_winPoints.Content = Convert.ToString(team.winPoints);
-                        lbl_gamePoints.Content = Convert.ToString(team.gamePointsTotal);
-
-                        lbl_rowNumber.FontSize = 16;
-                        lbl_teamName.FontSize = 16;
-                        lbl_winPoints.FontSize = 16;
-                        lbl_gamePoints.FontSize = 16;
-                        //lbl_rowNumber.FontWeight = FontWeights.Bold;
-                        //lbl_teamName.FontWeight = FontWeights.Bold;
-                        //lbl_winPoints.FontWeight = FontWeights.Bold;
-                        //lbl_gamePoints.FontWeight = FontWeights.Bold;
-
-                        lbl_rowNumber.HorizontalContentAlignment = HorizontalAlignment.Right;
-                        lbl_teamName.HorizontalContentAlignment = HorizontalAlignment.Center;
-                        lbl_winPoints.HorizontalContentAlignment = HorizontalAlignment.Center;
-                        lbl_gamePoints.HorizontalContentAlignment = HorizontalAlignment.Center;
-
-                        switch (x)
-                        {
-                            case 1:
-                                lbl_rowNumber.Background = Brushes.Gold;
-                                lbl_teamName.Background = Brushes.Gold;
-                                lbl_winPoints.Background = Brushes.Gold;
-                                lbl_gamePoints.Background = Brushes.Gold;
-                                break;
-                            case 2:
-                                lbl_rowNumber.Background = Brushes.Silver;
-                                lbl_teamName.Background = Brushes.Silver;
-                                lbl_winPoints.Background = Brushes.Silver;
-                                lbl_gamePoints.Background = Brushes.Silver;
-                                break;
-                            case 3:
-                                lbl_rowNumber.Background = Brushes.SandyBrown;
-                                lbl_teamName.Background = Brushes.SandyBrown;
-                                lbl_winPoints.Background = Brushes.SandyBrown;
-                                lbl_gamePoints.Background = Brushes.SandyBrown;
-                                break;
-                        }
-
-
-                        stp_posNumber.Children.Add(lbl_rowNumber);
-                        sep = new Separator();
-                        stp_posNumber.Children.Add(sep);
-                        stp_TeamName.Children.Add(lbl_teamName);
-                        sep = new Separator();
-                        stp_TeamName.Children.Add(sep);
-                        stp_WinPoints.Children.Add(lbl_winPoints);
-                        sep = new Separator();
-                        stp_WinPoints.Children.Add(sep);
-                        stp_GamePoints.Children.Add(lbl_gamePoints);
-                        sep = new Separator();
-                        stp_GamePoints.Children.Add(sep);
-
-
+                        case 1:
+                            lbl_rowNumber.Background = Brushes.Gold;
+                            lbl_teamName.Background = Brushes.Gold;
+                            lbl_winPoints.Background = Brushes.Gold;
+                            lbl_gamePointsDiff.Background = Brushes.Gold;
+                            break;
+                        case 2:
+                            lbl_rowNumber.Background = Brushes.Silver;
+                            lbl_teamName.Background = Brushes.Silver;
+                            lbl_winPoints.Background = Brushes.Silver;
+                            lbl_gamePointsDiff.Background = Brushes.Silver;
+                            break;
+                        case 3:
+                            lbl_rowNumber.Background = Brushes.SandyBrown;
+                            lbl_teamName.Background = Brushes.SandyBrown;
+                            lbl_winPoints.Background = Brushes.SandyBrown;
+                            lbl_gamePointsDiff.Background = Brushes.SandyBrown;
+                            break;
                     }
-                } while (x < 20);
+
+
+                    stp_posNumber.Children.Add(lbl_rowNumber);
+                    sep = new Separator();
+                    stp_posNumber.Children.Add(sep);
+                    stp_TeamName.Children.Add(lbl_teamName);
+                    sep = new Separator();
+                    stp_TeamName.Children.Add(sep);
+                    stp_WinPoints.Children.Add(lbl_winPoints);
+                    sep = new Separator();
+                    stp_WinPoints.Children.Add(sep);
+                    stp_GamePointsDiff.Children.Add(lbl_gamePointsDiff);
+                    sep = new Separator();
+                    stp_GamePointsDiff.Children.Add(sep);
+                    stp_TeamGameInfo.Children.Add(btn_teamGameInfo);
+                    sep = new Separator();
+                    stp_TeamGameInfo.Children.Add(sep);
+
+                }
+                //} while (x < 20);
             }
         }
 
@@ -148,7 +167,7 @@ namespace PW
                 {
                     if (teams[b].winPoints == teams[b + 1].winPoints)
                     {
-                        if (teams[b].gamePointsTotal < teams[b + 1].gamePointsTotal)
+                        if (teams[b].gamePointsTotalDiff < teams[b + 1].gamePointsTotalDiff)
                         {
                             // swap movies[b] with movies[b+1]
                             Team temp = teams[b];
@@ -159,6 +178,13 @@ namespace PW
                 }
             }
 
+        }
+
+        private void OpenTeamGameInfo (object sender, EventArgs e)
+        {
+            Button btn_activ = (Button)sender;
+            Window teamGameInfo = new Eva_Team_Data(Convert.ToInt32(btn_activ.Uid));
+            teamGameInfo.Show();
         }
 
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
@@ -200,9 +226,9 @@ namespace PW
 
             XFont fontHeader = new XFont("Verdana", 20, XFontStyle.Bold);
             XFont fontLine = new XFont("Courier New", 12, XFontStyle.Regular);
-            XFont fontLineInfo = new XFont("Courier New", 12, XFontStyle.Regular);
+            XFont fontLineInfo = new XFont("Courier New", 12, XFontStyle.Bold);
 
-            graph.DrawString("Ranglist " + tnmt.tnmtName, fontHeader, XBrushes.Black, new XRect(0, 0, page.Width.Point, page.Height.Point), XStringFormats.TopCenter);
+            graph.DrawString("Ranglist " + tnmt.tnmtName, fontHeader, XBrushes.Black, new XRect(10, 0, page.Width.Point, page.Height.Point), XStringFormats.TopCenter);
 
             string line = "";
             int yPoint = 40;
@@ -221,22 +247,110 @@ namespace PW
             yPoint += 50;
             int x = 0;
             line = "";
+
+            line = Const.posHeader + "|" + Const.teamNumberHeader + "|" + Const.teamNameHeader + "|" + Const.winPointsHeader + "|" + Const.gamePointsDiffHeader;
+            graph.DrawString(line, fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            yPoint += 20;
+            line = "";
+
+            graph.DrawString(SetRow(), fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            yPoint += 20;
+
             foreach (Team team in evaTeams)
             {
                 x++;
-                line += Convert.ToString(x) + "." + " | ";
-                line += team.teamName + " | #";
-                line += Convert.ToString(team.teamId) + " | ";
-                line += Convert.ToString(team.winPoints) + " | ";
-                line += Convert.ToString(team.gamePointsTotal);
-                graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                graph.DrawString(FillPdfTable(team, Convert.ToString(x)), fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
                 yPoint += 20;
                 line = "";
+                graph.DrawString(SetRow(), fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                yPoint += 20;
             }
 
+            if (!Directory.Exists(tnmt.tnmtSpecPath))
+            {
+                Directory.CreateDirectory(tnmt.tnmtSpecPath);
+            }
 
             string pdfFilename = System.IO.Path.Combine(tnmt.tnmtSpecPath, "Rangliste_" + tnmt.tnmtName + "_" + DateTime.Now.ToShortDateString() + ".pdf");
             pdf.Save(pdfFilename);
+        }
+
+        private static string SetRow()
+        {
+            string retVal = "";
+            foreach(char c in Const.posHeader)
+            {
+                retVal += "-";
+            }
+            retVal += "+";
+
+            foreach (char c in Const.teamNumberHeader)
+            {
+                retVal += "-";
+            }
+            retVal += "+";
+
+            foreach (char c in Const.teamNameHeader)
+            {
+                retVal += "-";
+            }
+            retVal += "+";
+
+            foreach (char c in Const.winPointsHeader)
+            {
+                retVal += "-";
+            }
+            retVal += "+";
+            foreach (char c in Const.gamePointsDiffHeader)
+            {
+                retVal += "-";
+            }
+
+            return retVal;
+        }
+
+        private static string FillPdfTable(Team i_team, string i_pos)
+        {
+            string retVal = "";
+            for(int i = 1; i < Const.posHeaderLength - i_pos.Length; i++)
+            {
+                retVal += " ";
+            }
+
+            retVal += i_pos + " |";
+
+            for(int i = 1; i < Const.teamNumberHeaderLength - Convert.ToString(i_team.teamId).Length; i++)
+            {
+                retVal += " ";
+            }
+
+            retVal += i_team.teamId;
+            retVal += "  |";
+
+            for(int i = 1; i < Const.teamNameHeaderLength - i_team.teamName.Length; i++)
+            {
+                retVal += " ";
+            }
+
+            retVal += i_team.teamName;
+            retVal += " |";
+
+            for(int i = 1; i < Const.winPointsHeaderLength - Convert.ToString(i_team.winPoints).Length; i++)
+            {
+                retVal += " ";
+            }
+
+            retVal += Convert.ToString(i_team.winPoints) + "  |";
+
+            for (int i = 1; i < Const.gamePointsDiffHeaderLength - Convert.ToString(i_team.gamePointsTotalDiff).Length; i++)
+            {
+                retVal += " ";
+            }
+
+            retVal += Convert.ToString(i_team.gamePointsTotalDiff);
+
+
+            return retVal;
         }
     }
 }

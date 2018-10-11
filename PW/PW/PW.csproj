@@ -66,6 +66,9 @@
     <Compile Include="Evaluation.xaml.cs">
       <DependentUpon>Evaluation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Eva_Team_Data.xaml.cs">
+      <DependentUpon>Eva_Team_Data.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InsertRunData.xaml.cs">
       <DependentUpon>InsertRunData.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,9 @@
     <Compile Include="RunMenue.xaml.cs">
       <DependentUpon>RunMenue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShowTeam.xaml.cs">
       <DependentUpon>ShowTeam.xaml</DependentUpon>
     </Compile>
@@ -107,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Evaluation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Eva_Team_Data.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RunMenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +222,13 @@
       <Project>{5a6055bc-bf86-4fdd-9f62-0109db7a303b}</Project>
       <Name>PdfSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Settings_black-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="settings-icon-11.png" />
+    <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

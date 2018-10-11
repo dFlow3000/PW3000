@@ -34,7 +34,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_Clear" Foreground="WhiteSmoke" Content="Abbrechen" HorizontalAlignment="Left" Margin="695,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Clear_Click" FontSize="22" Grid.RowSpan="2">
+        <Button x:Name="btn_ToRun" Foreground="WhiteSmoke" Content="Durchgang wählen" HorizontalAlignment="Left" Margin="695,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_ToRun_Click" FontSize="22" Grid.RowSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>

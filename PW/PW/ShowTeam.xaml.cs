@@ -42,6 +42,7 @@ namespace PW
             lbl_sNotPayed.Visibility = Visibility.Hidden;
             cnvs_NotPayed1.Visibility = Visibility.Hidden;
             cnvs_NotPayed2.Visibility = Visibility.Hidden;
+            CheckBackGroundForNotPayed();
 
         }
 
@@ -49,7 +50,10 @@ namespace PW
         {
             if (cmbx_oiTeamShowerSelectTeam.SelectedIndex != -1)
             {
-                fillShowTeam(selectedTeam, player1, player2);
+                Tournament tnmt = new Tournament();
+                tnmt.Getter();
+
+                FillShowTeam(selectedTeam, player1, player2);
                 btn_EditTeam.Visibility = Visibility.Hidden;
                 btn_EditTeam_Save.Visibility = Visibility.Visible;
                 btn_EditTeam_Clear.Visibility = Visibility.Visible;
@@ -60,8 +64,15 @@ namespace PW
                 tbx_iTSP1Lastname.Visibility = Visibility.Visible;
                 tbx_iTSP2Firstname.Visibility = Visibility.Visible;
                 tbx_iTSP2Lastname.Visibility = Visibility.Visible;
-                cbx_iTAP1Payed.IsEnabled = true;
-                cbx_iTAP2Payed.IsEnabled = true;
+                if (tnmt.tnmtActRun == 0)
+                {
+                    cbx_iTAP1Payed.IsEnabled = true;
+                    cbx_iTAP2Payed.IsEnabled = true;
+                } else
+                {
+                    cbx_iTAP1Payed.IsEnabled = false;
+                    cbx_iTAP2Payed.IsEnabled = false;
+                }
                 lbl_oTeamName.Visibility = Visibility.Hidden;
                 lbl_iTSP1Firstname.Visibility = Visibility.Hidden;
                 lbl_iTSP1Lastname.Visibility = Visibility.Hidden;
@@ -134,10 +145,10 @@ namespace PW
 
                 selectedTeam.Setter();
                 ShowTeam_Loaded(sender, e);
-                fillShowTeam(selectedTeam, player1, player2);
+                FillShowTeam(selectedTeam, player1, player2);
             } else
             {
-                fillShowTeam(selectedTeam, player1, player2);
+                FillShowTeam(selectedTeam, player1, player2);
             }
         }
 
@@ -162,7 +173,7 @@ namespace PW
             lbl_iTSP2Firstname.Visibility = Visibility.Visible;
             lbl_iTSP2Lastname.Visibility = Visibility.Visible;
 
-            fillShowTeam(selectedTeam, player1, player2);
+            FillShowTeam(selectedTeam, player1, player2);
 
         }
 
@@ -207,7 +218,7 @@ namespace PW
 
                 if(playedGame.gameTeams[0] == selectedTeam.teamId)
                 {
-                    allPlayedGames.Add(playedGame.dpndRun + "|" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[1]), Team.tS_teamName));
+                    allPlayedGames.Add("D:"+ playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[1]), Team.tS_teamName));
                 } else if (playedGame.gameTeams[1] == selectedTeam.teamId)
                 {
                     allPlayedGames.Add(playedGame.dpndRun + "|" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[0]), Team.tS_teamName));
@@ -228,7 +239,7 @@ namespace PW
                 Log.InfoLog("cmbx_oiTeamShowerSelectTeam_SelectionChanged - Team Getter Id " + Convert.ToString(cmbx_oiTeamShowerSelectTeam.SelectedIndex + 1));
                 player1.Getter(selectedTeam.teamPlayer[0]);
                 player2.Getter(selectedTeam.teamPlayer[1]);
-                fillShowTeam(selectedTeam, player1, player2);
+                FillShowTeam(selectedTeam, player1, player2);
                 FillCmbxPlayedGames();
 
                 if (!player1.payedStartFee || !player2.payedStartFee)
@@ -246,7 +257,7 @@ namespace PW
             }
         }
 
-        private void fillShowTeam (Team i_team, Player i_player1, Player i_player2)
+        private void FillShowTeam (Team i_team, Player i_player1, Player i_player2)
         {
             gB_sTeamShower.Header = "Team-Nummer " + Convert.ToString(i_team.teamId);
             // Teamname
@@ -257,6 +268,7 @@ namespace PW
             tbx_iTSP1Firstname.Text = i_player1.playerFirstname;
             lbl_iTSP1Lastname.Content = i_player1.playerLastname;
             tbx_iTSP1Lastname.Text = i_player1.playerLastname;
+
             if (i_player1.payedStartFee)
             {
                 cbx_iTAP1Payed.IsChecked = true;
@@ -280,7 +292,32 @@ namespace PW
             //Team-Info
             lbl_oTeamGamePoints.Content = Convert.ToString(i_team.gamePointsTotal);
             lbl_oTeamWinPoints.Content = Convert.ToString(i_team.winPoints);
+            lbl_oTeamGamePointsDiff.Content = Convert.ToString(i_team.gamePointsTotalDiff);
 
+        }
+
+        private void CheckBackGroundForNotPayed()
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            SolidColorBrush brush;
+            switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
+            {
+                case Const.Red.colorRed:
+                    brush = new SolidColorBrush(Const.Red.redHighlight);
+                    break;
+                case Const.Blue.colorBlue:
+                    brush = new SolidColorBrush(Const.Blue.blueHighlight);
+                    break;
+                case Const.Green.colorGreen:
+                    brush = new SolidColorBrush(Const.Green.greenHighlight);
+                    break;
+                default:
+                    brush = new SolidColorBrush(Const.Red.redHighlight);
+                    break;
+            }
+
+            cnvs_NotPayed1.Background = brush;
+            cnvs_NotPayed2.Background = brush;
         }
 
         private void CreateTeamName(object sender, RoutedEventArgs e)

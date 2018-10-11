@@ -56,5 +56,10 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Button x:Name="btn_GoToSettings" Content="" HorizontalAlignment="Left" Margin="1091,10,0,0" VerticalAlignment="Top" Width="29" Height="29" BorderBrush="{x:Null}" Foreground="#FF994E4E" Click="btn_GoToSettings_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="settings-icon-11.png" TileMode="FlipXY" Stretch="None"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

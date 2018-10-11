@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using Nocksoft.IO.ConfigFiles;
+using System.Windows.Media;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace PW
 {
@@ -37,6 +40,49 @@ namespace PW
             }
 
             return ret;
+        }
+
+        // 4 - PDF Table for Evaluation Output
+        public const string posHeader = "Platz ";
+        public const int posHeaderLength = 6;
+        public const string teamNumberHeader = "Team # ";
+        public const int teamNumberHeaderLength = 6;
+        public const string teamNameHeader = "            Teamname            ";
+        public const int teamNameHeaderLength = 32;
+        public const string winPointsHeader = "Gewinn ";
+        public const int winPointsHeaderLength = 6;
+        public const string gamePointsDiffHeader = "Differenz";
+        public const int gamePointsDiffHeaderLength = 9;
+
+        // 5 - Color for Backgroundchange
+
+        public struct Red
+        {
+            public const string colorRed = "Red";
+            public static Color red1 = Color.FromRgb(212, 44, 44);
+            public static Color red2 = Color.FromRgb(195, 0, 0);
+            public static Color red3 = Color.FromRgb(255, 97, 97);
+            public static Color redHighlight = Color.FromRgb(255, 0, 0);
+        }
+
+        public struct Blue
+        {
+            public const string colorBlue = "Blue";
+            public static Color blue1 = Color.FromRgb(159, 194, 255);
+            public static Color blue2 = Color.FromRgb(66, 107, 178);
+            public static Color blue3 = Color.FromRgb(38, 83, 137);
+            public static Color blueHighlight = Color.FromRgb(0, 243, 255);
+
+        }
+
+        public struct Green
+        {
+            public const string colorGreen = "Green";
+            public static Color green1 = Color.FromRgb(82, 249, 120);
+            public static Color green2 = Color.FromRgb(32, 180, 79);
+            public static Color green3 = Color.FromRgb(0, 135, 24);
+            public static Color greenHighlight = Color.FromRgb(0, 255, 0);
+
         }
     }
 }

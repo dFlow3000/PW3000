@@ -24,6 +24,7 @@ namespace PW
         public const string tS_player2Id = "Player2-Id";
         public const string tS_winPoints = "Gewinn-Punkte";
         public const string tS_gamePointsTotal = "Spiel-Punkte-Gesamt";
+        public const string tS_gamePointsTotalDiff = "Spiel-Punkte-Differenz";
         public const string tS_Points_def = "0";
         #endregion
         #endregion
@@ -33,6 +34,7 @@ namespace PW
         public string teamName;
         public int winPoints;
         public int gamePointsTotal;
+        public int gamePointsTotalDiff;
 
         public Team(bool addNewOne = false)
         {
@@ -55,8 +57,7 @@ namespace PW
             tIni.SetValue(teamSec + strId, tS_player2Id, Convert.ToString(i_team.teamPlayer[1]));
             tIni.SetValue(teamSec + strId, tS_winPoints, Convert.ToString(i_team.winPoints));
             tIni.SetValue(teamSec + strId, tS_gamePointsTotal, Convert.ToString(i_team.gamePointsTotal));
-
-
+            tIni.SetValue(teamSec + strId, tS_gamePointsTotalDiff, Convert.ToString(i_team.gamePointsTotalDiff));
         }
 
         public void Setter()
@@ -69,6 +70,7 @@ namespace PW
             tIni.SetValue(teamSec + strId, tS_player2Id, Convert.ToString(teamPlayer[1]));
             tIni.SetValue(teamSec + strId, tS_winPoints, Convert.ToString(winPoints));
             tIni.SetValue(teamSec + strId, tS_gamePointsTotal, Convert.ToString(gamePointsTotal));
+            tIni.SetValue(teamSec + strId, tS_gamePointsTotalDiff, Convert.ToString(gamePointsTotalDiff));
             if (teamId > Convert.ToInt32(tIni.GetValue(Const.fileSec, Team.fsX_teamCnt)))
             {
                 tIni.SetValue(Const.fileSec, fsX_teamCnt, Convert.ToString(teamId));
@@ -88,6 +90,7 @@ namespace PW
                 teamPlayer[1] = Convert.ToInt32(tIni.GetValue(teamSec + strId, tS_player2Id));
                 winPoints = Convert.ToInt32(tIni.GetValue(teamSec + strId, tS_winPoints));
                 gamePointsTotal = Convert.ToInt32(tIni.GetValue(teamSec + strId, tS_gamePointsTotal));
+                gamePointsTotalDiff = Convert.ToInt32(tIni.GetValue(teamSec + strId, tS_gamePointsTotalDiff));
             } else
             {
                 Log.Error("Team-Getter input Id " + i_id + " out of Range!");

@@ -173,5 +173,11 @@ namespace PW
             mnwd.Close();
 
         }
+
+        private void btn_GoToSettings_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl settings = new Settings(mnwd);
+            mnwd.MainContent.Content = settings;
+        }
     }
 }
