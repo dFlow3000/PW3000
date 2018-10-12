@@ -196,11 +196,11 @@ namespace PW
                 }
                 File.Copy(srcPath, srcPath.Replace(Const.iniFolderPath, finishedFolderPath), true);
                 Log.Info("SWITCH " + srcPath + " TO " + finishedFolderPath, logSwitched, newLogPath);
-                //File.Delete(srcPath);
+                File.Delete(srcPath);
                 Log.Delete(srcPath + " at Tournament Quit while Switch", logSwitched, newLogPath);
             }
 
-            //Directory.Delete(Const.iniFolderPath);
+            Directory.Delete(Const.iniFolderPath);
             Log.Delete(Const.iniFileFolder + "at Tournament Quit after Switch", logSwitched, newLogPath);
             mnwd.Close();
 
