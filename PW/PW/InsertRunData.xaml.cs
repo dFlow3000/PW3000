@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
+using System.Reflection;
 
 namespace PW
 {
@@ -119,7 +120,7 @@ namespace PW
             {
                 Team selectedTeam = new Team();
                 selectedTeam.Getter(cmbx_selectTeam1.SelectedIndex + 1);
-                Log.InfoLog("cmbx_selectTeam1_SelectionChanged - Team Getter Id " + Convert.ToString(cmbx_selectTeam1.SelectedIndex + 1));
+                Log.Info("Team Getter Id " + Convert.ToString(cmbx_selectTeam1.SelectedIndex + 1));
 
 
                 Player player1 = new Player();
@@ -151,7 +152,7 @@ namespace PW
                     {
                         Table newTable = new Table();
                         newTable.Getter(i, runId);
-                        Log.InfoLog("cmbx_selectTeam1_SelectionChanged - Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
+                        Log.Info("Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
                         if (cmbx_selectTeam1.SelectedIndex != -1)
                         {
                             if (newTable.teamsOnTable[0] == cmbx_selectTeam1.SelectedIndex + 1 ||
@@ -185,7 +186,7 @@ namespace PW
             {
                 Team selectedTeam = new Team();
                 selectedTeam.Getter(cmbx_selectTeam2.SelectedIndex + 1);
-                Log.InfoLog("cmbx_selectTeam2_SelectionChanged - Team Getter Id " + Convert.ToString(cmbx_selectTeam2.SelectedIndex + 1));
+                Log.Info("Team Getter Id " + Convert.ToString(cmbx_selectTeam2.SelectedIndex + 1));
 
                 Player player1 = new Player();
                 player1.Getter(selectedTeam.teamPlayer[0]);
@@ -216,7 +217,7 @@ namespace PW
                     {
                         Table newTable = new Table();
                         newTable.Getter(i, runId);
-                        Log.InfoLog("cmbx_selectTeam2_SelectionChanged - Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
+                        Log.Info("Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
                         if (cmbx_selectTeam2.SelectedIndex != -1)
                         {
                             if (newTable.teamsOnTable[0] == cmbx_selectTeam2.SelectedIndex + 1 ||

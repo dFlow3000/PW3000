@@ -17,6 +17,7 @@ using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using System.IO;
+using System.Reflection;
 
 namespace PW
 {
@@ -269,10 +270,23 @@ namespace PW
             if (!Directory.Exists(tnmt.tnmtSpecPath))
             {
                 Directory.CreateDirectory(tnmt.tnmtSpecPath);
+                Log.Create("Directory: " + tnmt.tnmtSpecPath);
             }
 
-            string pdfFilename = System.IO.Path.Combine(tnmt.tnmtSpecPath, "Rangliste_" + tnmt.tnmtName + "_" + DateTime.Now.ToShortDateString() + ".pdf");
-            pdf.Save(pdfFilename);
+            string pdfFileName = "";
+            string pdfFilePath = "";
+            try
+            {
+                pdfFileName = "Rangliste_" + tnmt.tnmtName + "_" + DateTime.Now.ToShortDateString() + ".pdf";
+                pdfFilePath = System.IO.Path.Combine(tnmt.tnmtSpecPath, pdfFileName);
+                pdf.Save(pdfFilePath);
+                Log.Create("Evaluation-PDF: " + pdfFileName + " | saved at: " + pdfFilePath);
+            }
+            catch
+            {
+                Log.Error("creating Evaluation-PDF: " + pdfFileName + " tried to save at: " + pdfFilePath);
+            }
+            
         }
 
         private static string SetRow()

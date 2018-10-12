@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Nocksoft.IO.ConfigFiles;
+using System.Reflection;
 
 
 namespace PW
@@ -120,7 +121,7 @@ namespace PW
             this.teamPlayer[0] = p1.playerId;
             this.teamPlayer[1] = p2.playerId;
             Setter();
-            Log.InfoLog(" SAVED - " +"PLAYER " + p1.playerFirstname + " " + p1.playerLastname + " PLAYER " + p2.playerFirstname + " " + p2.playerLastname + " added to TEAM " + teamName);
+            Log.Save("PLAYER " + p1.playerFirstname + " " + p1.playerLastname + " PLAYER " + p2.playerFirstname + " " + p2.playerLastname + " added to TEAM " + teamName);
             INIFile tnIni = new INIFile(Tournament.iniPath);
             INIFile teamIni = new INIFile(Team.iniPath);
             INIFile tableIni = new INIFile(Table.iniPath);
@@ -138,7 +139,7 @@ namespace PW
             Player.SetBackPlayerCnt();
             Player.SetBackPlayerCnt();
             SetBackTeamCnt();
-            Log.InfoLog(" NOT SAVED - " + "PLAYER " + p1.playerFirstname + " " + p1.playerLastname + " PLAYER " + p2.playerFirstname + " " + p2.playerLastname + " added to TEAM " + teamName + " BUT NOT SAVED");
+            Log.Info(" NOT SAVED - " + "PLAYER " + p1.playerFirstname + " " + p1.playerLastname + " PLAYER " + p2.playerFirstname + " " + p2.playerLastname + " added to TEAM " + teamName + " BUT NOT SAVED");
         }
     }
 }

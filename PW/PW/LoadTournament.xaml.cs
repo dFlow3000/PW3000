@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Nocksoft.IO.ConfigFiles;
 using System.Windows.Forms;
 
 namespace PW
@@ -46,6 +47,13 @@ namespace PW
                 //Overwrite the file if same file is exist in target path
                 File.Copy(srcPath, srcPath.Replace(tbx_filePath.Text, Const.iniFolderPath), true);
             }
+
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+
+            string specificTnmntPath = System.IO.Path.Combine(Const.CurDirPath, tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtName));
+            Directory.CreateDirectory(specificTnmntPath);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
+
 
             System.Windows.Controls.UserControl main = new Main(mnwd);
             mnwd.MainContent.Content = main;

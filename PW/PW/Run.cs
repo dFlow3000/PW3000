@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Nocksoft.IO.ConfigFiles;
+using System.Reflection;
 
 namespace PW
 {
@@ -23,7 +24,7 @@ namespace PW
                 tnIni.SetValue(Tournament.runSec + strId, Tournament.rS_runComplete, Tournament.rS_runComplete_def);
                 tnIni.SetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct, strId);
                 Getter(Convert.ToInt32(strId));
-                Log.CreateLog("Run " + Convert.ToString(runId) + " with " + Convert.ToString(tableCnt) + " table's");
+                Log.Create("Run " + Convert.ToString(runId) + " with " + Convert.ToString(tableCnt) + " table's");
             }
         }
 
@@ -36,7 +37,7 @@ namespace PW
             {
                 string strId = Convert.ToString(i_runId);
                 tnIni.SetValue(Tournament.runSec + strId, Tournament.rS_runComplete, Convert.ToString(i_state));
-                Log.InfoLog("Run " + Convert.ToString(i_runId) + " completed");
+                Log.Info("Run " + Convert.ToString(i_runId) + " completed");
             } else
             {
                 Log.Error("Run-SetCompleteState input Id " + i_runId + " out of Range!");

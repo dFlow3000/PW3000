@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Nocksoft.IO.ConfigFiles;
+using System.Reflection;
 
 
 namespace PW
@@ -60,7 +61,7 @@ namespace PW
             tnIni.SetValue(tnmtSec, tnS_tnmtRunCnt, Convert.ToString(i_tnmtRunCnt));
             tnIni.SetValue(tnmtSec, tnS_tnmtGameProRunCnt, Convert.ToString(i_tnmtGameProRunCnt));
             tnIni.SetValue(tnmtSec, tnS_tnmtRunCntAct, tnS_tnmtRunCntAct_def);
-            Log.CreateLog("Tournament " + i_tnmtName + " RunCnt: " + Convert.ToString(i_tnmtRunCnt) + " GameCnt/Run: " + Convert.ToString(i_tnmtGameProRunCnt));
+            Log.Create("Tournament " + i_tnmtName + " RunCnt: " + Convert.ToString(i_tnmtRunCnt) + " GameCnt/Run: " + Convert.ToString(i_tnmtGameProRunCnt));
         }
 
         public static Run createRun(int i_id)

@@ -50,10 +50,11 @@ C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\PrepaireMenue.g.cs
 C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\PrepaireMenue.baml
 C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\SignUpTeams.g.cs
 C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\SignUpTeams.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.dll
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.g.resources
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PW.exe.config
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PW.exe
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PW.pdb
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.dll
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.pdb
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csprojAssemblyReference.cache
@@ -91,7 +92,6 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\RunMenue.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Settings.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\ShowTeam.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\SignUpTeams.baml
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.g.resources
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.Properties.Resources.resources
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.GenerateResource.cache
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CoreCompileInputs.cache

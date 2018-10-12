@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Nocksoft.IO.ConfigFiles;
+using System.Reflection;
 
 
 namespace PW
@@ -40,7 +41,7 @@ namespace PW
                 INIFile gIni = new INIFile(iniPath);
                 gameId = Convert.ToInt32(gIni.GetValue(Const.fileSec, fsX_gameCnt)) + 1;
                 gIni.SetValue(fileSec, fsX_gameCnt, Convert.ToString(gameId));
-                Log.CreateLog("Game " + Convert.ToString(gameId));
+                Log.Create("Game " + Convert.ToString(gameId));
             }
         }
 

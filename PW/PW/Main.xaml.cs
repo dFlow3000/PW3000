@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
 using System.IO;
+using System.Reflection;
 
 namespace PW
 {
@@ -124,33 +125,46 @@ namespace PW
         {
             Tournament tnmt = new Tournament();
             tnmt.Getter();
-
-            if (tnmt.tnmtRunCnt == tnmt.tnmtActRun)
+            try
             {
+                if (tnmt.tnmtRunCnt == tnmt.tnmtActRun)
+                {
 
-                if (MessageBox.Show("Wollen Sie das Tunier wirklich beenden?" +
-                                   "\nDie Daten und die finale Rangliste werden gespeichert" +
-                                   "\nSpeicherort: " + tnmt.tnmtSpecPath,
-                                   "Tunier wirklich beenden?",
-                                   MessageBoxButton.YesNo,
-                                   MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    Evaluation.SaveEva();
-                    switchToFinishFolder(tnmt);
+                    if (MessageBox.Show("Wollen Sie das Tunier wirklich beenden?" +
+                                       "\nDie Daten und die finale Rangliste werden gespeichert" +
+                                       "\nSpeicherort: " + tnmt.tnmtSpecPath,
+                                       "Tunier wirklich beenden?",
+                                       MessageBoxButton.YesNo,
+                                       MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        Evaluation.SaveEva();
+                        Log.Info("Tournament: " + tnmt.tnmtName + " QUIT-FINISHED");
+                        switchToFinishFolder(tnmt);
+                    }
                 }
-            } else
+                else
+                {
+                    if (MessageBox.Show("Das Tunier ist noch nicht abgeschlossen!" +
+                                        "\nWollen Sie das Tunier wirklich beenden?" +
+                                        "\nDie Daten und die aktuelle Rangliste werden gespeichert" +
+                                        "\nSpeicherort: " + tnmt.tnmtSpecPath,
+                                        "Tunier wirklich beenden?",
+                                        MessageBoxButton.YesNo,
+                                        MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        Evaluation.SaveEva();
+                        Log.Info("Tournament: " + tnmt.tnmtName + " QUIT-NOT-FINISHED");
+                        switchToFinishFolder(tnmt);
+                    }
+                }
+            }
+            catch(Exception ex)
             {
-                if (MessageBox.Show("Das Tunier ist noch nicht abgeschlossen!" + 
-                                    "\nWollen Sie das Tunier wirklich beenden?" +
-                                    "\nDie Daten und die aktuelle Rangliste werden gespeichert" +
-                                    "\nSpeicherort: " + tnmt.tnmtSpecPath,
-                                    "Tunier wirklich beenden?",
-                                    MessageBoxButton.YesNo,
-                                    MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    Evaluation.SaveEva();
-                    switchToFinishFolder(tnmt);
-                }
+                Log.Update(ex.ToString());
+                MessageBox.Show("There is a pdfSharp.dll missing!!! Download it!",
+                                "Missing Lib",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
             }
 
 
@@ -158,18 +172,36 @@ namespace PW
 
         private void switchToFinishFolder(Tournament tnmt)
         {
-            string finishedFolderPath = System.IO.Path.Combine(tnmt.tnmtSpecPath, "Finished_Tournament_Data");
-            Directory.CreateDirectory(finishedFolderPath);
+            string finishedFolderPath = "";
+            try
+            {
+                finishedFolderPath = System.IO.Path.Combine(tnmt.tnmtSpecPath, "Finished_Tournament_Data");
+                Directory.CreateDirectory(finishedFolderPath);
+                Log.Create("Directory: " + finishedFolderPath);
+            }catch 
+            {
+                Log.Error("creating Directory: " + finishedFolderPath);
+            }
+
+            string newLogPath = System.IO.Path.Combine(finishedFolderPath, Log.iniFileName);
+            bool logSwitched = false;
 
             foreach (var srcPath in Directory.GetFiles(Const.iniFolderPath))
             {
                 //Copy the file from sourcepath and place into mentioned target path, 
                 //Overwrite the file if same file is exist in target path
+                if (srcPath == Log.iniPath)
+                {
+                    logSwitched = true;
+                }
                 File.Copy(srcPath, srcPath.Replace(Const.iniFolderPath, finishedFolderPath), true);
-                File.Delete(srcPath);
+                Log.Info("SWITCH " + srcPath + " TO " + finishedFolderPath, logSwitched, newLogPath);
+                //File.Delete(srcPath);
+                Log.Delete(srcPath + " at Tournament Quit while Switch", logSwitched, newLogPath);
             }
 
-            Directory.Delete(Const.iniFolderPath);
+            //Directory.Delete(Const.iniFolderPath);
+            Log.Delete(Const.iniFileFolder + "at Tournament Quit after Switch", logSwitched, newLogPath);
             mnwd.Close();
 
         }

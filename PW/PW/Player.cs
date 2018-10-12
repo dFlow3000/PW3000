@@ -1,6 +1,7 @@
 ﻿using System;
 using Nocksoft.IO.ConfigFiles;
 using System.IO;
+using System.Reflection;
 
 namespace PW
 {

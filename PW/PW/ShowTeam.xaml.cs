@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
+using System.Reflection;
 
 namespace PW
 {
@@ -236,7 +237,7 @@ namespace PW
             if (cmbx_oiTeamShowerSelectTeam.SelectedIndex != -1)
             {
                 selectedTeam.Getter(cmbx_oiTeamShowerSelectTeam.SelectedIndex + 1);
-                Log.InfoLog("cmbx_oiTeamShowerSelectTeam_SelectionChanged - Team Getter Id " + Convert.ToString(cmbx_oiTeamShowerSelectTeam.SelectedIndex + 1));
+                Log.Info("Team Getter Id " + Convert.ToString(cmbx_oiTeamShowerSelectTeam.SelectedIndex + 1));
                 player1.Getter(selectedTeam.teamPlayer[0]);
                 player2.Getter(selectedTeam.teamPlayer[1]);
                 FillShowTeam(selectedTeam, player1, player2);
