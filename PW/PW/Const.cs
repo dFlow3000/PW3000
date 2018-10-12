@@ -84,5 +84,46 @@ namespace PW
             public static Color greenHighlight = Color.FromRgb(0, 255, 0);
 
         }
+
+        public static void SwitchColor(Window i_window)
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
+            {
+                case Const.Red.colorRed:
+                    i_window.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
+                    break;
+                case Const.Blue.colorBlue:
+                    i_window.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
+                    break;
+                case Const.Green.colorGreen:
+                    i_window.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
+                    break;
+                default: break;
+            }
+        }
+
+        public static Color SwitchFontColor ()
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            Color retColor;
+            switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
+            {
+                case Const.Red.colorRed:
+                    retColor = Const.Red.redHighlight;
+                    break;
+                case Const.Blue.colorBlue:
+                    retColor = Const.Blue.blueHighlight;
+                    break;
+                case Const.Green.colorGreen:
+                    retColor = Const.Green.green2;
+                    break;
+                default:
+                    retColor = Const.Red.redHighlight;
+                    break;
+            }
+
+            return retColor;
+        }
     }
 }

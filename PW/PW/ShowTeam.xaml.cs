@@ -222,7 +222,7 @@ namespace PW
                     allPlayedGames.Add("D:"+ playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[1]), Team.tS_teamName));
                 } else if (playedGame.gameTeams[1] == selectedTeam.teamId)
                 {
-                    allPlayedGames.Add(playedGame.dpndRun + "|" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[0]), Team.tS_teamName));
+                    allPlayedGames.Add("D:"+playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[0]), Team.tS_teamName));
                 }
             }
 
@@ -342,12 +342,12 @@ namespace PW
                 int runId = 0;
                 int gameId = 0;
 
-                runId = Convert.ToInt32(cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(0,
-                                                                                                  cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|'))
-                                                                                                                                                                 );
-                gameId = Convert.ToInt32(cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') + 1,
-                                                                                                   cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('g') - 2)
-                                                                                                                                                                    );
+                string x = cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf(':') + 1,
+                                                                                                  (cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') - cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf(':') - 1));
+                string y = cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') + 4,
+                                                                                                   cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('g') - cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') - 5);
+                runId = Convert.ToInt32(x);
+                gameId = Convert.ToInt32(y);
 
                 Window playedGameInfo = new PlayedGameInfo(runId, gameId);
                 playedGameInfo.Show();

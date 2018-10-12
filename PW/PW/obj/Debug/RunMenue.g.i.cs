@@ -76,7 +76,7 @@ namespace PW {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PW;component/runmenue.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Preiswattera_3000;component/runmenue.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\RunMenue.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

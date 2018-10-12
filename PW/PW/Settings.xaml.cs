@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
+using System.IO;
 
 namespace PW
 {
@@ -51,10 +52,34 @@ namespace PW
         {
             Tournament tnmt = new Tournament();
             tnmt.Getter();
+            bool switchDir = false;
+            string oldPath = "";
 
+            if (tnmt.tnmtName != tbx_iTnmtName.Text)
+            {
+                switchDir = true;
+
+                oldPath = tnmtIni.GetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath);
+            }
             tnmt.tnmtName = tbx_iTnmtName.Text;
             tnmt.tnmtRunCnt = Convert.ToInt32(tbx_iRunCnt.Text);
             tnmt.Setter();
+
+            Log.Update("Tnmt-Name: " + lbl_oTnmtName.Content + "|" + tnmt.tnmtName);
+            Log.Update("Tnmt-RunCnt: " + lbl_oRunCnt.Content + "|" + Convert.ToString(tnmt.tnmtRunCnt));
+
+            if (switchDir)
+            {
+                string specificTnmntPath = System.IO.Path.Combine(Const.CurDirPath, tbx_iTnmtName.Text);
+                Directory.CreateDirectory(specificTnmntPath);
+                tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
+
+                Directory.Move(oldPath, specificTnmntPath);
+                Log.Update("Move " + oldPath + " after Tnmnt-Name Update to " + specificTnmntPath);
+                Directory.Delete(oldPath);
+                Log.Delete("Old Data after Tnmt-Name Update " + oldPath);
+            }
+
             Settings_Loaded(sender, e);
             SwitchEditMode(false);
         }
@@ -90,7 +115,8 @@ namespace PW
 
         private void btn_EditPassword_Click(object sender, RoutedEventArgs e)
         {
-
+            Window changePassword = new ChangePassword();
+            changePassword.Show();
         }
 
         private void btn_EditColorGreen_Click(object sender, RoutedEventArgs e)

@@ -32,19 +32,20 @@ namespace PW
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
 
-            switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
-            {
-                case Const.Red.colorRed:
-                    this.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
-                    break;
-                case Const.Blue.colorBlue:
-                    this.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
-                    break;
-                case Const.Green.colorGreen:
-                    this.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
-                    break;
-                default: break;
-            }
+            Const.SwitchColor(this);
+            SolidColorBrush brush;
+            brush = new SolidColorBrush(Const.SwitchFontColor());
+
+            lbl_sGameNr.Foreground = brush;
+            lbl_sTeamPoints.Foreground = brush;
+            lbl_swinPoints.Foreground = brush;
+            lbl_sDiffPoints.Foreground = brush;
+            lbl_oSumDiffPoints.Foreground = brush;
+            lbl_oSumTeamPoints.Foreground = brush;
+            lbl_sAponPoints.Foreground = brush;
+            lbl_sGamePointsTotal.Foreground = brush;
+            lbl_sTotal.Foreground = brush;
+
 
             INIFile gameIni = new INIFile(Game.iniPath);
             Tournament tnmt = new Tournament();
@@ -100,25 +101,32 @@ namespace PW
                 lbl_DiffPoints.Content = Convert.ToString(i_game.gamePoints[i_teamPos] - i_game.gamePoints[i_aponPos]);
                 lbl_oSumDiffPoints.Content = Convert.ToString(Convert.ToInt32(lbl_oSumDiffPoints.Content) + Convert.ToInt32(lbl_DiffPoints.Content));
                 winCnt++;
-                Separator sep = new Separator();
-                stp_GameId.Children.Add(lbl_GameId);
-                stp_GameId.Children.Add(sep);
-                sep = new Separator();
-                stp_TeamPoints.Children.Add(lbl_TeamPoints);
-                stp_TeamPoints.Children.Add(sep);
-                sep = new Separator();
-                stp_AponPoints.Children.Add(lbl_AponPoints);
-                stp_AponPoints.Children.Add(sep);
-                sep = new Separator();
-                stp_DiffPoints.Children.Add(lbl_DiffPoints);
-                stp_DiffPoints.Children.Add(sep);
             } else
             {
                 lbl_DiffPoints.Content = "0";
+                lbl_DiffPoints.Background = Brushes.LightGray;
+                lbl_DiffPoints.Foreground = Brushes.DarkGray;
+                lbl_TeamPoints.Background = Brushes.LightGray;
+                lbl_TeamPoints.Foreground = Brushes.DarkGray;
+                lbl_AponPoints.Background = Brushes.LightGray;
+                lbl_AponPoints.Foreground = Brushes.DarkGray;
             }
 
 
-            
+            Separator sep = new Separator();
+            stp_GameId.Children.Add(lbl_GameId);
+            stp_GameId.Children.Add(sep);
+            sep = new Separator();
+            stp_TeamPoints.Children.Add(lbl_TeamPoints);
+            stp_TeamPoints.Children.Add(sep);
+            sep = new Separator();
+            stp_AponPoints.Children.Add(lbl_AponPoints);
+            stp_AponPoints.Children.Add(sep);
+            sep = new Separator();
+            stp_DiffPoints.Children.Add(lbl_DiffPoints);
+            stp_DiffPoints.Children.Add(sep);
+
+
 
         }
 

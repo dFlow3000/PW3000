@@ -57,7 +57,7 @@
         </GroupBox>
         <GroupBox x:Name="gbx_AdminSettings" Header="Programm-Einstellungen" HorizontalAlignment="Left" Height="172" Margin="10,233,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1110" FontSize="20">
             <Canvas>
-                <Button x:Name="btn_EditPassword" IsEnabled="false" Content="Passwort Ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditPassword_Click" Foreground="WhiteSmoke" Canvas.Left="36" Canvas.Top="28">
+                <Button x:Name="btn_EditPassword" IsEnabled="true" Content="Passwort Ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditPassword_Click" Foreground="WhiteSmoke" Canvas.Left="36" Canvas.Top="28">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>

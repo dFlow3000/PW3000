@@ -228,7 +228,7 @@ namespace PW {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PW;component/addteam.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Preiswattera_3000;component/addteam.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\AddTeam.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Loaded="Eva_Team_Data_Loaded"
         ResizeMode="NoResize"
+        WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterScreen"
         Title="Info zu gewonnen Spielen || Spiel-Punkte-Differenz" Height="400" Width="440.478">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -18,7 +20,7 @@
     <Grid>
         <Canvas x:Name="Header" Height="10" Margin="21,22,260,357">
             <StackPanel x:Name="stp_GameId_Header" Canvas.Left="10" Width="63">
-                <Label Content=" Spiel-Nr " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
+                <Label x:Name="lbl_sGameNr" Content=" Spiel-Nr " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -28,7 +30,7 @@
                 </Label>
             </StackPanel>
             <StackPanel x:Name="stp_TeamPoints_Header" Canvas.Left="78" Width="94">
-                <Label Content=" Team-Punkte " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
+                <Label x:Name="lbl_sTeamPoints" Content=" Team-Punkte " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -38,7 +40,7 @@
                 </Label>
             </StackPanel>
             <StackPanel x:Name="stp_AponPoints_Header" Canvas.Left="177" Width="99">
-                <Label Content=" Gegner-Punkte " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
+                <Label x:Name="lbl_sAponPoints" Content=" Gegner-Punkte " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -48,7 +50,7 @@
                 </Label>
             </StackPanel>
             <StackPanel x:Name="stp_DiffPoints_Header" Canvas.Left="281" Width="94">
-                <Label Content=" Differenz " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
+                <Label x:Name="lbl_sDiffPoints" Content=" Differenz " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -60,7 +62,7 @@
         </Canvas>
         <Canvas x:Name="Footer" Margin="21,229,33,90" Width="380">
             <StackPanel x:Name="stp_GameId_Footer" Canvas.Left="10" Width="63">
-                <Label Content="Gesamt:" FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold" Margin="0,0,-6,0">
+                <Label x:Name="lbl_sTotal" Content="Gesamt:" FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold" Margin="0,0,-6,0">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -99,7 +101,7 @@
                     </Label.Background>
                 </Label>
             </StackPanel>
-            <Label Content="  Gewinn-Punkte:" FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold" Canvas.Left="10" Canvas.Top="26">
+            <Label x:Name="lbl_sGamePointsTotal" Content="  Gewinn-Punkte:" FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold" Canvas.Left="10" Canvas.Top="26">
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>

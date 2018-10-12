@@ -324,7 +324,7 @@ namespace PW {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PW;component/insertrundata.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Preiswattera_3000;component/insertrundata.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\InsertRunData.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

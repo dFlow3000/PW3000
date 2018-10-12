@@ -41,22 +41,56 @@ namespace PW
 
         private void btn_LoadTnmt_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var srcPath in Directory.GetFiles(tbx_filePath.Text))
+            bool loadFailed = false;
+            try
             {
-                //Copy the file from sourcepath and place into mentioned target path, 
-                //Overwrite the file if same file is exist in target path
-                File.Copy(srcPath, srcPath.Replace(tbx_filePath.Text, Const.iniFolderPath), true);
+                foreach (var srcPath in Directory.GetFiles(tbx_filePath.Text))
+                {
+                    //Copy the file from sourcepath and place into mentioned target path, 
+                    //Overwrite the file if same file is exist in target path
+                    File.Copy(srcPath, srcPath.Replace(tbx_filePath.Text, Const.iniFolderPath), true);
+                }
+            }catch
+            {
+                loadFailed = true;
+                Log.Error("Not able to load Files from " + tbx_filePath.Text);
+                System.Windows.MessageBox.Show("Es war nicht möglich diese Tunierdaten zu laden!" +
+                    "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!",
+                    "Laden nicht möglich",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
 
-            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            if (!loadFailed)
+            {
+                INIFile tnmtIni = new INIFile(Tournament.iniPath);
+                try
+                {
+                    string specificTnmntPath = System.IO.Path.Combine(Const.CurDirPath, tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtName));
+                    Directory.CreateDirectory(specificTnmntPath);
+                    tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
 
-            string specificTnmntPath = System.IO.Path.Combine(Const.CurDirPath, tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtName));
-            Directory.CreateDirectory(specificTnmntPath);
-            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
 
+                    System.Windows.Controls.UserControl main = new Main(mnwd);
+                    mnwd.MainContent.Content = main;
+                } catch
+                {
+                    loadFailed = true;
+                    Log.Error("Not able to load Files from " + tbx_filePath.Text);
+                    System.Windows.MessageBox.Show("Es war nicht möglich diese Tunierdaten zu laden!" +
+                        "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!",
+                        "Laden nicht möglich",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    loadFailed = true;
+                }
+            }
 
-            System.Windows.Controls.UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            if(loadFailed)
+            {
+                System.Windows.Controls.UserControl loadorcreate = new LoadOrCreateTournament(mnwd);
+                mnwd.MainContent.Content = loadorcreate;
+            }
         }
     }
 }

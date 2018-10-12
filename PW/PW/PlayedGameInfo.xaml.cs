@@ -36,19 +36,7 @@ namespace PW
             INIFile gameIni = new INIFile(Game.iniPath);
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
 
-            switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
-            {
-                case Const.Red.colorRed:
-                    this.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
-                    break;
-                case Const.Blue.colorBlue:
-                    this.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
-                    break;
-                case Const.Green.colorGreen:
-                    this.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
-                    break;
-                default: break;
-            }
+            Const.SwitchColor(this);
 
             Game playedGame = new Game();
             playedGame.Getter(pGWd_gameId);

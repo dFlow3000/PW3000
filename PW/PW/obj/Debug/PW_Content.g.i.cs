@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("football-06-512.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("settings.svg")]
 
 

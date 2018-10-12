@@ -42,19 +42,7 @@ namespace PW
             INIFile tableData = IniFileDataTemplate.CheckIfIniExists(Table.iniPath);
             INIFile signedUpTeamsData = IniFileDataTemplate.CheckIfIniExists(SignedUpTeam.iniPath);
 
-            switch(tournamentData.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
-            {
-                case Const.Red.colorRed:
-                    this.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
-                    break;
-                case Const.Blue.colorBlue:
-                    this.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
-                    break;
-                case Const.Green.colorGreen:
-                    this.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
-                    break;
-                default:break;
-            }
+            Const.SwitchColor(this);
 
             UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
             MainContent.Content = creOLoaTnmt;
@@ -248,6 +236,12 @@ namespace PW
             }
 
 
+        }
+
+        private void btn_GoTournamentMenue_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl main = new Main(this);
+            MainContent.Content = main;
         }
     }
 }

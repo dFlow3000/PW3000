@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0563EFD4-F443-4828-B807-277A8BB1C50E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PW</RootNamespace>
-    <AssemblyName>PW</AssemblyName>
+    <RootNamespace>Preiswattera_3000</RootNamespace>
+    <AssemblyName>Preiswattera_3000</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -62,6 +62,9 @@
     <Compile Include="AddTeam.xaml.cs">
       <DependentUpon>AddTeam.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="Evaluation.xaml.cs">
       <DependentUpon>Evaluation.xaml</DependentUpon>
@@ -109,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTournament.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +235,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="settings-icon-11.png" />
+    <Resource Include="addTeam.PNG" />
+    <Resource Include="if_editor-more-detail-glyph_763346.png" />
+    <Resource Include="icon123.ico" />
+    <Content Include="Football-06-512.ico" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

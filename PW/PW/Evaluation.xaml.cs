@@ -36,6 +36,17 @@ namespace PW
         public void Evaluation_Loaded (object sender, RoutedEventArgs e)
         {
             INIFile teamIni = new INIFile(Team.iniPath);
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            
+            SolidColorBrush brush;
+            brush = new SolidColorBrush(Const.SwitchFontColor());
+            lbl_sPosHeader.Foreground = brush;
+            lbl_sTeamHeader.Foreground = brush; 
+            lbl_sWinPointsHeader.Foreground = brush; 
+            lbl_sGamePointsHeader.Foreground = brush;
+            lbl_sInfoHeader.Foreground = brush;
+
+
             if (Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt)) != 0)
             {
                 Team[] allTeams = new Team[Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt))];
@@ -82,8 +93,8 @@ namespace PW
                     LinearGradientBrush lgbrushRed = new LinearGradientBrush();
                     lgbrushRed.StartPoint = new Point(0.5, 0);
                     lgbrushRed.EndPoint = new Point(0.5, 1);
-                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.DarkBlue, 1.0));
-                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.LightBlue, 0.0));
+                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.DeepSkyBlue, 1.0));
+                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.SkyBlue, 0.0));
 
                     btn_teamGameInfo.Background = lgbrushRed;
                     btn_teamGameInfo.Click += new RoutedEventHandler(OpenTeamGameInfo);

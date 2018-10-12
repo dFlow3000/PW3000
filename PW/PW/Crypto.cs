@@ -14,7 +14,7 @@ namespace PW
         private static char[] comp = new char[26] {'a','b','c','d','e','f','g','h','i','j',
                                  'k','l','m','n','o','p','q','r','s','t',
                                  'u','v','w','x','y','z'};
-        
+
         public static bool Encrypt (string i_string)
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
@@ -62,5 +62,33 @@ namespace PW
 
         }
 
+        public static string Decrypt(string i_string)
+        {
+            Random rnd = new Random();
+            char[] i_charArray = i_string.ToLower().ToCharArray();
+            char[] o_charArray = new char[i_charArray.Length];
+
+            for (int i = 0; i < i_charArray.Length; i++)
+            {
+                for (int y = 0; y < comp.Length; y++)
+                {
+                    if (i_charArray[i] == comp[y])
+                    {
+                        o_charArray[i] = cryp[y];
+                        break;
+                    }
+                }
+            }
+
+            i_string = "";
+            foreach (char c in o_charArray)
+            {
+                i_string += c;
+                i_string += cryp[rnd.Next(25)];
+            }
+
+            return i_string;
+
+        }
     }
 }
