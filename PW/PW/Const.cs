@@ -9,27 +9,56 @@ namespace PW
 {
     class Const
     {
-        // 1 - .ini-File Ordner
+        #region 1 - .ini-File - Folder
+        /// <summary>
+        /// Name of the folder which containts all .ini-Files
+        /// </summary>
         public static string iniFileFolder = "iniFiles";
+        /// <summary>
+        /// Holds current directory 
+        /// </summary>
         public static string CurDirPath = Directory.GetCurrentDirectory();
+        /// <summary>
+        /// Holds path to the actual .ini-File-Folder
+        /// </summary>
         public static string iniFolderPath = Path.Combine(CurDirPath, iniFileFolder);
+        #endregion
 
-        // 2 - .ini-File - Section - standard file section
+        #region 2 - .ini-File - Section - standard file section
+        /// <summary>
+        /// main section in every .ini-File
+        /// <para>holds all counter and global states</para>
+        /// </summary>
         public const string fileSec = "file-section";
+        /// <summary>
+        /// initialization State
+        /// <para>0 -> no virgin anymore</para>
+        /// </summary>
         public const string fs_InitState = "Initialition-State";
         public const string fs_InitState_def = "1";
         public const string fs_TimeStamp = "Time-Stamp";
+        #endregion
 
-        // 3 - Const Functions
-        //  -> 3.1 SetIniTimeStamp
-        //     Get act Date and Time and set as value at given Section/Key
+        #region 3 - Const Functions
+        //   -> 3.1 SetIniTimeStamp
+        /// <summary>
+        /// Sets actual date and time in .ini-File
+        /// </summary>
+        /// <param name="i_ini">.ini-File Path which has been changed</param>
         public static void SetIniTimeStamp(INIFile i_ini)
         {
             i_ini.SetValue(fileSec, fs_TimeStamp, Convert.ToString(DateTime.Now));
         }
 
-        //  -> 3.2 CheckIdInRange
-        //     Check if input Id exists
+        //   -> 3.2 CheckIdInRange
+        /// <summary>
+        /// Checks if requested Id is in the range of .ini-File
+        /// </summary>
+        /// <param name="i_ini">.ini-File which contains requested data</param>
+        /// <param name="i_section">name of the section which contains the entry-count-key</param>
+        /// <param name="i_key">name of the key which containts the entry-count-value</param>
+        /// <param name="i_id">Id which should be checked</param>
+        /// <returns>true if Id is in Range</returns>
         public static bool CheckIdInRange(INIFile i_ini, string i_section, string i_key, int i_id)
         {
             bool ret = false;
@@ -42,49 +71,11 @@ namespace PW
             return ret;
         }
 
-        // 4 - PDF Table for Evaluation Output
-        public const string posHeader = "Platz ";
-        public const int posHeaderLength = 6;
-        public const string teamNumberHeader = "Team # ";
-        public const int teamNumberHeaderLength = 6;
-        public const string teamNameHeader = "            Teamname            ";
-        public const int teamNameHeaderLength = 32;
-        public const string winPointsHeader = "Gewinn ";
-        public const int winPointsHeaderLength = 6;
-        public const string gamePointsDiffHeader = "Differenz";
-        public const int gamePointsDiffHeaderLength = 9;
-
-        // 5 - Color for Backgroundchange
-
-        public struct Red
-        {
-            public const string colorRed = "Red";
-            public static Color red1 = Color.FromRgb(212, 44, 44);
-            public static Color red2 = Color.FromRgb(195, 0, 0);
-            public static Color red3 = Color.FromRgb(255, 97, 97);
-            public static Color redHighlight = Color.FromRgb(255, 0, 0);
-        }
-
-        public struct Blue
-        {
-            public const string colorBlue = "Blue";
-            public static Color blue1 = Color.FromRgb(159, 194, 255);
-            public static Color blue2 = Color.FromRgb(66, 107, 178);
-            public static Color blue3 = Color.FromRgb(38, 83, 137);
-            public static Color blueHighlight = Color.FromRgb(0, 243, 255);
-
-        }
-
-        public struct Green
-        {
-            public const string colorGreen = "Green";
-            public static Color green1 = Color.FromRgb(82, 249, 120);
-            public static Color green2 = Color.FromRgb(32, 180, 79);
-            public static Color green3 = Color.FromRgb(0, 135, 24);
-            public static Color greenHighlight = Color.FromRgb(0, 255, 0);
-
-        }
-
+        //   -> 3.3 SwitchColor
+        /// <summary>
+        /// Switchs the backgroundcolor of the actual window depending on the selected color-setting
+        /// </summary>
+        /// <param name="i_window">actual window</param>
         public static void SwitchColor(Window i_window)
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
@@ -103,7 +94,12 @@ namespace PW
             }
         }
 
-        public static Color SwitchFontColor ()
+        //   -> 3.4 SwitchFontColor
+        /// <summary>
+        /// Retruns color for switching font-color depending on actual color-setting 
+        /// </summary>
+        /// <returns>color fitting to used backgroundcolor</returns>
+        public static Color SwitchFontColor()
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
             Color retColor;
@@ -125,5 +121,69 @@ namespace PW
 
             return retColor;
         }
+        #endregion
+
+        #region 4 - PDF Table for Evaluation Output
+        public const string posHeader = "Platz ";
+        public const int posHeaderLength = 6;
+        public const string teamNumberHeader = "Team # ";
+        public const int teamNumberHeaderLength = 6;
+        public const string teamNameHeader = "            Teamname            ";
+        public const int teamNameHeaderLength = 32;
+        public const string winPointsHeader = "Gewinn ";
+        public const int winPointsHeaderLength = 6;
+        public const string gamePointsDiffHeader = "Differenz";
+        public const int gamePointsDiffHeaderLength = 9;
+        #endregion
+
+        #region 5 - Color for Backgroundchange
+        /// <summary>
+        /// Color struct for Backgroundcolor-Switch
+        /// <para>Red
+        /// <para>Holds the three Colorvlaues for LinearGradientBrush</para></para>
+        /// </summary>
+        public struct Red
+        {
+            public const string colorRed = "Red";
+            public static Color red1 = Color.FromRgb(212, 44, 44);
+            public static Color red2 = Color.FromRgb(195, 0, 0);
+            public static Color red3 = Color.FromRgb(255, 97, 97);
+            public static Color redHighlight = Color.FromRgb(255, 0, 0);
+        }
+
+        /// <summary>
+        /// Color struct for Backgroundcolor-Switch
+        /// <para>Blue
+        /// <para>Holds the three Colorvlaues for LinearGradientBrush</para></para>
+        /// </summary>
+        public struct Blue
+        {
+            public const string colorBlue = "Blue";
+            public static Color blue1 = Color.FromRgb(159, 194, 255);
+            public static Color blue2 = Color.FromRgb(66, 107, 178);
+            public static Color blue3 = Color.FromRgb(38, 83, 137);
+            public static Color blueHighlight = Color.FromRgb(0, 243, 255);
+
+        }
+
+        /// <summary>
+        /// Color struct for Backgroundcolor-Switch
+        /// <para>Green
+        /// <para>Holds the three Colorvlaues for LinearGradientBrush</para></para>
+        /// </summary>
+        public struct Green
+        {
+            public const string colorGreen = "Green";
+            public static Color green1 = Color.FromRgb(82, 249, 120);
+            public static Color green2 = Color.FromRgb(32, 180, 79);
+            public static Color green3 = Color.FromRgb(0, 135, 24);
+            public static Color greenHighlight = Color.FromRgb(0, 255, 0);
+
+        }
+        #endregion
+
+        
+
+        
     }
 }

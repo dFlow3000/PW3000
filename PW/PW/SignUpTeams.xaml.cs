@@ -21,13 +21,13 @@ namespace PW
     /// </summary>
     public partial class SignUpTeams : UserControl
     {
-        private MainWindow mnwd;
+        private MainWindow mainWindow;
         SignedUpTeam newTeam;
 
-        public SignUpTeams(MainWindow i_mnwd)
+        public SignUpTeams(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void SignUpTeams_Loaded(object sender, RoutedEventArgs e)
@@ -51,8 +51,8 @@ namespace PW
 
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
-            UserControl prepMenue = new PrepaireMenue(mnwd);
-            mnwd.MainContent.Content = prepMenue;
+            UserControl prepMenue = new PrepaireMenue(mainWindow);
+            mainWindow.MainContent.Content = prepMenue;
         }
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)

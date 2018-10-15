@@ -23,16 +23,16 @@ namespace PW
     public partial class InsertRunData : UserControl
     {
         int runId = 0;
-        MainWindow mnwd;
+        MainWindow mainWindow;
         bool team1Selected, team2Selected, tableSelected, createdRun = false;
         //Aufboren für diff
         int[,] prevTableValues = new int[5, 2];
         int[] prevTableValueGamePointsTotal = new int[2];
 
-        public InsertRunData(MainWindow i_mnwd, int i_runId)
+        public InsertRunData(MainWindow i_mainWindow, int i_runId)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
             runId = i_runId;
         }
 
@@ -111,8 +111,8 @@ namespace PW
 
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
-            UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
         }
 
         private void cmbx_selectTeam1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -247,8 +247,8 @@ namespace PW
         private void btn_ToRun_Click(object sender, RoutedEventArgs e)
         {
             switchTbx(false);
-            UserControl runMenue = new RunMenue(mnwd);
-            mnwd.MainContent.Content = runMenue;
+            UserControl runMenue = new RunMenue(mainWindow);
+            mainWindow.MainContent.Content = runMenue;
         }
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)

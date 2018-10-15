@@ -22,13 +22,19 @@ namespace PW
     /// </summary>
     public partial class AddTournament : UserControl
     {
-        private MainWindow mnwd;
-        public AddTournament(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public AddTournament(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
+        #region Button - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Sets up Tournament through user inputs -> actual tournamtent-state prepairMode 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_StartTnmt_Click(object sender, RoutedEventArgs e)
         {
             if (checkTextBoxNotEmpty())
@@ -43,8 +49,8 @@ namespace PW
                     tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
                 }
 
-                UserControl prepMenue = new PrepaireMenue(mnwd);
-                mnwd.MainContent.Content = prepMenue;
+                UserControl prepMenue = new PrepaireMenue(mainWindow);
+                mainWindow.MainContent.Content = prepMenue;
             } else
             {
                 MessageBox.Show("Bitte erfassen Sie alle geforderten Daten!",
@@ -54,6 +60,11 @@ namespace PW
             }
         }
 
+        #region Check - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Checks if input-fields are not empty
+        /// </summary>
+        /// <returns>true if all inputs are made</returns>
         private bool checkTextBoxNotEmpty()
         {
             if (tbx_TnmtName.Text != String.Empty &&
@@ -66,5 +77,6 @@ namespace PW
                 return false;
             }
         }
+##en
     }
 }

@@ -19,22 +19,24 @@ namespace PW
 {
     /// <summary>
     /// Interaktionslogik für AddTeam.xaml
+    /// 
+    /// Add Teams to Tournament by requesting First- and Lastname of two Player
+    /// 
     /// </summary>
     public partial class AddTeam : UserControl
     {
-        private MainWindow mnwd;
+        private MainWindow mainWindow;
         private Team newTeam;
         private Player player1;
         private Player player2;
-        private SignedUpTeam loadTeam;
+        private SignedUpTeam preSignedUpTeam;
 
-        public AddTeam(MainWindow i_mnwd)
+        public AddTeam(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
-            
+            mainWindow = i_mainWindow;
         }
-
+        
         private void AddTeam_Loaded(object sender, RoutedEventArgs e)
         {
             INIFile tIni = new INIFile(Team.iniPath);
@@ -46,6 +48,11 @@ namespace PW
             FillSignedUpTeams();
         }
 
+        #region Fill - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Loads previous signed up teams from .ini-File
+        /// and fills cmbx_signedUpTeams
+        /// </summary>
         private void FillSignedUpTeams()
         {
             cmbx_signedUpTeams.Items.Clear();
@@ -64,12 +71,60 @@ namespace PW
             }
         }
 
-        private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Fills AddTeam-Usercontrol with data from selected previous signed up team 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbx_signedUpTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            preSignedUpTeam = new SignedUpTeam();
+            preSignedUpTeam.Getter(cmbx_signedUpTeams.SelectedIndex + 1);
+
+            tbx_iTAP1Firstname.Text = preSignedUpTeam.suTeamPlayerFirstNames[0];
+            tbx_iTAP1Lastname.Text = preSignedUpTeam.suTeamPlayerLastNames[0];
+            tbx_iTAP2Firstname.Text = preSignedUpTeam.suTeamPlayerFirstNames[1];
+            tbx_iTAP2Lastname.Text = preSignedUpTeam.suTeamPlayerLastNames[1];
         }
 
+        /// <summary>
+        /// Creates team-name from team-players lastnames
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CreateTeamName(object sender, RoutedEventArgs e)
+        {
+            if (tbx_iTAP1Lastname.Text != "" && tbx_iTAP2Lastname.Text != "")
+            {
+                tbx_oTeamName.Text = tbx_iTAP1Lastname.Text + "-" + tbx_iTAP2Lastname.Text;
+                newTeam.teamName = tbx_oTeamName.Text;
+            }
+        }
+        #endregion
+
+        #region Button - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Switch back to Tournament-Info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
+        }
+
+        /// <summary>
+        /// Saves added team after checking if all inputs are correct
+        /// and clears all fields
+        /// 
+        /// Checks:
+        /// -> no empty inputs
+        /// -> check if team name already exists
+        /// -> check if previous signed up teams should be deleted after they were added
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             if (CheckInput())
@@ -78,7 +133,7 @@ namespace PW
                 {
                     if (checkIfSignedUpTeam() == 1)
                     {
-                        if (!mnwd.keepDeleting)
+                        if (!mainWindow.keepDeleting)
                         {
                             if (MessageBox.Show("Team aus Anmeldeliste wird übernommen!" +
                                                 "\nSoll Team aus der Anmeldeliste entfernt werden?",
@@ -92,18 +147,18 @@ namespace PW
                                                      MessageBoxButton.YesNo,
                                                      MessageBoxImage.Question) == MessageBoxResult.Yes)
                                 {
-                                    mnwd.keepDeleting = true;
-                                    loadTeam.deleteSignedUpTeam(loadTeam);
+                                    mainWindow.keepDeleting = true;
+                                    preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
                                 }
                                 else
                                 {
-                                    mnwd.keepDeleting = false;
+                                    mainWindow.keepDeleting = false;
                                 }
                             }
                         }
                         else
                         {
-                            loadTeam.deleteSignedUpTeam(loadTeam);
+                            preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
                         }
                     }
                     else if (checkIfSignedUpTeam() == 0)
@@ -114,7 +169,7 @@ namespace PW
                                               MessageBoxButton.YesNo,
                                               MessageBoxImage.Question) == MessageBoxResult.Yes)
                         {
-                            loadTeam.deleteSignedUpTeam(loadTeam);
+                            preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
                         }
 
                     }
@@ -142,42 +197,51 @@ namespace PW
                                 MessageBoxImage.Exclamation);
             }
         }
+        
+        /// <summary>
+        /// Clear all inputs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearTbx();
+        }
+        #endregion
 
+        #region Check - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Checks if added team is one of the previous signed up teams
+        /// and should this be the case if there has something changed
+        /// | return 1 if nothing has changed / return 0 if something has changed
+        /// </summary>
+        /// <returns></returns>
         private int checkIfSignedUpTeam()
         {
             if (cmbx_signedUpTeams.SelectedIndex != -1)
             {
-                if (loadTeam.suTeamPlayerFirstNames[0] == tbx_iTAP1Firstname.Text &&
-                    loadTeam.suTeamPlayerLastNames[0]  == tbx_iTAP1Lastname.Text  &&
-                    loadTeam.suTeamPlayerFirstNames[1] == tbx_iTAP2Firstname.Text && 
-                    loadTeam.suTeamPlayerLastNames[1]  == tbx_iTAP2Lastname.Text     )
+                if (preSignedUpTeam.suTeamPlayerFirstNames[0] == tbx_iTAP1Firstname.Text &&
+                    preSignedUpTeam.suTeamPlayerLastNames[0] == tbx_iTAP1Lastname.Text &&
+                    preSignedUpTeam.suTeamPlayerFirstNames[1] == tbx_iTAP2Firstname.Text &&
+                    preSignedUpTeam.suTeamPlayerLastNames[1] == tbx_iTAP2Lastname.Text)
                 {
                     return 1;
-                } else
+                }
+                else
                 {
                     return 0;
                 }
-            } else
+            }
+            else
             {
                 return 2;
             }
         }
 
-
-        private void btn_Clear_Click(object sender, RoutedEventArgs e)
-        {
-            ClearTbx();
-        }
-
-        private void CreateTeamName(object sender, RoutedEventArgs e)
-        {
-            if(tbx_iTAP1Lastname.Text != "" && tbx_iTAP2Lastname.Text != "")
-            {
-                tbx_oTeamName.Text = tbx_iTAP1Lastname.Text + "-" + tbx_iTAP2Lastname.Text;
-                newTeam.teamName = tbx_oTeamName.Text;
-            }
-        }
-
+        /// <summary>
+        /// Checks if all input-fields are filled
+        /// </summary>
+        /// <returns></returns>
         private bool CheckInput ()
         {
             if (tbx_iTAP1Firstname.Text != String.Empty &&
@@ -194,6 +258,10 @@ namespace PW
 
         }
 
+        /// <summary>
+        /// Checks if team name is already used by another team
+        /// </summary>
+        /// <returns></returns>
         private bool CheckTeamNameAllreadyExists ()
         {
             INIFile tIni = new INIFile(Team.iniPath);
@@ -212,7 +280,12 @@ namespace PW
 
             return false;
         }
+        #endregion
 
+        #region Additional Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Sets all inputs-fields back to empty string
+        /// </summary>
         private void ClearTbx()
         {
             tbx_iTAP1Firstname.Text = String.Empty;
@@ -223,16 +296,8 @@ namespace PW
             cbx_iTAP1Payed.IsChecked = false;
             cbx_iTAP2Payed.IsChecked = false;
         }
+        #endregion
 
-        private void cmbx_signedUpTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            loadTeam = new SignedUpTeam();
-            loadTeam.Getter(cmbx_signedUpTeams.SelectedIndex + 1);
 
-            tbx_iTAP1Firstname.Text = loadTeam.suTeamPlayerFirstNames[0];
-            tbx_iTAP1Lastname.Text = loadTeam.suTeamPlayerLastNames[0];
-            tbx_iTAP2Firstname.Text = loadTeam.suTeamPlayerFirstNames[1];
-            tbx_iTAP2Lastname.Text = loadTeam.suTeamPlayerLastNames[1];
-        }
     }
 }

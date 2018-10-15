@@ -21,11 +21,11 @@ namespace PW
     /// </summary>
     public partial class PrepaireMenue : UserControl
     {
-        private MainWindow mnwd;
-        public PrepaireMenue(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public PrepaireMenue(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void PrepaireMenue_Loaded(object sender, RoutedEventArgs e)
@@ -38,14 +38,14 @@ namespace PW
         private void btn_SignUpTeams_Click(object sender, RoutedEventArgs e)
         {
             // Open sign up User Control
-            UserControl signUpTeam = new SignUpTeams(mnwd);
-            mnwd.MainContent.Content = signUpTeam;
+            UserControl signUpTeam = new SignUpTeams(mainWindow);
+            mainWindow.MainContent.Content = signUpTeam;
         }
 
         private void btn_StartTournament_Click(object sender, RoutedEventArgs e)
         {
-            UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
 
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_prepMode, Convert.ToString(0));

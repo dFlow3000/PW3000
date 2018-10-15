@@ -26,11 +26,11 @@ namespace PW
     /// </summary>
     public partial class Evaluation : UserControl
     {
-        private MainWindow mnwd;
-        public Evaluation(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public Evaluation(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         public void Evaluation_Loaded (object sender, RoutedEventArgs e)
@@ -201,8 +201,8 @@ namespace PW
 
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
-            UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
         }
 
         private void btn_PrintEvaluation_Click(object sender, RoutedEventArgs e)

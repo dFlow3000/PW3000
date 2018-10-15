@@ -23,15 +23,15 @@ namespace PW
     /// </summary>
     public partial class ShowTeam : UserControl
     {
-        private MainWindow mnwd;
+        private MainWindow mainWindow;
         private Team selectedTeam;
         private Player player1;
         private Player player2;
         private bool playedGameSelectionChanged = false;
-        public ShowTeam(MainWindow i_mnwd)
+        public ShowTeam(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void ShowTeam_Loaded(object sender, RoutedEventArgs e)
@@ -180,8 +180,8 @@ namespace PW
 
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
-            UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
         }
 
         private void FillCmbxTeamSelect()

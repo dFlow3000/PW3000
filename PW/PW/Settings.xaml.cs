@@ -22,12 +22,12 @@ namespace PW
     /// </summary>
     public partial class Settings : UserControl
     {
-        private MainWindow mnwd;
+        private MainWindow mainWindow;
         private INIFile tnmtIni = new INIFile(Tournament.iniPath);
-        public Settings(MainWindow i_mnwd)
+        public Settings(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void Settings_Loaded(object sender, RoutedEventArgs e)
@@ -121,19 +121,19 @@ namespace PW
 
         private void btn_EditColorGreen_Click(object sender, RoutedEventArgs e)
         {
-            mnwd.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
+            mainWindow.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Green.colorGreen);
         }
 
         private void btn_EditColorRed_Click(object sender, RoutedEventArgs e)
         {
-            mnwd.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
+            mainWindow.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Red.colorRed);
         }
 
         public void btn_EditColorBlue_Click(object sender, RoutedEventArgs e)
         {
-            mnwd.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
+            mainWindow.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Blue.colorBlue);
         }
 

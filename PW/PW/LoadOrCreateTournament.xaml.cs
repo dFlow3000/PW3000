@@ -20,23 +20,23 @@ namespace PW
     /// </summary>
     public partial class LoadOrCreateTournament : UserControl
     {
-        private MainWindow mnwd;
-        public LoadOrCreateTournament(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public LoadOrCreateTournament(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void btn_createTournament_Click(object sender, RoutedEventArgs e)
         {
-            UserControl createTnmnt = new AddTournament(mnwd);
-            mnwd.MainContent.Content = createTnmnt;
+            UserControl createTnmnt = new AddTournament(mainWindow);
+            mainWindow.MainContent.Content = createTnmnt;
         }
 
         private void btn_loadTournament_Click(object sender, RoutedEventArgs e)
         {
-            UserControl loadTnmnt = new LoadTournament(mnwd);
-            mnwd.MainContent.Content = loadTnmnt;
+            UserControl loadTnmnt = new LoadTournament(mainWindow);
+            mainWindow.MainContent.Content = loadTnmnt;
 
         }
     }

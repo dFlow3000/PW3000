@@ -23,17 +23,17 @@ namespace PW
     /// </summary>
     public partial class Main : UserControl
     {
-        private MainWindow mnwd;
-        public Main(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public Main(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void Main_Loaded (object sender, RoutedEventArgs e)
         {
-            mnwd.ActionMenue.Visibility = Visibility.Visible;
-            mnwd.cnvs_PWHeader.Visibility = Visibility.Hidden;
+            mainWindow.ActionMenue.Visibility = Visibility.Visible;
+            mainWindow.cnvs_PWHeader.Visibility = Visibility.Hidden;
 
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
             INIFile gIni = new INIFile(Game.iniPath);
@@ -108,7 +108,7 @@ namespace PW
                 lgbrush.GradientStops.Add(new GradientStop(Colors.White, 1.0));
                 lgbrush.GradientStops.Add(new GradientStop(Colors.LimeGreen, 0.0));
                 
-                mnwd.btn_GoToEvaluation.Background = lgbrush;
+                mainWindow.btn_GoToEvaluation.Background = lgbrush;
             }
 
             // Overall Section
@@ -202,14 +202,14 @@ namespace PW
 
             Directory.Delete(Const.iniFolderPath);
             Log.Delete(Const.iniFileFolder + "at Tournament Quit after Switch", logSwitched, newLogPath);
-            mnwd.Close();
+            mainWindow.Close();
 
         }
 
         private void btn_GoToSettings_Click(object sender, RoutedEventArgs e)
         {
-            UserControl settings = new Settings(mnwd);
-            mnwd.MainContent.Content = settings;
+            UserControl settings = new Settings(mainWindow);
+            mainWindow.MainContent.Content = settings;
         }
     }
 }

@@ -23,11 +23,11 @@ namespace PW
     /// </summary>
     public partial class LoadTournament : System.Windows.Controls.UserControl
     {
-        private MainWindow mnwd;
-        public LoadTournament(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public LoadTournament(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         private void btn_ExplorerSearch_Click(object sender, RoutedEventArgs e)
@@ -71,8 +71,8 @@ namespace PW
                     tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
 
 
-                    System.Windows.Controls.UserControl main = new Main(mnwd);
-                    mnwd.MainContent.Content = main;
+                    System.Windows.Controls.UserControl main = new Main(mainWindow);
+                    mainWindow.MainContent.Content = main;
                 } catch
                 {
                     loadFailed = true;
@@ -88,8 +88,8 @@ namespace PW
 
             if(loadFailed)
             {
-                System.Windows.Controls.UserControl loadorcreate = new LoadOrCreateTournament(mnwd);
-                mnwd.MainContent.Content = loadorcreate;
+                System.Windows.Controls.UserControl loadorcreate = new LoadOrCreateTournament(mainWindow);
+                mainWindow.MainContent.Content = loadorcreate;
             }
         }
     }

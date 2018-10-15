@@ -21,11 +21,11 @@ namespace PW
     /// </summary>
     public partial class RunMenue : UserControl
     {
-        private MainWindow mnwd;
-        public RunMenue(MainWindow i_mnwd)
+        private MainWindow mainWindow;
+        public RunMenue(MainWindow i_mainWindow)
         {
             InitializeComponent();
-            mnwd = i_mnwd;
+            mainWindow = i_mainWindow;
         }
 
         public void RunMenue_Loaded (object sender, RoutedEventArgs e)
@@ -73,14 +73,14 @@ namespace PW
 
             int runId = Convert.ToInt32(btn_clicked.Uid);
 
-            UserControl inserRunData = new InsertRunData(mnwd, runId);
-            mnwd.MainContent.Content = inserRunData;
+            UserControl inserRunData = new InsertRunData(mainWindow, runId);
+            mainWindow.MainContent.Content = inserRunData;
         }
 
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
-            UserControl main = new Main(mnwd);
-            mnwd.MainContent.Content = main;
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
         }
     }
 }
