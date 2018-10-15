@@ -105,11 +105,11 @@ namespace PW
             {
                 lbl_DiffPoints.Content = "0";
                 lbl_DiffPoints.Background = Brushes.LightGray;
-                lbl_DiffPoints.Foreground = Brushes.DarkGray;
+                lbl_DiffPoints.Foreground = Brushes.SlateGray;
                 lbl_TeamPoints.Background = Brushes.LightGray;
-                lbl_TeamPoints.Foreground = Brushes.DarkGray;
+                lbl_TeamPoints.Foreground = Brushes.SlateGray;
                 lbl_AponPoints.Background = Brushes.LightGray;
-                lbl_AponPoints.Foreground = Brushes.DarkGray;
+                lbl_AponPoints.Foreground = Brushes.SlateGray;
             }
 
 

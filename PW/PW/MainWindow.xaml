@@ -34,7 +34,7 @@
         </ContentControl>
         <DockPanel x:Name="ActionMenue" Grid.Column="0" Visibility="Visible">
             <StackPanel>
-                <Button x:Name="btn_GoTournamentMenue" Content="Tunier Info" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -42,7 +42,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToShowTeam" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -50,7 +50,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToShowTeam" Content="Teams anzeigen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToTnmtData" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="194" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -58,7 +58,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToTnmtData" Content="Spiele erfassen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="193" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -66,7 +66,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="193" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="20" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoTournamentMenue" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="194" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -76,26 +76,24 @@
                 </Button>
             </StackPanel>
         </DockPanel>
-        <TextBlock x:Name="txbl_Logo" Height="916" TextWrapping="Wrap" Text="P
-                   R
-                   E
-                   I
-                   S
-                   W
-                   A
-                   T
-                   T
-                   E
-                   R
-                   A
-                   
-                   3
-                   0
-                   0
-                   0" Margin="96,43,0,0" FontSize="48" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Courier New" Width="74" FontStyle="Italic" Visibility="Hidden">
-            <TextBlock.Effect>
-                <DropShadowEffect Color="#FFE0E0E0"/>
-            </TextBlock.Effect>
-        </TextBlock>
+        <Canvas x:Name="cnvs_PWHeader" Visibility="Hidden">
+            <Label Content="P" FontSize="40" Height="52" Width="240" Canvas.Left="10" Canvas.Top="40" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="R" FontSize="40" Height="52" Canvas.Top="92" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="E" FontSize="40" Height="52" Canvas.Top="144" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="I" FontSize="40" Height="52" Canvas.Top="196" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="S" FontSize="40" Height="52" Canvas.Top="248" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="W" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="300" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="A" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="352" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="T" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="404" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="T" FontSize="40" Height="52" Canvas.Top="456" Canvas.Left="10" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="E" FontSize="40" Height="52" Canvas.Top="508" Canvas.Left="10" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="R" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="560" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content=" " FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="664" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="3" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="716" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="0" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="820" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="0" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="768" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="0" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="872" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="A" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="612" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+        </Canvas>
     </Grid>
 </Window>

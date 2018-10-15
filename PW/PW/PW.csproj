@@ -216,12 +216,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Unbenannt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="watten_mAI_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="pw3000_L2n_icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -235,10 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="settings-icon-11.png" />
-    <Resource Include="addTeam.PNG" />
-    <Resource Include="if_editor-more-detail-glyph_763346.png" />
-    <Resource Include="icon123.ico" />
-    <Content Include="Football-06-512.ico" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

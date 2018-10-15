@@ -18,9 +18,9 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Label x:Name="lbl_sSettingsHeader" Content="Einstellungen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="720" Margin="210,10,210,27" HorizontalContentAlignment="Center"/>
-        <GroupBox x:Name="gbx_TournamentSettings" Header="Tunier-Einstellungen" HorizontalAlignment="Left" Height="171" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1110" FontSize="20">
+        <GroupBox x:Name="gbx_TournamentSettings" Header="Turnier-Einstellungen" HorizontalAlignment="Left" Height="171" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1110" FontSize="20">
             <Canvas>
-                <Label x:Name="lbl_sTnmtName" Content="Tunier-Name:" Canvas.Left="10" Canvas.Top="28"/>
+                <Label x:Name="lbl_sTnmtName" Content="Turnier-Name:" Canvas.Left="10" Canvas.Top="28"/>
                 <Label x:Name="lbl_oTnmtName" Content="" Canvas.Left="146" Canvas.Top="28"/>
                 <TextBox x:Name="tbx_iTnmtName" Height="33" Visibility="Hidden" Canvas.Left="146" TextWrapping="Wrap" Text="" Canvas.Top="32" Width="404"/>
                 <Label x:Name="lbl_sRunCnt" Content="Anzahl Durchgänge:" Canvas.Left="604" Canvas.Top="28"/>

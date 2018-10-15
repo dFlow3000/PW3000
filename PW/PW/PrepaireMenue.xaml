@@ -16,7 +16,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_StartTournament" Content="Tunier beginnen!" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_StartTournament_Click">
+        <Button x:Name="btn_StartTournament" Content="Turnier beginnen!" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_StartTournament_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF68D40E" Offset="0.998"/>
@@ -24,7 +24,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_endTournament" Content="Tunier auflösen!" HorizontalAlignment="Left" Margin="400,726,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_endTournament_Click">
+        <Button x:Name="btn_endTournament" Content="Turnier auflösen!" HorizontalAlignment="Left" Margin="400,726,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_endTournament_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFBF1D03" Offset="1"/>

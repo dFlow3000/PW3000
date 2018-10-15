@@ -53,28 +53,10 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="125" Margin="16,401,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="550"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="125" Margin="562,401,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="546"/>
         <ComboBox x:Name="cmbx_selectTeam1" HorizontalAlignment="Left" Margin="25,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="442" SelectionChanged="cmbx_selectTeam1_SelectionChanged" FontSize="20" Height="33">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
         </ComboBox>
         <ComboBox x:Name="cmbx_selectTeam2" HorizontalAlignment="Left" Margin="668,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="432" SelectionChanged="cmbx_selectTeam2_SelectionChanged" FontSize="20" Height="33">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
         </ComboBox>
         <ComboBox x:Name="cmbx_selectTable" HorizontalAlignment="Left" Margin="562,62,0,0" Grid.Row="1" VerticalAlignment="Top" Width="80" SelectionChanged="cmbx_selectTable_SelectionChanged" FontSize="16" Height="27">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
         </ComboBox>
         <Label x:Name="lbl_sTableNumber" Content="Tisch-Nr.:" HorizontalAlignment="Left" Margin="478,58,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Height="31" Width="76"/>
         <Label x:Name="lbl_sRunNumber" Content=". Durchgang" HorizontalAlignment="Left" Margin="520,19,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Height="31" Width="102"/>
@@ -88,17 +70,17 @@
         <Label x:Name="lbl_oTeam2Player2" Content="" HorizontalAlignment="Left" Margin="668,82,0,0" Grid.Row="1" VerticalAlignment="Top" Width="426" FontSize="16" Height="31"/>
         <Label x:Name="lbl_sWinPointsTeam1" Content="Gewinn-Punkte: " HorizontalAlignment="Left" Margin="171,113,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Height="31" Width="126"/>
         <Label x:Name="lbl_sWinPointsTeam2" Content="Gewinn-Punkte: " HorizontalAlignment="Left" Margin="760,115,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Height="31" Width="126"/>
-        <TextBox x:Name="tbx_iWinPointsTeam1" HorizontalAlignment="Left" Height="33" Margin="302,113,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" FontSize="20"/>
-        <TextBox x:Name="tbx_iWinPointsTeam2" HorizontalAlignment="Left" Height="33" Margin="891,113,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44" FontSize="16"/>
+        <TextBox x:Name="tbx_iWinPointsTeam1" HorizontalAlignment="Left" Height="33" Margin="302,113,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" FontSize="20" TextChanged="tbx_iWinPointsTeam1_TextChanged"/>
+        <TextBox x:Name="tbx_iWinPointsTeam2" HorizontalAlignment="Left" Height="33" Margin="891,113,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="44" FontSize="16" TextChanged="tbx_iWinPointsTeam2_TextChanged"/>
         <Label x:Name="lbl_sFirstGame" Content="1. Spiel" HorizontalAlignment="Left" Margin="514,156,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Center" FontSize="16" Height="31"/>
         <Label x:Name="lbl_sSecondGame" Content="2. Spiel" HorizontalAlignment="Left" Margin="514,281,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Center" FontSize="16" Height="31"/>
         <Label x:Name="lbl_sThirdGame" Content="3. Spiel" HorizontalAlignment="Left" Margin="514,406,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Center" FontSize="16" Height="31"/>
-        <TextBox x:Name="tbx_1GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,184,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbx_1GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,184,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbx_2GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,313,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbx_2GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,313,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbx_3GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,436,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbx_3GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,436,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbx_1GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,184,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_1GamePoints1Team_TextChanged"/>
+        <TextBox x:Name="tbx_1GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,184,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_1GamePoints2Team_TextChanged"/>
+        <TextBox x:Name="tbx_2GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,313,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_2GamePoints1Team_TextChanged"/>
+        <TextBox x:Name="tbx_2GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,313,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_2GamePoints2Team_TextChanged"/>
+        <TextBox x:Name="tbx_3GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,436,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_3GamePoints1Team_TextChanged"/>
+        <TextBox x:Name="tbx_3GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,436,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_3GamePoints2Team_TextChanged"/>
         <Button x:Name="btn_Edit_GameData" Foreground="WhiteSmoke" Content="Bearbeiten" HorizontalAlignment="Left" Margin="445,552,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="66" Click="btn_Edit_GameData_Click" FontSize="22" Visibility="Hidden">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

@@ -22,7 +22,6 @@ namespace PW
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Brush lgbrush_temp = new LinearGradientBrush();
         public bool keepDeleting = false;
         public MainWindow()
         {
@@ -58,14 +57,14 @@ namespace PW
 
 
                 ActionMenue.Visibility = Visibility.Hidden;
-                txbl_Logo.Visibility = Visibility.Visible;
+                cnvs_PWHeader.Visibility = Visibility.Visible;
 
             } else if (checkIfTournamentIsInPrepMode(tournamentData))
             {
                 UserControl prepMenue = new PrepaireMenue(this);
                 MainContent.Content = prepMenue;
                 ActionMenue.Visibility = Visibility.Hidden;
-                txbl_Logo.Visibility = Visibility.Visible;
+                cnvs_PWHeader.Visibility = Visibility.Visible;
 
             } else
             {
@@ -78,21 +77,9 @@ namespace PW
                 btn_GoToEvaluation.IsEnabled = true;
 
                 ActionMenue.Visibility = Visibility.Visible;
-                txbl_Logo.Visibility = Visibility.Hidden;
+                cnvs_PWHeader.Visibility = Visibility.Hidden;
 
-                lgbrush_temp = btn_GoToTnmtData.Background;
-
-                if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) == 0) {
-                    btn_GoToTnmtData.Content = "Tunier Starten!";
-                    // Farbverlauf
-                    LinearGradientBrush lgbrush = new LinearGradientBrush();
-                    lgbrush.StartPoint = new Point(0.5, 0);
-                    lgbrush.EndPoint = new Point(0.5, 1);
-                    lgbrush.GradientStops.Add(new GradientStop(Colors.White, 1.0));
-                    lgbrush.GradientStops.Add(new GradientStop(Colors.LimeGreen, 0.0));
-
-                    btn_GoToTnmtData.Background = lgbrush;
-                } else
+                if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) != 0)
                 {
                     btn_GoToAddTeam.IsEnabled = false;
                 }
@@ -149,15 +136,11 @@ namespace PW
                         {
                             UserControl runMenue = new RunMenue(this);
                             MainContent.Content = runMenue;
-                            btn_GoToTnmtData.Background = lgbrush_temp;
-                            btn_GoToTnmtData.Content = "Tunier Daten erfassen";
                         }
                     } else
                     {
                         UserControl runMenue = new RunMenue(this);
                         MainContent.Content = runMenue;
-                        btn_GoToTnmtData.Background = lgbrush_temp;
-                        btn_GoToTnmtData.Content = "Tunier Daten erfassen";
                     }
                 }
             } else

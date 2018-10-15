@@ -33,7 +33,7 @@ namespace PW
         private void Main_Loaded (object sender, RoutedEventArgs e)
         {
             mnwd.ActionMenue.Visibility = Visibility.Visible;
-            mnwd.txbl_Logo.Visibility = Visibility.Hidden;
+            mnwd.cnvs_PWHeader.Visibility = Visibility.Hidden;
 
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
             INIFile gIni = new INIFile(Game.iniPath);

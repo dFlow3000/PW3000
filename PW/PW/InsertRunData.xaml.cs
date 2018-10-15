@@ -25,7 +25,8 @@ namespace PW
         int runId = 0;
         MainWindow mnwd;
         bool team1Selected, team2Selected, tableSelected, createdRun = false;
-        int[,] prevTableValues = new int[4, 2];
+        //Aufboren für diff
+        int[,] prevTableValues = new int[5, 2];
         int[] prevTableValueGamePointsTotal = new int[2];
 
         public InsertRunData(MainWindow i_mnwd, int i_runId)
@@ -310,7 +311,30 @@ namespace PW
                     cmbx_selectTeam1.Visibility = Visibility.Hidden;
                     cmbx_selectTeam2.Visibility = Visibility.Hidden;
 
-                } else
+                    INIFile tnmtIni = new INIFile(Tournament.iniPath);
+                    INIFile gIni = new INIFile(Game.iniPath);
+
+                    int teamCnt = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtTeamCnt));
+                    int actRun = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct));
+                    int runCnt = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCnt));
+                    int gamePerRunCnt = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
+                    int overAllGameCnt = teamCnt / 2 * gamePerRunCnt;
+                    int actGameCnt = 0;
+                    for (int i = 1; i <= Convert.ToInt32(gIni.GetValue(Const.fileSec, Game.fsX_gameCnt)); i++)
+                    {
+                        if (Convert.ToInt32(gIni.GetValue(Game.gameSec + Convert.ToString(i), Game.gS_dpndRun)) == actRun)
+                        {
+                            actGameCnt++;
+                        }
+                    }
+                    if (actGameCnt == overAllGameCnt && actRun != 0)
+                    {
+                        tnmtIni.SetValue(Tournament.runSec + Convert.ToString(actRun), Tournament.rS_runComplete, Convert.ToString(true));
+                    }
+
+
+                }
+                else
                 {
                     MessageBox.Show("Es wurden nicht alle Eingaben getätigt!",
                     "Ergänzen sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten.",
@@ -337,7 +361,21 @@ namespace PW
                 tbx_3GamePoints1Team.Text != String.Empty &&
                 tbx_3GamePoints2Team.Text != String.Empty   )
             {
-                return true;
+                if (CheckMaxMinPoints(tbx_1GamePoints1Team) &&
+                    CheckMaxMinPoints(tbx_1GamePoints2Team) &&
+                    CheckMaxMinPoints(tbx_2GamePoints1Team) &&
+                    CheckMaxMinPoints(tbx_2GamePoints2Team) &&
+                    CheckMaxMinPoints(tbx_3GamePoints1Team) &&
+                    CheckMaxMinPoints(tbx_3GamePoints2Team) &&
+                    CheckMaxMinPoints(tbx_iWinPointsTeam1, true) &&
+                    CheckMaxMinPoints(tbx_iWinPointsTeam2, true)   )
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             } else
             {
                 return false;
@@ -427,11 +465,27 @@ namespace PW
                 prevTableValues[3, 0] = Convert.ToInt32(tbx_3GamePoints1Team.Text);
                 // [3,1] Game3Points Team2
                 prevTableValues[3, 1] = Convert.ToInt32(tbx_3GamePoints2Team.Text);
+                // [4,0] DiffPoints Team 1
+                prevTableValues[4, 0] = 0;
+                // [4,1] DiffPoints Team 2
+                prevTableValues[4, 1] = 0;
 
-                for(int i = 1; i <= 3; i++)
+
+                for (int i = 1; i <= 3; i++)
                 {
                     prevTableValueGamePointsTotal[0] += prevTableValues[i, 0];
                     prevTableValueGamePointsTotal[1] += prevTableValues[i, 1];
+
+                    if (prevTableValues[i, 0] > prevTableValues[i,1])
+                    {
+                        // [4,0] DiffPoints Team 1
+                        prevTableValues[4, 0] += prevTableValues[i, 0] - prevTableValues[i, 1];
+                    } else
+                    {
+                        // [4,1] DiffPoints Team 2
+                        prevTableValues[4,1] += prevTableValues[i, 1] - prevTableValues[i, 0];
+                    }
+
                 }
 
             } else
@@ -446,62 +500,107 @@ namespace PW
 
         private void btn_Edit_GameData_Save_Click(object sender, RoutedEventArgs e)
         {
-            INIFile tnmtIni = new INIFile(Tournament.iniPath);
-            int maxGamePerRound = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
-            int[] newTableValueGamePointsTotal = new int[2];
-            Table updateTable = new Table();
-            updateTable.Getter(cmbx_selectTable.SelectedIndex + 1, runId);
+            if (CheckInput())
+            {
+                INIFile tnmtIni = new INIFile(Tournament.iniPath);
+                int maxGamePerRound = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
+                int[] newTableValueGamePointsTotal = new int[2];
+                Table updateTable = new Table();
+                updateTable.Getter(cmbx_selectTable.SelectedIndex + 1, runId);
 
-            Game[] updateGames = new Game[maxGamePerRound];
-            Game addGame = new Game();
+                Game[] updateGames = new Game[maxGamePerRound];
+                Game addGame = new Game();
 
-            TextBox[,] updateInput = new TextBox[3, 2] { { tbx_1GamePoints1Team, tbx_1GamePoints2Team },
+                TextBox[,] updateInput = new TextBox[3, 2] { { tbx_1GamePoints1Team, tbx_1GamePoints2Team },
                                                          { tbx_2GamePoints1Team, tbx_2GamePoints2Team },
                                                          { tbx_3GamePoints1Team, tbx_3GamePoints2Team } };
-            Team updateTeam1 = new Team();
-            updateTeam1.Getter(updateTable.teamsOnTable[0]);
-            Team updateTeam2 = new Team();
-            updateTeam2.Getter(updateTable.teamsOnTable[1]);
+                Team updateTeam1 = new Team();
+                updateTeam1.Getter(updateTable.teamsOnTable[0]);
+                Team updateTeam2 = new Team();
+                updateTeam2.Getter(updateTable.teamsOnTable[1]);
 
-            for(int i = 0; i < maxGamePerRound; i++)
-            {
-                addGame.Getter(updateTable.tableGameIds[i]);
-                updateGames[i] = addGame;
-                updateGames[i].gamePoints[0] = Convert.ToInt32(updateInput[i, 0].Text);
-                newTableValueGamePointsTotal[0] += Convert.ToInt32(updateInput[i, 0].Text);
-                updateGames[i].gamePoints[1] = Convert.ToInt32(updateInput[i, 1].Text);
-                newTableValueGamePointsTotal[1] += Convert.ToInt32(updateInput[i, 1].Text);
-                updateGames[i].Setter();
-            }
+                int diffTeam1 = 0;
+                int diffTeam2 = 0;
 
-            updateTable.winPointsAtGame[0] = Convert.ToInt32(tbx_iWinPointsTeam1.Text);
-            updateTable.winPointsAtGame[1] = Convert.ToInt32(tbx_iWinPointsTeam2.Text);
-            updateTable.Setter();
+                for (int i = 0; i < maxGamePerRound; i++)
+                {
+                    addGame.Getter(updateTable.tableGameIds[i]);
+                    updateGames[i] = addGame;
+                    updateGames[i].gamePoints[0] = Convert.ToInt32(updateInput[i, 0].Text);
+                    newTableValueGamePointsTotal[0] += Convert.ToInt32(updateInput[i, 0].Text);
+                    updateGames[i].gamePoints[1] = Convert.ToInt32(updateInput[i, 1].Text);
+                    newTableValueGamePointsTotal[1] += Convert.ToInt32(updateInput[i, 1].Text);
 
-            if (updateTeam1.gamePointsTotal > 0)
-            {
-                updateTeam1.gamePointsTotal -= prevTableValueGamePointsTotal[0];
-            }
-            updateTeam1.gamePointsTotal += newTableValueGamePointsTotal[0];
-            if (updateTeam1.winPoints > 0)
-            {
-                updateTeam1.winPoints -= prevTableValues[0, 0];
-            }
-            updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
-            updateTeam1.Setter();
-            if (updateTeam2.gamePointsTotal > 0)
-            {
-                updateTeam2.gamePointsTotal -= prevTableValueGamePointsTotal[1];
-            }
-            updateTeam2.gamePointsTotal += newTableValueGamePointsTotal[1];
-            if (updateTeam2.winPoints > 0)
-            {
-                updateTeam2.winPoints -= prevTableValues[0, 1];
-            }
-            updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
-            updateTeam2.Setter();
+                    if (updateGames[i].gamePoints[0] > updateGames[i].gamePoints[1])
+                    {
+                        diffTeam1 += updateGames[i].gamePoints[0] - updateGames[i].gamePoints[1];
+                    }
+                    else
+                    {
+                        diffTeam2 += updateGames[i].gamePoints[1] - updateGames[i].gamePoints[0];
+                    }
 
 
+                    updateGames[i].Setter();
+                }
+
+                updateTable.winPointsAtGame[0] = Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+                updateTable.winPointsAtGame[1] = Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                updateTable.Setter();
+
+                if (updateTeam1.gamePointsTotal > 0)
+                {
+                    updateTeam1.gamePointsTotal -= prevTableValueGamePointsTotal[0];
+                }
+                updateTeam1.gamePointsTotal += newTableValueGamePointsTotal[0];
+                if (updateTeam1.winPoints > 0)
+                {
+                    updateTeam1.winPoints -= prevTableValues[0, 0];
+                }
+                updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+                if (updateTeam1.gamePointsTotalDiff > 0)
+                {
+                    updateTeam1.gamePointsTotalDiff -= prevTableValues[4, 0];
+                }
+                updateTeam1.gamePointsTotalDiff += diffTeam1;
+                updateTeam1.Setter();
+
+                if (updateTeam2.gamePointsTotal > 0)
+                {
+                    updateTeam2.gamePointsTotal -= prevTableValueGamePointsTotal[1];
+                }
+                updateTeam2.gamePointsTotal += newTableValueGamePointsTotal[1];
+                if (updateTeam2.winPoints > 0)
+                {
+                    updateTeam2.winPoints -= prevTableValues[0, 1];
+                }
+                updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                if (updateTeam1.gamePointsTotalDiff > 0)
+                {
+                    updateTeam1.gamePointsTotalDiff -= prevTableValues[4, 1];
+                }
+                updateTeam2.gamePointsTotalDiff += diffTeam2;
+                updateTeam2.Setter();
+
+
+                cmbx_selectTable.SelectedIndex = cmbx_selectTable.SelectedIndex;
+                showGatheredInfo(updateTable);
+                cmbx_selectTeam1.SelectedIndex = -1;
+                cmbx_selectTeam2.SelectedIndex = -1;
+                cmbx_selectTeam1.Visibility = Visibility.Hidden;
+                cmbx_selectTeam2.Visibility = Visibility.Hidden;
+                btn_Edit_GameData.Visibility = Visibility.Visible;
+                btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
+                btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                MessageBox.Show("Es wurden nicht alle Eingaben getätigt!",
+                "Ergänzen sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten.",
+                MessageBoxButton.OK,
+                MessageBoxImage.Stop);
+            }
         }
 
         private void btn_Edit_GameData_Clear_Click(object sender, RoutedEventArgs e)
@@ -511,6 +610,74 @@ namespace PW
             btn_Edit_GameData.Visibility = Visibility.Visible;
             btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
             btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
+        }
+
+        private bool CheckMaxMinPoints(TextBox i_tbx, bool justMin = false)
+        {
+            bool retVal = true;
+            if (i_tbx.Text != String.Empty)
+            {
+                if (Convert.ToInt32(i_tbx.Text) > 15 && !justMin)
+                {
+                    MessageBox.Show("Die maximal erreichbare Punktzahl beträgt 15 Punkte!",
+                                    "Maximale Punktzahl überschritten",
+                                     MessageBoxButton.OK,
+                                     MessageBoxImage.Warning);
+                    i_tbx.Text = String.Empty;
+                    retVal = false;
+                }
+                else if (Convert.ToInt32(i_tbx.Text) < 0)
+                {
+                    MessageBox.Show("Die minimal erreichbare Punktzahl beträgt 0 Punkte!",
+                                    "Minimale Punktzahl unterschritten",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                    i_tbx.Text = String.Empty;
+                    retVal = false;
+                }
+            }
+
+            return retVal;
+        }
+
+        private void tbx_1GamePoints1Team_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender);
+        }
+
+        private void tbx_1GamePoints2Team_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender);
+        }
+
+        private void tbx_2GamePoints1Team_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender);
+        }
+
+        private void tbx_2GamePoints2Team_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender);
+        }
+
+        private void tbx_3GamePoints1Team_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender);
+        }
+
+        private void tbx_3GamePoints2Team_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender);
+        }
+
+        private void tbx_iWinPointsTeam1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender, true);
+        }
+
+        private void tbx_iWinPointsTeam2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //CheckMaxMinPoints((TextBox)sender, true);
         }
 
         private void showGatheredInfo(Table selectedTable)

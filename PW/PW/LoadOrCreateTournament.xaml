@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="385"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btn_createTournament" Content="Tunier erstellen!" HorizontalAlignment="Left" Margin="10,10,-369,-116" VerticalAlignment="Top" Width="1110" Height="480" FontSize="100" Click="btn_createTournament_Click">
+        <Button x:Name="btn_createTournament" Content="Turnier erstellen!" HorizontalAlignment="Left" Margin="10,10,-369,-116" VerticalAlignment="Top" Width="1110" Height="480" FontSize="100" Click="btn_createTournament_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFF90000" Offset="1"/>
@@ -22,7 +22,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_loadTournament" Content="Tunier laden!"  HorizontalAlignment="Left" Margin="10,490,-369,-584" VerticalAlignment="Top" Width="1110" Height="480" FontSize="100" Click="btn_loadTournament_Click">
+        <Button x:Name="btn_loadTournament" Content="Turnier laden!"  HorizontalAlignment="Left" Margin="10,490,-369,-584" VerticalAlignment="Top" Width="1110" Height="480" FontSize="100" Click="btn_loadTournament_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFF90000" Offset="1"/>

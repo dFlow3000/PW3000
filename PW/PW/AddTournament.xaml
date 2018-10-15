@@ -18,13 +18,13 @@
             <RowDefinition Height="190"/>
             <RowDefinition Height="296"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_TnmtName" Content="Legen Sie einen Namen für Ihr Tunier fest:" Grid.Column="0" Grid.Row="1" Margin="0,0,-379,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="67" Width="1130" FontSize="36" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbl_TnmtName" Content="Legen Sie einen Namen für Ihr Turnier fest:" Grid.Column="0" Grid.Row="1" Margin="0,0,-379,0" VerticalAlignment="Top" Height="67" FontSize="36" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="1130"/>
         <Label x:Name="lbl_TnmtRunCnt" Content="Legen Sie die Anzahl der Durchgänge fest:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="1130" FontSize="36" Margin="0,0,-379,0" HorizontalContentAlignment="Center"/>
         <Label x:Name="lbl_TnmtGameCnt" Content="Legen Sie die Anzahl der Spiele pro Durchgang fest:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="1130" FontSize="36" Margin="0,0,-379,0" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="tbx_TnmtName" Margin="260,86,-129,0" Grid.Row="1" TextWrapping="Wrap" Text="" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="tbx_TnmtRunCnt" Margin="260,84,-129,0" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Text="" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="tbx_TnmtGameCnt" Margin="260,82,-129,0" Grid.Row="3" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center" IsEnabled="False"/>
-        <Button x:Name="btn_StartTnmt" Foreground="WhiteSmoke" Content="Tunier erstellen!" Height="142" Margin="367,145,0,0" Grid.Row="4" Grid.Column="0" Width="384" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_StartTnmt_Click">
+        <Button x:Name="btn_StartTnmt" Foreground="WhiteSmoke" Content="Turnier erstellen!" Height="142" Margin="367,145,0,0" Grid.Row="4" Grid.Column="0" Width="384" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_StartTnmt_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
