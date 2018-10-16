@@ -66,6 +66,9 @@ namespace PW
             if (i_id > 0 && i_id <= Convert.ToInt32(maxId))
             {
                 ret = true;
+            } else
+            {
+                Log.Error("Id:" + i_id + " out of Range! Request Para:" + i_ini + "|" + i_section + "|" + i_key);
             }
 
             return ret;
@@ -74,21 +77,56 @@ namespace PW
         //   -> 3.3 SwitchColor
         /// <summary>
         /// Switchs the backgroundcolor of the actual window depending on the selected color-setting
+        /// <para>
+        /// Special function: Sets Buttonbackground depending on the selected color-setting if i_ChangeBtnBackground true
+        /// </para>
         /// </summary>
         /// <param name="i_window">actual window</param>
-        public static void SwitchColor(Window i_window)
+        /// <param name="i_btn">Button which should be changed</param>
+        /// <param name="i_ChangeBtnBackground">if true, just changing Buttonbackground</param>
+        public static void SwitchColor(Window i_window, Button i_btn = null, bool i_ChangeBtnBackground = false)
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
             switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
             {
                 case Const.Red.colorRed:
-                    i_window.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
+                    if (!i_ChangeBtnBackground)
+                    {
+                        i_window.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
+                    } else
+                    {
+                        i_btn.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
+                    }
                     break;
                 case Const.Blue.colorBlue:
-                    i_window.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
+                    if (!i_ChangeBtnBackground)
+                    {
+                        i_window.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
+                    }
+                    else
+                    {
+                        i_btn.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
+                    }
                     break;
                 case Const.Green.colorGreen:
-                    i_window.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
+                    if (!i_ChangeBtnBackground)
+                    {
+                        i_window.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
+                    }
+                    else
+                    {
+                        i_btn.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
+                    }
+                    break;
+                case Const.Gray.colorGray:
+                    if (!i_ChangeBtnBackground)
+                    {
+                        i_window.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
+                    }
+                    else
+                    {
+                        i_btn.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
+                    }
                     break;
                 default: break;
             }
@@ -113,6 +151,9 @@ namespace PW
                     break;
                 case Const.Green.colorGreen:
                     retColor = Const.Green.green2;
+                    break;
+                case Const.Gray.colorGray:
+                    retColor = Const.Gray.grayHighlight;
                     break;
                 default:
                     retColor = Const.Red.redHighlight;
@@ -140,7 +181,7 @@ namespace PW
         /// <summary>
         /// Color struct for Backgroundcolor-Switch
         /// <para>Red
-        /// <para>Holds the three Colorvlaues for LinearGradientBrush</para></para>
+        /// <para>Holds the three Colorvalues for LinearGradientBrush</para></para>
         /// </summary>
         public struct Red
         {
@@ -154,7 +195,7 @@ namespace PW
         /// <summary>
         /// Color struct for Backgroundcolor-Switch
         /// <para>Blue
-        /// <para>Holds the three Colorvlaues for LinearGradientBrush</para></para>
+        /// <para>Holds the three Colorvalues for LinearGradientBrush</para></para>
         /// </summary>
         public struct Blue
         {
@@ -169,7 +210,7 @@ namespace PW
         /// <summary>
         /// Color struct for Backgroundcolor-Switch
         /// <para>Green
-        /// <para>Holds the three Colorvlaues for LinearGradientBrush</para></para>
+        /// <para>Holds the three Colorvalues for LinearGradientBrush</para></para>
         /// </summary>
         public struct Green
         {
@@ -180,10 +221,25 @@ namespace PW
             public static Color greenHighlight = Color.FromRgb(0, 255, 0);
 
         }
+
+        /// <summary>
+        /// Color struct for Backgroundcolor-Switch
+        /// <para>Gray
+        /// <para>Holds the three Colorvalues for LinearGradientBrush</para></para>
+        /// </summary>
+        public struct Gray
+        {
+            public const string colorGray = "Gray";
+            public static Color gray1 = Color.FromRgb(226, 226, 226);
+            public static Color gray2 = Color.FromRgb(168, 168, 168);
+            public static Color gray3 = Color.FromRgb(83, 83, 83);
+            public static Color grayHighlight = Color.FromRgb(240, 240, 240);
+
+        }
         #endregion
 
-        
 
-        
+
+
     }
 }

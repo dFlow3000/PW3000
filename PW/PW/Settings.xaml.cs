@@ -149,5 +149,10 @@ namespace PW
             return lgbrush;
         }
 
+        private void btn_EditColorGray_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.colorGray);
+        }
     }
 }

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PW"
              Loaded="Settings_Loaded"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1130"
+             d:DesignHeight="760" d:DesignWidth="1130"
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -73,7 +73,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_EditColorRed" Content="Rot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorRed_Click" Foreground="WhiteSmoke" Canvas.Left="482" Canvas.Top="72">
+                <Button x:Name="btn_EditColorGray" Content="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGray_Click" Foreground="WhiteSmoke" Canvas.Left="482" Canvas.Top="72">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -82,6 +82,14 @@
                     </Button.Background>
                 </Button>
                 <Button x:Name="btn_EditColorBlue" Content="Blau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorBlue_Click" Foreground="WhiteSmoke" Canvas.Left="687" Canvas.Top="72">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="1"/>
+                            <GradientStop Color="#FE636363"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btn_EditColorRed_Copy" Content="Rot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorRed_Click" Foreground="WhiteSmoke" Canvas.Left="273" Canvas.Top="72">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>

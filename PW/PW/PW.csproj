@@ -229,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="settings-icon-11.png" />
+    <Resource Include="info.png" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

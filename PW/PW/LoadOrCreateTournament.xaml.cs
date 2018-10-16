@@ -25,6 +25,9 @@ namespace PW
         {
             InitializeComponent();
             mainWindow = i_mainWindow;
+
+            Const.SwitchColor(i_mainWindow, btn_createTournament, true);
+            Const.SwitchColor(i_mainWindow, btn_loadTournament, true);
         }
 
         private void btn_createTournament_Click(object sender, RoutedEventArgs e)

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 using Nocksoft.IO.ConfigFiles;
 
 namespace PW
@@ -54,7 +55,8 @@ namespace PW
 
         private void btn_endTournament_Click(object sender, RoutedEventArgs e)
         {
-            // switch Folder
+            Directory.Delete(Const.iniFolderPath);
+            mainWindow.Close();
         }
     }
 }

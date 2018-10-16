@@ -11,9 +11,9 @@
         WindowStyle="ThreeDBorderWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF426BB2" Offset="0.513"/>
-            <GradientStop Color="#FF265389" Offset="1"/>
-            <GradientStop Color="#FF9FC2FF"/>
+            <GradientStop Color="#FFA8A8A8" Offset="0.513"/>
+            <GradientStop Color="#FF535353" Offset="1"/>
+            <GradientStop Color="#FFE2E2E2"/>
         </LinearGradientBrush>
     </Window.Background>
     <Grid HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="1390">
@@ -34,7 +34,7 @@
         </ContentControl>
         <DockPanel x:Name="ActionMenue" Grid.Column="0" Visibility="Visible" Height="Auto">
             <StackPanel>
-                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -42,7 +42,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToShowTeam" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToShowTeam" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -50,7 +50,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToTnmtData" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToTnmtData" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -58,7 +58,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -66,7 +66,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoTournamentMenue" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoTournamentMenue" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -77,23 +77,23 @@
             </StackPanel>
         </DockPanel>
         <Canvas x:Name="cnvs_PWHeader" Visibility="Hidden">
-            <Label Content="P" FontSize="40" Height="52" Width="240" Canvas.Left="10" Canvas.Top="40" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="R" FontSize="40" Height="52" Canvas.Top="92" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="E" FontSize="40" Height="52" Canvas.Top="144" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="I" FontSize="40" Height="52" Canvas.Top="196" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="S" FontSize="40" Height="52" Canvas.Top="248" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="W" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="300" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="A" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="352" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="T" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="404" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="T" FontSize="40" Height="52" Canvas.Top="456" Canvas.Left="10" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="E" FontSize="40" Height="52" Canvas.Top="508" Canvas.Left="10" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="R" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="560" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content=" " FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="664" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="3" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="716" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="0" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="820" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="0" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="768" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="0" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="872" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
-            <Label Content="A" FontSize="40" Height="52" Canvas.Left="10" Canvas.Top="612" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="P" FontSize="38" Height="45" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="R" FontSize="38" Height="45" Canvas.Top="45" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="E" FontSize="38" Height="45" Canvas.Top="90" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="I" FontSize="38" Height="45" Canvas.Top="135" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="S" FontSize="38" Height="45" Canvas.Top="180" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="W" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="225" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="A" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="270" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="T" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="315" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="T" FontSize="38" Height="45" Canvas.Top="360" Canvas.Left="10" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="E" FontSize="38" Height="45" Canvas.Top="405" Canvas.Left="10" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="R" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="450" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content=" " FontSize="38" Height="27" Canvas.Left="10" Canvas.Top="540" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="3" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="567" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="0" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="612" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="0" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="657" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="0" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="702" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+            <Label Content="A" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="495" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
         </Canvas>
     </Grid>
 </Window>

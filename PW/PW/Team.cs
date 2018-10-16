@@ -51,6 +51,7 @@ namespace PW
         public void Setter(Team i_team)
         {
             INIFile tIni = new INIFile(iniPath);
+            SetIniTimeStamp(tIni);
             string strId = Convert.ToString(i_team.teamId);
             tIni.SetValue(teamSec + strId, tS_teamId, strId);
             tIni.SetValue(teamSec + strId, tS_teamName, i_team.teamName);
@@ -64,6 +65,7 @@ namespace PW
         public void Setter()
         {
             INIFile tIni = new INIFile(iniPath);
+            SetIniTimeStamp(tIni);
             string strId = Convert.ToString(teamId);
             tIni.SetValue(teamSec + strId, tS_teamId, strId);
             tIni.SetValue(teamSec + strId, tS_teamName, teamName);

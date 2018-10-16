@@ -21,7 +21,7 @@ namespace PW
         public const string fsX_SpecTnmtPath = "Specific-Tournament-Path";
         public const string fsX_SpecTnmtPath_def = "C:/";
         public const string fsX_ColorMode = "Color-Mode";
-        public const string fsX_ColorMode_def = Const.Red.colorRed;
+        public const string fsX_ColorMode_def = Const.Gray.colorGray;
         // .ini-File - Section - Tournament Section
         public const string tnmtSec = "tournament-section";
         public const string tnS_tnmtName = "Name";
@@ -74,6 +74,7 @@ namespace PW
         public void Setter()
         {
             INIFile tnIni = new INIFile(iniPath);
+            Const.SetIniTimeStamp(tnIni);
             tnIni.SetValue(tnmtSec, tnS_tnmtName, tnmtName);
             tnIni.SetValue(tnmtSec, tnS_tnmtRunCnt, Convert.ToString(tnmtRunCnt));
         }

@@ -24,8 +24,19 @@ namespace PW
     {
         int runId = 0;
         MainWindow mainWindow;
-        bool team1Selected, team2Selected, tableSelected, createdRun = false;
-        //Aufboren für diff
+        bool team1Selected, team2Selected, tableSelected;
+        /// <summary>
+        /// <para>[0,0] WinPoints Team1</para>
+        /// <para>[0,1] WinPoints Team2</para>
+        /// <para>[1,0] Game1Points Team1</para>
+        /// <para>[1,1] Game1Points Team2</para>
+        /// <para>[2,0] Game2Points Team1</para>
+        /// <para>[2,1] Game2Points Team2</para>
+        /// <para>[3,0] Game3Points Team1</para>
+        /// <para>[3,1] Game3Points Team2</para>
+        /// <para>[4,0] DiffPoints Team 1</para>
+        /// <para>[4,1] DiffPoints Team 2</para>
+        /// </summary>
         int[,] prevTableValues = new int[5, 2];
         int[] prevTableValueGamePointsTotal = new int[2];
 
@@ -49,7 +60,6 @@ namespace PW
                 if (prevRun.completeState)
                 {
                     Run newRun = new Run(runId, true);
-                    createdRun = true;
                 }
             } else
             {
@@ -332,7 +342,6 @@ namespace PW
                         tnmtIni.SetValue(Tournament.runSec + Convert.ToString(actRun), Tournament.rS_runComplete, Convert.ToString(true));
                     }
 
-
                 }
                 else
                 {
@@ -435,6 +444,7 @@ namespace PW
             {
                 btn_Edit_GameData_Save.Visibility = Visibility.Visible;
                 btn_Edit_GameData_Clear.Visibility = Visibility.Visible;
+                btn_TableSetBack.Visibility = Visibility.Visible;
                 btn_Edit_GameData_Autorisation.Visibility = Visibility.Hidden;
                 pwbx_EditPassword.Visibility = Visibility.Hidden;
                 pwbx_EditPassword.Password = String.Empty;
@@ -582,6 +592,14 @@ namespace PW
                 updateTeam2.gamePointsTotalDiff += diffTeam2;
                 updateTeam2.Setter();
 
+                Log.Update("Table:" + Convert.ToString(updateTable.tableId) + " Team1:" + updateTeam1.teamName + " Team2:" + updateTeam2.teamName);
+                Log.Update("Team 1 - WinPoints:" + Convert.ToString(prevTableValues[0, 0]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
+                Log.Update("Team 2 - WinPoints:" + Convert.ToString(prevTableValues[0, 1]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
+                Log.Update("Game 1:" + Convert.ToString(prevTableValues[1,0]) + "->" + Convert.ToString(updateGames[0].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[1, 1]) + "->" + Convert.ToString(updateGames[0].gamePoints[1]));
+                Log.Update("Game 2:" + Convert.ToString(prevTableValues[2,0]) + "->" + Convert.ToString(updateGames[1].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[2, 1]) + "->" + Convert.ToString(updateGames[1].gamePoints[1]));
+                Log.Update("Game 3:" + Convert.ToString(prevTableValues[3,0]) + "->" + Convert.ToString(updateGames[2].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[3, 1]) + "->" + Convert.ToString(updateGames[2].gamePoints[1]));
+                Log.Update("GamePointsTotal:" + Convert.ToString(prevTableValueGamePointsTotal[0]) + "->" + Convert.ToString(newTableValueGamePointsTotal[0]) + " | " + Convert.ToString(prevTableValueGamePointsTotal[1]) + "->" + Convert.ToString(newTableValueGamePointsTotal[1]));
+                Log.Update("Diff:" + Convert.ToString(prevTableValues[4, 0]) + "->" + Convert.ToString(diffTeam1) + " | " + Convert.ToString(prevTableValues[4, 1]) + "->" + Convert.ToString(diffTeam2));
 
                 cmbx_selectTable.SelectedIndex = cmbx_selectTable.SelectedIndex;
                 showGatheredInfo(updateTable);
@@ -592,6 +610,7 @@ namespace PW
                 btn_Edit_GameData.Visibility = Visibility.Visible;
                 btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
                 btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
+                btn_TableSetBack.Visibility = Visibility.Hidden;
 
             }
             else
@@ -610,6 +629,7 @@ namespace PW
             btn_Edit_GameData.Visibility = Visibility.Visible;
             btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
             btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
+            btn_TableSetBack.Visibility = Visibility.Hidden;
         }
 
         private bool CheckMaxMinPoints(TextBox i_tbx, bool justMin = false)
@@ -638,46 +658,6 @@ namespace PW
             }
 
             return retVal;
-        }
-
-        private void tbx_1GamePoints1Team_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender);
-        }
-
-        private void tbx_1GamePoints2Team_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender);
-        }
-
-        private void tbx_2GamePoints1Team_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender);
-        }
-
-        private void tbx_2GamePoints2Team_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender);
-        }
-
-        private void tbx_3GamePoints1Team_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender);
-        }
-
-        private void tbx_3GamePoints2Team_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender);
-        }
-
-        private void tbx_iWinPointsTeam1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender, true);
-        }
-
-        private void tbx_iWinPointsTeam2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //CheckMaxMinPoints((TextBox)sender, true);
         }
 
         private void showGatheredInfo(Table selectedTable)
@@ -731,6 +711,16 @@ namespace PW
             tbx_2GamePoints2Team.IsEnabled = false;
             tbx_3GamePoints1Team.IsEnabled = false;
             tbx_3GamePoints2Team.IsEnabled = false;
+        }
+
+        private void btn_TableSetBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private bool allowGameInput(bool clear = false)

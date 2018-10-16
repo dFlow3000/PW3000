@@ -50,6 +50,7 @@ namespace PW
         public void Setter ()
         {
             INIFile gIni = new INIFile(iniPath);
+            SetIniTimeStamp(gIni);
             string strId = Convert.ToString(gameId);
             gIni.SetValue(gameSec + strId, gS_gameId, Convert.ToString(gameId));
             gIni.SetValue(gameSec + strId, gS_gameTeam1, Convert.ToString(gameTeams[0]));

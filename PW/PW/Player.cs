@@ -44,6 +44,7 @@ namespace PW
         public void Setter(Player i_player)
         {
             INIFile pIni = new INIFile(iniPath);
+            Const.SetIniTimeStamp(pIni);
             string strId = Convert.ToString(i_player.playerId);
             pIni.SetValue(playerSec + strId, pS_playerId, strId);
             pIni.SetValue(playerSec + strId, pS_firstname, i_player.playerFirstname);
@@ -54,6 +55,7 @@ namespace PW
         public void Setter()
         {
             INIFile pIni = new INIFile(iniPath);
+            Const.SetIniTimeStamp(pIni);
             string strId = Convert.ToString(this.playerId);
             pIni.SetValue(playerSec + strId, pS_playerId, strId);
             pIni.SetValue(playerSec + strId, pS_firstname, this.playerFirstname);

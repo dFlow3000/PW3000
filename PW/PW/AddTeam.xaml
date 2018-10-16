@@ -17,7 +17,24 @@
             <RowDefinition Height="600"/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_sAddTeamHeader" Content="Team erfassen" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="1110" Margin="20,10,20,26"/>
+        <Canvas Height="50" Width="50" Margin="10,10,1070,10">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF1F77F7" Offset="1"/>
+                    <GradientStop Color="#FF69CFFF"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+        </Canvas>
+        <Button x:Name="btn_WindowInfo" Height="50" Width="50" Margin="10,10,1070,10" >
+            <Button.Background>
+                <ImageBrush ImageSource="info.png" TileMode="FlipX" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="lbl_sAddTeamHeader" Content="Team erfassen" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="1110" Margin="20,10,20,26">
+            <Label.Background>
+                <ImageBrush/>
+            </Label.Background>
+        </Label>
         <GroupBox x:Name="gB_sTeamAdder" Header="Team-Nummer " HorizontalAlignment="Left" Height="590" Grid.Row="1" VerticalAlignment="Top" Width="1120" FontSize="20">
             <GroupBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

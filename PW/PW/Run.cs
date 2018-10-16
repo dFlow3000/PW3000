@@ -33,6 +33,7 @@ namespace PW
         public void SetCompleteState(int i_runId, bool i_state)
         {
             INIFile tnIni = new INIFile(Tournament.iniPath);
+            Const.SetIniTimeStamp(tnIni);
             if (Const.CheckIdInRange(tnIni, Tournament.tnmtSec, Tournament.tnS_tnmtRunCnt, i_runId))
             {
                 string strId = Convert.ToString(i_runId);
