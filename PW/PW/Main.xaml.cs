@@ -24,6 +24,7 @@ namespace PW
     public partial class Main : UserControl
     {
         private MainWindow mainWindow;
+        public TextBlock[] infoWindowTextblocks= new TextBlock[10];
         public Main(MainWindow i_mainWindow)
         {
             InitializeComponent();
@@ -211,5 +212,14 @@ namespace PW
             UserControl settings = new Settings(mainWindow);
             mainWindow.MainContent.Content = settings;
         }
+
+        #region Textblocks for InfoWindow
+        private void FillTextBlocks()
+        {
+            infoWindowTextblocks[0].Text = "Tunier-Informationen";
+            infoWindowTextblocks[1].Text = "Aktuelle Informationen";
+            infoWindowTextblocks[2].Text = "Aktueller Durchgang: Zeigt die Nummer des aktuell gespielten Durchgangs an!"
+        }
+        #endregion
     }
 }
