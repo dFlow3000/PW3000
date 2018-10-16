@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PW"
              mc:Ignorable="d" 
              Loaded="RunMenue_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="1130"
+             d:DesignHeight="760" d:DesignWidth="1130"
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,11 +14,11 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="780"/>
-            <RowDefinition Height="85"/>
+            <RowDefinition Height="538"/>
+            <RowDefinition Height="327"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_sRunMenueHeader" Content="Durchgang auswählen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="1130" Margin="0,10,0,27" HorizontalContentAlignment="Center"/>
-        <Button x:Name="btn_MainMenue" Content="Zurück" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="0,721,0,0" Grid.RowSpan="2" Click="btn_MainMenue_Click" FontSize="22">
+        <Label x:Name="lbl_sRunMenueHeader" Content="Durchgang auswählen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="1130" Margin="0,10,0,26" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btn_MainMenue" Content="Zurück" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="100" Margin="10,0,0,0" Click="btn_MainMenue_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>

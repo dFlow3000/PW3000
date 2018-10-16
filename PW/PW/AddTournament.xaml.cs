@@ -59,7 +59,7 @@ namespace PW
                                 MessageBoxImage.Error);
             }
         }
-
+        #endregion
         #region Check - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Checks if input-fields are not empty
@@ -77,6 +77,6 @@ namespace PW
                 return false;
             }
         }
-##en
+        #endregion
     }
 }

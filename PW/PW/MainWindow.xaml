@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PW"
         mc:Ignorable="d"
         Loaded="MainWindow_Loaded"
-        Title="Preiswattera 3000" Height="1000" Width="1400"
+        Title="Preiswattera 3000" Height="800" Width="1400"
         ResizeMode="CanMinimize"
         WindowStyle="ThreeDBorderWindow">
     <Window.Background>
@@ -16,7 +16,7 @@
             <GradientStop Color="#FF9FC2FF"/>
         </LinearGradientBrush>
     </Window.Background>
-    <Grid HorizontalAlignment="Left" Height="969" VerticalAlignment="Top" Width="1390">
+    <Grid HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="1390">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -24,7 +24,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="1150"/>
         </Grid.ColumnDefinitions>
-        <ContentControl x:Name="MainContent" Content="{Binding}" Grid.Column="1" Margin="0,0,10,0" >
+        <ContentControl x:Name="MainContent" Content="{Binding}" Grid.Column="1" Margin="0,0,0,1" >
             <ContentControl.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -32,9 +32,9 @@
                 </LinearGradientBrush>
             </ContentControl.Background>
         </ContentControl>
-        <DockPanel x:Name="ActionMenue" Grid.Column="0" Visibility="Visible">
+        <DockPanel x:Name="ActionMenue" Grid.Column="0" Visibility="Visible" Height="Auto">
             <StackPanel>
-                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -42,7 +42,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToShowTeam" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="193.8" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToShowTeam" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -50,7 +50,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToTnmtData" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="194" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToTnmtData" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -58,7 +58,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="193" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>
@@ -66,7 +66,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btn_GoTournamentMenue" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="194" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
+                <Button x:Name="btn_GoTournamentMenue" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="144" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="1"/>

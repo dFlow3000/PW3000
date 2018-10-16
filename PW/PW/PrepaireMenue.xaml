@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:PW"
              mc:Ignorable="d" 
              Loaded="PrepaireMenue_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="1130" FontSize="72">
+             d:DesignHeight="760" d:DesignWidth="1130"
+             FontSize="72">
     <Grid>
-        <Button x:Name="btn_SignUpTeams" Content="Vorläufige Teamanmeldung" HorizontalAlignment="Left" Margin="152,528,0,0" VerticalAlignment="Top" Width="326" Height="160" Foreground="WhiteSmoke" FontSize="24" Click="btn_SignUpTeams_Click">
+        <Button x:Name="btn_SignUpTeams" Content="Vorläufige Teamanmeldung" HorizontalAlignment="Left" Margin="89,289,0,0" VerticalAlignment="Top" Width="326" Height="160" Foreground="WhiteSmoke" FontSize="24" Click="btn_SignUpTeams_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -16,7 +17,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_StartTournament" Content="Turnier beginnen!" HorizontalAlignment="Left" Margin="640,528,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_StartTournament_Click">
+        <Button x:Name="btn_StartTournament" Content="Turnier beginnen!" HorizontalAlignment="Left" Margin="717,289,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_StartTournament_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF68D40E" Offset="0.998"/>
@@ -24,7 +25,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_endTournament" Content="Turnier auflösen!" HorizontalAlignment="Left" Margin="400,726,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_endTournament_Click">
+        <Button x:Name="btn_endTournament" Content="Turnier auflösen!" HorizontalAlignment="Left" Margin="405,497,0,0" VerticalAlignment="Top" Width="326" Foreground="WhiteSmoke" Height="160" FontSize="22" Click="btn_endTournament_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFBF1D03" Offset="1"/>

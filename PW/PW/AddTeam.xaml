@@ -6,19 +6,19 @@
              xmlns:local="clr-namespace:PW"
              mc:Ignorable="d" 
              Loaded="AddTeam_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="1130"
+             d:DesignHeight="760" d:DesignWidth="1130"
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="780"/>
-            <RowDefinition Height="85"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="600"/>
+            <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_sAddTeamHeader" Content="Team erfassen" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="1110" Margin="10,10,10,27"/>
-        <GroupBox x:Name="gB_sTeamAdder" Header="Team-Nummer " HorizontalAlignment="Left" Height="683" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1120" FontSize="20">
+        <Label x:Name="lbl_sAddTeamHeader" Content="Team erfassen" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="1110" Margin="20,10,20,26"/>
+        <GroupBox x:Name="gB_sTeamAdder" Header="Team-Nummer " HorizontalAlignment="Left" Height="590" Grid.Row="1" VerticalAlignment="Top" Width="1120" FontSize="20">
             <GroupBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -27,7 +27,7 @@
                     <GradientStop Color="#FFFF0404" Offset="0.657"/>
                 </LinearGradientBrush>
             </GroupBox.BorderBrush>
-            <Canvas HorizontalAlignment="Left" Height="644" VerticalAlignment="Top" Width="1110" Margin="0,0,-2,0">
+            <Canvas HorizontalAlignment="Left" Height="541" VerticalAlignment="Top" Width="1110" Margin="0,0,-2,-68">
                 <GroupBox x:Name="gB_sTeamAdderPlayer1" Header="Spieler 1" Height="268" Canvas.Left="10" Canvas.Top="89" Width="524" FontSize="20">
                     <GroupBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -62,7 +62,7 @@
                         <CheckBox x:Name="cbx_iTAP2Payed" Content="Startgebühr bezahlt" Canvas.Top="160" Canvas.Left="124"/>
                     </Canvas>
                 </GroupBox>
-                <GroupBox x:Name="gB_sTeamAdderExtraInfo" Header="Zusatzinformationen" Height="114" Canvas.Left="19" Canvas.Top="410" Width="1091" FontSize="20">
+                <GroupBox x:Name="gB_sTeamAdderExtraInfo" Header="Zusatzinformationen" Height="134" Canvas.Left="19" Canvas.Top="397" Width="1091" FontSize="20">
                     <GroupBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFF03636" Offset="0"/>
@@ -76,12 +76,12 @@
 
                     </Canvas>
                 </GroupBox>
-                <TextBox x:Name="tbx_oTeamName" Height="33" Canvas.Left="154" TextWrapping="Wrap" Text="" Canvas.Top="468" Width="323"/>
+                <TextBox x:Name="tbx_oTeamName" Height="33" Canvas.Left="156" TextWrapping="Wrap" Text="" Canvas.Top="454" Width="323"/>
                 <Label Content="Angemeldete Teams: " Canvas.Left="10" Canvas.Top="29"/>
                 <ComboBox x:Name="cmbx_signedUpTeams" Width="320" Canvas.Left="214" Canvas.Top="33" SelectionChanged="cmbx_signedUpTeams_SelectionChanged"/>
             </Canvas>
         </GroupBox>
-        <Button x:Name="btn_MainMenue" Content="Zurück" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="190,721,0,0" Click="btn_MainMenue_Click" FontSize="22" Grid.RowSpan="2">
+        <Button x:Name="btn_MainMenue" Content="Zurück" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="70" Margin="187,10,0,0" Click="btn_MainMenue_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -89,7 +89,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_Save" Content="Speichern" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="440,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Save_Click" FontSize="22" Grid.RowSpan="2">
+        <Button x:Name="btn_Save" Content="Speichern" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="458,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -97,7 +97,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_Clear" Content="Abbrechen" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="690,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Clear_Click" FontSize="22" Grid.RowSpan="2">
+        <Button x:Name="btn_Clear" Content="Abbrechen" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="723,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Clear_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>

@@ -6,16 +6,16 @@
              xmlns:local="clr-namespace:PW"
              mc:Ignorable="d" 
              Loaded="Evaluation_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="1130"
+             d:DesignHeight="760" d:DesignWidth="1130"
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="780"/>
-            <RowDefinition Height="85"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="600"/>
+            <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
         <Label x:Name="lbl_sEvaluationHeader" Content="Rangliste" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="1130" Margin="0,10,0,27" HorizontalContentAlignment="Center"/>
         <Canvas x:Name="canvasEvaluation1" Margin="42,89,59,741" Grid.RowSpan="2">
@@ -70,7 +70,7 @@
                 </Label>
             </StackPanel>
         </Canvas>
-        <ScrollViewer HorizontalAlignment="Left" Margin="10,40,0,89" Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Width="1110">
+        <ScrollViewer HorizontalAlignment="Left" Margin="10,70,0,25" Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Width="1110">
             <Canvas x:Name="canvasEvaluation" Width="1027" MinHeight="2000">
                 <StackPanel x:Name="stp_posNumber" Canvas.Top="10" Width="150">
                 </StackPanel>
@@ -84,7 +84,7 @@
                 </StackPanel>
             </Canvas>
         </ScrollViewer>
-        <Button x:Name="btn_MainMenue" Content="Zurück" HorizontalAlignment="Left" Foreground="WhiteSmoke" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="0,721,0,0" Grid.RowSpan="2" Click="btn_MainMenue_Click" FontSize="22">
+        <Button x:Name="btn_MainMenue" Content="Zurück" HorizontalAlignment="Left" Foreground="WhiteSmoke" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="10,580,0,0" Grid.RowSpan="2" Click="btn_MainMenue_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -92,7 +92,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_PrintEvaluation" Content="Als PDF speichern" HorizontalAlignment="Left" Foreground="WhiteSmoke" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="822,721,0,0" Grid.RowSpan="2" Click="btn_PrintEvaluation_Click" FontSize="22">
+        <Button x:Name="btn_PrintEvaluation" Content="Als PDF speichern" HorizontalAlignment="Left" Foreground="WhiteSmoke" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="831,580,0,0" Grid.RowSpan="2" Click="btn_PrintEvaluation_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>

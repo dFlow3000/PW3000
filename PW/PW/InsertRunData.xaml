@@ -6,19 +6,19 @@
              xmlns:local="clr-namespace:PW"
              mc:Ignorable="d" 
              Loaded="InsertRunData_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="1130"
+             d:DesignHeight="760" d:DesignWidth="1130"
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="780"/>
-            <RowDefinition Height="85"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="570"/>
+            <RowDefinition Height="320"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_sInsertRunDataHeader" Content="Spieldaten erfassen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="1130" Margin="0,10,0,27" HorizontalContentAlignment="Center"/>
-        <Button x:Name="btn_MainMenue" Foreground="WhiteSmoke" Content="Zurück" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Margin="195,721,0,0" Click="btn_MainMenue_Click" FontSize="22" Grid.RowSpan="2">
+        <Label x:Name="lbl_sInsertRunDataHeader" Content="Spieldaten erfassen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="65" Width="1130" Margin="0,0,0,10" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btn_MainMenue" Foreground="WhiteSmoke" Content="Zurück" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="100" Margin="139,0,0,0" Click="btn_MainMenue_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -26,7 +26,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_Save" Foreground="WhiteSmoke" Content="Speichern" HorizontalAlignment="Left" Margin="445,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Save_Click" FontSize="22" Grid.RowSpan="2">
+        <Button x:Name="btn_Save" Foreground="WhiteSmoke" Content="Speichern" HorizontalAlignment="Left" Margin="445,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="100" Click="btn_Save_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -34,7 +34,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_ToRun" Foreground="WhiteSmoke" Content="Durchgang wählen" HorizontalAlignment="Left" Margin="695,721,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="100" Click="btn_ToRun_Click" FontSize="22" Grid.RowSpan="2">
+        <Button x:Name="btn_ToRun" Foreground="WhiteSmoke" Content="Durchgang wählen" HorizontalAlignment="Left" Margin="760,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="100" Click="btn_ToRun_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -81,7 +81,7 @@
         <TextBox x:Name="tbx_2GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,313,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_2GamePoints2Team_TextChanged"/>
         <TextBox x:Name="tbx_3GamePoints1Team" HorizontalAlignment="Left" Height="61" Margin="227,436,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_3GamePoints1Team_TextChanged"/>
         <TextBox x:Name="tbx_3GamePoints2Team" HorizontalAlignment="Left" Height="61" Margin="815,436,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tbx_3GamePoints2Team_TextChanged"/>
-        <Button x:Name="btn_Edit_GameData" Foreground="WhiteSmoke" Content="Bearbeiten" HorizontalAlignment="Left" Margin="445,552,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="66" Click="btn_Edit_GameData_Click" FontSize="22" Visibility="Hidden">
+        <Button x:Name="btn_Edit_GameData" Foreground="WhiteSmoke" Content="Bearbeiten" HorizontalAlignment="Left" Margin="445,1,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="66" Click="btn_Edit_GameData_Click" FontSize="22" Visibility="Hidden">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -89,7 +89,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_Edit_GameData_Save" Foreground="WhiteSmoke" Content="Speichern" Visibility="Hidden" HorizontalAlignment="Left" Margin="280,552,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="66" Click="btn_Edit_GameData_Save_Click" FontSize="22">
+        <Button x:Name="btn_Edit_GameData_Save" Foreground="WhiteSmoke" Content="Speichern" Visibility="Hidden" HorizontalAlignment="Left" Margin="384,1,0,0" Grid.Row="2" VerticalAlignment="Top" Width="136" Height="66" Click="btn_Edit_GameData_Save_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -97,7 +97,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_Edit_GameData_Clear" Foreground="WhiteSmoke" Content="Abbrechen" Visibility="Hidden" HorizontalAlignment="Left" Margin="600,552,0,0" Grid.Row="1" VerticalAlignment="Top" Width="240" Height="66" Click="btn_Edit_GameData_Clear_Click" FontSize="22">
+        <Button x:Name="btn_Edit_GameData_Clear" Foreground="WhiteSmoke" Content="Abbrechen" Visibility="Hidden" HorizontalAlignment="Left" Margin="600,1,0,0" Grid.Row="2" VerticalAlignment="Top" Width="154" Height="66" Click="btn_Edit_GameData_Clear_Click" FontSize="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
@@ -105,8 +105,8 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <PasswordBox x:Name="pwbx_EditPassword" HorizontalAlignment="Left" Visibility="Hidden" Margin="384,639,0,0" Grid.Row="1" VerticalAlignment="Top" Width="178" Height="27" FontSize="20"/>
-        <Button x:Name="btn_Edit_GameData_Autorisation" Foreground="WhiteSmoke" Visibility="Hidden" Content="Bestätigen" HorizontalAlignment="Left" Margin="574,639,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" Height="27" Click="btn_Edit_GameData_Autorisation_Click" FontSize="16">
+        <PasswordBox x:Name="pwbx_EditPassword" HorizontalAlignment="Left" Visibility="Hidden" Margin="384,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="178" Height="27" FontSize="20"/>
+        <Button x:Name="btn_Edit_GameData_Autorisation" Foreground="WhiteSmoke" Visibility="Hidden" Content="Bestätigen" HorizontalAlignment="Left" Margin="574,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="180" Height="27" Click="btn_Edit_GameData_Autorisation_Click" FontSize="16">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="1"/>
