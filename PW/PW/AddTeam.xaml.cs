@@ -296,8 +296,49 @@ namespace Preiswattera_3000
             cbx_iTAP1Payed.IsChecked = false;
             cbx_iTAP2Payed.IsChecked = false;
         }
+
         #endregion
 
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new AddTeamInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+    }
+
+    public class AddTeamInfo
+    {
+        public const string Header = "Team erfassen";
+        public const string Para1_Header = "Team-Nummer:";
+        public const string Para1_Content1Value = "Zeigt die Nummer des zu erstellenden Teams.";
+        public const string Para2_Header = "Angemeldete Spiele:";
+        public const string Para2_Content1Value = "Wählen Sie Teams aus die Sie während der Vorbereitungsphase erfasst haben um sie hinzuzufügen.";
+        public const string Para3_Header = "Spieler 1 & Spieler 2:";
+        public const string Para3_Content1Key = "Vor- & Nachname";
+        public const string Para3_Content1Value = "Erfassen Sie Vor- & Nachnamen der jeweiligen Spieler";
+        public const string Para3_Content2Key = "Startgebühr:";
+        public const string Para3_Content2Value = "Erfassen Sie die Zahlung der Startgebühr pro Teammitglied. Sie können die Zahlungsbestätigung auch nach der Teamanmeldung erfassen.";
+        public const string Para4_Header = "Zusatzinformationen:";
+        public const string Para4_Content1Key = "Teamname:";
+        public const string Para4_Content1Value = "Der Teamname wird automatisch erstellt (Nachname Spieler 1 - Nachname Spieler 2). Er kann beliebig verändert werden, muss jedoch eindeutig sein.";
+        
+        public AddTeamInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para2_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para3_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para3_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Content2Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para3_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para4_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para4_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para4_Content1Value, InfoStyles.ParaContentValue);
+        }
 
     }
 }

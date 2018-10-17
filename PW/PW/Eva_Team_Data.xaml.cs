@@ -134,5 +134,55 @@ namespace Preiswattera_3000
         {
             Close();
         }
+
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new Eva_Team_DataInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
     }
+
+    public class Eva_Team_DataInfo
+    {
+        public const string Header = "Info zu gewonnen Spielen | Spiel-Punkte-Differenz";
+        public const string Para1_Header = "Tabelle:";
+        public const string Para1_Content1Key = "Spiel-Nr:";
+        public const string Para1_Content1Value = "Zeigt die ID eines Spiels.";
+        public const string Para1_Content2Key = "Team-Punkte:";
+        public const string Para1_Content2Value = "Zeigt die vom aktuell ausgewählten Team erzielte Punktezahl im jeweiligen Spiel.";
+        public const string Para1_Content3Key = "Gegener-Punkte:";
+        public const string Para1_Content3Value = "Zeigt die vom Gegener erzielte Punktezahl im jeweiligen Spiel.";
+        public const string Para1_Content4Key = "Differenz:";
+        public const string Para1_Content4Value = "Zeigt die in einem gewonnenen Spiel erzielte Differenz.";
+        public const string Para1_Content5Key = "Graue Einträge";
+        public const string Para1_Content5Value = "Grau hinterlegte Einträge zeigen die Daten der verlorenen Spiele.";
+        public const string Para2_Header = "Gesamt:";
+        public const string Para2_Content1Value = "Gesamt-Team-Punkte und Gesamt-Differenz-Punkte";
+        public const string Para3_Header = "Gewinn-Punkte:";
+        public const string Para3_Content1Value = "Gesamt-Gewinn-Punkte die im Tuniererzielt wurden. Die Klammern enthalten die Menge an zusätzlichen Gewinnpunkte, " +
+            "erzielt durch \"Nackerte\" oder \"Zruckgschleiderte\"";
+
+        public Eva_Team_DataInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content2Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content3Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content4Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content4Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content5Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content5Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para2_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para3_Content1Value, InfoStyles.ParaContentValue);
+        }
+
+    }
+
 }

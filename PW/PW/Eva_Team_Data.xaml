@@ -134,5 +134,13 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Button x:Name="btn_WindowInfo" Content="i" Margin="21,316,382,27" FontFamily="Palatino Linotype" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Foreground="White" BorderBrush="{x:Null}" Click="btn_WindowInfo_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF34ACFF" Offset="0"/>
+                    <GradientStop Color="#FF001387" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

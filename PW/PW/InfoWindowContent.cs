@@ -36,6 +36,8 @@ namespace Preiswattera_3000
                         txbl_info.FontWeight = FontWeights.Heavy;
                         txbl_info.FontSize = 24;
                         SpecialMargin.Bottom = 5;
+                        txbl_info.Margin = SpecialMargin;
+                        window.stp_InfoHeader.Children.Add(txbl_info);
                         break;
                     case InfoStyles.ParaHeader:
                         txbl_info.HorizontalAlignment = HorizontalAlignment.Left;
@@ -45,6 +47,8 @@ namespace Preiswattera_3000
                         SpecialMargin.Top = 10;
                         SpecialMargin.Left = 2;
                         SpecialMargin.Bottom = 4;
+                        txbl_info.Margin = SpecialMargin;
+                        window.stp_InfoStack.Children.Add(txbl_info);
                         break;
                     case InfoStyles.ParaContentKey:
                         txbl_info.HorizontalAlignment = HorizontalAlignment.Left;
@@ -52,7 +56,10 @@ namespace Preiswattera_3000
                         txbl_info.FontWeight = FontWeights.SemiBold;
                         txbl_info.FontSize = 16;
                         SpecialMargin.Left = 10;
-                        SpecialMargin.Bottom = 2;
+                        SpecialMargin.Bottom = 4;
+                        SpecialMargin.Top = 8;
+                        txbl_info.Margin = SpecialMargin;
+                        window.stp_InfoStack.Children.Add(txbl_info);
                         break;
                     case InfoStyles.ParaContentValue:
                         txbl_info.HorizontalAlignment = HorizontalAlignment.Left;
@@ -61,12 +68,11 @@ namespace Preiswattera_3000
                         txbl_info.FontSize = 16;
                         SpecialMargin.Left = 12;
                         SpecialMargin.Bottom = 2;
+                        txbl_info.Margin = SpecialMargin;
+                        window.stp_InfoStack.Children.Add(txbl_info);
                         break;
                     default: break;
                 }
-
-                txbl_info.Margin = SpecialMargin;
-                window.stp_InfoStack.Children.Add(txbl_info);
             }
             window.Show();
         }
