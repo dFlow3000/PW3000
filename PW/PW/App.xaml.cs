@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für "App.xaml"

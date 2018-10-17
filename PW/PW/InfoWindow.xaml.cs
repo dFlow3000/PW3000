@@ -26,7 +26,7 @@ namespace Preiswattera_3000
 
         public void InfoWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Const.SwitchColor(this);
         }
     }
 }

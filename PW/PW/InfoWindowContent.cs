@@ -3,39 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Drawing;
+using System.IO;
 
 namespace Preiswattera_3000
 {
     class InfoWindowContent
     {
-        public struct Header
+        public Dictionary<string, string> InfoWindowText;
+        public InfoWindowContent()
         {
-            public string HeaderContent;
+            InfoWindowText = new Dictionary<string, string>();
         }
 
-        public struct Main
+        public void FillInfoWindow(Dictionary<string,string> i_dic)
         {
-            public const string Para1_Header = "Aktuelle Informationen";
-            public const string Para1_Content1 = "Aktueller Durchgang: " +
-                "Zeigt die Nummer des aktuell gespielten Durchgangs.";
-            public const string Para1_Content2 = "Abschgeschlossene Spiele: " +
-                "Zeigt wie viele Spiele des aktuellen Durchgangs bereits erfasst wurden.";
-            public const string Para1_Content3 = "Oberer Fortschrittsbalken:" +
-                "Zeigt Fortschritt des aktuell gespielten Durchgangs.";
-            public const string Para1_Content4 = "Unterer Fortschrittsbalken:" +
-                "Zeigt Fortschritt des gesamten Turniers.";
-            public const string Para2_Header = "Allgemeine Informationen";
-            public const string Para2_Content1 = "Anzahl Durchgänge:" +
-                "Zeigt die für das Turnier festgelegte Anzahl an Durchgängen.";
-            public const string Para2_Content2 = "Anzahl Spiele pro Durchgang:" +
-                "Zeigt die für das Turnier festgelegte Anzahl an Spielen pro Durchgang.";
-            public const string Para2_Content3 = "Anzahl Teams:" +
-                "Zeigt die aktuelle Anzahl angemeldeter Teams.";
-            public const string Para2_Content4 = "Anzahl Tische:" +
-                "Zeigt die benötigte Anzahl Tische um mit aktueller Anzahl angemeldeter Teams Tunier umzusetzen.";
-            public const string Para3_Header = "Turnier beenden";
-            public const string Para3_Content = "Beendet das Turnier und speichert aktuellen Turnierstand in einem Ordner entsprechend des Turniernamens";
+            InfoWindow window = new InfoWindow();
+            foreach (KeyValuePair<string, string> info in i_dic)
+            {
+                TextBlock txbl_info = new TextBlock();
+                Thickness SpecialMargin = txbl_info.Margin;
+                txbl_info.Text = info.Key;
+
+                switch (info.Value)
+                {
+                    case InfoStyles.HeaderStyle:
+                        txbl_info.HorizontalAlignment = HorizontalAlignment.Center;
+                        txbl_info.FontStyle = FontStyles.Oblique;
+                        txbl_info.FontWeight = FontWeights.Heavy;
+                        txbl_info.FontSize = 24;
+                        SpecialMargin.Bottom = 5;
+                        break;
+                    case InfoStyles.ParaHeader:
+                        txbl_info.HorizontalAlignment = HorizontalAlignment.Left;
+                        txbl_info.FontStyle = FontStyles.Normal;
+                        txbl_info.FontWeight = FontWeights.Bold;
+                        txbl_info.FontSize = 20;
+                        SpecialMargin.Top = 10;
+                        SpecialMargin.Left = 2;
+                        SpecialMargin.Bottom = 4;
+                        break;
+                    case InfoStyles.ParaContentKey:
+                        txbl_info.HorizontalAlignment = HorizontalAlignment.Left;
+                        txbl_info.FontStyle = FontStyles.Normal;
+                        txbl_info.FontWeight = FontWeights.SemiBold;
+                        txbl_info.FontSize = 16;
+                        SpecialMargin.Left = 10;
+                        SpecialMargin.Bottom = 2;
+                        break;
+                    case InfoStyles.ParaContentValue:
+                        txbl_info.HorizontalAlignment = HorizontalAlignment.Left;
+                        txbl_info.FontStyle = FontStyles.Normal;
+                        txbl_info.FontWeight = FontWeights.Normal;
+                        txbl_info.FontSize = 16;
+                        SpecialMargin.Left = 12;
+                        SpecialMargin.Bottom = 2;
+                        break;
+                    default: break;
+                }
+
+                txbl_info.Margin = SpecialMargin;
+                window.stp_InfoStack.Children.Add(txbl_info);
+            }
+            window.Show();
         }
+    }
+
+    public class InfoStyles
+    {
+        public const string HeaderStyle = "HeaderStyle";
+        public const string ParaHeader = "ParaHeader";
+        public const string ParaContentKey = "ParaContentKey";
+        public const string ParaContentValue = "ParaContentValue";
     }
 }

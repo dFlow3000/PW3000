@@ -5,7 +5,7 @@ using System.IO;
 using Nocksoft.IO.ConfigFiles;
 using System.Reflection;
 
-namespace PW
+namespace Preiswattera_3000
 {
     class IniFileDataTemplate
     {

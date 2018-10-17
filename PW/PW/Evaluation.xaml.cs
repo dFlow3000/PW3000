@@ -19,7 +19,7 @@ using PdfSharp.Fonts;
 using System.IO;
 using System.Reflection;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für Evaluation.xaml

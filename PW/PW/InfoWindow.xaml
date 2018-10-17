@@ -8,8 +8,10 @@
         Loaded="InfoWindow_Loaded"
         Title="InfoWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+            <StackPanel x:Name="stp_InfoStack" Margin="10">
             
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

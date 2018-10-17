@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PW
+namespace Preiswattera_3000
 {
     class Const
     {

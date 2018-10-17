@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Nocksoft.IO.ConfigFiles;
 
-namespace PW
+namespace Preiswattera_3000
 {
     class SignedUpTeam
     {

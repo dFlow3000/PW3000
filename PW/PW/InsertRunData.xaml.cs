@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
 using System.Reflection;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für InsertRunData.xaml
@@ -720,7 +720,9 @@ namespace PW
 
         private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
         {
-
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new InsertRunDataInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
 
         private bool allowGameInput(bool clear = false)
@@ -778,6 +780,34 @@ namespace PW
             lbl_oTeam1Player2.Content = String.Empty;
             lbl_oTeam2Player1.Content = String.Empty;
             lbl_oTeam2Player2.Content = String.Empty;
+        }
+    }
+
+    public class InsertRunDataInfo
+    {
+        public const string Header = "Spieldaten erfassen";
+        public const string Para1_Header = "Tisch und Teams erfassen";
+        public const string Para1_Content1Key = "Tischauswahl:";
+        public const string Para1_Content1Value = "Wählen Sie den auf dem Spielzettel vermekten Tisch";
+        public const string Para1_Content2Key = "Teamauswahl:";
+        public const string Para1_Content2Value = "Wählen Sie entsprechend der auf dem Spielzettel vermerkten Teams die spielenden Teams";
+        public const string Para1_Content3Key = "Spiel-Punkteerfassung:";
+        public const string Para1_Content3Value = "Erfassen Sie die Spielstände entsprechend der 3 Spiele auf dem Spielzettel";
+        public const string Para1_Content4Key = "Gewinn-Punkteerfassung:";
+        public const string Para1_Content4Value = "Erfassen Sie die Gewinnpunkte entsprechend der Aufteilung aud dem Spielzettel.";
+
+        public InsertRunDataInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content2Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content3Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content4Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content4Value, InfoStyles.ParaContentValue);
         }
     }
 }

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Nocksoft.IO.ConfigFiles;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für PrepaireMenue.xaml

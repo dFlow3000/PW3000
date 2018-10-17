@@ -100,3 +100,5 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CoreCompileInput
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CopyComplete
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000.exe
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000.pdb
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.g.cs
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.baml

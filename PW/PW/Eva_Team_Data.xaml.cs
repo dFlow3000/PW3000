@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für Eva_Team_Data.xaml

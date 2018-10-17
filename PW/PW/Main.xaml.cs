@@ -14,9 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
 using System.IO;
-using System.Reflection;
+using System.Drawing;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für Main.xaml
@@ -104,8 +104,8 @@ namespace PW
             {
                 // Farbverlauf
                 LinearGradientBrush lgbrush = new LinearGradientBrush();
-                lgbrush.StartPoint = new Point(0.5, 0);
-                lgbrush.EndPoint = new Point(0.5, 1);
+                lgbrush.StartPoint = new System.Windows.Point(0.5, 0);
+                lgbrush.EndPoint = new System.Windows.Point(0.5, 1);
                 lgbrush.GradientStops.Add(new GradientStop(Colors.White, 1.0));
                 lgbrush.GradientStops.Add(new GradientStop(Colors.LimeGreen, 0.0));
                 
@@ -213,13 +213,70 @@ namespace PW
             mainWindow.MainContent.Content = settings;
         }
 
-        #region Textblocks for InfoWindow
-        private void FillTextBlocks()
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
         {
-            infoWindowTextblocks[0].Text = "Tunier-Informationen";
-            infoWindowTextblocks[1].Text = "Aktuelle Informationen";
-            infoWindowTextblocks[2].Text = "Aktueller Durchgang: Zeigt die Nummer des aktuell gespielten Durchgangs an!"
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new MainInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
-        #endregion
+
+    }
+
+    public class MainInfo
+    {
+        public const string Header = "Turnier-Informationen";
+        public const string Para1_Header = "Aktuelle Informationen";
+        public const string Para1_Content1Key = "Aktueller Durchgang:";
+        public const string Para1_Content1Value = "Zeigt die Nummer des aktuell gespielten Durchgangs.";
+        public const string Para1_Content2Key = "Abschgeschlossene Spiele:";
+        public const string Para1_Content2Value = "Zeigt wie viele Spiele des aktuellen Durchgangs bereits erfasst wurden.";
+        public const string Para1_Content3Key = "Oberer Fortschrittsbalken:";
+        public const string Para1_Content3Value = "Zeigt Fortschritt des aktuell gespielten Durchgangs.";
+        public const string Para1_Content4Key = "Unterer Fortschrittsbalken:";
+        public const string Para1_Content4Value = "Zeigt Fortschritt des gesamten Turniers.";
+        public const string Para2_Header = "Allgemeine Informationen";
+        public const string Para2_Content1Key = "Anzahl Durchgänge:";
+        public const string Para2_Content1Value ="Zeigt die für das Turnier festgelegte Anzahl an Durchgängen.";
+        public const string Para2_Content2Key = "Anzahl Spiele pro Durchgang:";
+        public const string Para2_Content2Value = "Zeigt die für das Turnier festgelegte Anzahl an Spielen pro Durchgang.";
+        public const string Para2_Content3Key = "Anzahl Teams:";
+        public const string Para2_Content3Value = "Zeigt die aktuelle Anzahl angemeldeter Teams.";
+        public const string Para2_Content4Key = "Anzahl Tische:";
+        public const string Para2_Content4Value = "Zeigt die benötigte Anzahl Tische um mit aktueller Anzahl angemeldeter Teams Tunier umzusetzen.";
+        public const string Para3_Header = "Turnier beenden";
+        public const string Para3_Content1Value = "Beendet das Turnier und speichert aktuellen Turnierstand in einem Ordner entsprechend des Turniernamens";
+
+        public Bitmap[] imageSource = new Bitmap[4];
+
+        public void ImageSourceFiller (Bitmap[] i_imageArray)
+        {
+            i_imageArray[0] = Properties.Resources.info;
+        }
+
+        public MainInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content2Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content3Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content4Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content4Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para2_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Content2Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Content3Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Content4Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content4Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para3_Content1Value, InfoStyles.ParaContentValue);
+        }
+
     }
 }

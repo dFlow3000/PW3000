@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nocksoft.IO.ConfigFiles;
-namespace PW
+namespace Preiswattera_3000
 {
     class Crypto
     {

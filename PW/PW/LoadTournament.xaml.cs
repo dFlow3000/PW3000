@@ -16,7 +16,7 @@ using System.IO;
 using Nocksoft.IO.ConfigFiles;
 using System.Windows.Forms;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für LoadTournament.xaml

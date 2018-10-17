@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
 using System.IO;
 
-namespace PW
+namespace Preiswattera_3000
 {
     /// <summary>
     /// Interaktionslogik für AddTournament.xaml
