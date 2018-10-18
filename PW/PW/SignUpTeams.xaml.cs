@@ -23,6 +23,7 @@ namespace Preiswattera_3000
     {
         private MainWindow mainWindow;
         SignedUpTeam newTeam;
+        int multiCreate = 0;
 
         public SignUpTeams(MainWindow i_mainWindow)
         {
@@ -57,24 +58,18 @@ namespace Preiswattera_3000
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckInput())
+            if (multiCreate > 0)
             {
-                newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
-                newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
-                newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
-                newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
+                for (int i = 1; i <= multiCreate; i++)
+                {
+                    SaveSignedUpTeam(sender, e, i);
+                }
+            } else
+            {
+                SaveSignedUpTeam(sender, e, multiCreate);
+            }
 
-                newTeam.Setter();
-                ClearTbx();
-                SignUpTeams_Loaded(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
-                                "Fehlende Informationen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
-            }
+            multiCreate = 0;
         }
 
         private  void ClearTbx()
@@ -110,5 +105,69 @@ namespace Preiswattera_3000
             }
         }
 
+        private void SaveSignedUpTeam(object sender, RoutedEventArgs e, int i_multiCreate = 0)
+        {
+            if (CheckInput())
+            {
+                newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
+                newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
+                newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
+                newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
+                if (i_multiCreate > 0)
+                {
+                    newTeam.suTeamName += Convert.ToString(i_multiCreate);
+                    newTeam.Setter();
+                    if (i_multiCreate == multiCreate)
+                    {
+                        ClearTbx();
+                        btn_MultiCreate.Visibility = Visibility.Visible;
+                        tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                        lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                        SignUpTeams_Loaded(sender, e);
+                    }
+                }
+                else
+                {
+                    newTeam.Setter();
+                    ClearTbx();
+                    btn_MultiCreate.Visibility = Visibility.Visible;
+                    tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                    lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                    SignUpTeams_Loaded(sender, e);
+                }
+   
+            }
+            else
+            {
+                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
+                                "Fehlende Informationen",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Exclamation);
+                multiCreate = 0;
+            }
+        }
+
+        private void btn_MultiCreate_Click(object sender, RoutedEventArgs e)
+        {
+            lbl_sMultiCreate.Visibility = Visibility.Visible;
+            tbx_iMultiCreate.Visibility = Visibility.Visible;
+            btn_MultiCreate.Visibility = Visibility.Hidden;
+        }
+
+        private void tbx_iMultiCreate_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int inputMultiCreate = 0;
+            if (int.TryParse(tbx_iMultiCreate.Text.Trim(), out inputMultiCreate))
+            {
+                multiCreate = inputMultiCreate;
+            }
+            else
+            {
+                MessageBox.Show("Bitte geben Sie eine Zahl ein!",
+                                "Mehrfach anlegen",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+            }
+        }
     }
 }

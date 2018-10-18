@@ -66,7 +66,6 @@ namespace Preiswattera_3000
             else
             {
                 i_File = new INIFile(i_iniPath);
-                Log.Info(i_iniPath + "already exists!");
             }
 
             return i_File;

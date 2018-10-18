@@ -71,13 +71,24 @@ namespace Preiswattera_3000
             if (switchDir)
             {
                 string specificTnmntPath = System.IO.Path.Combine(Const.CurDirPath, tbx_iTnmtName.Text);
-                Directory.CreateDirectory(specificTnmntPath);
-                tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
+                try
+                {
+                    tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, specificTnmntPath);
 
-                Directory.Move(oldPath, specificTnmntPath);
-                Log.Update("Move " + oldPath + " after Tnmnt-Name Update to " + specificTnmntPath);
-                Directory.Delete(oldPath);
-                Log.Delete("Old Data after Tnmt-Name Update " + oldPath);
+                    Directory.Move(oldPath, specificTnmntPath);
+                    Log.Update("Move " + oldPath + " after Tnmnt-Name Update to " + specificTnmntPath);
+                    Directory.Delete(oldPath);
+                    Log.Delete("Old Data after Tnmt-Name Update " + oldPath);
+                } catch
+                {
+                    Log.Error("Switching Tournament-Folder failed! Old Path:" + oldPath + " | new Path:" + specificTnmntPath);
+                    MessageBox.Show("Bei der Änderung des Turniernamens kam es zu einem Fehler!" +
+                                    "\nBitte überprüfen Sie die Ordner:\n" + oldPath + "\n -> \n" + specificTnmntPath,
+                                    "Fehler bei Änderung des Turniernamens",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                    tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, oldPath);
+                }
             }
 
             Settings_Loaded(sender, e);

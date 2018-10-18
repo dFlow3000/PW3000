@@ -46,6 +46,7 @@ namespace Preiswattera_3000
                 tbx_iOldPassword.Password = String.Empty;
                 tbx_iNewPassword.Password = String.Empty;
                 Close();
+                Log.Update("Password successfully changed!");
             } else
             {
                 MessageBox.Show("Das alte Passwort ist nicht korrekt!",
@@ -54,6 +55,7 @@ namespace Preiswattera_3000
                                 MessageBoxImage.Error);
                 tbx_iOldPassword.Password = String.Empty;
                 tbx_iNewPassword.Password = String.Empty;
+                Log.Update("Password-Change failed!");
             }
 
         }

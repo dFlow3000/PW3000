@@ -131,25 +131,58 @@ namespace Preiswattera_3000
 
             if(noSameNames)
             {
-                player1.playerFirstname = tbx_iTSP1Firstname.Text;
-                player1.playerLastname = tbx_iTSP1Lastname.Text;
-                player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
+                int log_cnt = 1;
+                Log.Update("EDIT TEAM Log#1 - TeamNr:" + selectedTeam.teamId + "|TeamName:" + selectedTeam.teamName);
+                if (TeamUpdateCheck("Player1-Firstname", player1.playerFirstname, tbx_iTSP1Firstname.Text, ++log_cnt))
+                {
+                    player1.playerFirstname = tbx_iTSP1Firstname.Text;
+                }
+                if (TeamUpdateCheck("Player1-Lastname", player1.playerLastname, tbx_iTSP1Lastname.Text, ++log_cnt))
+                {
+                    player1.playerLastname = tbx_iTSP1Lastname.Text;
+                }
+                if (TeamUpdateCheck("Player1-StartFee", Convert.ToString(player1.payedStartFee), Convert.ToString(cbx_iTAP1Payed.IsChecked), ++log_cnt))
+                {
+                    player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
+                }
 
-                player2.playerFirstname = tbx_iTSP2Firstname.Text;
-                player2.playerLastname = tbx_iTSP2Lastname.Text;
-                player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
-
+                if (TeamUpdateCheck("Player2-Firstname", player2.playerFirstname, tbx_iTSP2Firstname.Text, ++log_cnt))
+                {
+                    player2.playerFirstname = tbx_iTSP2Firstname.Text;
+                }
+                if (TeamUpdateCheck("Player2-Lastname", player1.playerLastname, tbx_iTSP2Lastname.Text, ++log_cnt))
+                {
+                    player2.playerLastname = tbx_iTSP2Lastname.Text;
+                }
+                if (TeamUpdateCheck("Player2-StartFee", Convert.ToString(player2.payedStartFee), Convert.ToString(cbx_iTAP2Payed.IsChecked), ++log_cnt))
+                {
+                    player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
+                }
                 player1.Setter();
                 player2.Setter();
 
-                selectedTeam.teamName = tbx_oTeamName.Text;
-
+                if (TeamUpdateCheck("TeamName", selectedTeam.teamName, tbx_oTeamName.Text, ++log_cnt))
+                {
+                    selectedTeam.teamName = tbx_oTeamName.Text;
+                }
                 selectedTeam.Setter();
                 ShowTeam_Loaded(sender, e);
                 FillShowTeam(selectedTeam, player1, player2);
             } else
             {
                 FillShowTeam(selectedTeam, player1, player2);
+            }
+        }
+
+        private bool TeamUpdateCheck(string desc, string oldValue, string newValue, int log_Cnt)
+        {
+            if (oldValue != newValue)
+            {
+                Log.Update("EDIT TEAM Log#" + Convert.ToString(log_Cnt) + " - " + desc + ":" + oldValue + " -> " + newValue);
+                return true;
+            } else
+            {
+                return false;
             }
         }
 
@@ -356,5 +389,60 @@ namespace Preiswattera_3000
                 MessageBox.Show("Wählen Sie zuerst ein Spiel!", "Kein Spiel ausgewählt", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new ShowTeamInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+    }
+
+    public class ShowTeamInfo
+    {
+        public const string Header = "Team anzeigen";
+        public const string Para1_Header = "Team auswählen:";
+        public const string Para1_Content1Value = "Wählen Sie die das Team, dass Sie anzeigen wollen";
+        public const string Para2_Header = "Team-Daten:";
+        public const string Para2_Content1Header = "Team-Nummer:";
+        public const string Para2_Content1Value = "Zeigt die Team-Nummer des aktuell ausgewählten Teams";
+        public const string Para2_Content2Header = "Spieler 1 & Spieler 2:";
+        public const string Para2_Content2Value = "Zeigt die Vor- & Nachnamen, sowie die Zahlungstatus der Teammitglieder.";
+        public const string Para2_Content3Header = "Bearbeiten:";
+        public const string Para2_Content3Value = "Ermöglicht die Bearbeitung der Team-Daten.";
+        public const string Para3_Header = "Team-Informationen:";
+        public const string Para3_Content1Header = "Gewinn-Punkte:";
+        public const string Para3_Content1Value = "Zeigt die Anzahl der erzielten Gewinn-Punkte.";
+        public const string Para3_Content2Header = "Spiel-Punkte:";
+        public const string Para3_Content2Value = "Zeigt die Anzahl der erzielten Spiel-Punkte.";
+        public const string Para3_Content3Header = "Spiel-Punkte-Diff:";
+        public const string Para3_Content3Value = "Zeigt die Anzahl der erzielten Spiel-Punkte-Differenz.";
+        public const string Para3_Content4Header = "gespielte Spiele:";
+        public const string Para3_Content4Value = "Wählen Sie ein Spiel aus der Liste aus und lassen Sie sich durch \"Spiel-Informationen anzeigen\" die zugehörigen Daten anzeigen.";
+
+
+
+        public ShowTeamInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para2_Content1Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Content2Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Content3Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para3_Content1Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para3_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Content2Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para3_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Content3Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para3_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Content4Header, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para3_Content4Value, InfoStyles.ParaContentValue);
+        }
+
     }
 }

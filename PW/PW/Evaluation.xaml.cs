@@ -377,5 +377,52 @@ namespace Preiswattera_3000
 
             return retVal;
         }
+
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new EvaluationInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+    }
+
+    public class EvaluationInfo
+    {
+        public const string Header = "Rangliste";
+        public const string Para1_Header = "Tabelle:";
+        public const string Para1_Content1Key = "Platzierung:";
+        public const string Para1_Content1Value = "Zeigt die Platzierung.";
+        public const string Para1_Content2Key = "Team:";
+        public const string Para1_Content2Value = "Zeigt die Teamnamen.";
+        public const string Para1_Content3Key = "Gewinn-Punkte:";
+        public const string Para1_Content3Value = "Zeigt die erzielten Gewinn-Punkte.";
+        public const string Para1_Content4Key = "Diff. Spiel-Punkte:";
+        public const string Para1_Content4Value = "Zeigt die in den gewonnenen Spielen erzielte Differenz.";
+        public const string Para1_Content5Key = "Info";
+        public const string Para1_Content5Value = "Öffnet Info zu gewonnen Spielen | Spiel-Punkte-Differenz.";
+        public const string Para2_Header = "PDF erstellen:";
+        public const string Para2_Content1Value = "Erstellt ein PDF-Datei mit der aktuellen Rangliste.";
+
+
+        public EvaluationInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content2Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content2Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content3Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content3Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content4Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content4Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para1_Content5Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para1_Content5Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para2_Content1Value, InfoStyles.ParaContentValue);
+        }
+
     }
 }
+
+

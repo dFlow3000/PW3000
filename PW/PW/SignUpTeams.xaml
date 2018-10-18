@@ -60,6 +60,16 @@
                         <TextBox x:Name="tbx_iSUTP2Lastname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" Canvas.Left="124" TextChanged="CreateTeamName"/>
                     </Canvas>
                 </GroupBox>
+                <Label x:Name="lbl_sMultiCreate" Visibility="Hidden" Content="Anzahl:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="460" Canvas.Top="368"/>
+                <TextBox x:Name="tbx_iMultiCreate" Height="33" Canvas.Left="539" Visibility="Hidden" TextWrapping="Wrap" Text="" Canvas.Top="372" Width="48" TextChanged="tbx_iMultiCreate_TextChanged"/>
+                <Button x:Name="btn_MultiCreate" Content="Mehrfach anlegen" Visibility="Visible" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="208" Height="37" Click="btn_MultiCreate_Click" FontSize="22" Canvas.Left="451" Canvas.Top="373">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="1"/>
+                            <GradientStop Color="#FE636363"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
                 <GroupBox x:Name="gB_sSignUpExtraInfo" Header="Zusatzinformationen" Height="114" Canvas.Left="19" Canvas.Top="410" Width="1091" FontSize="20">
                     <GroupBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

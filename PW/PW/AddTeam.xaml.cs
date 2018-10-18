@@ -141,6 +141,7 @@ namespace Preiswattera_3000
                                                MessageBoxButton.YesNo,
                                                MessageBoxImage.Question) == MessageBoxResult.Yes)
                             {
+                                Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
                                 if (MessageBox.Show("Soll bei unverändert übernommenen Teams immer gelöscht werden?" +
                                                     "\nDie Auswahl wird bei einem Neustart des Programms zurückgesetzt!",
                                                      "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
@@ -149,6 +150,8 @@ namespace Preiswattera_3000
                                 {
                                     mainWindow.keepDeleting = true;
                                     preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
+                                    Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
+                                    Log.Update("Keep deleting signed up team after adding: true");
                                 }
                                 else
                                 {
@@ -159,6 +162,7 @@ namespace Preiswattera_3000
                         else
                         {
                             preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
+                            Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
                         }
                     }
                     else if (checkIfSignedUpTeam() == 0)
@@ -170,6 +174,7 @@ namespace Preiswattera_3000
                                               MessageBoxImage.Question) == MessageBoxResult.Yes)
                         {
                             preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
+                            Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
                         }
 
                     }
@@ -311,12 +316,12 @@ namespace Preiswattera_3000
     {
         public const string Header = "Team erfassen";
         public const string Para1_Header = "Team-Nummer:";
-        public const string Para1_Content1Value = "Zeigt die Nummer des zu erstellenden Teams.";
+        public const string Para1_Content1Value = "Zeigt die Nummer des Teams, dass als nächstes erfasst wird.";
         public const string Para2_Header = "Angemeldete Spiele:";
-        public const string Para2_Content1Value = "Wählen Sie Teams aus die Sie während der Vorbereitungsphase erfasst haben um sie hinzuzufügen.";
+        public const string Para2_Content1Value = "Wählen Sie Teams aus die Sie während der Vorbereitungsphase erfasst haben, um sie hinzuzufügen.";
         public const string Para3_Header = "Spieler 1 & Spieler 2:";
         public const string Para3_Content1Key = "Vor- & Nachname";
-        public const string Para3_Content1Value = "Erfassen Sie Vor- & Nachnamen der jeweiligen Spieler";
+        public const string Para3_Content1Value = "Erfassen Sie Vor- & Nachnamen der Spieler 1 und 2.";
         public const string Para3_Content2Key = "Startgebühr:";
         public const string Para3_Content2Value = "Erfassen Sie die Zahlung der Startgebühr pro Teammitglied. Sie können die Zahlungsbestätigung auch nach der Teamanmeldung erfassen.";
         public const string Para4_Header = "Zusatzinformationen:";

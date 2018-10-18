@@ -160,7 +160,7 @@ namespace Preiswattera_3000
         public const string Para2_Header = "Gesamt:";
         public const string Para2_Content1Value = "Gesamt-Team-Punkte und Gesamt-Differenz-Punkte";
         public const string Para3_Header = "Gewinn-Punkte:";
-        public const string Para3_Content1Value = "Gesamt-Gewinn-Punkte die im Tuniererzielt wurden. Die Klammern enthalten die Menge an zusätzlichen Gewinnpunkte, " +
+        public const string Para3_Content1Value = "Gesamt-Gewinn-Punkte die im Turnier erzielt wurden. Die Klammern enthalten die Menge an zusätzlichen Gewinnpunkten, " +
             "erzielt durch \"Nackerte\" oder \"Zruckgschleiderte\"";
 
         public Eva_Team_DataInfo(Dictionary<string, string> i_InfoWindowText)
