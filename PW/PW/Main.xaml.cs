@@ -122,6 +122,7 @@ namespace Preiswattera_3000
 
         }
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_QuitTnmt_Click(object sender, RoutedEventArgs e)
         {
             Tournament tnmt = new Tournament();
@@ -220,6 +221,7 @@ namespace Preiswattera_3000
             infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
 
+        #endregion
     }
 
     public class MainInfo

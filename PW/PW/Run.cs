@@ -28,8 +28,9 @@ namespace Preiswattera_3000
             }
         }
 
-        #region Setter & Getter -------------------------------------------------------------------------------
-        #region Setter -------------------------------------------------------------------------------
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void SetCompleteState(int i_runId, bool i_state)
         {
             INIFile tnIni = new INIFile(Tournament.iniPath);
@@ -45,7 +46,9 @@ namespace Preiswattera_3000
             }
         }
         #endregion
-        #region Getter -------------------------------------------------------------------------------
+
+        #region Getter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         public void Getter (int i_id)
         {
             INIFile tnIni = new INIFile(Tournament.iniPath);
@@ -67,6 +70,7 @@ namespace Preiswattera_3000
             }
         }
         #endregion
+
         #endregion
 
     }

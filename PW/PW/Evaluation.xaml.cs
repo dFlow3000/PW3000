@@ -70,6 +70,7 @@ namespace Preiswattera_3000
                 //{
                 foreach (Team team in allTeams)
                 {
+                    #region create Button n Lable for Table
                     Separator sep = new Separator();
                     Button btn_teamGameInfo = new Button();
                     x++;
@@ -112,7 +113,7 @@ namespace Preiswattera_3000
                     lbl_teamName.HorizontalContentAlignment = HorizontalAlignment.Center;
                     lbl_winPoints.HorizontalContentAlignment = HorizontalAlignment.Center;
                     lbl_gamePointsDiff.HorizontalContentAlignment = HorizontalAlignment.Center;
-
+                    #endregion
                     switch (x)
                     {
                         case 1:
@@ -135,7 +136,7 @@ namespace Preiswattera_3000
                             break;
                     }
 
-
+                    #region add Button n Lable to Table
                     stp_posNumber.Children.Add(lbl_rowNumber);
                     sep = new Separator();
                     stp_posNumber.Children.Add(sep);
@@ -151,12 +152,13 @@ namespace Preiswattera_3000
                     stp_TeamGameInfo.Children.Add(btn_teamGameInfo);
                     sep = new Separator();
                     stp_TeamGameInfo.Children.Add(sep);
-
+                    #endregion
                 }
                 //} while (x < 20);
             }
         }
 
+        #region Sort - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private static void SortTeamsByWinAndGamePoints(Team[] teams)
         {
             for (int a = 1; a < teams.Length; a++)
@@ -191,31 +193,9 @@ namespace Preiswattera_3000
             }
 
         }
+        #endregion
 
-        private void OpenTeamGameInfo (object sender, EventArgs e)
-        {
-            Button btn_activ = (Button)sender;
-            Window teamGameInfo = new Eva_Team_Data(Convert.ToInt32(btn_activ.Uid));
-            teamGameInfo.Show();
-        }
-
-        private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
-        {
-            UserControl main = new Main(mainWindow);
-            mainWindow.MainContent.Content = main;
-        }
-
-        private void btn_PrintEvaluation_Click(object sender, RoutedEventArgs e)
-        {
-            Tournament tnmt = new Tournament();
-            tnmt.Getter();
-            SaveEva();
-            MessageBox.Show("Rangliste wurde gespeichert!" +
-                            "Speicherort: " + tnmt.tnmtSpecPath,
-                            "Speichern erfolgreich",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-        }
+        #region PDF - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         public static void SaveEva()
         {
@@ -377,6 +357,34 @@ namespace Preiswattera_3000
 
             return retVal;
         }
+        #endregion
+
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void OpenTeamGameInfo(object sender, EventArgs e)
+        {
+            Button btn_activ = (Button)sender;
+            Window teamGameInfo = new Eva_Team_Data(Convert.ToInt32(btn_activ.Uid));
+            teamGameInfo.Show();
+        }
+
+        private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
+        }
+
+        private void btn_PrintEvaluation_Click(object sender, RoutedEventArgs e)
+        {
+            Tournament tnmt = new Tournament();
+            tnmt.Getter();
+            SaveEva();
+            MessageBox.Show("Rangliste wurde gespeichert!" +
+                            "Speicherort: " + tnmt.tnmtSpecPath,
+                            "Speichern erfolgreich",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+        }
 
         private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
         {
@@ -384,6 +392,7 @@ namespace Preiswattera_3000
             new EvaluationInfo(infoWinCon.InfoWindowText);
             infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
+        #endregion
     }
 
     public class EvaluationInfo

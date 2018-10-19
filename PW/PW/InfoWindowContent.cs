@@ -19,6 +19,7 @@ namespace Preiswattera_3000
             InfoWindowText = new Dictionary<string, string>();
         }
 
+        #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void FillInfoWindow(Dictionary<string,string> i_dic)
         {
             InfoWindow window = new InfoWindow();
@@ -76,6 +77,7 @@ namespace Preiswattera_3000
             }
             window.Show();
         }
+        #endregion
     }
 
     public class InfoStyles

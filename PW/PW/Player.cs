@@ -7,7 +7,7 @@ namespace Preiswattera_3000
 {
     class Player : Const
     {
-        #region Player Const -----------------------------
+        #region Player Const +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         #region ini-File
         // .ini-File - Config
         public static string iniPath = Path.Combine(Const.iniFolderPath, "PlayerData.ini");
@@ -40,7 +40,9 @@ namespace Preiswattera_3000
             }
         }
 
-
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Setter(Player i_player)
         {
             INIFile pIni = new INIFile(iniPath);
@@ -62,6 +64,9 @@ namespace Preiswattera_3000
             pIni.SetValue(playerSec + strId, pS_lastname, this.playerLastname);
             pIni.SetValue(playerSec + strId, pS_payed, Convert.ToString(this.payedStartFee));
         }
+        #endregion
+        
+        #region Getter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         public void Getter(int i_id)
         {
@@ -85,6 +90,10 @@ namespace Preiswattera_3000
             this.playerLastname = pIni.GetValue(playerSec + Convert.ToString(this.playerId), pS_lastname);
             this.payedStartFee = Convert.ToBoolean(pIni.GetValue(playerSec + Convert.ToString(this.playerId), pS_payed));
         }
+
+        #endregion
+
+        #endregion
 
         public static void SetBackPlayerCnt()
         {

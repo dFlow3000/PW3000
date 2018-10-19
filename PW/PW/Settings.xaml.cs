@@ -40,6 +40,7 @@ namespace Preiswattera_3000
             lbl_oGamePerRunCnt.Content = tnmt.tnmtGameProRunCnt;
         }
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_EditTnmtSettings_Click(object sender, RoutedEventArgs e)
         {
             SwitchEditMode(true);
@@ -87,7 +88,6 @@ namespace Preiswattera_3000
                                     "Fehler bei Änderung des Turniernamens",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
-                    tnmtIni.SetValue(Const.fileSec, Tournament.fsX_SpecTnmtPath, oldPath);
                 }
             }
 
@@ -165,5 +165,7 @@ namespace Preiswattera_3000
             mainWindow.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.colorGray);
         }
+
+        #endregion
     }
 }

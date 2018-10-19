@@ -66,6 +66,7 @@ namespace Preiswattera_3000
             }
         }
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void openRun(object sender, EventArgs e)
         {
             Button btn_clicked = new Button();
@@ -82,5 +83,6 @@ namespace Preiswattera_3000
             UserControl main = new Main(mainWindow);
             mainWindow.MainContent.Content = main;
         }
+        #endregion
     }
 }

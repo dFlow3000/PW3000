@@ -30,6 +30,7 @@ namespace Preiswattera_3000
             Const.SwitchColor(i_mainWindow, btn_loadTournament, true);
         }
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_createTournament_Click(object sender, RoutedEventArgs e)
         {
             UserControl createTnmnt = new AddTournament(mainWindow);
@@ -42,5 +43,6 @@ namespace Preiswattera_3000
             mainWindow.MainContent.Content = loadTnmnt;
 
         }
+        #endregion
     }
 }

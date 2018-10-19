@@ -10,7 +10,7 @@ namespace Preiswattera_3000
 {
     class Game : Const
     {
-        #region Game Const -----------------------------
+        #region Game Const +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         #region ini File
         // .ini-File - Config
         public static string iniPath = Path.Combine(Const.iniFolderPath, "GameData.ini");
@@ -45,8 +45,8 @@ namespace Preiswattera_3000
             }
         }
 
-        #region Setter & Getter -------------------------------------------------------------------------------
-        #region Setter -------------------------------------------------------------------------------
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Setter ()
         {
             INIFile gIni = new INIFile(iniPath);
@@ -64,7 +64,7 @@ namespace Preiswattera_3000
             }
         }
         #endregion
-        #region Getter -------------------------------------------------------------------------------
+        #region Getter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Getter(int i_id)
         {
             INIFile gIni = new INIFile(iniPath);
@@ -82,9 +82,16 @@ namespace Preiswattera_3000
                 Log.Error("Game-Getter input Id " + i_id + " out of Range!");
             }
         }
+
+        private static int GetActGameCnt()
+        {
+            INIFile gIni = new INIFile(iniPath);
+            return Convert.ToInt32(gIni.GetValue(fileSec, fsX_gameCnt));
+        }
         #endregion
         #endregion
 
+        #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public static Game[] FillTableWithGames (int i_team1Id, int i_team2Id)
         {
             INIFile tnIni = new INIFile(Tournament.iniPath);
@@ -100,12 +107,8 @@ namespace Preiswattera_3000
 
             return gamesInRun;
         }
+        #endregion
 
-        private static int GetActGameCnt ()
-        {
-            INIFile gIni = new INIFile(iniPath);
-            return Convert.ToInt32(gIni.GetValue(fileSec, fsX_gameCnt));
-        }
     }
 
 }

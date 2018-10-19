@@ -14,9 +14,8 @@ namespace Preiswattera_3000
             INIFile newIniFile = new INIFile(i_iniPath, true);
             newIniFile.SetValue(Const.fileSec, Const.fs_InitState, Const.fs_InitState_def);
             Const.SetIniTimeStamp(newIniFile);
-
-
-            // Special Keys for specific ini-Files
+            
+            #region Special Keys for specific ini-Files ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             if (i_iniPath == Log.iniPath)
             {
                 // For log ini-File
@@ -50,7 +49,7 @@ namespace Preiswattera_3000
                 // For SignedUpTeam ini-File
                 newIniFile.SetValue(Const.fileSec, SignedUpTeam.fsX_suTeamCnt, SignedUpTeam.fsX_suTeamCnt_def);
             }
-
+            #endregion
 
             Log.Create(i_iniPath);
             return newIniFile;

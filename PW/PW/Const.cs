@@ -9,7 +9,7 @@ namespace Preiswattera_3000
 {
     class Const
     {
-        #region 1 - .ini-File - Folder
+        #region 1 - .ini-File - Folder +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Name of the folder which containts all .ini-Files
         /// </summary>
@@ -24,7 +24,7 @@ namespace Preiswattera_3000
         public static string iniFolderPath = Path.Combine(CurDirPath, iniFileFolder);
         #endregion
 
-        #region 2 - .ini-File - Section - standard file section
+        #region 2 - .ini-File - Section - standard file section ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// main section in every .ini-File
         /// <para>holds all counter and global states</para>
@@ -39,7 +39,7 @@ namespace Preiswattera_3000
         public const string fs_TimeStamp = "Time-Stamp";
         #endregion
 
-        #region 3 - Const Functions
+        #region 3 - Const Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         //   -> 3.1 SetIniTimeStamp
         /// <summary>
         /// Sets actual date and time in .ini-File
@@ -164,7 +164,7 @@ namespace Preiswattera_3000
         }
         #endregion
 
-        #region 4 - PDF Table for Evaluation Output
+        #region 4 - PDF Table for Evaluation Output ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public const string posHeader = "Platz ";
         public const int posHeaderLength = 6;
         public const string teamNumberHeader = "Team # ";
@@ -177,7 +177,7 @@ namespace Preiswattera_3000
         public const int gamePointsDiffHeaderLength = 9;
         #endregion
 
-        #region 5 - Color for Backgroundchange
+        #region 5 - Color for Backgroundchange +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Color struct for Backgroundcolor-Switch
         /// <para>Red

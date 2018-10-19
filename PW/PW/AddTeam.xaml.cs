@@ -212,6 +212,19 @@ namespace Preiswattera_3000
         {
             ClearTbx();
         }
+
+        /// <summary>
+        /// Starts InfoWindow and loades depending Content
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new AddTeamInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+
         #endregion
 
         #region Check - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -304,12 +317,6 @@ namespace Preiswattera_3000
 
         #endregion
 
-        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
-        {
-            InfoWindowContent infoWinCon = new InfoWindowContent();
-            new AddTeamInfo(infoWinCon.InfoWindowText);
-            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
-        }
     }
 
     public class AddTeamInfo

@@ -73,7 +73,7 @@ namespace Preiswattera_3000
             lbl_oRunNumber.Content = Convert.ToString(runId);
 
 
-            allowGameInput();
+            AllowGameInput();
 
             for (int i = 1; i <= tableCnt; i++)
             {
@@ -83,6 +83,8 @@ namespace Preiswattera_3000
             FillTableCmbx(tableIni);
 
         }
+
+        #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private void FillTableCmbx(INIFile i_ini)
         {
@@ -119,151 +121,98 @@ namespace Preiswattera_3000
 
         }
 
-        private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
+        private void ShowGatheredInfo(Table selectedTable)
         {
-            UserControl main = new Main(mainWindow);
-            mainWindow.MainContent.Content = main;
+            // Get Games
+            Game firstGame = new Game();
+            firstGame.Getter(selectedTable.tableGameIds[0]);
+            Game secondGame = new Game();
+            secondGame.Getter(selectedTable.tableGameIds[1]);
+            Game thirdGame = new Game();
+            thirdGame.Getter(selectedTable.tableGameIds[2]);
+            // Get Teams
+            Team team1 = new Team();
+            team1.Getter(selectedTable.teamsOnTable[0]);
+            Team team2 = new Team();
+            team2.Getter(selectedTable.teamsOnTable[1]);
+            // Get Player Team 1
+            Player player1Team1 = new Player();
+            player1Team1.Getter(team1.teamPlayer[0]);
+            Player player2Team1 = new Player();
+            player2Team1.Getter(team1.teamPlayer[1]);
+            // Get Player Team 2 
+            Player player1Team2 = new Player();
+            player1Team2.Getter(team2.teamPlayer[0]);
+            Player player2Team2 = new Player();
+            player2Team2.Getter(team2.teamPlayer[1]);
+
+            tbx_1GamePoints1Team.Text = Convert.ToString(firstGame.gamePoints[0]);
+            tbx_1GamePoints2Team.Text = Convert.ToString(firstGame.gamePoints[1]);
+
+            tbx_2GamePoints1Team.Text = Convert.ToString(secondGame.gamePoints[0]);
+            tbx_2GamePoints2Team.Text = Convert.ToString(secondGame.gamePoints[1]);
+
+            tbx_3GamePoints1Team.Text = Convert.ToString(thirdGame.gamePoints[0]);
+            tbx_3GamePoints2Team.Text = Convert.ToString(thirdGame.gamePoints[1]);
+
+            tbx_iWinPointsTeam1.Text = Convert.ToString(selectedTable.winPointsAtGame[0]);
+            tbx_iWinPointsTeam2.Text = Convert.ToString(selectedTable.winPointsAtGame[1]);
+
+            lbl_oTeam1Player1.Content = player1Team1.playerFirstname + " " + player1Team1.playerLastname;
+            lbl_oTeam1Player2.Content = player2Team1.playerFirstname + " " + player2Team1.playerLastname;
+
+            lbl_oTeam2Player1.Content = player1Team2.playerFirstname + " " + player1Team2.playerLastname;
+            lbl_oTeam2Player2.Content = player2Team2.playerFirstname + " " + player2Team2.playerLastname;
+
+            tbx_iWinPointsTeam1.IsEnabled = false;
+            tbx_iWinPointsTeam2.IsEnabled = false;
+            tbx_1GamePoints1Team.IsEnabled = false;
+            tbx_1GamePoints2Team.IsEnabled = false;
+            tbx_2GamePoints1Team.IsEnabled = false;
+            tbx_2GamePoints2Team.IsEnabled = false;
+            tbx_3GamePoints1Team.IsEnabled = false;
+            tbx_3GamePoints2Team.IsEnabled = false;
         }
 
-        private void cmbx_selectTeam1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SwitchTbx(bool value)
         {
-            if (cmbx_selectTeam1.SelectedIndex != -1)
-            {
-                Team selectedTeam = new Team();
-                selectedTeam.Getter(cmbx_selectTeam1.SelectedIndex + 1);
-                Log.Info("Team Getter Id " + Convert.ToString(cmbx_selectTeam1.SelectedIndex + 1));
+            tbx_iWinPointsTeam1.IsEnabled = value;
+            tbx_iWinPointsTeam2.IsEnabled = value;
+            tbx_1GamePoints1Team.IsEnabled = value;
+            tbx_1GamePoints2Team.IsEnabled = value;
+            tbx_2GamePoints1Team.IsEnabled = value;
+            tbx_2GamePoints2Team.IsEnabled = value;
+            tbx_3GamePoints1Team.IsEnabled = value;
+            tbx_3GamePoints2Team.IsEnabled = value;
 
-
-                Player player1 = new Player();
-                player1.Getter(selectedTeam.teamPlayer[0]);
-                Player player2 = new Player();
-                player2.Getter(selectedTeam.teamPlayer[1]);
-
-                lbl_oTeam1Player1.Content = player1.playerFirstname + " " + player1.playerLastname;
-                lbl_oTeam1Player2.Content = player2.playerFirstname + " " + player2.playerLastname;
-
-                if (cmbx_selectTeam1.SelectedIndex == cmbx_selectTeam2.SelectedIndex)
-                {
-                    MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
-                                    "\nWählen Sie eine anderen Gegener!",
-                                    "Team wurde doppelt gewählt",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Stop);
-                    team1Selected = false;
-                }
-                else
-                {
-                    team1Selected = true;
-
-
-                    INIFile tableIni = new INIFile(Table.iniPath);
-                    int tableSecCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableSecCnt));
-
-                    for (int i = 1; i <= tableSecCnt; i++)
-                    {
-                        Table newTable = new Table();
-                        newTable.Getter(i, runId);
-                        Log.Info("Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
-                        if (cmbx_selectTeam1.SelectedIndex != -1)
-                        {
-                            if (newTable.teamsOnTable[0] == cmbx_selectTeam1.SelectedIndex + 1 ||
-                               newTable.teamsOnTable[1] == cmbx_selectTeam1.SelectedIndex + 1)
-                            {
-                                MessageBox.Show("Das Team " + cmbx_selectTeam1.SelectedValue + " wurde bereits ausgewählt!" +
-                                                "\n Tisch " + newTable.tableId,
-                                                "Team bereits auf einem anderen Tisch",
-                                                MessageBoxButton.OK,
-                                                MessageBoxImage.Stop);
-                                team1Selected = false;
-                                break;
-
-                            }
-                            else
-                            {
-                                team1Selected = true;
-                            }
-                        }
-
-                    }
-                }
-                allowGameInput(true);
-            }
-
+            tbx_iWinPointsTeam1.Text = String.Empty;
+            tbx_iWinPointsTeam2.Text = String.Empty;
+            tbx_1GamePoints1Team.Text = String.Empty;
+            tbx_1GamePoints2Team.Text = String.Empty;
+            tbx_2GamePoints1Team.Text = String.Empty;
+            tbx_2GamePoints2Team.Text = String.Empty;
+            tbx_3GamePoints1Team.Text = String.Empty;
+            tbx_3GamePoints2Team.Text = String.Empty;
+            lbl_oTeam1Player1.Content = String.Empty;
+            lbl_oTeam1Player2.Content = String.Empty;
+            lbl_oTeam2Player1.Content = String.Empty;
+            lbl_oTeam2Player2.Content = String.Empty;
         }
 
-        private void cmbx_selectTeam2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbx_selectTeam2.SelectedIndex != -1)
-            {
-                Team selectedTeam = new Team();
-                selectedTeam.Getter(cmbx_selectTeam2.SelectedIndex + 1);
-                Log.Info("Team Getter Id " + Convert.ToString(cmbx_selectTeam2.SelectedIndex + 1));
+        #endregion
 
-                Player player1 = new Player();
-                player1.Getter(selectedTeam.teamPlayer[0]);
-                Player player2 = new Player();
-                player2.Getter(selectedTeam.teamPlayer[1]);
-
-                lbl_oTeam2Player1.Content = player1.playerFirstname + " " + player1.playerLastname;
-                lbl_oTeam2Player2.Content = player2.playerFirstname + " " + player2.playerLastname;
-
-                if (cmbx_selectTeam1.SelectedIndex == cmbx_selectTeam2.SelectedIndex)
-                {
-                    MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
-                                    "\nWählen Sie eine anderen Gegener!",
-                                    "Team wurde doppelt gewählt",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Stop);
-                    team2Selected = false;
-                }
-                else
-                {
-                    team2Selected = true;
-
-
-                    INIFile tableIni = new INIFile(Table.iniPath);
-                    int tableSecCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableSecCnt));
-
-                    for (int i = 1; i <= tableSecCnt; i++)
-                    {
-                        Table newTable = new Table();
-                        newTable.Getter(i, runId);
-                        Log.Info("Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
-                        if (cmbx_selectTeam2.SelectedIndex != -1)
-                        {
-                            if (newTable.teamsOnTable[0] == cmbx_selectTeam2.SelectedIndex + 1 ||
-                                newTable.teamsOnTable[1] == cmbx_selectTeam2.SelectedIndex + 1)
-                            {
-                                MessageBox.Show("Das Team " + cmbx_selectTeam2.SelectedValue + " wurde bereits ausgewählt!" +
-                                                "\n Tisch " + newTable.tableId,
-                                                "Team bereits auf einem anderen Tisch",
-                                                MessageBoxButton.OK,
-                                                MessageBoxImage.Stop);
-                                team2Selected = false;
-                                break;
-                            }
-                            else
-                            {
-                                team2Selected = true;
-                            }
-                        }
-                    }
-                }
-
-                allowGameInput(true);
-            }
-        }
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private void btn_ToRun_Click(object sender, RoutedEventArgs e)
         {
-            switchTbx(false);
+            SwitchTbx(false);
             UserControl runMenue = new RunMenue(mainWindow);
             mainWindow.MainContent.Content = runMenue;
         }
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            if(allowGameInput())
+            if (AllowGameInput())
             {
                 if (CheckInput())
                 {
@@ -278,18 +227,19 @@ namespace Preiswattera_3000
                                                            { tbx_2GamePoints1Team.Text, tbx_2GamePoints2Team.Text},
                                                            { tbx_3GamePoints1Team.Text, tbx_3GamePoints2Team.Text} };
 
-                    for(int i = 0; i < gamesOnTable.Length; i++)
+                    for (int i = 0; i < gamesOnTable.Length; i++)
                     {
                         newTable.tableGameIds[i] = gamesOnTable[i].gameId;
-                        gamesOnTable[i].gamePoints[0] = Convert.ToInt32(gamepoints[i,0]);
+                        gamesOnTable[i].gamePoints[0] = Convert.ToInt32(gamepoints[i, 0]);
                         team1.gamePointsTotal += gamesOnTable[i].gamePoints[0];
-                        gamesOnTable[i].gamePoints[1] = Convert.ToInt32(gamepoints[i,1]);
+                        gamesOnTable[i].gamePoints[1] = Convert.ToInt32(gamepoints[i, 1]);
                         team2.gamePointsTotal += gamesOnTable[i].gamePoints[1];
 
                         if (gamesOnTable[i].gamePoints[0] > gamesOnTable[i].gamePoints[1])
                         {
                             team1.gamePointsTotalDiff += gamesOnTable[i].gamePoints[0] - gamesOnTable[i].gamePoints[1];
-                        } else
+                        }
+                        else
                         {
                             team2.gamePointsTotalDiff += gamesOnTable[i].gamePoints[1] - gamesOnTable[i].gamePoints[0];
                         }
@@ -312,10 +262,10 @@ namespace Preiswattera_3000
 
                     newTable.Setter();
 
-                    allowGameInput(true);
+                    AllowGameInput(true);
 
                     cmbx_selectTable.SelectedIndex = cmbx_selectTable.SelectedIndex;
-                    showGatheredInfo(newTable);
+                    ShowGatheredInfo(newTable);
                     cmbx_selectTeam1.SelectedIndex = -1;
                     cmbx_selectTeam2.SelectedIndex = -1;
                     cmbx_selectTeam1.Visibility = Visibility.Hidden;
@@ -350,7 +300,8 @@ namespace Preiswattera_3000
                     MessageBoxButton.OK,
                     MessageBoxImage.Stop);
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Wählen Sie erst die Teams und den Tisch aus!",
                 "Team und Tisch auswählen",
@@ -359,75 +310,10 @@ namespace Preiswattera_3000
             }
         }
 
-        private bool CheckInput()
+        private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
-            if (tbx_iWinPointsTeam1.Text != String.Empty  &&
-                tbx_iWinPointsTeam2.Text != String.Empty  &&
-                tbx_1GamePoints1Team.Text != String.Empty &&
-                tbx_1GamePoints2Team.Text != String.Empty &&
-                tbx_2GamePoints1Team.Text != String.Empty &&
-                tbx_2GamePoints2Team.Text != String.Empty &&
-                tbx_3GamePoints1Team.Text != String.Empty &&
-                tbx_3GamePoints2Team.Text != String.Empty   )
-            {
-                if (CheckMaxMinPoints(tbx_1GamePoints1Team) &&
-                    CheckMaxMinPoints(tbx_1GamePoints2Team) &&
-                    CheckMaxMinPoints(tbx_2GamePoints1Team) &&
-                    CheckMaxMinPoints(tbx_2GamePoints2Team) &&
-                    CheckMaxMinPoints(tbx_3GamePoints1Team) &&
-                    CheckMaxMinPoints(tbx_3GamePoints2Team) &&
-                    CheckMaxMinPoints(tbx_iWinPointsTeam1, true) &&
-                    CheckMaxMinPoints(tbx_iWinPointsTeam2, true)   )
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            } else
-            {
-                return false;
-            }
-        }
-
-        private void cmbx_selectTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            tableSelected = true;
-            bool allreadyfilled = true;
-
-            Table selectedTable = new Table(cmbx_selectTable.SelectedIndex + 1, runId);
-            foreach( int gameId in selectedTable.tableGameIds)
-            {
-                if(gameId == 0)
-                {
-                    allreadyfilled = false;
-                    cmbx_selectTeam1.Visibility = Visibility.Visible;
-                    cmbx_selectTeam2.Visibility = Visibility.Visible;
-                    btn_Edit_GameData.Visibility = Visibility.Hidden;
-                    break;
-                } else
-                {
-                    cmbx_selectTeam1.Visibility = Visibility.Hidden;
-                    cmbx_selectTeam2.Visibility = Visibility.Hidden;
-                    btn_Edit_GameData.Visibility = Visibility.Visible;
-                    btn_Save.Visibility = Visibility.Hidden;
-                    lbl_oTeam1Number.Visibility = Visibility.Visible;
-                    lbl_oTeam2Number.Visibility = Visibility.Visible;
-                    lbl_oTeam1Number.Content = Convert.ToString(selectedTable.teamsOnTable[0]);
-                    lbl_oTeam2Number.Content = Convert.ToString(selectedTable.teamsOnTable[1]);
-                }
-            }
-
-            if (allreadyfilled)
-            {
-                showGatheredInfo(selectedTable);
-            }
-            else
-            {
-
-                allowGameInput(true);
-            }
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
         }
 
         private void btn_Edit_GameData_Click(object sender, RoutedEventArgs e)
@@ -486,19 +372,21 @@ namespace Preiswattera_3000
                     prevTableValueGamePointsTotal[0] += prevTableValues[i, 0];
                     prevTableValueGamePointsTotal[1] += prevTableValues[i, 1];
 
-                    if (prevTableValues[i, 0] > prevTableValues[i,1])
+                    if (prevTableValues[i, 0] > prevTableValues[i, 1])
                     {
                         // [4,0] DiffPoints Team 1
                         prevTableValues[4, 0] += prevTableValues[i, 0] - prevTableValues[i, 1];
-                    } else
+                    }
+                    else
                     {
                         // [4,1] DiffPoints Team 2
-                        prevTableValues[4,1] += prevTableValues[i, 1] - prevTableValues[i, 0];
+                        prevTableValues[4, 1] += prevTableValues[i, 1] - prevTableValues[i, 0];
                     }
 
                 }
 
-            } else
+            }
+            else
             {
                 MessageBox.Show("Das eingegebene Passwort ist flasch!",
                                 "Bearbeitung nicht erlaubt!",
@@ -595,14 +483,14 @@ namespace Preiswattera_3000
                 Log.Update("Table:" + Convert.ToString(updateTable.tableId) + " Team1:" + updateTeam1.teamName + " Team2:" + updateTeam2.teamName);
                 Log.Update("Team 1 - WinPoints:" + Convert.ToString(prevTableValues[0, 0]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
                 Log.Update("Team 2 - WinPoints:" + Convert.ToString(prevTableValues[0, 1]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
-                Log.Update("Game 1:" + Convert.ToString(prevTableValues[1,0]) + "->" + Convert.ToString(updateGames[0].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[1, 1]) + "->" + Convert.ToString(updateGames[0].gamePoints[1]));
-                Log.Update("Game 2:" + Convert.ToString(prevTableValues[2,0]) + "->" + Convert.ToString(updateGames[1].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[2, 1]) + "->" + Convert.ToString(updateGames[1].gamePoints[1]));
-                Log.Update("Game 3:" + Convert.ToString(prevTableValues[3,0]) + "->" + Convert.ToString(updateGames[2].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[3, 1]) + "->" + Convert.ToString(updateGames[2].gamePoints[1]));
+                Log.Update("Game 1:" + Convert.ToString(prevTableValues[1, 0]) + "->" + Convert.ToString(updateGames[0].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[1, 1]) + "->" + Convert.ToString(updateGames[0].gamePoints[1]));
+                Log.Update("Game 2:" + Convert.ToString(prevTableValues[2, 0]) + "->" + Convert.ToString(updateGames[1].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[2, 1]) + "->" + Convert.ToString(updateGames[1].gamePoints[1]));
+                Log.Update("Game 3:" + Convert.ToString(prevTableValues[3, 0]) + "->" + Convert.ToString(updateGames[2].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[3, 1]) + "->" + Convert.ToString(updateGames[2].gamePoints[1]));
                 Log.Update("GamePointsTotal:" + Convert.ToString(prevTableValueGamePointsTotal[0]) + "->" + Convert.ToString(newTableValueGamePointsTotal[0]) + " | " + Convert.ToString(prevTableValueGamePointsTotal[1]) + "->" + Convert.ToString(newTableValueGamePointsTotal[1]));
                 Log.Update("Diff:" + Convert.ToString(prevTableValues[4, 0]) + "->" + Convert.ToString(diffTeam1) + " | " + Convert.ToString(prevTableValues[4, 1]) + "->" + Convert.ToString(diffTeam2));
 
                 cmbx_selectTable.SelectedIndex = cmbx_selectTable.SelectedIndex;
-                showGatheredInfo(updateTable);
+                ShowGatheredInfo(updateTable);
                 cmbx_selectTeam1.SelectedIndex = -1;
                 cmbx_selectTeam2.SelectedIndex = -1;
                 cmbx_selectTeam1.Visibility = Visibility.Hidden;
@@ -625,11 +513,232 @@ namespace Preiswattera_3000
         private void btn_Edit_GameData_Clear_Click(object sender, RoutedEventArgs e)
         {
             Table selectedTable = new Table(cmbx_selectTable.SelectedIndex + 1, runId);
-            showGatheredInfo(selectedTable);
+            ShowGatheredInfo(selectedTable);
             btn_Edit_GameData.Visibility = Visibility.Visible;
             btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
             btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
             btn_TableSetBack.Visibility = Visibility.Hidden;
+        }
+
+        private void btn_TableSetBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new InsertRunDataInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+
+        #endregion
+
+        #region Combobox - SelectionChanged ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void cmbx_selectTeam1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbx_selectTeam1.SelectedIndex != -1)
+            {
+                Team selectedTeam = new Team();
+                selectedTeam.Getter(cmbx_selectTeam1.SelectedIndex + 1);
+                Log.Info("Team Getter Id " + Convert.ToString(cmbx_selectTeam1.SelectedIndex + 1));
+
+
+                Player player1 = new Player();
+                player1.Getter(selectedTeam.teamPlayer[0]);
+                Player player2 = new Player();
+                player2.Getter(selectedTeam.teamPlayer[1]);
+
+                lbl_oTeam1Player1.Content = player1.playerFirstname + " " + player1.playerLastname;
+                lbl_oTeam1Player2.Content = player2.playerFirstname + " " + player2.playerLastname;
+
+                if (cmbx_selectTeam1.SelectedIndex == cmbx_selectTeam2.SelectedIndex)
+                {
+                    MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
+                                    "\nWählen Sie eine anderen Gegener!",
+                                    "Team wurde doppelt gewählt",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Stop);
+                    team1Selected = false;
+                }
+                else
+                {
+                    team1Selected = true;
+
+
+                    INIFile tableIni = new INIFile(Table.iniPath);
+                    int tableSecCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableSecCnt));
+
+                    for (int i = 1; i <= tableSecCnt; i++)
+                    {
+                        Table newTable = new Table();
+                        newTable.Getter(i, runId);
+                        Log.Info("Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
+                        if (cmbx_selectTeam1.SelectedIndex != -1)
+                        {
+                            if (newTable.teamsOnTable[0] == cmbx_selectTeam1.SelectedIndex + 1 ||
+                               newTable.teamsOnTable[1] == cmbx_selectTeam1.SelectedIndex + 1)
+                            {
+                                MessageBox.Show("Das Team " + cmbx_selectTeam1.SelectedValue + " wurde bereits ausgewählt!" +
+                                                "\n Tisch " + newTable.tableId,
+                                                "Team bereits auf einem anderen Tisch",
+                                                MessageBoxButton.OK,
+                                                MessageBoxImage.Stop);
+                                team1Selected = false;
+                                break;
+
+                            }
+                            else
+                            {
+                                team1Selected = true;
+                            }
+                        }
+
+                    }
+                }
+                AllowGameInput(true);
+            }
+
+        }
+
+        private void cmbx_selectTeam2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbx_selectTeam2.SelectedIndex != -1)
+            {
+                Team selectedTeam = new Team();
+                selectedTeam.Getter(cmbx_selectTeam2.SelectedIndex + 1);
+                Log.Info("Team Getter Id " + Convert.ToString(cmbx_selectTeam2.SelectedIndex + 1));
+
+                Player player1 = new Player();
+                player1.Getter(selectedTeam.teamPlayer[0]);
+                Player player2 = new Player();
+                player2.Getter(selectedTeam.teamPlayer[1]);
+
+                lbl_oTeam2Player1.Content = player1.playerFirstname + " " + player1.playerLastname;
+                lbl_oTeam2Player2.Content = player2.playerFirstname + " " + player2.playerLastname;
+
+                if (cmbx_selectTeam1.SelectedIndex == cmbx_selectTeam2.SelectedIndex)
+                {
+                    MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
+                                    "\nWählen Sie eine anderen Gegener!",
+                                    "Team wurde doppelt gewählt",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Stop);
+                    team2Selected = false;
+                }
+                else
+                {
+                    team2Selected = true;
+
+
+                    INIFile tableIni = new INIFile(Table.iniPath);
+                    int tableSecCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableSecCnt));
+
+                    for (int i = 1; i <= tableSecCnt; i++)
+                    {
+                        Table newTable = new Table();
+                        newTable.Getter(i, runId);
+                        Log.Info("Table Getter Id " + Convert.ToString(i) + " | runId " + Convert.ToString(runId));
+                        if (cmbx_selectTeam2.SelectedIndex != -1)
+                        {
+                            if (newTable.teamsOnTable[0] == cmbx_selectTeam2.SelectedIndex + 1 ||
+                                newTable.teamsOnTable[1] == cmbx_selectTeam2.SelectedIndex + 1)
+                            {
+                                MessageBox.Show("Das Team " + cmbx_selectTeam2.SelectedValue + " wurde bereits ausgewählt!" +
+                                                "\n Tisch " + newTable.tableId,
+                                                "Team bereits auf einem anderen Tisch",
+                                                MessageBoxButton.OK,
+                                                MessageBoxImage.Stop);
+                                team2Selected = false;
+                                break;
+                            }
+                            else
+                            {
+                                team2Selected = true;
+                            }
+                        }
+                    }
+                }
+
+                AllowGameInput(true);
+            }
+        }
+
+        private void cmbx_selectTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tableSelected = true;
+            bool allreadyfilled = true;
+
+            Table selectedTable = new Table(cmbx_selectTable.SelectedIndex + 1, runId);
+            foreach (int gameId in selectedTable.tableGameIds)
+            {
+                if (gameId == 0)
+                {
+                    allreadyfilled = false;
+                    cmbx_selectTeam1.Visibility = Visibility.Visible;
+                    cmbx_selectTeam2.Visibility = Visibility.Visible;
+                    btn_Edit_GameData.Visibility = Visibility.Hidden;
+                    break;
+                }
+                else
+                {
+                    cmbx_selectTeam1.Visibility = Visibility.Hidden;
+                    cmbx_selectTeam2.Visibility = Visibility.Hidden;
+                    btn_Edit_GameData.Visibility = Visibility.Visible;
+                    btn_Save.Visibility = Visibility.Hidden;
+                    lbl_oTeam1Number.Visibility = Visibility.Visible;
+                    lbl_oTeam2Number.Visibility = Visibility.Visible;
+                    lbl_oTeam1Number.Content = Convert.ToString(selectedTable.teamsOnTable[0]);
+                    lbl_oTeam2Number.Content = Convert.ToString(selectedTable.teamsOnTable[1]);
+                }
+            }
+
+            if (allreadyfilled)
+            {
+                ShowGatheredInfo(selectedTable);
+            }
+            else
+            {
+
+                AllowGameInput(true);
+            }
+        }
+
+
+        #endregion
+
+        #region Check - Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        private bool CheckInput()
+        {
+            if (tbx_iWinPointsTeam1.Text != String.Empty  &&
+                tbx_iWinPointsTeam2.Text != String.Empty  &&
+                tbx_1GamePoints1Team.Text != String.Empty &&
+                tbx_1GamePoints2Team.Text != String.Empty &&
+                tbx_2GamePoints1Team.Text != String.Empty &&
+                tbx_2GamePoints2Team.Text != String.Empty &&
+                tbx_3GamePoints1Team.Text != String.Empty &&
+                tbx_3GamePoints2Team.Text != String.Empty   )
+            {
+                if (CheckMaxMinPoints(tbx_1GamePoints1Team) &&
+                    CheckMaxMinPoints(tbx_1GamePoints2Team) &&
+                    CheckMaxMinPoints(tbx_2GamePoints1Team) &&
+                    CheckMaxMinPoints(tbx_2GamePoints2Team) &&
+                    CheckMaxMinPoints(tbx_3GamePoints1Team) &&
+                    CheckMaxMinPoints(tbx_3GamePoints2Team) &&
+                    CheckMaxMinPoints(tbx_iWinPointsTeam1, true) &&
+                    CheckMaxMinPoints(tbx_iWinPointsTeam2, true)   )
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } else
+            {
+                return false;
+            }
         }
 
         private bool CheckMaxMinPoints(TextBox i_tbx, bool justMin = false)
@@ -660,72 +769,7 @@ namespace Preiswattera_3000
             return retVal;
         }
 
-        private void showGatheredInfo(Table selectedTable)
-        {
-            // Get Games
-            Game firstGame = new Game();
-            firstGame.Getter(selectedTable.tableGameIds[0]);
-            Game secondGame = new Game();
-            secondGame.Getter(selectedTable.tableGameIds[1]);
-            Game thirdGame = new Game();
-            thirdGame.Getter(selectedTable.tableGameIds[2]);
-            // Get Teams
-            Team team1 = new Team();
-            team1.Getter(selectedTable.teamsOnTable[0]);
-            Team team2 = new Team();
-            team2.Getter(selectedTable.teamsOnTable[1]);
-            // Get Player Team 1
-            Player player1Team1 = new Player();
-            player1Team1.Getter(team1.teamPlayer[0]);
-            Player player2Team1 = new Player();
-            player2Team1.Getter(team1.teamPlayer[1]);
-            // Get Player Team 2 
-            Player player1Team2 = new Player();
-            player1Team2.Getter(team2.teamPlayer[0]);
-            Player player2Team2 = new Player();
-            player2Team2.Getter(team2.teamPlayer[1]);
-
-            tbx_1GamePoints1Team.Text = Convert.ToString(firstGame.gamePoints[0]);
-            tbx_1GamePoints2Team.Text = Convert.ToString(firstGame.gamePoints[1]);
-
-            tbx_2GamePoints1Team.Text = Convert.ToString(secondGame.gamePoints[0]);
-            tbx_2GamePoints2Team.Text = Convert.ToString(secondGame.gamePoints[1]);
-
-            tbx_3GamePoints1Team.Text = Convert.ToString(thirdGame.gamePoints[0]);
-            tbx_3GamePoints2Team.Text = Convert.ToString(thirdGame.gamePoints[1]);
-
-            tbx_iWinPointsTeam1.Text = Convert.ToString(selectedTable.winPointsAtGame[0]);
-            tbx_iWinPointsTeam2.Text = Convert.ToString(selectedTable.winPointsAtGame[1]);
-
-            lbl_oTeam1Player1.Content = player1Team1.playerFirstname + " " + player1Team1.playerLastname;
-            lbl_oTeam1Player2.Content = player2Team1.playerFirstname + " " + player2Team1.playerLastname;
-
-            lbl_oTeam2Player1.Content = player1Team2.playerFirstname + " " + player1Team2.playerLastname;
-            lbl_oTeam2Player2.Content = player2Team2.playerFirstname + " " + player2Team2.playerLastname;
-
-            tbx_iWinPointsTeam1.IsEnabled = false;
-            tbx_iWinPointsTeam2.IsEnabled = false;
-            tbx_1GamePoints1Team.IsEnabled = false;
-            tbx_1GamePoints2Team.IsEnabled = false;
-            tbx_2GamePoints1Team.IsEnabled = false;
-            tbx_2GamePoints2Team.IsEnabled = false;
-            tbx_3GamePoints1Team.IsEnabled = false;
-            tbx_3GamePoints2Team.IsEnabled = false;
-        }
-
-        private void btn_TableSetBack_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
-        {
-            InfoWindowContent infoWinCon = new InfoWindowContent();
-            new InsertRunDataInfo(infoWinCon.InfoWindowText);
-            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
-        }
-
-        private bool allowGameInput(bool clear = false)
+        private bool AllowGameInput(bool clear = false)
         {
             if (tableSelected)
             {
@@ -735,7 +779,7 @@ namespace Preiswattera_3000
                 {
                     if (clear)
                     {
-                        switchTbx(true);
+                        SwitchTbx(true);
                     }
                     return true;
 
@@ -744,43 +788,20 @@ namespace Preiswattera_3000
                 {
                     if (clear)
                     {
-                        switchTbx(false);
+                        SwitchTbx(false);
                     }
                     return false;
                 }
-            } else
+            }
+            else
             {
                 cmbx_selectTeam1.IsEnabled = false;
                 cmbx_selectTeam2.IsEnabled = false;
-                switchTbx(false);
+                SwitchTbx(false);
                 return false;
             }
         }
-
-        private void switchTbx (bool value)
-        {
-            tbx_iWinPointsTeam1.IsEnabled = value;
-            tbx_iWinPointsTeam2.IsEnabled = value;
-            tbx_1GamePoints1Team.IsEnabled = value;
-            tbx_1GamePoints2Team.IsEnabled = value;
-            tbx_2GamePoints1Team.IsEnabled = value;
-            tbx_2GamePoints2Team.IsEnabled = value;
-            tbx_3GamePoints1Team.IsEnabled = value;
-            tbx_3GamePoints2Team.IsEnabled = value;
-
-            tbx_iWinPointsTeam1.Text = String.Empty;
-            tbx_iWinPointsTeam2.Text = String.Empty;
-            tbx_1GamePoints1Team.Text = String.Empty;
-            tbx_1GamePoints2Team.Text = String.Empty;
-            tbx_2GamePoints1Team.Text = String.Empty;
-            tbx_2GamePoints2Team.Text = String.Empty;
-            tbx_3GamePoints1Team.Text = String.Empty;
-            tbx_3GamePoints2Team.Text = String.Empty;
-            lbl_oTeam1Player1.Content = String.Empty;
-            lbl_oTeam1Player2.Content = String.Empty;
-            lbl_oTeam2Player1.Content = String.Empty;
-            lbl_oTeam2Player2.Content = String.Empty;
-        }
+        #endregion
     }
 
     public class InsertRunDataInfo

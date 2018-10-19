@@ -86,6 +86,7 @@ namespace Preiswattera_3000
             }
         }
 
+        #region Check - Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private bool checkIfTournamentIsRuning (INIFile i_ini)
         {
             if (Const.fs_InitState_def  != i_ini.GetValue(Const.fileSec, Const.fs_InitState))
@@ -108,6 +109,66 @@ namespace Preiswattera_3000
             }
         }
 
+        private bool checkAmountOfTeamsEven()
+        {
+            INIFile teamIni = new INIFile(Team.iniPath);
+
+            if (Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt)) % 2 == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool checkAllPlayersPayed()
+        {
+            bool OnenotPayed = false;
+            INIFile playerIni = new INIFile(Player.iniPath);
+            INIFile teamIni = new INIFile(Team.iniPath);
+
+            int playerCnt = Convert.ToInt32(playerIni.GetValue(Const.fileSec, Player.fsX_playerCnt));
+            string[] playerNotPayed = new string[playerCnt];
+
+            for (int i = 1; i <= playerCnt; i++)
+            {
+                Player newPlayer = new Player();
+                newPlayer.Getter(i);
+
+                if (!newPlayer.payedStartFee)
+                {
+                    playerNotPayed[i - 1] = newPlayer.playerId + " | " + newPlayer.playerFirstname + " | " + newPlayer.playerLastname;
+                    OnenotPayed = true;
+                }
+            }
+
+            if (OnenotPayed)
+            {
+                string errorMessage = "";
+                for (int i = 0; i < playerNotPayed.Length; i++)
+                {
+                    if (playerNotPayed[i] != null)
+                    {
+                        errorMessage += playerNotPayed[i] + "\n";
+                    }
+                }
+
+                MessageBox.Show("Offene Startgebühr:\n" + errorMessage, "Ausstehnde Zahlung", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
+        }
+
+        #endregion
+
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_GoToEvaluation_Click(object sender, RoutedEventArgs e)
         {
             UserControl evaluation = new Evaluation(this);
@@ -166,65 +227,14 @@ namespace Preiswattera_3000
             MainContent.Content = addTeam;
         }
 
-        private bool checkAmountOfTeamsEven ()
-        {
-            INIFile teamIni = new INIFile(Team.iniPath);
-
-            if(Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt)) % 2 == 0)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
-        }
-
-        private bool checkAllPlayersPayed()
-        {
-            bool OnenotPayed = false;
-            INIFile playerIni = new INIFile(Player.iniPath);
-            INIFile teamIni = new INIFile(Team.iniPath);
-
-            int playerCnt = Convert.ToInt32(playerIni.GetValue(Const.fileSec, Player.fsX_playerCnt));
-            string[] playerNotPayed = new string[playerCnt];
-
-            for(int i = 1; i <= playerCnt; i++)
-            {
-                Player newPlayer = new Player();
-                newPlayer.Getter(i);
-
-                if(!newPlayer.payedStartFee)
-                {
-                    playerNotPayed[i - 1] = newPlayer.playerId + " | " + newPlayer.playerFirstname + " | " + newPlayer.playerLastname;
-                    OnenotPayed = true;
-                }
-            }
-
-            if(OnenotPayed)
-            {
-                string errorMessage = "";
-                for(int i = 0; i < playerNotPayed.Length; i++)
-                {
-                    if (playerNotPayed[i] != null)
-                    {
-                        errorMessage += playerNotPayed[i] + "\n";
-                    }
-                }
-
-                MessageBox.Show("Offene Startgebühr:\n" + errorMessage, "Ausstehnde Zahlung", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            } else
-            {
-                return true;
-            }
-
-
-        }
-
         private void btn_GoTournamentMenue_Click(object sender, RoutedEventArgs e)
         {
             UserControl main = new Main(this);
             MainContent.Content = main;
         }
+
+        #endregion
+
+
     }
 }

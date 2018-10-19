@@ -30,6 +30,7 @@ namespace Preiswattera_3000
             mainWindow = i_mainWindow;
         }
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_ExplorerSearch_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog browser = new FolderBrowserDialog();
@@ -92,5 +93,6 @@ namespace Preiswattera_3000
                 mainWindow.MainContent.Content = loadorcreate;
             }
         }
+        #endregion
     }
 }

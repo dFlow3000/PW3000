@@ -58,18 +58,14 @@ namespace Preiswattera_3000
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            if (multiCreate > 0)
+            if (multiCreate == 0)
             {
-                for (int i = 1; i <= multiCreate; i++)
-                {
-                    SaveSignedUpTeam(sender, e, i);
-                }
-            } else
+                SaveSignedUpTeam(sender, e);
+            }
+            else
             {
                 SaveSignedUpTeam(sender, e, multiCreate);
             }
-
-            multiCreate = 0;
         }
 
         private  void ClearTbx()
@@ -97,7 +93,20 @@ namespace Preiswattera_3000
                 tbx_iSUTP2Lastname.Text != String.Empty &&
                 tbx_oTeamName.Text != String.Empty)
             {
-                return true;
+                if (tbx_iMultiCreate.Visibility == Visibility.Visible)
+                {
+                    if (tbx_iMultiCreate.Text != String.Empty)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                } else
+                {
+                    return true;
+                }
             }
             else
             {
@@ -105,7 +114,7 @@ namespace Preiswattera_3000
             }
         }
 
-        private void SaveSignedUpTeam(object sender, RoutedEventArgs e, int i_multiCreate = 0)
+        private void SaveSignedUpTeam(object sender, RoutedEventArgs e)
         {
             if (CheckInput())
             {
@@ -113,29 +122,12 @@ namespace Preiswattera_3000
                 newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
                 newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
                 newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
-                if (i_multiCreate > 0)
-                {
-                    newTeam.suTeamName += Convert.ToString(i_multiCreate);
-                    newTeam.Setter();
-                    if (i_multiCreate == multiCreate)
-                    {
-                        ClearTbx();
-                        btn_MultiCreate.Visibility = Visibility.Visible;
-                        tbx_iMultiCreate.Visibility = Visibility.Hidden;
-                        lbl_sMultiCreate.Visibility = Visibility.Hidden;
-                        SignUpTeams_Loaded(sender, e);
-                    }
-                }
-                else
-                {
-                    newTeam.Setter();
-                    ClearTbx();
-                    btn_MultiCreate.Visibility = Visibility.Visible;
-                    tbx_iMultiCreate.Visibility = Visibility.Hidden;
-                    lbl_sMultiCreate.Visibility = Visibility.Hidden;
-                    SignUpTeams_Loaded(sender, e);
-                }
-   
+                newTeam.Setter();
+                ClearTbx();
+                btn_MultiCreate.Visibility = Visibility.Visible;
+                tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                SignUpTeams_Loaded(sender, e);   
             }
             else
             {
@@ -147,27 +139,116 @@ namespace Preiswattera_3000
             }
         }
 
+        private void SaveSignedUpTeam(object sender, RoutedEventArgs e, int i_multiCreate)
+        {
+            string teamName = "";
+            if (CheckInput())
+            {
+                for(int i = 1; i <= multiCreate; i++)
+                {
+                    if (i == 1)
+                    {
+                        newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
+                        newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
+                        newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
+                        newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
+                        teamName = newTeam.suTeamName;
+                        newTeam.suTeamName = newTeam.suTeamName + Convert.ToString(i);
+                        newTeam.Setter();
+                    } else
+                    {
+                        SignedUpTeam multiTeam = new SignedUpTeam(true);
+                        for(int member = 0; member < 2; member++)
+                        {
+                            multiTeam.suTeamPlayerFirstNames[member] = newTeam.suTeamPlayerFirstNames[member];
+                            multiTeam.suTeamPlayerLastNames[member] = newTeam.suTeamPlayerLastNames[member];
+                        }
+                        multiTeam.suTeamName = teamName + Convert.ToString(i);
+                        multiTeam.Setter();
+                    }
+                }
+                ClearTbx();
+                btn_MultiCreate.Visibility = Visibility.Visible;
+                tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                SignUpTeams_Loaded(sender, e);   
+            }
+            else
+            {
+                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
+                                "Fehlende Informationen",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Exclamation);
+            }
+        }
+
+
+
         private void btn_MultiCreate_Click(object sender, RoutedEventArgs e)
         {
             lbl_sMultiCreate.Visibility = Visibility.Visible;
             tbx_iMultiCreate.Visibility = Visibility.Visible;
             btn_MultiCreate.Visibility = Visibility.Hidden;
+            btn_ClsMultiCreate.Visibility = Visibility.Visible;
         }
 
         private void tbx_iMultiCreate_TextChanged(object sender, TextChangedEventArgs e)
         {
             int inputMultiCreate = 0;
-            if (int.TryParse(tbx_iMultiCreate.Text.Trim(), out inputMultiCreate))
+            if (int.TryParse(tbx_iMultiCreate.Text.Trim(), out inputMultiCreate) && inputMultiCreate > 0)
             {
                 multiCreate = inputMultiCreate;
             }
             else
             {
-                MessageBox.Show("Bitte geben Sie eine Zahl ein!",
+                MessageBox.Show("Bitte geben Sie eine Zahl größer 0 ein!",
                                 "Mehrfach anlegen",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
+                tbx_iMultiCreate.Text = String.Empty;
             }
         }
+
+        private void btn_ClsMultiCreate_Click(object sender, RoutedEventArgs e)
+        {
+            multiCreate = 0;
+            tbx_iMultiCreate.Visibility = Visibility.Hidden;
+            lbl_sMultiCreate.Visibility = Visibility.Hidden;
+            btn_MultiCreate.Visibility = Visibility.Visible;
+            btn_ClsMultiCreate.Visibility = Visibility.Hidden;
+        }
+
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new SignedUpTeamsInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+    }
+
+    public class SignedUpTeamsInfo
+    {
+        public const string Header = "Team anmelden";
+        public const string Para1_Header = "Team-Nummer:";
+        public const string Para1_Content1Value = "Zeigt die Nummer des Teams, dass als nächstes angemeldet wird.";
+        public const string Para2_Header = "Spieler 1 & Spieler 2:";
+        public const string Para2_Content1Key = "Vor- & Nachname";
+        public const string Para2_Content1Value = "Erfassen Sie Vor- & Nachnamen der Spieler 1 und 2.";
+        public const string Para3_Header = "Mehrfach anlegen";
+        public const string Para3_Content1Value = "\"Mehrfach anlegen\" bietet Ihnen die Möglichkeit mehrere \"Platzhalter\"-Teams mit gleichen Spielerinformationen anzulegen." +
+                                                    "\nWählen Sie eine Anzahl und Speichern Sie. Es werden entsprechend der Anzahl Teams angemeldet die durch eine fortlaufende Nummer im Teamname zu unterscheiden sind.";
+
+        public SignedUpTeamsInfo(Dictionary<string, string> i_InfoWindowText)
+        {
+            i_InfoWindowText.Add(Header, InfoStyles.HeaderStyle);
+            i_InfoWindowText.Add(Para1_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para1_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para2_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para2_Content1Key, InfoStyles.ParaContentKey);
+            i_InfoWindowText.Add(Para2_Content1Value, InfoStyles.ParaContentValue);
+            i_InfoWindowText.Add(Para3_Header, InfoStyles.ParaHeader);
+            i_InfoWindowText.Add(Para3_Content1Value, InfoStyles.ParaContentValue);
+        }
+
     }
 }

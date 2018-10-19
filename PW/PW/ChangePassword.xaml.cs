@@ -25,7 +25,7 @@ namespace Preiswattera_3000
             InitializeComponent();
         }
 
-        #region Button - Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Saves new password after checking the actual one
         /// </summary>

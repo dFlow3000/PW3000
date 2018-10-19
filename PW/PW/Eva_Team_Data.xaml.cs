@@ -80,6 +80,7 @@ namespace Preiswattera_3000
 
         }
 
+        #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void FillLable(int i_teamPos, int i_aponPos, Game i_game)
         {
             Label lbl_GameId = new Label();
@@ -129,7 +130,9 @@ namespace Preiswattera_3000
 
 
         }
+        #endregion
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_CloseTeamGameInfo_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -141,6 +144,7 @@ namespace Preiswattera_3000
             new Eva_Team_DataInfo(infoWinCon.InfoWindowText);
             infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
+        #endregion
     }
 
     public class Eva_Team_DataInfo
