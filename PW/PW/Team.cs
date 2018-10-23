@@ -46,8 +46,8 @@ namespace Preiswattera_3000
                 //SetValue(Const.fileSec, fsX_teamCnt, Convert.ToString(teamId));
             }
         }
-        #region Setter & Getter --------------------------------------------------------------------------------
-        #region Setter --------------------------------------------------------------------------------
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Setter(Team i_team)
         {
             INIFile tIni = new INIFile(iniPath);
@@ -80,7 +80,7 @@ namespace Preiswattera_3000
             }
         }
         #endregion
-        #region Getter --------------------------------------------------------------------------------
+        #region Getter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Getter(int i_id)
         {
             INIFile tIni = new INIFile(iniPath);
@@ -102,6 +102,11 @@ namespace Preiswattera_3000
 
         #endregion
         #endregion
+
+        #region Utility-Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Set back Team-Cnt if Team-Cnt > 0
+        /// </summary>
         public static void SetBackTeamCnt()
         {
             INIFile tIni = new INIFile(iniPath);
@@ -116,6 +121,11 @@ namespace Preiswattera_3000
             }
         }
 
+        /// <summary>
+        /// Save Team including depending Players
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
         public void SaveTeam(Player p1, Player p2)
         {
             p1.Setter();
@@ -136,6 +146,13 @@ namespace Preiswattera_3000
             }
         }
 
+        /// <summary>
+        /// Delete Team
+        /// -> Set back Team-Cnt
+        /// -> Set back Player-Cnt
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
         public void DeleteTeam(Player p1, Player p2)
         {
             Player.SetBackPlayerCnt();
@@ -143,5 +160,7 @@ namespace Preiswattera_3000
             SetBackTeamCnt();
             Log.Info(" NOT SAVED - " + "PLAYER " + p1.playerFirstname + " " + p1.playerLastname + " PLAYER " + p2.playerFirstname + " " + p2.playerLastname + " added to TEAM " + teamName + " BUT NOT SAVED");
         }
+
+        #endregion
     }
 }

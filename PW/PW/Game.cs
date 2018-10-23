@@ -92,6 +92,12 @@ namespace Preiswattera_3000
         #endregion
 
         #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Fill Game-Array with i_team1Id and i_team2Id 
+        /// </summary>
+        /// <param name="i_team1Id"></param>
+        /// <param name="i_team2Id"></param>
+        /// <returns></returns>
         public static Game[] FillTableWithGames (int i_team1Id, int i_team2Id)
         {
             INIFile tnIni = new INIFile(Tournament.iniPath);

@@ -40,7 +40,12 @@ namespace Preiswattera_3000
             gB_sSignUpTeam.Header = "Team-Nummer " + Convert.ToString(newTeam.suTeamId);
         }
 
-
+        #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Create Teamname out of Players Lastname
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateTeamName(object sender, RoutedEventArgs e)
         {
             if (tbx_iSUTP1Lastname.Text != "" && tbx_iSUTP2Lastname.Text != "")
@@ -49,7 +54,9 @@ namespace Preiswattera_3000
                 newTeam.suTeamName = tbx_oTeamName.Text;
             }
         }
+        #endregion
 
+        #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_MainMenue_Click(object sender, RoutedEventArgs e)
         {
             UserControl prepMenue = new PrepaireMenue(mainWindow);
@@ -68,7 +75,45 @@ namespace Preiswattera_3000
             }
         }
 
-        private  void ClearTbx()
+        private void btn_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            tbx_iSUTP1Firstname.Text = String.Empty;
+            tbx_iSUTP1Lastname.Text = String.Empty;
+            tbx_iSUTP2Firstname.Text = String.Empty;
+            tbx_iSUTP2Lastname.Text = String.Empty;
+        }
+        
+        private void btn_MultiCreate_Click(object sender, RoutedEventArgs e)
+        {
+            lbl_sMultiCreate.Visibility = Visibility.Visible;
+            tbx_iMultiCreate.Visibility = Visibility.Visible;
+            btn_MultiCreate.Visibility = Visibility.Hidden;
+            btn_ClsMultiCreate.Visibility = Visibility.Visible;
+        }
+
+        private void btn_ClsMultiCreate_Click(object sender, RoutedEventArgs e)
+        {
+            multiCreate = 0;
+            tbx_iMultiCreate.Visibility = Visibility.Hidden;
+            lbl_sMultiCreate.Visibility = Visibility.Hidden;
+            btn_MultiCreate.Visibility = Visibility.Visible;
+            btn_ClsMultiCreate.Visibility = Visibility.Hidden;
+        }
+
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new SignedUpTeamsInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
+        }
+
+        #endregion
+
+        #region Utility - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Fill Textboxes with String.Empty
+        /// </summary>
+        private void ClearTbx()
         {
             tbx_iSUTP1Firstname.Text = String.Empty;
             tbx_iSUTP1Lastname.Text = String.Empty;
@@ -77,14 +122,88 @@ namespace Preiswattera_3000
             tbx_oTeamName.Text = String.Empty;
         }
 
-        private void btn_Clear_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Saves entered Signed Up Team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveSignedUpTeam(object sender, RoutedEventArgs e)
         {
-            tbx_iSUTP1Firstname.Text = String.Empty;
-            tbx_iSUTP1Lastname.Text = String.Empty;
-            tbx_iSUTP2Firstname.Text = String.Empty;
-            tbx_iSUTP2Lastname.Text = String.Empty;
+            if (CheckInput())
+            {
+                newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
+                newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
+                newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
+                newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
+                newTeam.Setter();
+                ClearTbx();
+                btn_MultiCreate.Visibility = Visibility.Visible;
+                tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                SignUpTeams_Loaded(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
+                                "Fehlende Informationen",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Exclamation);
+                multiCreate = 0;
+            }
         }
 
+        /// <summary>
+        /// Saves Multiple Teams from entered Data with identifining postfix added to the teamname
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="i_multiCreate"></param>
+        private void SaveSignedUpTeam(object sender, RoutedEventArgs e, int i_multiCreate)
+        {
+            string teamName = "";
+            if (CheckInput())
+            {
+                for (int i = 1; i <= multiCreate; i++)
+                {
+                    if (i == 1)
+                    {
+                        newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
+                        newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
+                        newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
+                        newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
+                        teamName = newTeam.suTeamName;
+                        newTeam.suTeamName = newTeam.suTeamName + Convert.ToString(i);
+                        newTeam.Setter();
+                    }
+                    else
+                    {
+                        SignedUpTeam multiTeam = new SignedUpTeam(true);
+                        for (int member = 0; member < 2; member++)
+                        {
+                            multiTeam.suTeamPlayerFirstNames[member] = newTeam.suTeamPlayerFirstNames[member];
+                            multiTeam.suTeamPlayerLastNames[member] = newTeam.suTeamPlayerLastNames[member];
+                        }
+                        multiTeam.suTeamName = teamName + Convert.ToString(i);
+                        multiTeam.Setter();
+                    }
+                }
+                ClearTbx();
+                btn_MultiCreate.Visibility = Visibility.Visible;
+                tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                SignUpTeams_Loaded(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
+                                "Fehlende Informationen",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Exclamation);
+            }
+        }
+        #endregion
+
+        #region Check - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private bool CheckInput()
         {
             if (tbx_iSUTP1Firstname.Text != String.Empty &&
@@ -113,85 +232,9 @@ namespace Preiswattera_3000
                 return false;
             }
         }
+        #endregion
 
-        private void SaveSignedUpTeam(object sender, RoutedEventArgs e)
-        {
-            if (CheckInput())
-            {
-                newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
-                newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
-                newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
-                newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
-                newTeam.Setter();
-                ClearTbx();
-                btn_MultiCreate.Visibility = Visibility.Visible;
-                tbx_iMultiCreate.Visibility = Visibility.Hidden;
-                lbl_sMultiCreate.Visibility = Visibility.Hidden;
-                SignUpTeams_Loaded(sender, e);   
-            }
-            else
-            {
-                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
-                                "Fehlende Informationen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
-                multiCreate = 0;
-            }
-        }
-
-        private void SaveSignedUpTeam(object sender, RoutedEventArgs e, int i_multiCreate)
-        {
-            string teamName = "";
-            if (CheckInput())
-            {
-                for(int i = 1; i <= multiCreate; i++)
-                {
-                    if (i == 1)
-                    {
-                        newTeam.suTeamPlayerFirstNames[0] = tbx_iSUTP1Firstname.Text;
-                        newTeam.suTeamPlayerLastNames[0] = tbx_iSUTP1Lastname.Text;
-                        newTeam.suTeamPlayerFirstNames[1] = tbx_iSUTP2Firstname.Text;
-                        newTeam.suTeamPlayerLastNames[1] = tbx_iSUTP2Lastname.Text;
-                        teamName = newTeam.suTeamName;
-                        newTeam.suTeamName = newTeam.suTeamName + Convert.ToString(i);
-                        newTeam.Setter();
-                    } else
-                    {
-                        SignedUpTeam multiTeam = new SignedUpTeam(true);
-                        for(int member = 0; member < 2; member++)
-                        {
-                            multiTeam.suTeamPlayerFirstNames[member] = newTeam.suTeamPlayerFirstNames[member];
-                            multiTeam.suTeamPlayerLastNames[member] = newTeam.suTeamPlayerLastNames[member];
-                        }
-                        multiTeam.suTeamName = teamName + Convert.ToString(i);
-                        multiTeam.Setter();
-                    }
-                }
-                ClearTbx();
-                btn_MultiCreate.Visibility = Visibility.Visible;
-                tbx_iMultiCreate.Visibility = Visibility.Hidden;
-                lbl_sMultiCreate.Visibility = Visibility.Hidden;
-                SignUpTeams_Loaded(sender, e);   
-            }
-            else
-            {
-                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
-                                "Fehlende Informationen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
-            }
-        }
-
-
-
-        private void btn_MultiCreate_Click(object sender, RoutedEventArgs e)
-        {
-            lbl_sMultiCreate.Visibility = Visibility.Visible;
-            tbx_iMultiCreate.Visibility = Visibility.Visible;
-            btn_MultiCreate.Visibility = Visibility.Hidden;
-            btn_ClsMultiCreate.Visibility = Visibility.Visible;
-        }
-
+        #region Textbox - TextChanged +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void tbx_iMultiCreate_TextChanged(object sender, TextChangedEventArgs e)
         {
             int inputMultiCreate = 0;
@@ -208,22 +251,8 @@ namespace Preiswattera_3000
                 tbx_iMultiCreate.Text = String.Empty;
             }
         }
+        #endregion
 
-        private void btn_ClsMultiCreate_Click(object sender, RoutedEventArgs e)
-        {
-            multiCreate = 0;
-            tbx_iMultiCreate.Visibility = Visibility.Hidden;
-            lbl_sMultiCreate.Visibility = Visibility.Hidden;
-            btn_MultiCreate.Visibility = Visibility.Visible;
-            btn_ClsMultiCreate.Visibility = Visibility.Hidden;
-        }
-
-        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
-        {
-            InfoWindowContent infoWinCon = new InfoWindowContent();
-            new SignedUpTeamsInfo(infoWinCon.InfoWindowText);
-            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
-        }
     }
 
     public class SignedUpTeamsInfo

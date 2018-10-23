@@ -38,9 +38,8 @@ namespace Preiswattera_3000
         public const string rS_tableCnt = "Anzahl-Tische";
         public const string rS_runComplete = "Durchgang-Abgeschlossen";
         public const string rS_runComplete_def = "false";
-
-
         #endregion
+
         public string tnmtName;
         public int tnmtTeamCnt;
         public int tnmtRunCnt;
@@ -71,6 +70,8 @@ namespace Preiswattera_3000
 
         }
 
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Setter()
         {
             INIFile tnIni = new INIFile(iniPath);
@@ -78,7 +79,8 @@ namespace Preiswattera_3000
             tnIni.SetValue(tnmtSec, tnS_tnmtName, tnmtName);
             tnIni.SetValue(tnmtSec, tnS_tnmtRunCnt, Convert.ToString(tnmtRunCnt));
         }
-
+        #endregion
+        #region Getter  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Getter()
         {
             INIFile tnIni = new INIFile(iniPath);
@@ -89,6 +91,7 @@ namespace Preiswattera_3000
             tnmtSpecPath = tnIni.GetValue(Const.fileSec, fsX_SpecTnmtPath);
             tnmtActRun = Convert.ToInt32(tnIni.GetValue(tnmtSec, tnS_tnmtRunCntAct));
         }
-
+        #endregion
+        #endregion
     }
 }

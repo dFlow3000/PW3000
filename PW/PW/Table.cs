@@ -71,8 +71,8 @@ namespace Preiswattera_3000
             }
         }
 
-        #region Setter & Getter -------------------------------------------------------------------------------
-        #region Setter ------------------------------------------------------------------------------
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Setter()
         {
             INIFile tbIni = new INIFile(iniPath);
@@ -93,7 +93,7 @@ namespace Preiswattera_3000
             }
         }
         #endregion
-        #region Getter -------------------------------------------------------------------------------
+        #region Getter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Getter(int i_id, int i_runId)
         {
             INIFile tbIni = new INIFile(iniPath);
@@ -123,6 +123,13 @@ namespace Preiswattera_3000
         #endregion
         #endregion
 
+        #region Utility - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Check if Table already exists in actual Run
+        /// </summary>
+        /// <param name="i_tableId"></param>
+        /// <param name="i_runId"></param>
+        /// <returns>0 if not exists | id if exists</returns>
         public static int TableExists(int i_tableId, int i_runId)
         {
             int ret = 0;
@@ -141,6 +148,12 @@ namespace Preiswattera_3000
 
         }
 
+        /// <summary>
+        /// Check if Team is already playing on another table in this run 
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <param name="i_runId"></param>
+        /// <returns></returns>
         public static bool TeamTableCheck(int teamId, int i_runId)
         {
             bool ret = true;
@@ -161,7 +174,7 @@ namespace Preiswattera_3000
             }
             return ret;
         }
+        #endregion
 
-        
     }
 }

@@ -40,9 +40,9 @@ namespace Preiswattera_3000
             suTeamId = Convert.ToInt32(sutIni.GetValue(Const.fileSec, fsX_suTeamCnt)) + 1;
         }
 
-
-        #region Setter & Getter --------------------------------------------------------------------------------
-        #region Setter --------------------------------------------------------------------------------
+        
+        #region Setter & Getter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #region Setter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Setter(SignedUpTeam i_suTeam)
         {
             INIFile sutIni = new INIFile(iniPath);
@@ -71,7 +71,7 @@ namespace Preiswattera_3000
             }
         }
         #endregion
-        #region Getter --------------------------------------------------------------------------------
+        #region Getter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public void Getter(int i_id)
         {
             INIFile sutIni = new INIFile(iniPath);
@@ -95,7 +95,11 @@ namespace Preiswattera_3000
         #endregion
         #endregion
 
-
+        #region Delete - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Delete Team-Section from .ini-File
+        /// </summary>
+        /// <param name="i_deleteTeam"></param>
         public void deleteSignedUpTeam(SignedUpTeam i_deleteTeam)
         {
             INIFile sutIni = new INIFile(iniPath);
@@ -124,6 +128,6 @@ namespace Preiswattera_3000
 
             sutIni.SetValue(Const.fileSec, fsX_suTeamCnt, Convert.ToString(suTeamCnt - 1));
         }
-
+        #endregion
     }
 }

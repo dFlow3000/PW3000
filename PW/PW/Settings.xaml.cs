@@ -147,8 +147,18 @@ namespace Preiswattera_3000
             mainWindow.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Blue.colorBlue);
         }
+        
+        private void btn_EditColorGray_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.colorGray);
+        }
 
-        public static LinearGradientBrush BackgroundSetUp (Color c1, Color c2, Color c3) 
+        #endregion
+
+        #region Utilitiy - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        public static LinearGradientBrush BackgroundSetUp(Color c1, Color c2, Color c3)
         {
             LinearGradientBrush lgbrush = new LinearGradientBrush();
             lgbrush.StartPoint = new Point(0.5, 0);
@@ -159,13 +169,6 @@ namespace Preiswattera_3000
 
             return lgbrush;
         }
-
-        private void btn_EditColorGray_Click(object sender, RoutedEventArgs e)
-        {
-            mainWindow.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
-            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.colorGray);
-        }
-
-        #endregion
+        #endregion 
     }
 }

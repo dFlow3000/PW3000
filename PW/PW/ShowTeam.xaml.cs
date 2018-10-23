@@ -47,6 +47,99 @@ namespace Preiswattera_3000
 
         }
 
+        #region Fill - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        private void FillCmbxTeamSelect()
+        {
+            cmbx_oiTeamShowerSelectTeam.Items.Clear();
+
+            List<string> allTeams = new List<string>();
+            INIFile tIni = new INIFile(Team.iniPath);
+
+            for (int i = 1; i <= Convert.ToInt32(tIni.GetValue(Const.fileSec, Team.fsX_teamCnt)); i++)
+            {
+                allTeams.Add(tIni.GetValue(Team.teamSec + Convert.ToString(i), Team.tS_teamName));
+            }
+
+            int x = 0;
+            foreach (string teamName in allTeams)
+            {
+                x++;
+                cmbx_oiTeamShowerSelectTeam.Items.Add(x + " - " + teamName);
+            }
+        }
+
+        private void FillCmbxPlayedGames()
+        {
+            cmbx_oiTeamPlayedGames.Items.Clear();
+
+            List<string> allPlayedGames = new List<string>();
+            INIFile gIni = new INIFile(Game.iniPath);
+            INIFile teamIni = new INIFile(Team.iniPath);
+
+            for (int i = 1; i <= Convert.ToInt32(gIni.GetValue(Const.fileSec, Game.fsX_gameCnt)); i++)
+            {
+                Game playedGame = new Game();
+                playedGame.Getter(i);
+
+                if (playedGame.gameTeams[0] == selectedTeam.teamId)
+                {
+                    allPlayedGames.Add("D:" + playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[1]), Team.tS_teamName));
+                }
+                else if (playedGame.gameTeams[1] == selectedTeam.teamId)
+                {
+                    allPlayedGames.Add("D:" + playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[0]), Team.tS_teamName));
+                }
+            }
+
+            foreach (string game in allPlayedGames)
+            {
+                cmbx_oiTeamPlayedGames.Items.Add(game);
+            }
+        }
+
+        private void FillShowTeam(Team i_team, Player i_player1, Player i_player2)
+        {
+            gB_sTeamShower.Header = "Team-Nummer " + Convert.ToString(i_team.teamId);
+            // Teamname
+            lbl_oTeamName.Content = i_team.teamName;
+            tbx_oTeamName.Text = i_team.teamName;
+            // Player 1
+            lbl_iTSP1Firstname.Content = i_player1.playerFirstname;
+            tbx_iTSP1Firstname.Text = i_player1.playerFirstname;
+            lbl_iTSP1Lastname.Content = i_player1.playerLastname;
+            tbx_iTSP1Lastname.Text = i_player1.playerLastname;
+
+            if (i_player1.payedStartFee)
+            {
+                cbx_iTAP1Payed.IsChecked = true;
+            }
+            else
+            {
+                cbx_iTAP1Payed.IsChecked = false;
+            }
+            // Player 2
+            lbl_iTSP2Firstname.Content = i_player2.playerFirstname;
+            tbx_iTSP2Firstname.Text = i_player2.playerFirstname;
+            lbl_iTSP2Lastname.Content = i_player2.playerLastname;
+            tbx_iTSP2Lastname.Text = i_player2.playerLastname;
+            if (i_player2.payedStartFee)
+            {
+                cbx_iTAP2Payed.IsChecked = true;
+            }
+            else
+            {
+                cbx_iTAP2Payed.IsChecked = false;
+            }
+
+            //Team-Info
+            lbl_oTeamGamePoints.Content = Convert.ToString(i_team.gamePointsTotal);
+            lbl_oTeamWinPoints.Content = Convert.ToString(i_team.winPoints);
+            lbl_oTeamGamePointsDiff.Content = Convert.ToString(i_team.gamePointsTotalDiff);
+
+        }
+        #endregion
+
+        #region Button - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_EditTeam_Click(object sender, RoutedEventArgs e)
         {
             if (cmbx_oiTeamShowerSelectTeam.SelectedIndex != -1)
@@ -217,54 +310,38 @@ namespace Preiswattera_3000
             mainWindow.MainContent.Content = main;
         }
 
-        private void FillCmbxTeamSelect()
+        private void btn_ShowGameInfo_Click(object sender, RoutedEventArgs e)
         {
-            cmbx_oiTeamShowerSelectTeam.Items.Clear();
-
-            List<string> allTeams = new List<string>();
-            INIFile tIni = new INIFile(Team.iniPath);
-
-            for(int i = 1; i <= Convert.ToInt32(tIni.GetValue(Const.fileSec, Team.fsX_teamCnt)); i++)
+            if (playedGameSelectionChanged)
             {
-                allTeams.Add(tIni.GetValue(Team.teamSec + Convert.ToString(i), Team.tS_teamName));
+                int runId = 0;
+                int gameId = 0;
+
+                string x = cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf(':') + 1,
+                                                                                                  (cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') - cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf(':') - 1));
+                string y = cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') + 4,
+                                                                                                   cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('g') - cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') - 5);
+                runId = Convert.ToInt32(x);
+                gameId = Convert.ToInt32(y);
+
+                Window playedGameInfo = new PlayedGameInfo(runId, gameId);
+                playedGameInfo.Show();
             }
-
-            int x = 0;
-            foreach(string teamName in allTeams)
+            else
             {
-                x++;
-                cmbx_oiTeamShowerSelectTeam.Items.Add(x + " - " + teamName);
+                MessageBox.Show("Wählen Sie zuerst ein Spiel!", "Kein Spiel ausgewählt", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
-        private void FillCmbxPlayedGames()
+        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
         {
-            cmbx_oiTeamPlayedGames.Items.Clear();
-
-            List<string> allPlayedGames = new List<string>();
-            INIFile gIni = new INIFile(Game.iniPath);
-            INIFile teamIni = new INIFile(Team.iniPath);
-
-            for(int i = 1; i <= Convert.ToInt32(gIni.GetValue(Const.fileSec, Game.fsX_gameCnt)); i++)
-            {
-                Game playedGame = new Game();
-                playedGame.Getter(i);
-
-                if(playedGame.gameTeams[0] == selectedTeam.teamId)
-                {
-                    allPlayedGames.Add("D:"+ playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[1]), Team.tS_teamName));
-                } else if (playedGame.gameTeams[1] == selectedTeam.teamId)
-                {
-                    allPlayedGames.Add("D:"+playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[0]), Team.tS_teamName));
-                }
-            }
-
-            foreach(string game in allPlayedGames)
-            {
-                cmbx_oiTeamPlayedGames.Items.Add(game);
-            }
+            InfoWindowContent infoWinCon = new InfoWindowContent();
+            new ShowTeamInfo(infoWinCon.InfoWindowText);
+            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
+        #endregion
 
+        #region Combobox - SelectionChanged +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void cmbx_oiTeamShowerSelectTeam_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbx_oiTeamShowerSelectTeam.SelectedIndex != -1)
@@ -291,45 +368,14 @@ namespace Preiswattera_3000
             }
         }
 
-        private void FillShowTeam (Team i_team, Player i_player1, Player i_player2)
+        private void cmbx_oiTeamPlayedGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            gB_sTeamShower.Header = "Team-Nummer " + Convert.ToString(i_team.teamId);
-            // Teamname
-            lbl_oTeamName.Content = i_team.teamName;
-            tbx_oTeamName.Text = i_team.teamName;
-            // Player 1
-            lbl_iTSP1Firstname.Content = i_player1.playerFirstname;
-            tbx_iTSP1Firstname.Text = i_player1.playerFirstname;
-            lbl_iTSP1Lastname.Content = i_player1.playerLastname;
-            tbx_iTSP1Lastname.Text = i_player1.playerLastname;
-
-            if (i_player1.payedStartFee)
-            {
-                cbx_iTAP1Payed.IsChecked = true;
-            } else
-            {
-                cbx_iTAP1Payed.IsChecked = false;
-            }
-            // Player 2
-            lbl_iTSP2Firstname.Content = i_player2.playerFirstname;
-            tbx_iTSP2Firstname.Text = i_player2.playerFirstname;
-            lbl_iTSP2Lastname.Content = i_player2.playerLastname;
-            tbx_iTSP2Lastname.Text = i_player2.playerLastname;
-            if (i_player2.payedStartFee)
-            {
-                cbx_iTAP2Payed.IsChecked = true;
-            } else
-            {
-                cbx_iTAP2Payed.IsChecked = false;
-            }
-
-            //Team-Info
-            lbl_oTeamGamePoints.Content = Convert.ToString(i_team.gamePointsTotal);
-            lbl_oTeamWinPoints.Content = Convert.ToString(i_team.winPoints);
-            lbl_oTeamGamePointsDiff.Content = Convert.ToString(i_team.gamePointsTotalDiff);
-
+            playedGameSelectionChanged = true;
         }
 
+        #endregion
+
+        #region Check - Functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void CheckBackGroundForNotPayed()
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
@@ -353,7 +399,9 @@ namespace Preiswattera_3000
             cnvs_NotPayed1.Background = brush;
             cnvs_NotPayed2.Background = brush;
         }
+        #endregion
 
+        #region Utitlity - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void CreateTeamName(object sender, RoutedEventArgs e)
         {
             if (tbx_iTSP1Lastname.Text != "" && tbx_iTSP2Lastname.Text != "")
@@ -362,39 +410,8 @@ namespace Preiswattera_3000
                 selectedTeam.teamName = tbx_oTeamName.Text;
             }
         }
-
-        private void cmbx_oiTeamPlayedGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            playedGameSelectionChanged = true;
-        }
-
-        private void btn_ShowGameInfo_Click(object sender, RoutedEventArgs e)
-        {
-            if (playedGameSelectionChanged)
-            {
-                int runId = 0;
-                int gameId = 0;
-
-                string x = cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf(':') + 1,
-                                                                                                  (cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') - cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf(':') - 1));
-                string y = cmbx_oiTeamPlayedGames.SelectedValue.ToString().Substring(cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') + 4,
-                                                                                                   cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('g') - cmbx_oiTeamPlayedGames.SelectedValue.ToString().IndexOf('|') - 5);
-                runId = Convert.ToInt32(x);
-                gameId = Convert.ToInt32(y);
-
-                Window playedGameInfo = new PlayedGameInfo(runId, gameId);
-                playedGameInfo.Show();
-            } else
-            {
-                MessageBox.Show("Wählen Sie zuerst ein Spiel!", "Kein Spiel ausgewählt", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
-        {
-            InfoWindowContent infoWinCon = new InfoWindowContent();
-            new ShowTeamInfo(infoWinCon.InfoWindowText);
-            infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
-        }
+        #endregion
+        
     }
 
     public class ShowTeamInfo
