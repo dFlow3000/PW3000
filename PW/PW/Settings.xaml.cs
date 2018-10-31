@@ -133,25 +133,29 @@ namespace Preiswattera_3000
         private void btn_EditColorGreen_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
-            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Green.colorGreen);
+            SwitchColorStyleActionMenue(mainWindow, Const.Green.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Green.color);
         }
 
         private void btn_EditColorRed_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
-            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Red.colorRed);
+            SwitchColorStyleActionMenue(mainWindow, Const.Red.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Red.color);
         }
 
         public void btn_EditColorBlue_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
-            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Blue.colorBlue);
+            SwitchColorStyleActionMenue(mainWindow, Const.Blue.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Blue.color);
         }
         
         private void btn_EditColorGray_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
-            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.colorGray);
+            SwitchColorStyleActionMenue(mainWindow, Const.Gray.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.color);
         }
 
         #endregion
@@ -168,6 +172,20 @@ namespace Preiswattera_3000
             lgbrush.GradientStops.Add(new GradientStop(c3, 0));
 
             return lgbrush;
+        }
+
+        public static void SwitchColorStyleActionMenue(MainWindow i_mainWindow, string i_ColorMode)
+        {
+            for (int i = 0; i < i_mainWindow.actionMenueButton.Length; i++)
+            {
+                if (i_mainWindow.actionMenueButton[i].Uid != i_mainWindow.NO_TEAM_ADDING)
+                {
+                    i_mainWindow.actionMenueButton[i].Style = (Style)Application.Current.Resources["ActionMenueButton_" + i_ColorMode];
+                } else
+                {
+                    i_mainWindow.actionMenueButton[i].Style = (Style)Application.Current.Resources["DisabledButton"];
+                }
+            }
         }
         #endregion 
     }

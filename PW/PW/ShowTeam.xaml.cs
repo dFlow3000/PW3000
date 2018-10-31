@@ -382,13 +382,13 @@ namespace Preiswattera_3000
             SolidColorBrush brush;
             switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
             {
-                case Const.Red.colorRed:
+                case Const.Red.color:
                     brush = new SolidColorBrush(Const.Red.redHighlight);
                     break;
-                case Const.Blue.colorBlue:
+                case Const.Blue.color:
                     brush = new SolidColorBrush(Const.Blue.blueHighlight);
                     break;
-                case Const.Green.colorGreen:
+                case Const.Green.color:
                     brush = new SolidColorBrush(Const.Green.greenHighlight);
                     break;
                 default:

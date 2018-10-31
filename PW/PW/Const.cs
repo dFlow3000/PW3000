@@ -84,12 +84,18 @@ namespace Preiswattera_3000
         /// <param name="i_window">actual window</param>
         /// <param name="i_btn">Button which should be changed</param>
         /// <param name="i_ChangeBtnBackground">if true, just changing Buttonbackground</param>
-        public static void SwitchColor(Window i_window, Button i_btn = null, bool i_ChangeBtnBackground = false)
+        public static void SwitchColor(Window i_window, Button[] i_ActionMenueBtn = null, Button i_btn = null, bool i_ChangeBtnBackground = false)
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
-            switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
+            string colorMode = tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode);
+
+            if (i_ActionMenueBtn != null)
             {
-                case Const.Red.colorRed:
+                Settings.SwitchColorStyleActionMenue((MainWindow)i_window, colorMode);
+            }
+            switch (colorMode)
+            {
+                case Const.Red.color:
                     if (!i_ChangeBtnBackground)
                     {
                         i_window.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
@@ -98,7 +104,7 @@ namespace Preiswattera_3000
                         i_btn.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
                     }
                     break;
-                case Const.Blue.colorBlue:
+                case Const.Blue.color:
                     if (!i_ChangeBtnBackground)
                     {
                         i_window.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
@@ -108,7 +114,7 @@ namespace Preiswattera_3000
                         i_btn.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
                     }
                     break;
-                case Const.Green.colorGreen:
+                case Const.Green.color:
                     if (!i_ChangeBtnBackground)
                     {
                         i_window.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
@@ -118,7 +124,7 @@ namespace Preiswattera_3000
                         i_btn.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
                     }
                     break;
-                case Const.Gray.colorGray:
+                case Const.Gray.color:
                     if (!i_ChangeBtnBackground)
                     {
                         i_window.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
@@ -143,16 +149,16 @@ namespace Preiswattera_3000
             Color retColor;
             switch (tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode))
             {
-                case Const.Red.colorRed:
+                case Const.Red.color:
                     retColor = Const.Red.redHighlight;
                     break;
-                case Const.Blue.colorBlue:
+                case Const.Blue.color:
                     retColor = Const.Blue.blueHighlight;
                     break;
-                case Const.Green.colorGreen:
+                case Const.Green.color:
                     retColor = Const.Green.green2;
                     break;
-                case Const.Gray.colorGray:
+                case Const.Gray.color:
                     retColor = Const.Gray.grayHighlight;
                     break;
                 default:
@@ -185,7 +191,7 @@ namespace Preiswattera_3000
         /// </summary>
         public struct Red
         {
-            public const string colorRed = "Red";
+            public const string color = "Red";
             public static Color red1 = Color.FromRgb(212, 44, 44);
             public static Color red2 = Color.FromRgb(195, 0, 0);
             public static Color red3 = Color.FromRgb(255, 97, 97);
@@ -199,7 +205,7 @@ namespace Preiswattera_3000
         /// </summary>
         public struct Blue
         {
-            public const string colorBlue = "Blue";
+            public const string color = "Blue";
             public static Color blue1 = Color.FromRgb(159, 194, 255);
             public static Color blue2 = Color.FromRgb(66, 107, 178);
             public static Color blue3 = Color.FromRgb(38, 83, 137);
@@ -214,7 +220,7 @@ namespace Preiswattera_3000
         /// </summary>
         public struct Green
         {
-            public const string colorGreen = "Green";
+            public const string color = "Green";
             public static Color green1 = Color.FromRgb(82, 249, 120);
             public static Color green2 = Color.FromRgb(32, 180, 79);
             public static Color green3 = Color.FromRgb(0, 135, 24);
@@ -229,7 +235,7 @@ namespace Preiswattera_3000
         /// </summary>
         public struct Gray
         {
-            public const string colorGray = "Gray";
+            public const string color = "Gray";
             public static Color gray1 = Color.FromRgb(226, 226, 226);
             public static Color gray2 = Color.FromRgb(168, 168, 168);
             public static Color gray3 = Color.FromRgb(83, 83, 83);

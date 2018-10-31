@@ -32,51 +32,16 @@
                 </LinearGradientBrush>
             </ContentControl.Background>
         </ContentControl>
-        <DockPanel x:Name="ActionMenue" Grid.Column="0" Visibility="Visible" Height="Auto">
+        <DockPanel x:Name="ActionMenue" Grid.Column="0" Visibility="Visible" Height="Auto" OpacityMask="#FFB9B0B0">
             <StackPanel>
-                <Button x:Name="btn_GoToAddTeam" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_GoToShowTeam" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_GoToTnmtData" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_GoToEvaluation" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_GoTournamentMenue" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28" Foreground="WhiteSmoke" FontFamily="Arial" FontWeight="Bold">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
+                <Button x:Name="btn_GoToAddTeam" Style="{StaticResource ActionMenueButton}" Content="Team anlegen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28"/>
+                <Button x:Name="btn_GoToShowTeam" Style="{StaticResource ActionMenueButton}" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28"/>
+                <Button x:Name="btn_GoToTnmtData" Style="{StaticResource ActionMenueButton}" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28"/>
+                <Button x:Name="btn_GoToEvaluation" Style="{StaticResource ActionMenueButton}" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28"/>
+                <Button x:Name="btn_GoTournamentMenue" Style="{StaticResource ActionMenueButton}" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28"/>
             </StackPanel>
         </DockPanel>
-        <Canvas x:Name="cnvs_PWHeader" Visibility="Hidden">
+        <Canvas x:Name="cnvs_PWHeader123" Visibility="Hidden">
             <Label Content="P" FontSize="38" Height="45" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
             <Label Content="R" FontSize="38" Height="45" Canvas.Top="45" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
             <Label Content="E" FontSize="38" Height="45" Canvas.Top="90" Width="240" Canvas.Left="10" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
@@ -94,6 +59,36 @@
             <Label Content="0" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="657" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
             <Label Content="0" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="702" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
             <Label Content="A" FontSize="38" Height="45" Canvas.Left="10" Canvas.Top="495" Width="240" HorizontalContentAlignment="Center" FontFamily="Rockwell"/>
+        </Canvas>
+        <Canvas x:Name="cnvs_PWHeader" Visibility="Hidden">
+            <Button Style="{StaticResource ShowHeaderButtonStyle}" Width="250" Height="795" Canvas.Top="-27">
+                <TextBlock TextWrapping="Wrap" FontSize="38" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="P
+                           R
+                           E
+                           I
+                           S
+                           W
+                           A
+                           T
+                           T
+                           E
+                           R
+                           A
+                           3
+                           0
+                           0
+                           0" Height="705" RenderTransformOrigin="0.5,0.5" Width="227">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-0.076"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.499"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+            </Button>
+
         </Canvas>
     </Grid>
 </Window>

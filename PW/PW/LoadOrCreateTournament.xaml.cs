@@ -26,8 +26,8 @@ namespace Preiswattera_3000
             InitializeComponent();
             mainWindow = i_mainWindow;
 
-            Const.SwitchColor(i_mainWindow, btn_createTournament, true);
-            Const.SwitchColor(i_mainWindow, btn_loadTournament, true);
+            Const.SwitchColor(i_mainWindow);
+            Const.SwitchColor(i_mainWindow);
         }
 
         #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

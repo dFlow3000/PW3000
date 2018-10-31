@@ -22,7 +22,10 @@ namespace Preiswattera_3000
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public string NO_TEAM_ADDING = "NoAdding";
         public bool keepDeleting = false;
+        public Button[] actionMenueButton = new Button[5];
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +44,13 @@ namespace Preiswattera_3000
             INIFile tableData = IniFileDataTemplate.CheckIfIniExists(Table.iniPath);
             INIFile signedUpTeamsData = IniFileDataTemplate.CheckIfIniExists(SignedUpTeam.iniPath);
 
-            Const.SwitchColor(this);
+            actionMenueButton[0] = btn_GoToAddTeam;
+            actionMenueButton[1] = btn_GoToEvaluation;
+            actionMenueButton[2] = btn_GoToShowTeam;
+            actionMenueButton[3] = btn_GoToTnmtData;
+            actionMenueButton[4] = btn_GoTournamentMenue;
+
+            Const.SwitchColor(this, actionMenueButton);
 
             UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
             MainContent.Content = creOLoaTnmt;
@@ -81,7 +90,8 @@ namespace Preiswattera_3000
 
                 if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) != 0)
                 {
-                    btn_GoToAddTeam.IsEnabled = false;
+                    btn_GoToAddTeam.Style = (Style)Application.Current.Resources["DisabledButton"];
+                    btn_GoToAddTeam.Uid = NO_TEAM_ADDING;
                 }
             }
         }
@@ -223,8 +233,12 @@ namespace Preiswattera_3000
 
         private void btn_GoToAddTeam_Click(object sender, RoutedEventArgs e)
         {
-            UserControl addTeam = new AddTeam(this);
-            MainContent.Content = addTeam;
+            Button thisButton = (Button)sender;
+            if (thisButton.Uid != NO_TEAM_ADDING)
+            {
+                UserControl addTeam = new AddTeam(this);
+                MainContent.Content = addTeam;
+            }
         }
 
         private void btn_GoTournamentMenue_Click(object sender, RoutedEventArgs e)

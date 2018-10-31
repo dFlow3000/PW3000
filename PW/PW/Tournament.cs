@@ -21,7 +21,7 @@ namespace Preiswattera_3000
         public const string fsX_SpecTnmtPath = "Specific-Tournament-Path";
         public const string fsX_SpecTnmtPath_def = "C:/";
         public const string fsX_ColorMode = "Color-Mode";
-        public const string fsX_ColorMode_def = Const.Gray.colorGray;
+        public const string fsX_ColorMode_def = Const.Gray.color;
         // .ini-File - Section - Tournament Section
         public const string tnmtSec = "tournament-section";
         public const string tnS_tnmtName = "Name";
