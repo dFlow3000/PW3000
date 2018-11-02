@@ -36,6 +36,12 @@ namespace Preiswattera_3000
             INIFile gameIni = new INIFile(Game.iniPath);
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
 
+            Button[] iA_Btns =
+            {
+                btn_ClosePlayedGameInfo
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Btns);
+
             Const.SwitchColor(this);
 
             Game playedGame = new Game();

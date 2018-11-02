@@ -40,6 +40,13 @@ namespace Preiswattera_3000
         private void AddTeam_Loaded(object sender, RoutedEventArgs e)
         {
             INIFile tIni = new INIFile(Team.iniPath);
+            Button[] iA_Buttons =
+            {
+                btn_Clear,
+                btn_MainMenue,
+                btn_Save
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Buttons);
 
             newTeam = new Team(true);
 
@@ -135,11 +142,9 @@ namespace Preiswattera_3000
                     {
                         if (!mainWindow.keepDeleting)
                         {
-                            if (MessageBox.Show("Team aus Anmeldeliste wird übernommen!" +
-                                                "\nSoll Team aus der Anmeldeliste entfernt werden?",
-                                               "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
-                                               MessageBoxButton.YesNo,
-                                               MessageBoxImage.Question) == MessageBoxResult.Yes)
+                            if (mainWindow.MessageBar(MainWindow.AskMessage, "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
+                                                                             "Team aus Anmeldeliste wird übernommen!" +
+                                                                             "\nSoll Team aus der Anmeldeliste entfernt werden?"))
                             {
                                 Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
                                 if (MessageBox.Show("Soll bei unverändert übernommenen Teams immer gelöscht werden?" +
@@ -200,6 +205,8 @@ namespace Preiswattera_3000
                                 "Fehlende Informationen",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Exclamation);
+                mainWindow.MessageBar(MainWindow.ErrorMessage, "Fehlende Informationen", "Einige Informationen fehlen!\nBitte vervollständige die Eingabe!");
+
             }
         }
         

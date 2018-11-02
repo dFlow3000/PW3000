@@ -29,6 +29,15 @@ namespace Preiswattera_3000
             mainWindow = i_mainWindow;
         }
 
+        private void AddTournament_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button[] iA_Btn =
+            {
+                btn_StartTnmt
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Btn);
+        }
+        
         #region Button - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Sets up Tournament through user inputs -> actual tournamtent-state prepairMode 

@@ -53,6 +53,20 @@ namespace Preiswattera_3000
             INIFile tIni = new INIFile(Team.iniPath);
             INIFile tableIni = new INIFile(Table.iniPath);
 
+            Button[] iA_Btns =
+            {
+                btn_Edit_GameData,
+                btn_Edit_GameData_Autorisation,
+                btn_Edit_GameData_Clear,
+                btn_Edit_GameData_Save,
+                btn_MainMenue,
+                btn_Save,
+                btn_TableSetBack,
+                btn_ToRun
+            };
+
+            Settings.SwitchColorStyleDefaultButton(iA_Btns);
+
             if (Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) <  runId)
             {
                 Run prevRun = new Run();

@@ -30,14 +30,7 @@
         <Label x:Name="lbl_oGamePointsTeam1" Content="" HorizontalAlignment="Left" Margin="144,140,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
         <Label x:Name="lbl_oGamePointsTeam2" Content="" HorizontalAlignment="Left" Margin="260,140,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="239,132,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <Button x:Name="btn_ClosePlayedGameInfo" Content="Schließen" HorizontalAlignment="Left" Margin="183,220,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_ClosePlayedGameInfo_Click" Foreground="WhiteSmoke">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="btn_ClosePlayedGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="183,220,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_ClosePlayedGameInfo_Click"/>
         <Label x:Name="lbl_oGameInfo" Content="" HorizontalAlignment="Left" Margin="0,4,0,0" VerticalAlignment="Top" Width="481" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="20"/>
 
     </Grid>

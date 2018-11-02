@@ -17,7 +17,7 @@
             <RowDefinition Height="596"/>
             <RowDefinition Height="94"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_sSignUpTeamHeader" Content="Team anmelden" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="966" Margin="86,-6,78,12"/>
+        <Label x:Name="lbl_sSignUpTeamHeader" Content="Team anmelden" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="36" Height="64" Width="966" Margin="82,4,82,2"/>
         <GroupBox x:Name="gB_sSignUpTeam" Header="Team-Nummer " HorizontalAlignment="Left" Height="564" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1120" FontSize="20">
             <GroupBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -62,22 +62,8 @@
                 </GroupBox>
                 <Label x:Name="lbl_sMultiCreate" Visibility="Hidden" Content="Anzahl:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="460" Canvas.Top="368"/>
                 <TextBox x:Name="tbx_iMultiCreate" Height="33" Canvas.Left="539" Visibility="Hidden" TextWrapping="Wrap" Text="" Canvas.Top="372" Width="48" TextChanged="tbx_iMultiCreate_TextChanged"/>
-                <Button x:Name="btn_ClsMultiCreate" Content="X" Visibility="Hidden" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="25" Height="25" Click="btn_ClsMultiCreate_Click" FontSize="14" Canvas.Left="591" Canvas.Top="375">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="#FFDA0000" Offset="1"/>
-                            <GradientStop Color="#FEFF8E8E"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_MultiCreate" Content="Mehrfach anlegen" Visibility="Visible" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="208" Height="37" Click="btn_MultiCreate_Click" FontSize="22" Canvas.Left="450" Canvas.Top="364">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
+                <Button x:Name="btn_ClsMultiCreate" Content="X" Visibility="Hidden" Style="{StaticResource CloseTnmtButton}" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="25" Height="25" Click="btn_ClsMultiCreate_Click" FontSize="14" Canvas.Left="591" Canvas.Top="375"/>
+                <Button x:Name="btn_MultiCreate" Style="{StaticResource DefaultIAButton}" Content="Mehrfach anlegen" Visibility="Visible" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="208" Height="37" Click="btn_MultiCreate_Click" Canvas.Left="450" Canvas.Top="364"/>
                 <GroupBox x:Name="gB_sSignUpExtraInfo" Header="Zusatzinformationen" Height="114" Canvas.Left="19" Canvas.Top="410" Width="1091" FontSize="20">
                     <GroupBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -95,37 +81,9 @@
                 <TextBox x:Name="tbx_oTeamName" Height="33" Canvas.Left="154" TextWrapping="Wrap" Text="" Canvas.Top="468" Width="323"/>
             </Canvas>
         </GroupBox>
-        <Button x:Name="btn_MainMenue" Content="Zurück" Foreground="WhiteSmoke" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="240" Margin="139,0,0,0" Click="btn_MainMenue_Click" FontSize="22" Height="70">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btn_Save" Content="Speichern" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="422,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click" FontSize="22">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btn_Clear" Content="Abbrechen" Foreground="WhiteSmoke" HorizontalAlignment="Left" Margin="705,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Clear_Click" FontSize="22">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btn_WindowInfo" Height="35" Width="35" Content="i" Margin="18,13,1077,22" FontFamily="Palatino Linotype" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Foreground="White" BorderBrush="{x:Null}" Click="btn_WindowInfo_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF34ACFF" Offset="0"/>
-                    <GradientStop Color="#FF001387" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="btn_MainMenue" Content="Zurück" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Margin="187,10,0,0" Click="btn_MainMenue_Click"/>
+        <Button x:Name="btn_Save" Content="Speichern" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Margin="458,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click"/>
+        <Button x:Name="btn_Clear" Content="Abbrechen" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Margin="723,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Clear_Click"/>
+        <Button x:Name="btn_WindowInfo" Height="35" Width="35" Style="{StaticResource InfoButton}" Content="i" Margin="18,13,1077,22" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Click="btn_WindowInfo_Click"/>
     </Grid>
 </UserControl>

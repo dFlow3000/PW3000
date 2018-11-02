@@ -37,6 +37,15 @@ namespace Preiswattera_3000
         {
             INIFile teamIni = new INIFile(Team.iniPath);
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
+
+            Button[] iA_Btns =
+            {
+                btn_MainMenue,
+                btn_PrintEvaluation
+            };
+
+            Settings.SwitchColorStyleDefaultButton(iA_Btns);
+
             
             SolidColorBrush brush;
             brush = new SolidColorBrush(Const.SwitchFontColor());
@@ -91,23 +100,13 @@ namespace Preiswattera_3000
                     btn_teamGameInfo.FontFamily = new FontFamily("Courier New");
                     btn_teamGameInfo.FontSize = 16;
                     btn_teamGameInfo.Foreground = Brushes.WhiteSmoke;
-                    LinearGradientBrush lgbrushRed = new LinearGradientBrush();
-                    lgbrushRed.StartPoint = new Point(0.5, 0);
-                    lgbrushRed.EndPoint = new Point(0.5, 1);
-                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.DeepSkyBlue, 1.0));
-                    lgbrushRed.GradientStops.Add(new GradientStop(Colors.SkyBlue, 0.0));
-
-                    btn_teamGameInfo.Background = lgbrushRed;
+                    btn_teamGameInfo.Style = (Style)Application.Current.Resources["InfoButton"];
                     btn_teamGameInfo.Click += new RoutedEventHandler(OpenTeamGameInfo);
 
                     lbl_rowNumber.FontSize = 16;
                     lbl_teamName.FontSize = 16;
                     lbl_winPoints.FontSize = 16;
                     lbl_gamePointsDiff.FontSize = 16;
-                    //lbl_rowNumber.FontWeight = FontWeights.Bold;
-                    //lbl_teamName.FontWeight = FontWeights.Bold;
-                    //lbl_winPoints.FontWeight = FontWeights.Bold;
-                    //lbl_gamePoints.FontWeight = FontWeights.Bold;
 
                     lbl_rowNumber.HorizontalContentAlignment = HorizontalAlignment.Right;
                     lbl_teamName.HorizontalContentAlignment = HorizontalAlignment.Center;

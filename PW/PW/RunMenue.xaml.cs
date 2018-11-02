@@ -42,7 +42,6 @@ namespace Preiswattera_3000
                 btn_Run_Menue.Height = 75;
                 btn_Run_Menue.FontWeight = FontWeights.Bold;
                 btn_Run_Menue.FontSize = 24;
-                btn_Run_Menue.Foreground = Brushes.WhiteSmoke;
                 if(i != 1)
                 {
                     Run prevRun = new Run();
@@ -52,15 +51,9 @@ namespace Preiswattera_3000
                         btn_Run_Menue.IsEnabled = false;
                     }
                 }
-
-                // Farbverlauf
-                LinearGradientBrush lgbrushRed = new LinearGradientBrush();
-                lgbrushRed.StartPoint = new Point(0.5, 0);
-                lgbrushRed.EndPoint = new Point(0.5, 1);
-                lgbrushRed.GradientStops.Add(new GradientStop(Colors.Black, 1.0));
-                lgbrushRed.GradientStops.Add(new GradientStop(Colors.Gray, 0.0));
-
-                btn_Run_Menue.Background = lgbrushRed;
+                
+                string colorMode = tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode);
+                btn_Run_Menue.Style = (Style)Application.Current.Resources["DefaultIAButton_" + colorMode];
                 btn_Run_Menue.Click += new RoutedEventHandler(openRun);
                 stp_RunMenueBtn.Children.Add(btn_Run_Menue);
             }

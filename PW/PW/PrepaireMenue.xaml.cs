@@ -32,6 +32,11 @@ namespace Preiswattera_3000
         private void PrepaireMenue_Loaded(object sender, RoutedEventArgs e)
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            Button[] iA_Btn =
+            {
+                btn_SignUpTeams
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Btn);
 
             lbl_oPrepMenueHeader.Content = tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtName);
         }
@@ -45,12 +50,12 @@ namespace Preiswattera_3000
 
         private void btn_StartTournament_Click(object sender, RoutedEventArgs e)
         {
-            UserControl main = new Main(mainWindow);
-            mainWindow.MainContent.Content = main;
 
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
             tnmtIni.SetValue(Const.fileSec, Tournament.fsX_prepMode, Convert.ToString(0));
 
+            UserControl main = new Main(mainWindow);
+            mainWindow.MainContent.Content = main;
         }
 
         private void btn_endTournament_Click(object sender, RoutedEventArgs e)

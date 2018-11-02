@@ -104,3 +104,5 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\App.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Styles\Button_Styles.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\MessageWindow.g.cs
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\MessageWindow.baml

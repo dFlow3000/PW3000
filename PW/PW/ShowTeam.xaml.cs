@@ -44,7 +44,6 @@ namespace Preiswattera_3000
             cnvs_NotPayed1.Visibility = Visibility.Hidden;
             cnvs_NotPayed2.Visibility = Visibility.Hidden;
             CheckBackGroundForNotPayed();
-
         }
 
         #region Fill - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -185,85 +184,92 @@ namespace Preiswattera_3000
 
         private void btn_EditTeam_Save_Click(object sender, RoutedEventArgs e)
         {
-            btn_EditTeam_Save.Visibility = Visibility.Hidden;
-            btn_EditTeam.Visibility = Visibility.Visible;
-            btn_EditTeam_Clear.Visibility = Visibility.Hidden;
-
-            //Hide Textbox and show Label
-            tbx_oTeamName.Visibility = Visibility.Hidden;
-            tbx_iTSP1Firstname.Visibility = Visibility.Hidden;
-            tbx_iTSP1Lastname.Visibility = Visibility.Hidden;
-            tbx_iTSP2Firstname.Visibility = Visibility.Hidden;
-            tbx_iTSP2Lastname.Visibility = Visibility.Hidden;
-            cbx_iTAP1Payed.IsEnabled = false;
-            cbx_iTAP2Payed.IsEnabled = false;
-            lbl_oTeamName.Visibility = Visibility.Visible;
-            lbl_iTSP1Firstname.Visibility = Visibility.Visible;
-            lbl_iTSP1Lastname.Visibility = Visibility.Visible;
-            lbl_iTSP2Firstname.Visibility = Visibility.Visible;
-            lbl_iTSP2Lastname.Visibility = Visibility.Visible;
-
-            bool noSameNames = true;
-
-            if (Convert.ToString(lbl_oTeamName.Content) != tbx_oTeamName.Text)
+            if (CheckEmptyString())
             {
-                INIFile tIni = new INIFile(Team.iniPath);
-                for(int i = 1; i <= Convert.ToInt32(tIni.GetValue(Const.fileSec, Team.fsX_teamCnt)); i++)
+                btn_EditTeam_Save.Visibility = Visibility.Hidden;
+                btn_EditTeam.Visibility = Visibility.Visible;
+                btn_EditTeam_Clear.Visibility = Visibility.Hidden;
+
+                //Hide Textbox and show Label
+                tbx_oTeamName.Visibility = Visibility.Hidden;
+                tbx_iTSP1Firstname.Visibility = Visibility.Hidden;
+                tbx_iTSP1Lastname.Visibility = Visibility.Hidden;
+                tbx_iTSP2Firstname.Visibility = Visibility.Hidden;
+                tbx_iTSP2Lastname.Visibility = Visibility.Hidden;
+                cbx_iTAP1Payed.IsEnabled = false;
+                cbx_iTAP2Payed.IsEnabled = false;
+                lbl_oTeamName.Visibility = Visibility.Visible;
+                lbl_iTSP1Firstname.Visibility = Visibility.Visible;
+                lbl_iTSP1Lastname.Visibility = Visibility.Visible;
+                lbl_iTSP2Firstname.Visibility = Visibility.Visible;
+                lbl_iTSP2Lastname.Visibility = Visibility.Visible;
+
+                bool noSameNames = true;
+
+                if (Convert.ToString(lbl_oTeamName.Content) != tbx_oTeamName.Text)
                 {
-                    if (tIni.GetValue(Team.teamSec + Convert.ToString(i), Team.tS_teamName) == tbx_oTeamName.Text)
+                    INIFile tIni = new INIFile(Team.iniPath);
+                    for (int i = 1; i <= Convert.ToInt32(tIni.GetValue(Const.fileSec, Team.fsX_teamCnt)); i++)
                     {
-                        MessageBox.Show("Der Teamname \"" + tbx_oTeamName.Text + "\" ist bereits vergeben!", 
-                                        "Teamname bereits vergeben!", 
-                                        MessageBoxButton.OK, 
-                                        MessageBoxImage.Error);
-                        noSameNames = false;
-                        break;
+                        if (tIni.GetValue(Team.teamSec + Convert.ToString(i), Team.tS_teamName) == tbx_oTeamName.Text)
+                        {
+                            MessageBox.Show("Der Teamname \"" + tbx_oTeamName.Text + "\" ist bereits vergeben!",
+                                            "Teamname bereits vergeben!",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Error);
+                            noSameNames = false;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if(noSameNames)
-            {
-                int log_cnt = 1;
-                Log.Update("EDIT TEAM Log#1 - TeamNr:" + selectedTeam.teamId + "|TeamName:" + selectedTeam.teamName);
-                if (TeamUpdateCheck("Player1-Firstname", player1.playerFirstname, tbx_iTSP1Firstname.Text, ++log_cnt))
+                if (noSameNames)
                 {
-                    player1.playerFirstname = tbx_iTSP1Firstname.Text;
-                }
-                if (TeamUpdateCheck("Player1-Lastname", player1.playerLastname, tbx_iTSP1Lastname.Text, ++log_cnt))
-                {
-                    player1.playerLastname = tbx_iTSP1Lastname.Text;
-                }
-                if (TeamUpdateCheck("Player1-StartFee", Convert.ToString(player1.payedStartFee), Convert.ToString(cbx_iTAP1Payed.IsChecked), ++log_cnt))
-                {
-                    player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
-                }
+                    int log_cnt = 1;
+                    Log.Update("EDIT TEAM Log#1 - TeamNr:" + selectedTeam.teamId + "|TeamName:" + selectedTeam.teamName);
+                    if (TeamUpdateCheck("Player1-Firstname", player1.playerFirstname, tbx_iTSP1Firstname.Text, ++log_cnt))
+                    {
+                        player1.playerFirstname = tbx_iTSP1Firstname.Text;
+                    }
+                    if (TeamUpdateCheck("Player1-Lastname", player1.playerLastname, tbx_iTSP1Lastname.Text, ++log_cnt))
+                    {
+                        player1.playerLastname = tbx_iTSP1Lastname.Text;
+                    }
+                    if (TeamUpdateCheck("Player1-StartFee", Convert.ToString(player1.payedStartFee), Convert.ToString(cbx_iTAP1Payed.IsChecked), ++log_cnt))
+                    {
+                        player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
+                    }
 
-                if (TeamUpdateCheck("Player2-Firstname", player2.playerFirstname, tbx_iTSP2Firstname.Text, ++log_cnt))
-                {
-                    player2.playerFirstname = tbx_iTSP2Firstname.Text;
-                }
-                if (TeamUpdateCheck("Player2-Lastname", player1.playerLastname, tbx_iTSP2Lastname.Text, ++log_cnt))
-                {
-                    player2.playerLastname = tbx_iTSP2Lastname.Text;
-                }
-                if (TeamUpdateCheck("Player2-StartFee", Convert.ToString(player2.payedStartFee), Convert.ToString(cbx_iTAP2Payed.IsChecked), ++log_cnt))
-                {
-                    player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
-                }
-                player1.Setter();
-                player2.Setter();
+                    if (TeamUpdateCheck("Player2-Firstname", player2.playerFirstname, tbx_iTSP2Firstname.Text, ++log_cnt))
+                    {
+                        player2.playerFirstname = tbx_iTSP2Firstname.Text;
+                    }
+                    if (TeamUpdateCheck("Player2-Lastname", player1.playerLastname, tbx_iTSP2Lastname.Text, ++log_cnt))
+                    {
+                        player2.playerLastname = tbx_iTSP2Lastname.Text;
+                    }
+                    if (TeamUpdateCheck("Player2-StartFee", Convert.ToString(player2.payedStartFee), Convert.ToString(cbx_iTAP2Payed.IsChecked), ++log_cnt))
+                    {
+                        player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
+                    }
+                    player1.Setter();
+                    player2.Setter();
 
-                if (TeamUpdateCheck("TeamName", selectedTeam.teamName, tbx_oTeamName.Text, ++log_cnt))
-                {
-                    selectedTeam.teamName = tbx_oTeamName.Text;
+                    if (TeamUpdateCheck("TeamName", selectedTeam.teamName, tbx_oTeamName.Text, ++log_cnt))
+                    {
+                        selectedTeam.teamName = tbx_oTeamName.Text;
+                    }
+                    selectedTeam.Setter();
+                    ShowTeam_Loaded(sender, e);
+                    FillShowTeam(selectedTeam, player1, player2);
                 }
-                selectedTeam.Setter();
-                ShowTeam_Loaded(sender, e);
-                FillShowTeam(selectedTeam, player1, player2);
+                else
+                {
+                    FillShowTeam(selectedTeam, player1, player2);
+                }
             } else
             {
-                FillShowTeam(selectedTeam, player1, player2);
+                // ERROR MESSAGE
             }
         }
 
@@ -398,6 +404,21 @@ namespace Preiswattera_3000
 
             cnvs_NotPayed1.Background = brush;
             cnvs_NotPayed2.Background = brush;
+        }
+
+        private bool CheckEmptyString()
+        {
+            if (tbx_iTSP1Firstname.Text != String.Empty &&
+                tbx_iTSP1Lastname.Text != String.Empty  &&
+                tbx_iTSP2Firstname.Text != String.Empty &&
+                tbx_iTSP2Lastname.Text != String.Empty  &&
+                tbx_oTeamName.Text != String.Empty          )
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
         #endregion
 

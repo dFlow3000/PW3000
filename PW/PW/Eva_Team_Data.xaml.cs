@@ -32,6 +32,12 @@ namespace Preiswattera_3000
         {
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
 
+            Button[] iA_Buttons =
+            {
+                btn_CloseTeamGameInfo,
+                btn_WindowInfo
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Buttons);
             Const.SwitchColor(this);
             SolidColorBrush brush;
             brush = new SolidColorBrush(Const.SwitchFontColor());

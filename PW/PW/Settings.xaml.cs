@@ -187,6 +187,16 @@ namespace Preiswattera_3000
                 }
             }
         }
+
+        public static void SwitchColorStyleDefaultButton(Button[] i_btn)
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            string colorMode = tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode);
+            for (int i = 0; i < i_btn.Length; i++)
+            {
+                i_btn[i].Style = (Style)Application.Current.Resources["DefaultIAButton_" + colorMode];
+            }
+        }
         #endregion 
     }
 }

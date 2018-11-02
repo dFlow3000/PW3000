@@ -25,6 +25,16 @@ namespace Preiswattera_3000
             InitializeComponent();
         }
 
+        private void ChangePassword_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button[] iA_Btn =
+            {
+                btn_Save,
+                btn_Clear
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Btn);
+        }
+
         #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Saves new password after checking the actual one

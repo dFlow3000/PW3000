@@ -97,7 +97,7 @@ namespace Preiswattera_3000
             tbx_iMultiCreate.Visibility = Visibility.Hidden;
             lbl_sMultiCreate.Visibility = Visibility.Hidden;
             btn_MultiCreate.Visibility = Visibility.Visible;
-            btn_ClsMultiCreate.Visibility = Visibility.Hidden;
+            btn_ClsMultiCreate.Visibility = Visibility.Hidden;            
         }
 
         private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)
@@ -140,6 +140,7 @@ namespace Preiswattera_3000
                 btn_MultiCreate.Visibility = Visibility.Visible;
                 tbx_iMultiCreate.Visibility = Visibility.Hidden;
                 lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                btn_ClsMultiCreate.Visibility = Visibility.Hidden;
                 SignUpTeams_Loaded(sender, e);
             }
             else
@@ -163,6 +164,11 @@ namespace Preiswattera_3000
             string teamName = "";
             if (CheckInput())
             {
+
+                btn_MultiCreate.Visibility = Visibility.Visible;
+                tbx_iMultiCreate.Visibility = Visibility.Hidden;
+                lbl_sMultiCreate.Visibility = Visibility.Hidden;
+                btn_ClsMultiCreate.Visibility = Visibility.Hidden;
                 for (int i = 1; i <= multiCreate; i++)
                 {
                     if (i == 1)

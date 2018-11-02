@@ -18,6 +18,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
+        <Button x:Name="btn_WindowInfo" Style="{StaticResource InfoButton}"  FontSize="16" Content="i" Margin="0,0,406,344" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_WindowInfo_Click"/>
         <Canvas x:Name="Header" Height="10" Margin="21,22,260,357">
             <StackPanel x:Name="stp_GameId_Header" Canvas.Left="10" Width="63">
                 <Label x:Name="lbl_sGameNr" Content=" Spiel-Nr " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
@@ -126,21 +127,6 @@
                 <StackPanel x:Name="stp_DiffPoints" Canvas.Left="281" Width="94"/>
             </Canvas>
         </ScrollViewer>
-        <Button x:Name="btn_CloseTeamGameInfo" Content="Schließen" HorizontalAlignment="Left" Margin="156,311,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_CloseTeamGameInfo_Click" Foreground="WhiteSmoke">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FE636363"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btn_WindowInfo" Content="i" Margin="10,321,388,22" FontFamily="Palatino Linotype" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Foreground="White" BorderBrush="{x:Null}" Click="btn_WindowInfo_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF34ACFF" Offset="0"/>
-                    <GradientStop Color="#FF001387" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="btn_CloseTeamGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="156,311,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_CloseTeamGameInfo_Click"/>
     </Grid>
 </Window>

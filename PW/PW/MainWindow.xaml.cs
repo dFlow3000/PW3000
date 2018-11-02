@@ -22,7 +22,16 @@ namespace Preiswattera_3000
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        #region Message-Bar
+        #region Message Types
+        public const int ErrorMessage = 1000;
+        public const int InfoMessage = 2000;
+        public const int WarnMessage = 3000;
+        public const int AskMessage = 4000;
+        #endregion
+        public bool isClicked = false;
+        public bool selection = false;
+        #endregion
         public string NO_TEAM_ADDING = "NoAdding";
         public bool keepDeleting = false;
         public Button[] actionMenueButton = new Button[5];
@@ -64,6 +73,9 @@ namespace Preiswattera_3000
                 Tournament tnmt = new Tournament();
                 tnmt.Getter();
 
+                // Set for first run after creating new Tournament
+                btn_GoToTnmtData.Content = "Turnier starten!";
+                btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
 
                 ActionMenue.Visibility = Visibility.Hidden;
                 cnvs_PWHeader.Visibility = Visibility.Visible;
@@ -93,6 +105,17 @@ namespace Preiswattera_3000
                     btn_GoToAddTeam.Style = (Style)Application.Current.Resources["DisabledButton"];
                     btn_GoToAddTeam.Uid = NO_TEAM_ADDING;
                 }
+
+                if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) == 0)
+                {
+                    btn_GoToTnmtData.Content = "Turnier starten!";
+                    btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
+                } else
+                {
+                    btn_GoToTnmtData.Content = "Spiel erfassen";
+                    btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tournamentData.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
+                }
+
             }
         }
 
@@ -123,7 +146,7 @@ namespace Preiswattera_3000
         {
             INIFile teamIni = new INIFile(Team.iniPath);
 
-            if (Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt)) % 2 == 0)
+            if (Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt)) > 0 && Convert.ToInt32(teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt)) % 2 == 0)
             {
                 return true;
             }
@@ -207,6 +230,10 @@ namespace Preiswattera_3000
                         {
                             UserControl runMenue = new RunMenue(this);
                             MainContent.Content = runMenue;
+                            btn_GoToTnmtData.Content = "Spiel erfassen";
+                            btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
+                            btn_GoToAddTeam.Style = (Style)Application.Current.Resources["DisabledButton"];
+                            btn_GoToAddTeam.Uid = NO_TEAM_ADDING;
                         }
                     } else
                     {
@@ -217,8 +244,7 @@ namespace Preiswattera_3000
             } else
             {
                 MessageBox.Show("Derzeit sind nur " + teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt) + " Teams erfasst!" +
-                                "\n Ein Tunier ist nur mit einer geraden Anzahl Teams möglich!" +
-                                "\n Erfassen Sie noch mindestens ein Team!",
+                                "\nEin Tunier ist nur mit einer geraden Anzahl Teams möglich!",
                                 "Ungerade Anzahl Teams erfasst",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
@@ -249,6 +275,87 @@ namespace Preiswattera_3000
 
         #endregion
 
+        #region Message - Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        public bool MessageBar(int i_MessageType, string i_MessageHeader, string i_MessageText)
+        {
+            bool retVal = true;
+            cnvs_MessageBar.Visibility = Visibility.Visible;
+            lbl_oMessageHeader.Content = i_MessageHeader;
+            lbl_oMessageText.Content = i_MessageText;
+            switch (i_MessageType)
+            {
+                
+                case ErrorMessage:
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFF4D4D"));
+                    bar_ErroImg.Visibility = Visibility.Visible;
+                    btn_Ok.Visibility = Visibility.Visible;
+                    retVal = selection;
+                    isClicked = false;
+                    break;
+                case InfoMessage:
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFAFE6FF"));
+                    bar_InfoImg.Visibility = Visibility.Visible;
+                    btn_Ok.Visibility = Visibility.Visible;
+                    while (!isClicked)
+                    {
+                        // wait for User interaction
+                    }
+                    retVal = selection;
+                    isClicked = false;
+                    break;
+                case WarnMessage:
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFFFFAF"));
+                    bar_WarnImg.Visibility = Visibility.Visible;
+                    btn_Ok.Visibility = Visibility.Visible;
+                    while (!isClicked)
+                    {
+                        // wait for User interaction
+                    }
+                    retVal = selection;
+                    isClicked = false;
+                    break;
+                case AskMessage:
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFE4E4E4"));
+                    bar_AskImg.Visibility = Visibility.Visible;
+                    btn_Yes.Visibility = Visibility.Visible;
+                    btn_No.Visibility = Visibility.Visible;
+                    while (!isClicked)
+                    {
+                        // wait for User interaction
+                    }
+                    retVal = selection;
+                    isClicked = false;
+                    break;
+                default:break;
+            }
+
+            //cnvs_MessageBar.Visibility = Visibility.Hidden;
+            //btn_Yes.Visibility = Visibility.Hidden;
+            //btn_No.Visibility = Visibility.Hidden;
+            //btn_Ok.Visibility = Visibility.Hidden;
+            
+            return retVal;
+        }
+
+        #endregion
+
+        private void btn_Ok_Click(object sender, RoutedEventArgs e)
+        {
+            isClicked = true;
+            selection = true;
+        }
+
+        private void btn_Yes_Click(object sender, RoutedEventArgs e)
+        {
+            isClicked = true;
+            selection = true;
+        }
+
+        private void btn_No_Click(object sender, RoutedEventArgs e)
+        {
+            isClicked = true;
+            selection = false;
+        }
     }
 }

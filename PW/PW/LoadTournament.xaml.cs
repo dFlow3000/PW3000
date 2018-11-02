@@ -30,6 +30,16 @@ namespace Preiswattera_3000
             mainWindow = i_mainWindow;
         }
 
+        private void LoadTournament_Loaded(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.Button[] iA_Btns =
+            {
+                btn_ExplorerSearch,
+                btn_LoadTnmt
+            };
+            Settings.SwitchColorStyleDefaultButton(iA_Btns);
+        }
+
         #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private void btn_ExplorerSearch_Click(object sender, RoutedEventArgs e)
         {
