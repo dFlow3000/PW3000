@@ -142,9 +142,11 @@ namespace Preiswattera_3000
                     {
                         if (!mainWindow.keepDeleting)
                         {
-                            if (mainWindow.MessageBar(MainWindow.AskMessage, "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
-                                                                             "Team aus Anmeldeliste wird übernommen!" +
-                                                                             "\nSoll Team aus der Anmeldeliste entfernt werden?"))
+                            if (MessageBox.Show("Team aus Anmeldeliste wird übernommen!" +
+                                                                             "\nSoll Team aus der Anmeldeliste entfernt werden?",
+                                                                             "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
+                                                                             MessageBoxButton.YesNo,
+                                                                             MessageBoxImage.Question) == MessageBoxResult.Yes)
                             {
                                 Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
                                 if (MessageBox.Show("Soll bei unverändert übernommenen Teams immer gelöscht werden?" +
@@ -201,12 +203,14 @@ namespace Preiswattera_3000
                 }
             } else
             {
-                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
-                                "Fehlende Informationen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
-                mainWindow.MessageBar(MainWindow.ErrorMessage, "Fehlende Informationen", "Einige Informationen fehlen!\nBitte vervollständige die Eingabe!");
-
+                //MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
+                //                "Fehlende Informationen",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Exclamation);
+                mainWindow.MessageBar(MainWindow.WarnMessage,
+                                        "Fehlende Informationen",
+                                        "Einige Informationen die zum Anlegen eines Teams benötigt werden fehlen!" +
+                                        "\nBitte verfolständigen Sie diese!");
             }
         }
         
@@ -295,10 +299,15 @@ namespace Preiswattera_3000
             {
                 if (tIni.GetValue(Team.teamSec + Convert.ToString(i), Team.tS_teamName) == tbx_oTeamName.Text)
                 {
-                    MessageBox.Show("Der Teamname \"" + tbx_oTeamName.Text + "\" ist bereits vergeben!",
-                                    "Teamname bereits vergeben!",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
+                    //MessageBox.Show("Der Teamname \"" + tbx_oTeamName.Text + "\" ist bereits vergeben!",
+                    //                "Teamname bereits vergeben!",
+                    //                MessageBoxButton.OK,
+                    //                MessageBoxImage.Error);
+                    mainWindow.MessageBar(MainWindow.WarnMessage,
+                                            "Teamname bereits vergeben!",
+                                            "Der Teamname \"" + tbx_oTeamName.Text + "\" wurde bereits vergeben!"+
+                                            "\nWählen Sie bitte einen anderen Teamnamen!"+
+                                            "\nVorschläge: " + tbx_oTeamName.Text + "1, " + tbx_oTeamName.Text + "...");
                     return true;
                 }
             }

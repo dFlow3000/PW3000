@@ -39,14 +39,7 @@
                 </LinearGradientBrush>
             </GroupBox.BorderBrush>
             <Canvas Margin="0,0,0,18">
-                <Label x:Name="lbl_sNotPayed" Content="!! Startgebühr ausstehend !!" Canvas.Left="549" Canvas.Top="10" Width="376" Foreground="Red" FontSize="24" FontWeight="Bold" FontStyle="Italic" HorizontalContentAlignment="Center" Visibility="Visible" Height="44">
-                    <Label.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF171717" Offset="0.498"/>
-                            <GradientStop Color="#FF555050" Offset="1"/>
-                            <GradientStop Color="Black" Offset="0.19"/>
-                        </LinearGradientBrush>
-                    </Label.Background>
+                <Label x:Name="lbl_sNotPayed" Content="!! Startgebühr ausstehend !!" Canvas.Left="549" Width="539" Foreground="Red" FontSize="36" FontWeight="Bold" FontStyle="Italic" HorizontalContentAlignment="Center" Visibility="Visible" Height="65" Background="Black">
                     <Label.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0.934"/>
@@ -111,7 +104,7 @@
                         <Label x:Name="lbl_oTeamGamePoints" Content="" Canvas.Left="179" Canvas.Top="67"/>
                         <Label x:Name="lbl_sTeamPlayedGames" Content="gespielte Spiele:" Canvas.Left="384" Canvas.Top="27" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Width="167"/>
                         <ComboBox x:Name="cmbx_oiTeamPlayedGames" Canvas.Left="556" Canvas.Top="27" Width="500" SelectionChanged="cmbx_oiTeamPlayedGames_SelectionChanged"/>
-                        <Button x:Name="btn_ShowGameInfo" Style="{StaticResource DefaultIAButton}" Content="Spiel-Informationen anzeigen" Canvas.Left="556" Canvas.Top="77" Width="291" Click="btn_ShowGameInfo_Click" Height="37"/>
+                        <Button x:Name="btn_ShowGameInfo" Style="{StaticResource DefaultIAButton}" Content="Spiel-Informationen anzeigen" Canvas.Left="556" Canvas.Top="77" Width="308" Click="btn_ShowGameInfo_Click" Height="37"/>
                         <Label x:Name="lbl_sTeamGamePointsDiff" Content="Spiel-Punkte-Diff:" Canvas.Top="106" Width="174" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
                         <Label x:Name="lbl_oTeamGamePointsDiff" Content="" Canvas.Left="179" Canvas.Top="104"/>
                     </Canvas>

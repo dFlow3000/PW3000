@@ -62,10 +62,14 @@ namespace Preiswattera_3000
                 mainWindow.MainContent.Content = prepMenue;
             } else
             {
-                MessageBox.Show("Bitte erfassen Sie alle geforderten Daten!",
-                                "Nicht alle relevanten Felder wurden befüllt!",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                //MessageBox.Show("Bitte erfassen Sie alle geforderten Daten!",
+                //                "Nicht alle relevanten Felder wurden befüllt!",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Error);
+                mainWindow.MessageBar(MainWindow.WarnMessage, 
+                                        "Fehlende Informationen!",
+                                        "Einige Informationen die zum Anlegen eines Turniers benötigt werden fehlen!" +
+                                        "\nBitte verfolständigen Sie diese!");
             }
         }
         #endregion

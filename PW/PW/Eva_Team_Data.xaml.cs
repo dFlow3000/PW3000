@@ -132,9 +132,7 @@ namespace Preiswattera_3000
             sep = new Separator();
             stp_DiffPoints.Children.Add(lbl_DiffPoints);
             stp_DiffPoints.Children.Add(sep);
-
-
-
+            
         }
         #endregion
 

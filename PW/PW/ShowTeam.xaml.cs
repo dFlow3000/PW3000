@@ -174,10 +174,13 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Wählen Sie zuerst ein Team aus um es zu bearbeiten!",
-                                "Bearbeiten nicht möglich",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                //MessageBox.Show("Wählen Sie zuerst ein Team aus um es zu bearbeiten!",
+                //                "Bearbeiten nicht möglich",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Error);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Bearbeitung nicht möglich",
+                                        "Wählen Sie zuerst ein Team aus um es zu bearbeiten!");
             }
 
         }
@@ -213,10 +216,15 @@ namespace Preiswattera_3000
                     {
                         if (tIni.GetValue(Team.teamSec + Convert.ToString(i), Team.tS_teamName) == tbx_oTeamName.Text)
                         {
-                            MessageBox.Show("Der Teamname \"" + tbx_oTeamName.Text + "\" ist bereits vergeben!",
-                                            "Teamname bereits vergeben!",
-                                            MessageBoxButton.OK,
-                                            MessageBoxImage.Error);
+                            //MessageBox.Show("Der Teamname \"" + tbx_oTeamName.Text + "\" ist bereits vergeben!",
+                            //                "Teamname bereits vergeben!",
+                            //                MessageBoxButton.OK,
+                            //                MessageBoxImage.Error);
+                            mainWindow.MessageBar(MainWindow.WarnMessage,
+                                                    "Teamname bereits vergeben!",
+                                                    "Der Teamname \"" + tbx_oTeamName.Text + "\" wurde bereits vergeben!" +
+                                                    "\nWählen Sie bitte einen anderen Teamnamen!" +
+                                                    "\nVorschläge: " + tbx_oTeamName.Text + "1, " + tbx_oTeamName.Text + "...");
                             noSameNames = false;
                             break;
                         }
@@ -269,7 +277,10 @@ namespace Preiswattera_3000
                 }
             } else
             {
-                // ERROR MESSAGE
+                mainWindow.MessageBar(MainWindow.WarnMessage,
+                                        "Fehlende Informationen",
+                                        "Einige Informationen die nach der Bearbeitung eines Teams benötigt werden fehlen!" +
+                                        "\nBitte verfolständigen Sie diese!");
             }
         }
 
@@ -335,7 +346,10 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Wählen Sie zuerst ein Spiel!", "Kein Spiel ausgewählt", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //MessageBox.Show("Wählen Sie zuerst ein Spiel!", "Kein Spiel ausgewählt", MessageBoxButton.OK, MessageBoxImage.Warning);
+                mainWindow.MessageBar(MainWindow.WarnMessage,
+                                        "Kein Spiel ausgewählt",
+                                        "Wählen Sie zuerst ein Spiel aus!");
             }
         }
 

@@ -309,18 +309,24 @@ namespace Preiswattera_3000
                 }
                 else
                 {
-                    MessageBox.Show("Es wurden nicht alle Eingaben getätigt!",
-                    "Ergänzen sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten.",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Stop);
+                    //MessageBox.Show("Es wurden nicht alle Eingaben getätigt!",
+                    //"Ergänzen sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten.",
+                    //MessageBoxButton.OK,
+                    //MessageBoxImage.Stop);
+                    mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                            "Fehlende Informationen",
+                                            "Ergänzen Sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten!");
                 }
             }
             else
             {
-                MessageBox.Show("Wählen Sie erst die Teams und den Tisch aus!",
-                "Team und Tisch auswählen",
-                MessageBoxButton.OK,
-                MessageBoxImage.Stop);
+                //MessageBox.Show("Wählen Sie erst die Teams und den Tisch aus!",
+                //"Team und Tisch auswählen",
+                //MessageBoxButton.OK,
+                //MessageBoxImage.Stop);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Team und Tisch auswählen",
+                                        "Wählen Sie erst die Teams und den Tisch aus!");
             }
         }
 
@@ -402,10 +408,13 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Das eingegebene Passwort ist flasch!",
-                                "Bearbeitung nicht erlaubt!",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Stop);
+                //MessageBox.Show("Das eingegebene Passwort ist flasch!",
+                //                "Bearbeitung nicht erlaubt!",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Stop);
+                mainWindow.MessageBar(MainWindow.WarnMessage,
+                                        "Bearbeitung nicht erlaubt!",
+                                        "Das eingegebene Passwort ist falsch!");
                 pwbx_EditPassword.Password = String.Empty;
             }
         }
@@ -517,10 +526,13 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Es wurden nicht alle Eingaben getätigt!",
-                "Ergänzen sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten.",
-                MessageBoxButton.OK,
-                MessageBoxImage.Stop);
+                //MessageBox.Show("Es wurden nicht alle Eingaben getätigt!",
+                //"Ergänzen sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten.",
+                //MessageBoxButton.OK,
+                //MessageBoxImage.Stop);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                        "Fehlende Informationen",
+                        "Ergänzen Sie alle Eingaben zu Gewinn-Punkten und Spiel-Punkten!");
             }
         }
 
@@ -569,11 +581,15 @@ namespace Preiswattera_3000
 
                 if (cmbx_selectTeam1.SelectedIndex == cmbx_selectTeam2.SelectedIndex)
                 {
-                    MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
-                                    "\nWählen Sie eine anderen Gegener!",
-                                    "Team wurde doppelt gewählt",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Stop);
+                    //MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
+                    //                "\nWählen Sie eine anderen Gegener!",
+                    //                "Team wurde doppelt gewählt",
+                    //                MessageBoxButton.OK,
+                    //                MessageBoxImage.Stop);
+                    mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                            "Team wurde doppelt gewählt",
+                                            "Das gleiche Team wurde als Gegner ausgewählt!" +
+                                            "\nWählen Sie einen anderen Gegner!");
                     team1Selected = false;
                 }
                 else
@@ -594,11 +610,15 @@ namespace Preiswattera_3000
                             if (newTable.teamsOnTable[0] == cmbx_selectTeam1.SelectedIndex + 1 ||
                                newTable.teamsOnTable[1] == cmbx_selectTeam1.SelectedIndex + 1)
                             {
-                                MessageBox.Show("Das Team " + cmbx_selectTeam1.SelectedValue + " wurde bereits ausgewählt!" +
-                                                "\n Tisch " + newTable.tableId,
-                                                "Team bereits auf einem anderen Tisch",
-                                                MessageBoxButton.OK,
-                                                MessageBoxImage.Stop);
+                                //MessageBox.Show("Das Team " + cmbx_selectTeam1.SelectedValue + " wurde bereits ausgewählt!" +
+                                //                "\n Tisch " + newTable.tableId,
+                                //                "Team bereits auf einem anderen Tisch",
+                                //                MessageBoxButton.OK,
+                                //                MessageBoxImage.Stop);
+                                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                                        "Team bereits auf einem anderen Tisch",
+                                                        "Das Team " + cmbx_selectTeam1.SelectedValue + " wurde bereits ausgewählt!" +
+                                                        "\n Tisch " + newTable.tableId);
                                 team1Selected = false;
                                 break;
 
@@ -634,11 +654,15 @@ namespace Preiswattera_3000
 
                 if (cmbx_selectTeam1.SelectedIndex == cmbx_selectTeam2.SelectedIndex)
                 {
-                    MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
-                                    "\nWählen Sie eine anderen Gegener!",
-                                    "Team wurde doppelt gewählt",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Stop);
+                    //MessageBox.Show("Das gleiche Team wurde als Gegner ausgewählt!" +
+                    //                "\nWählen Sie eine anderen Gegener!",
+                    //                "Team wurde doppelt gewählt",
+                    //                MessageBoxButton.OK,
+                    //                MessageBoxImage.Stop);
+                    mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                            "Team wurde doppelt gewählt",
+                                            "Das gleiche Team wurde als Gegner ausgewählt!" +
+                                            "\nWählen Sie einen anderen Gegner!");
                     team2Selected = false;
                 }
                 else
@@ -659,11 +683,15 @@ namespace Preiswattera_3000
                             if (newTable.teamsOnTable[0] == cmbx_selectTeam2.SelectedIndex + 1 ||
                                 newTable.teamsOnTable[1] == cmbx_selectTeam2.SelectedIndex + 1)
                             {
-                                MessageBox.Show("Das Team " + cmbx_selectTeam2.SelectedValue + " wurde bereits ausgewählt!" +
-                                                "\n Tisch " + newTable.tableId,
-                                                "Team bereits auf einem anderen Tisch",
-                                                MessageBoxButton.OK,
-                                                MessageBoxImage.Stop);
+                                //MessageBox.Show("Das Team " + cmbx_selectTeam2.SelectedValue + " wurde bereits ausgewählt!" +
+                                //                "\n Tisch " + newTable.tableId,
+                                //                "Team bereits auf einem anderen Tisch",
+                                //                MessageBoxButton.OK,
+                                //                MessageBoxImage.Stop);
+                                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                                        "Team bereits auf einem anderen Tisch",
+                                                        "Das Team " + cmbx_selectTeam2.SelectedValue + " wurde bereits ausgewählt!" +
+                                                        "\n Tisch " + newTable.tableId);
                                 team2Selected = false;
                                 break;
                             }
@@ -762,19 +790,25 @@ namespace Preiswattera_3000
             {
                 if (Convert.ToInt32(i_tbx.Text) > 15 && !justMin)
                 {
-                    MessageBox.Show("Die maximal erreichbare Punktzahl beträgt 15 Punkte!",
-                                    "Maximale Punktzahl überschritten",
-                                     MessageBoxButton.OK,
-                                     MessageBoxImage.Warning);
+                    //MessageBox.Show("Die maximal erreichbare Punktzahl beträgt 15 Punkte!",
+                    //                "Maximale Punktzahl überschritten",
+                    //                 MessageBoxButton.OK,
+                    //                 MessageBoxImage.Warning);
+                    //mainWindow.MessageBar(MainWindow.WarnMessage,
+                    //                        "Maximale Punktzahl überschritten",
+                    //                        "Die maximale erreichbare Punktzahl beträgt 15 Punkte!");
                     i_tbx.Text = String.Empty;
                     retVal = false;
                 }
                 else if (Convert.ToInt32(i_tbx.Text) < 0)
                 {
-                    MessageBox.Show("Die minimal erreichbare Punktzahl beträgt 0 Punkte!",
-                                    "Minimale Punktzahl unterschritten",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Warning);
+                    //MessageBox.Show("Die minimal erreichbare Punktzahl beträgt 0 Punkte!",
+                    //                "Minimale Punktzahl unterschritten",
+                    //                MessageBoxButton.OK,
+                    //                MessageBoxImage.Warning);
+                    //mainWindow.MessageBar(MainWindow.WarnMessage,
+                    //                        "Minimale Punktzahl unterschritten",
+                    //                        "Die minimal erreichbare Punktzahl beträgt 0 Punkte!");
                     i_tbx.Text = String.Empty;
                     retVal = false;
                 }

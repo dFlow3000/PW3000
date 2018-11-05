@@ -18,86 +18,36 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Label x:Name="lbl_sSettingsHeader" Content="Einstellungen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="64" Width="720" Margin="210,10,210,27" HorizontalContentAlignment="Center"/>
-        <GroupBox x:Name="gbx_TournamentSettings" Header="Turnier-Einstellungen" HorizontalAlignment="Left" Height="171" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1110" FontSize="20">
-            <Canvas>
+        <GroupBox x:Name="gbx_TournamentSettings" Header="Turnier-Einstellungen" Height="420" Margin="10,10,570,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20">
+            <Canvas Margin="0,0,0,280">
                 <Label x:Name="lbl_sTnmtName" Content="Turnier-Name:" Canvas.Left="10" Canvas.Top="28"/>
                 <Label x:Name="lbl_oTnmtName" Content="" Canvas.Left="146" Canvas.Top="28"/>
                 <TextBox x:Name="tbx_iTnmtName" Height="33" Visibility="Hidden" Canvas.Left="146" TextWrapping="Wrap" Text="" Canvas.Top="32" Width="404"/>
-                <Label x:Name="lbl_sRunCnt" Content="Anzahl Durchgänge:" Canvas.Left="604" Canvas.Top="28"/>
-                <Label x:Name="lbl_oRunCnt" Content="" Canvas.Left="797" Canvas.Top="28"/>
-                <TextBox x:Name="tbx_iRunCnt" Height="33" Visibility="Hidden" Canvas.Left="812" TextWrapping="Wrap" Text="" Canvas.Top="32" Width="146"/>
-                <Label x:Name="lbl_sGamePerRunCnt" Content="Anzahl Spiele/Durchgang:" Canvas.Left="604" Canvas.Top="90"/>
-                <Label x:Name="lbl_oGamePerRunCnt" Content="" Canvas.Left="847" Canvas.Top="90"/>
-                <Button x:Name="btn_EditTnmtSettings" Content="Ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Height="38" Click="btn_EditTnmtSettings_Click" Foreground="WhiteSmoke" Canvas.Left="272" Canvas.Top="89">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_EditTnmtSettings_Save" Content="Speichern" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Height="38" Click="btn_EditTnmtSettings_Save_Click" Foreground="WhiteSmoke" Canvas.Left="216" Canvas.Top="89">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_EditTnmtSettings_Clear" Content="Abbrechen" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Height="38" Click="btn_EditTnmtSettings_Clear_Click" Foreground="WhiteSmoke" Canvas.Left="353" Canvas.Top="89">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-
+                <Label x:Name="lbl_sRunCnt" Content="Anzahl Durchgänge:" Canvas.Left="10" Canvas.Top="144"/>
+                <Label x:Name="lbl_oRunCnt" Content="" Canvas.Left="216" Canvas.Top="144"/>
+                <TextBox x:Name="tbx_iRunCnt" Height="33" Visibility="Hidden" Canvas.Left="198" TextWrapping="Wrap" Text="" Canvas.Top="148" Width="146"/>
+                <Label x:Name="lbl_sGamePerRunCnt" Content="Anzahl Spiele/Durchgang:" Canvas.Top="206" Canvas.Left="10"/>
+                <Label x:Name="lbl_oGamePerRunCnt" Content="" Canvas.Left="253" Canvas.Top="206"/>
+                <Button x:Name="btn_EditTnmtSettings" Style="{StaticResource DefaultIAButton}" Content="Ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Height="38" Click="btn_EditTnmtSettings_Click" Canvas.Left="272" Canvas.Top="89"/>
+                <Button x:Name="btn_EditTnmtSettings_Save" Style="{StaticResource DefaultIAButton}" Content="Speichern" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Height="38" Click="btn_EditTnmtSettings_Save_Click" Canvas.Left="216" Canvas.Top="89"/>
+                <Button x:Name="btn_EditTnmtSettings_Clear" Style="{StaticResource DefaultIAButton}" Content="Abbrechen" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Height="38" Click="btn_EditTnmtSettings_Clear_Click" Canvas.Left="353" Canvas.Top="89"/>
             </Canvas>
         </GroupBox>
-        <GroupBox x:Name="gbx_AdminSettings" Header="Programm-Einstellungen" HorizontalAlignment="Left" Height="172" Margin="10,233,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1110" FontSize="20">
-            <Canvas>
-                <Button x:Name="btn_EditPassword" IsEnabled="true" Content="Passwort Ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditPassword_Click" Foreground="WhiteSmoke" Canvas.Left="36" Canvas.Top="28">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_EditColorGreen" Content="Grün" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGreen_Click" Foreground="WhiteSmoke" Canvas.Left="897" Canvas.Top="72">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_EditColorGray" Content="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGray_Click" Foreground="WhiteSmoke" Canvas.Left="482" Canvas.Top="72">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_EditColorBlue" Content="Blau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorBlue_Click" Foreground="WhiteSmoke" Canvas.Left="687" Canvas.Top="72">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btn_EditColorRed_Copy" Content="Rot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorRed_Click" Foreground="WhiteSmoke" Canvas.Left="273" Canvas.Top="72">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="1"/>
-                            <GradientStop Color="#FE636363"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-
+        <GroupBox x:Name="gbx_AdminSettings" Header="Programm-Einstellungen" HorizontalAlignment="Left" Height="420" Margin="584,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="536" FontSize="20">
+            <Canvas Margin="0,0,0,-2">
+                <GroupBox x:Name="gbx_AdminSettings_PW" Header="Passwort" Width="504" Height="116" Canvas.Left="10" Canvas.Top="10">
+                    <Canvas Margin="0,0,0,120">
+                        <Button x:Name="btn_EditPassword" Style="{StaticResource DefaultIAButton}" IsEnabled="true" Content="Passwort ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="204" Height="38" Click="btn_EditPassword_Click" Canvas.Left="172" Canvas.Top="26"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox x:Name="gbx_AdminSettings_Color" Header="Hintergrundfarbe ändern" Canvas.Top="153" Height="225" Width="504" Canvas.Left="10">
+                    <Canvas Margin="0,0,674,-98">
+                        <Button x:Name="btn_EditColorGreen" Style="{StaticResource DefaultIAButton}" Content="Grün" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGreen_Click" Canvas.Left="10" Canvas.Top="126"/>
+                        <Button x:Name="btn_EditColorGray" Style="{StaticResource DefaultIAButton}" Content="Grau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGray_Click" Canvas.Left="270" Canvas.Top="126"/>
+                        <Button x:Name="btn_EditColorBlue" Style="{StaticResource DefaultIAButton}" Content="Blau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorBlue_Click" Canvas.Left="270" Canvas.Top="28"/>
+                        <Button x:Name="btn_EditColorRed_Copy" Style="{StaticResource DefaultIAButton}" Content="Rot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorRed_Click" Canvas.Left="10" Canvas.Top="28"/>
+                    </Canvas>
+                </GroupBox>
             </Canvas>
         </GroupBox>
 

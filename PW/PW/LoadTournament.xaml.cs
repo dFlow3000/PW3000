@@ -65,11 +65,15 @@ namespace Preiswattera_3000
             {
                 loadFailed = true;
                 Log.Error("Not able to load Files from " + tbx_filePath.Text);
-                System.Windows.MessageBox.Show("Es war nicht möglich diese Tunierdaten zu laden!" +
-                    "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!",
-                    "Laden nicht möglich",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                //System.Windows.MessageBox.Show("Es war nicht möglich diese Tunierdaten zu laden!" +
+                //    "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!",
+                //    "Laden nicht möglich",
+                //    MessageBoxButton.OK,
+                //    MessageBoxImage.Error);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Laden nicht möglich",
+                                        "Es war nicht möglich diese Tunierdaten zu laden!" +
+                                        "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!");
             }
 
             if (!loadFailed)
@@ -88,11 +92,15 @@ namespace Preiswattera_3000
                 {
                     loadFailed = true;
                     Log.Error("Not able to load Files from " + tbx_filePath.Text);
-                    System.Windows.MessageBox.Show("Es war nicht möglich diese Tunierdaten zu laden!" +
-                        "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!",
-                        "Laden nicht möglich",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                    //System.Windows.MessageBox.Show("Es war nicht möglich diese Tunierdaten zu laden!" +
+                    //    "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!",
+                    //    "Laden nicht möglich",
+                    //    MessageBoxButton.OK,
+                    //    MessageBoxImage.Error);
+                    mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                            "Laden nicht möglich",
+                                            "Es war nicht möglich diese Tunierdaten zu laden!" +
+                                            "\nStellen Sie sicher, dass Sie aus einem \"Finished_Tournament\" - Ordner laden!");
                     loadFailed = true;
                 }
             }

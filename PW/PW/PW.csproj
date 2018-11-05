@@ -88,9 +88,6 @@
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageWindow.xaml.cs">
-      <DependentUpon>MessageWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PlayedGameInfo.xaml.cs">
       <DependentUpon>PlayedGameInfo.xaml</DependentUpon>
     </Compile>
@@ -174,10 +171,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MessageWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PlayedGameInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +248,7 @@
     <Resource Include="Icons\warning-icon-png-12.jpg" />
     <Resource Include="Icons\information-1481584_960_720.png" />
     <Resource Include="Icons\question-mark-1750942_960_720.png" />
+    <Resource Include="Icons\pw3000_L2n_icon.ico" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

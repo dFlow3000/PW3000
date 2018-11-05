@@ -38,6 +38,8 @@ namespace Preiswattera_3000
             newTeam = new SignedUpTeam(true);
 
             gB_sSignUpTeam.Header = "Team-Nummer " + Convert.ToString(newTeam.suTeamId);
+
+            tbx_iSUTP1Firstname.Focus();
         }
 
         #region Fill - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -145,10 +147,10 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
-                                "Fehlende Informationen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Fehlende Informationen",
+                                        "Einige Informationen die zur Voranmeldung eines Teams benötigt werden fehlen!" +
+                                        "\nBitte verfolständigen Sie diese!");
                 multiCreate = 0;
             }
         }
@@ -201,10 +203,10 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Einige Informationen fehlen!\nBitte vervollständige die Eingabe!",
-                                "Fehlende Informationen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Fehlende Informationen",
+                                        "Einige Informationen die zur Voranmeldung eines Teams benötigt werden fehlen!" +
+                                        "\nBitte verfolständigen Sie diese!");
             }
         }
         #endregion
@@ -250,10 +252,13 @@ namespace Preiswattera_3000
             }
             else
             {
-                MessageBox.Show("Bitte geben Sie eine Zahl größer 0 ein!",
-                                "Mehrfach anlegen",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                //MessageBox.Show("Bitte geben Sie eine Zahl größer 0 ein!",
+                //                "Mehrfach anlegen",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Error);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Anzahl Mehrfachanlegungen",
+                                        "Die Anzahl der Mehrfachanlegungen muss größer 0 sein!");
                 tbx_iMultiCreate.Text = String.Empty;
             }
         }

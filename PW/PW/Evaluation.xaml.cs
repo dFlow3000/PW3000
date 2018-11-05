@@ -46,6 +46,13 @@ namespace Preiswattera_3000
 
             Settings.SwitchColorStyleDefaultButton(iA_Btns);
 
+            if (CheckTnmtNotFinishState(tnmtIni))
+            {
+                lbl_oTnmtFinishStatement.Visibility = Visibility.Visible;
+            } else
+            {
+                lbl_oTnmtFinishStatement.Visibility = Visibility.Hidden;
+            }
             
             SolidColorBrush brush;
             brush = new SolidColorBrush(Const.SwitchFontColor());
@@ -75,6 +82,7 @@ namespace Preiswattera_3000
                 Label lbl_gamePointsDiff = new Label();
 
                 int x = 0;
+                int last = allTeams.Length;
                 //do
                 //{
                 foreach (Team team in allTeams)
@@ -87,6 +95,11 @@ namespace Preiswattera_3000
                     lbl_teamName = new Label();
                     lbl_winPoints = new Label();
                     lbl_gamePointsDiff = new Label();
+
+                    lbl_rowNumber.Background = Brushes.Transparent;
+                    lbl_teamName.Background = Brushes.Transparent;
+                    lbl_winPoints.Background = Brushes.Transparent;
+                    lbl_gamePointsDiff.Background = Brushes.Transparent;
 
                     lbl_rowNumber.Content = Convert.ToString(x);
                     lbl_teamName.Content = team.teamName;
@@ -116,10 +129,10 @@ namespace Preiswattera_3000
                     switch (x)
                     {
                         case 1:
-                            lbl_rowNumber.Background = Brushes.Gold;
-                            lbl_teamName.Background = Brushes.Gold;
-                            lbl_winPoints.Background = Brushes.Gold;
-                            lbl_gamePointsDiff.Background = Brushes.Gold;
+                            lbl_rowNumber.Background = Brushes.DarkGoldenrod;
+                            lbl_teamName.Background = Brushes.DarkGoldenrod;
+                            lbl_winPoints.Background = Brushes.DarkGoldenrod;
+                            lbl_gamePointsDiff.Background = Brushes.DarkGoldenrod;
                             break;
                         case 2:
                             lbl_rowNumber.Background = Brushes.Silver;
@@ -133,6 +146,26 @@ namespace Preiswattera_3000
                             lbl_winPoints.Background = Brushes.SandyBrown;
                             lbl_gamePointsDiff.Background = Brushes.SandyBrown;
                             break;
+                    }
+
+                    if (x == last)
+                    {
+                        lbl_rowNumber.Background = Brushes.Black;
+                        lbl_rowNumber.Foreground = Brushes.White;
+                        lbl_teamName.Background = Brushes.Black;
+                        lbl_teamName.Foreground = Brushes.White;
+                        lbl_winPoints.Background = Brushes.Black;
+                        lbl_winPoints.Foreground = Brushes.White;
+                        lbl_gamePointsDiff.Background = Brushes.Black;
+                        lbl_gamePointsDiff.Foreground = Brushes.White;
+                    }
+                    
+                    if(x >= 1 && x <= 3)
+                    {
+                        lbl_rowNumber.FontWeight = FontWeights.Bold;
+                        lbl_teamName.FontWeight = FontWeights.Bold;
+                        lbl_winPoints.FontWeight = FontWeights.Bold;
+                        lbl_gamePointsDiff.FontWeight = FontWeights.Bold;
                     }
 
                     #region add Button n Lable to Table
@@ -154,6 +187,18 @@ namespace Preiswattera_3000
                     #endregion
                 }
                 //} while (x < 20);
+            }
+        }
+
+        private static bool CheckTnmtNotFinishState(INIFile i_tnmtIni)
+        {
+            if (Convert.ToInt32(i_tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) > 0 &&
+                Convert.ToBoolean(i_tnmtIni.GetValue(Tournament.runSec + i_tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCnt), Tournament.rS_runComplete)))
+            {
+                return false;
+            } else
+            {
+                return true;
             }
         }
 
@@ -196,9 +241,80 @@ namespace Preiswattera_3000
 
         #region PDF - Functions ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        public static void SaveEva()
+        private static void SetHeader(Tournament i_tnmt, XFont i_font, PdfPage i_page, XGraphics i_graph)
+        {
+            i_graph.DrawString("Rangliste " + i_tnmt.tnmtName, i_font, XBrushes.Black, new XRect(10, 10, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopCenter);
+        }
+
+        private static void SetTnmtNotFinishState(INIFile i_tnmtIni, string i_line, XFont i_font, PdfPage i_page, XGraphics i_graph,  ref int i_yPoint)
+        {
+            if (CheckTnmtNotFinishState(i_tnmtIni))
+            {
+                i_line = "ZUM ZEITPUNKT DER ERSTELLUNG DIESER DATEI WAR DAS TURNIER NOCH NICHT BEENDET!";
+                i_graph.DrawString(i_line, i_font, XBrushes.Red, new XRect(10, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+                i_yPoint += 20;
+            }
+        }
+
+        private static void SetTimeStamp(ref string i_line, XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
+        {
+            i_line = "Erstellt: " + DateTime.Now.ToLongDateString() + " | " + DateTime.Now.ToShortTimeString();
+            i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+        }
+
+        private static void SetDefaultData(Tournament i_tnmt, ref string i_line, XFont i_fontHeader, XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
+        {
+            SetTimeStamp(ref i_line, i_fontHeader, i_page, i_graph, ref i_yPoint);
+            i_line = "Allgemine Daten:";
+            i_graph.DrawString(i_line, i_fontHeader, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+            i_line = "    Anzahl Durchgänge: " + Convert.ToString(i_tnmt.tnmtRunCnt);
+            i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+            i_line = "    Anzahl Spiel/Druchgang: " + Convert.ToString(i_tnmt.tnmtGameProRunCnt);
+            i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+            i_line = "    Anzahl Teams: " + Convert.ToString(i_tnmt.tnmtTeamCnt);
+            i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 50;
+        }
+
+        private static void SetPageNumber(ref string i_line, int pageNumber, XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
+        {
+            i_line = "Seite: " + Convert.ToString(pageNumber);
+            i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+            i_line = "";
+        }
+
+        private static void SetTableHeader(ref string i_line, XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
+        {
+            i_line = Const.posHeader + "|" + Const.teamNumberHeader + "|" + Const.teamNameHeader + "|" + Const.winPointsHeader + "|" + Const.gamePointsDiffHeader;
+            i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+            i_line = "";
+            SetTableRowGrid(i_font, i_page, i_graph, ref i_yPoint);
+        }
+
+        private static void SetTableRowGrid(XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
+        {
+            i_graph.DrawString(SetRow(), i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+        }
+
+        private static void SetTableRowData(ref string i_line, Team i_team, int i_TeamNumber, XFont i_fontHeader, XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
+        {
+            i_graph.DrawString(FillPdfTable(i_team, Convert.ToString(i_TeamNumber)), i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
+            i_yPoint += 20;
+            i_line = "";
+            SetTableRowGrid(i_fontHeader, i_page, i_graph, ref i_yPoint);
+        }
+
+    public static void SaveEva()
         {
             Tournament tnmt = new Tournament();
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
             tnmt.Getter();
             Team[] evaTeams = new Team[tnmt.tnmtTeamCnt];
             for (int i = 0; i < evaTeams.Length; i++)
@@ -218,43 +334,79 @@ namespace Preiswattera_3000
             XFont fontHeader = new XFont("Verdana", 20, XFontStyle.Bold);
             XFont fontLine = new XFont("Courier New", 12, XFontStyle.Regular);
             XFont fontLineInfo = new XFont("Courier New", 12, XFontStyle.Bold);
+            XFont fontNotFinishedState = new XFont("Courier New", 12, XFontStyle.Bold);
 
-            graph.DrawString("Ranglist " + tnmt.tnmtName, fontHeader, XBrushes.Black, new XRect(10, 0, page.Width.Point, page.Height.Point), XStringFormats.TopCenter);
+            //graph.DrawString("Ranglist " + tnmt.tnmtName, fontHeader, XBrushes.Black, new XRect(10, 10, page.Width.Point, page.Height.Point), XStringFormats.TopCenter);
+            SetHeader(tnmt, fontHeader, page, graph);
 
             string line = "";
             int yPoint = 40;
 
-            line = "Allgemine Daten:";
-            graph.DrawString(line, fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-            yPoint += 20;
-            line = "    Anzahl Durchgänge: " + Convert.ToString(tnmt.tnmtRunCnt);
-            graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-            yPoint += 20;
-            line = "    Anzahl Spiel/Druchgang: " + Convert.ToString(tnmt.tnmtGameProRunCnt);
-            graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-            yPoint += 20;
-            line = "    Anzahl Teams: " + Convert.ToString(tnmt.tnmtTeamCnt);
-            graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-            yPoint += 50;
+            //if (CheckTnmtNotFinishState(tnmtIni))
+            //{
+            //    line = "ZUM ZEITPUNKT DER ERSTELLUNG DIESER DATEI WAR DAS TURNIER NOCH NICHT BEENDET!";
+            //    graph.DrawString(line, notFinishedState, XBrushes.Black, new XRect(10, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //    yPoint += 20;
+            //}
+
+            SetTnmtNotFinishState(tnmtIni, line, fontNotFinishedState, page, graph, ref yPoint);
+
+            //line = "Allgemine Daten:";
+            //graph.DrawString(line, fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //yPoint += 20;
+            //line = "    Anzahl Durchgänge: " + Convert.ToString(tnmt.tnmtRunCnt);
+            //graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //yPoint += 20;
+            //line = "    Anzahl Spiel/Druchgang: " + Convert.ToString(tnmt.tnmtGameProRunCnt);
+            //graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //yPoint += 20;
+            //line = "    Anzahl Teams: " + Convert.ToString(tnmt.tnmtTeamCnt);
+            //graph.DrawString(line, fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //yPoint += 50;
+
+            SetDefaultData(tnmt, ref line, fontLineInfo, fontLine, page, graph, ref yPoint);
+
             int x = 0;
             line = "";
 
-            line = Const.posHeader + "|" + Const.teamNumberHeader + "|" + Const.teamNameHeader + "|" + Const.winPointsHeader + "|" + Const.gamePointsDiffHeader;
-            graph.DrawString(line, fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-            yPoint += 20;
-            line = "";
+            //line = Const.posHeader + "|" + Const.teamNumberHeader + "|" + Const.teamNameHeader + "|" + Const.winPointsHeader + "|" + Const.gamePointsDiffHeader;
+            //graph.DrawString(line, fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //yPoint += 20;
+            //line = "";
 
-            graph.DrawString(SetRow(), fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-            yPoint += 20;
+            int pageNumber = 1;
+            SetPageNumber(ref line, pageNumber, fontLineInfo, page, graph, ref yPoint);
 
+            SetTableHeader(ref line, fontLineInfo, page, graph, ref yPoint);
+
+            //graph.DrawString(SetRow(), fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            //yPoint += 20;
+
+            
+
+            int rowCnt = 0;
+            int rowCntperPage = 13;
             foreach (Team team in evaTeams)
             {
-                x++;
-                graph.DrawString(FillPdfTable(team, Convert.ToString(x)), fontLine, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-                yPoint += 20;
-                line = "";
-                graph.DrawString(SetRow(), fontLineInfo, XBrushes.Black, new XRect(40, yPoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
-                yPoint += 20;
+                if (rowCnt < rowCntperPage)
+                {
+                    x++;
+                    SetTableRowData(ref line, team, x, fontLineInfo, fontLine, page, graph, ref yPoint);
+                    rowCnt++;
+                } else
+                {
+                    page = pdf.AddPage();
+                    graph = XGraphics.FromPdfPage(page);
+                    rowCnt = 0;
+                    yPoint = 40;
+                    pageNumber += 1;
+                    SetTimeStamp(ref line, fontLineInfo, page, graph, ref yPoint);
+                    SetPageNumber(ref line, pageNumber, fontLineInfo, page, graph, ref yPoint);
+                    SetTableHeader(ref line, fontLineInfo, page, graph, ref yPoint);
+                    x++;
+                    SetTableRowData(ref line, team, x, fontLineInfo, fontLine, page, graph, ref yPoint);
+                }
+               
             }
 
             if (!Directory.Exists(tnmt.tnmtSpecPath))
@@ -378,11 +530,15 @@ namespace Preiswattera_3000
             Tournament tnmt = new Tournament();
             tnmt.Getter();
             SaveEva();
-            MessageBox.Show("Rangliste wurde gespeichert!" +
-                            "Speicherort: " + tnmt.tnmtSpecPath,
-                            "Speichern erfolgreich",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+            //MessageBox.Show("Rangliste wurde gespeichert!" +
+            //                "Speicherort: " + tnmt.tnmtSpecPath,
+            //                "Speichern erfolgreich",
+            //                MessageBoxButton.OK,
+            //                MessageBoxImage.Information);
+            mainWindow.MessageBar(MainWindow.InfoMessage,
+                                    "Speichern erfolgreich",
+                                    "Rangliste wurde gespeichert!" +
+                                    "\nSpeicherort: " + tnmt.tnmtSpecPath);
         }
 
         private void btn_WindowInfo_Click(object sender, RoutedEventArgs e)

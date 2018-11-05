@@ -184,11 +184,15 @@ namespace Preiswattera_3000
                 {
                     if (playerNotPayed[i] != null)
                     {
-                        errorMessage += playerNotPayed[i] + "\n";
+                        errorMessage += playerNotPayed[i] + "; ";
                     }
                 }
 
-                MessageBox.Show("Offene Startgebühr:\n" + errorMessage, "Ausstehnde Zahlung", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("Offene Startgebühr:\n" + errorMessage, "Ausstehnde Zahlung", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBar(ErrorMessage,
+                            "Ausstehnde Startgebühren",
+                            "Das Turnier kann erst gestartet werden, wenn alle Startgebühren gezahlt wurden!"+
+                            "\n" + errorMessage);
                 return false;
             }
             else
@@ -243,11 +247,15 @@ namespace Preiswattera_3000
                 }
             } else
             {
-                MessageBox.Show("Derzeit sind nur " + teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt) + " Teams erfasst!" +
-                                "\nEin Tunier ist nur mit einer geraden Anzahl Teams möglich!",
-                                "Ungerade Anzahl Teams erfasst",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                //MessageBox.Show("Derzeit sind nur " + teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt) + " Teams erfasst!" +
+                //                "\nEin Tunier ist nur mit einer geraden Anzahl Teams möglich!",
+                //                "Ungerade Anzahl Teams erfasst",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Error);
+                MessageBar(ErrorMessage,
+                            "Ungerade Anzahl Teams erfasst",
+                            "Derzeit sind nur " + teamIni.GetValue(Const.fileSec, Team.fsX_teamCnt) + " Teams erfasst!" +
+                            "\nEin Tunier ist nur mit einer geraden Anzahl Teams möglich!");
             }
         }
 
@@ -287,75 +295,49 @@ namespace Preiswattera_3000
             {
                 
                 case ErrorMessage:
-                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFF4D4D"));
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFBB3737"));
                     bar_ErroImg.Visibility = Visibility.Visible;
                     btn_Ok.Visibility = Visibility.Visible;
-                    retVal = selection;
-                    isClicked = false;
                     break;
                 case InfoMessage:
-                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFAFE6FF"));
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF39AEDA"));
                     bar_InfoImg.Visibility = Visibility.Visible;
                     btn_Ok.Visibility = Visibility.Visible;
-                    while (!isClicked)
-                    {
-                        // wait for User interaction
-                    }
-                    retVal = selection;
-                    isClicked = false;
                     break;
                 case WarnMessage:
-                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFFFFFAF"));
+                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFF3F322"));
                     bar_WarnImg.Visibility = Visibility.Visible;
                     btn_Ok.Visibility = Visibility.Visible;
-                    while (!isClicked)
-                    {
-                        // wait for User interaction
-                    }
-                    retVal = selection;
-                    isClicked = false;
-                    break;
-                case AskMessage:
-                    rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFE4E4E4"));
-                    bar_AskImg.Visibility = Visibility.Visible;
-                    btn_Yes.Visibility = Visibility.Visible;
-                    btn_No.Visibility = Visibility.Visible;
-                    while (!isClicked)
-                    {
-                        // wait for User interaction
-                    }
-                    retVal = selection;
-                    isClicked = false;
                     break;
                 default:break;
             }
-
-            //cnvs_MessageBar.Visibility = Visibility.Hidden;
-            //btn_Yes.Visibility = Visibility.Hidden;
-            //btn_No.Visibility = Visibility.Hidden;
-            //btn_Ok.Visibility = Visibility.Hidden;
-            
             return retVal;
         }
 
-        #endregion
-
         private void btn_Ok_Click(object sender, RoutedEventArgs e)
         {
-            isClicked = true;
-            selection = true;
+            cnvs_MessageBar.Visibility = Visibility.Hidden;
+            bar_AskImg.Visibility = Visibility.Hidden;
+            bar_ErroImg.Visibility = Visibility.Hidden;
+            bar_InfoImg.Visibility = Visibility.Hidden;
+            bar_WarnImg.Visibility = Visibility.Hidden;
+            btn_Ok.Visibility = Visibility.Hidden;
+        }
+        #endregion
+
+        private void btn_MainWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
-        private void btn_Yes_Click(object sender, RoutedEventArgs e)
+        private void btn_MainWindowClose_Copy_Click(object sender, RoutedEventArgs e)
         {
-            isClicked = true;
-            selection = true;
+            this.WindowState = WindowState.Minimized;
         }
 
-        private void btn_No_Click(object sender, RoutedEventArgs e)
+        private void DragDropTitelBar(object sender, RoutedEventArgs e)
         {
-            isClicked = true;
-            selection = false;
+            this.DragMove();
         }
     }
 }

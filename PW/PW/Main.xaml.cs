@@ -163,10 +163,13 @@ namespace Preiswattera_3000
             catch(Exception ex)
             {
                 Log.Update(ex.ToString());
-                MessageBox.Show("There is a pdfSharp.dll missing!!! Download it!",
-                                "Missing Lib",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                //MessageBox.Show("There is a pdfSharp.dll missing!!! Download it!",
+                //                "Missing Lib",
+                //                MessageBoxButton.OK,
+                //                MessageBoxImage.Error);
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Missing Lib",
+                                        "There i a pdfSharp.dll missing!! Download it!!");
             }
 
 

@@ -17,7 +17,7 @@ namespace Preiswattera_3000
         public const string fsX_prepMode = "Prepare-Mode";
         public const string fsX_prepMode_def = "1";
         public const string fsX_allKey = "@";
-        public const string fsX_allKey_def = "§%,^^^\"#°~/%?$";
+        public const string fsX_allKey_def = "^E;/I#IC.ADGI~*H^D#B~.E.HA#G)";
         public const string fsX_SpecTnmtPath = "Specific-Tournament-Path";
         public const string fsX_SpecTnmtPath_def = "C:/";
         public const string fsX_ColorMode = "Color-Mode";

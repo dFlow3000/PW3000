@@ -34,7 +34,58 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
+
+    <!-- ____________________________________TitleBar Button____________________________________ -->
+    <!-- _____________________Default TitelBar Button_____________________-->
+    <Style BasedOn="{StaticResource DefaultButtonStyle}"
+           TargetType="Button"
+           x:Key="DefaultTitleBarButton">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Lucida Console"/>
+    </Style>
+
+    <!-- _____________________Close TitelBar Button_____________________-->
+    <Style BasedOn="{StaticResource DefaultTitleBarButton}"
+           TargetType="Button"
+           x:Key="TitleBarCloseButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Transparent"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#FFB90000" Opacity="0.5"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- _____________________Close TitelBar Button_____________________-->
+    <Style BasedOn="{StaticResource DefaultTitleBarButton}"
+           TargetType="Button"
+           x:Key="TitleBarMinButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Transparent"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Black" Opacity="0.5"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- ____________________________________Interaction Button____________________________________ -->
     <!-- _____________________Default IA Button_____________________-->
     <Style BasedOn="{StaticResource DefaultButtonStyle}"
@@ -46,7 +97,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <SolidColorBrush Color="#FFC5C5C5" Opacity="0.5"/>
+                        <SolidColorBrush Color="#FFE6E6E6" Opacity="0.5"/>
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Foreground" Value="Gray"/>
@@ -126,7 +177,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <SolidColorBrush Color="#FFC10F17" Opacity="0.5"/>
+                        <SolidColorBrush Color="#FFFF121C" Opacity="0.5"/>
                     </Setter.Value>
                 </Setter>
             </Trigger>

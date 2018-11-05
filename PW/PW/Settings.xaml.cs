@@ -83,11 +83,15 @@ namespace Preiswattera_3000
                 } catch
                 {
                     Log.Error("Switching Tournament-Folder failed! Old Path:" + oldPath + " | new Path:" + specificTnmntPath);
-                    MessageBox.Show("Bei der Änderung des Turniernamens kam es zu einem Fehler!" +
-                                    "\nBitte überprüfen Sie die Ordner:\n" + oldPath + "\n -> \n" + specificTnmntPath,
-                                    "Fehler bei Änderung des Turniernamens",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
+                    //MessageBox.Show("Bei der Änderung des Turniernamens kam es zu einem Fehler!" +
+                    //                "\nBitte überprüfen Sie die Ordner:\n" + oldPath + "\n -> \n" + specificTnmntPath,
+                    //                "Fehler bei Änderung des Turniernamens",
+                    //                MessageBoxButton.OK,
+                    //                MessageBoxImage.Error);
+                    mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                           "Fehler bei Änderung des Turniernamens",
+                                           "Bei der Änderung des Turniernamens kam es zu einem Fehler!" +
+                                           "\nBitte überprüfen Sie die Ordner:\n" + oldPath + "\n -> \n" + specificTnmntPath);
                 }
             }
 
