@@ -207,10 +207,10 @@ namespace Preiswattera_3000
             tbx_2GamePoints2Team.Text = String.Empty;
             tbx_3GamePoints1Team.Text = String.Empty;
             tbx_3GamePoints2Team.Text = String.Empty;
-            lbl_oTeam1Player1.Content = String.Empty;
-            lbl_oTeam1Player2.Content = String.Empty;
-            lbl_oTeam2Player1.Content = String.Empty;
-            lbl_oTeam2Player2.Content = String.Empty;
+            //lbl_oTeam1Player1.Content = String.Empty;
+            //lbl_oTeam1Player2.Content = String.Empty;
+            //lbl_oTeam2Player1.Content = String.Empty;
+            //lbl_oTeam2Player2.Content = String.Empty;
         }
 
         #endregion
@@ -252,10 +252,12 @@ namespace Preiswattera_3000
                         if (gamesOnTable[i].gamePoints[0] > gamesOnTable[i].gamePoints[1])
                         {
                             team1.gamePointsTotalDiff += gamesOnTable[i].gamePoints[0] - gamesOnTable[i].gamePoints[1];
+                            team2.gamePointsTotalDiff += gamesOnTable[i].gamePoints[1] - gamesOnTable[i].gamePoints[0];
                         }
                         else
                         {
                             team2.gamePointsTotalDiff += gamesOnTable[i].gamePoints[1] - gamesOnTable[i].gamePoints[0];
+                            team1.gamePointsTotalDiff += gamesOnTable[i].gamePoints[0] - gamesOnTable[i].gamePoints[1];
                         }
 
                         gamesOnTable[i].dpndRun = runId;
@@ -274,6 +276,7 @@ namespace Preiswattera_3000
                     newTable.teamsOnTable[0] = team1.teamId;
                     newTable.teamsOnTable[1] = team2.teamId;
 
+                    mainWindow.ShowSaver();
                     newTable.Setter();
 
                     AllowGameInput(true);
@@ -341,6 +344,7 @@ namespace Preiswattera_3000
             pwbx_EditPassword.Visibility = Visibility.Visible;
             btn_Edit_GameData_Autorisation.Visibility = Visibility.Visible;
             btn_Edit_GameData.Visibility = Visibility.Hidden;
+            pwbx_EditPassword.Focus();
 
         }
 
@@ -386,6 +390,9 @@ namespace Preiswattera_3000
                 // [4,1] DiffPoints Team 2
                 prevTableValues[4, 1] = 0;
 
+                prevTableValueGamePointsTotal[0] = 0;
+                prevTableValueGamePointsTotal[1] = 0;
+
 
                 for (int i = 1; i <= 3; i++)
                 {
@@ -396,11 +403,13 @@ namespace Preiswattera_3000
                     {
                         // [4,0] DiffPoints Team 1
                         prevTableValues[4, 0] += prevTableValues[i, 0] - prevTableValues[i, 1];
+                        prevTableValues[4, 1] += prevTableValues[i, 1] - prevTableValues[i, 0];
                     }
                     else
                     {
                         // [4,1] DiffPoints Team 2
                         prevTableValues[4, 1] += prevTableValues[i, 1] - prevTableValues[i, 0];
+                        prevTableValues[4, 0] += prevTableValues[i, 0] - prevTableValues[i, 1];
                     }
 
                 }
@@ -412,7 +421,7 @@ namespace Preiswattera_3000
                 //                "Bearbeitung nicht erlaubt!",
                 //                MessageBoxButton.OK,
                 //                MessageBoxImage.Stop);
-                mainWindow.MessageBar(MainWindow.WarnMessage,
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
                                         "Bearbeitung nicht erlaubt!",
                                         "Das eingegebene Passwort ist falsch!");
                 pwbx_EditPassword.Password = String.Empty;
@@ -423,105 +432,125 @@ namespace Preiswattera_3000
         {
             if (CheckInput())
             {
-                INIFile tnmtIni = new INIFile(Tournament.iniPath);
-                int maxGamePerRound = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
-                int[] newTableValueGamePointsTotal = new int[2];
-                Table updateTable = new Table();
-                updateTable.Getter(cmbx_selectTable.SelectedIndex + 1, runId);
+                cnvs_CheckAfterEdit.Visibility = Visibility.Visible;
+                btn_Edit_GameData_UserCheck.Visibility = Visibility.Visible;
+                btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
+                mainWindow.MessageBar(MainWindow.WarnMessage,
+                    "Gespeicherter Spielstand wurde verändert!",
+                    "Sie haben einen bereits erfassten Spielstand verändert!" +
+                    "\nÜberprüfen Sie bitte erneut alle Eingaben und bestätigen Sie die Überprüfung!");
+            }
+        }
 
-                Game[] updateGames = new Game[maxGamePerRound];
-                Game addGame = new Game();
 
-                TextBox[,] updateInput = new TextBox[3, 2] { { tbx_1GamePoints1Team, tbx_1GamePoints2Team },
+        private void btn_Edit_GameData_UserCheck_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckInput())
+            {
+                if (UserCheckAfterEdit())
+                {
+                    btn_Edit_GameData_UserCheck.Visibility = Visibility.Hidden;
+                    INIFile tnmtIni = new INIFile(Tournament.iniPath);
+                    int maxGamePerRound = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
+                    int[] newTableValueGamePointsTotal = new int[2];
+                    Table updateTable = new Table();
+                    updateTable.Getter(cmbx_selectTable.SelectedIndex + 1, runId);
+
+                    Game[] updateGames = new Game[maxGamePerRound];
+                    Game addGame = new Game();
+
+                    TextBox[,] updateInput = new TextBox[3, 2] { { tbx_1GamePoints1Team, tbx_1GamePoints2Team },
                                                          { tbx_2GamePoints1Team, tbx_2GamePoints2Team },
                                                          { tbx_3GamePoints1Team, tbx_3GamePoints2Team } };
-                Team updateTeam1 = new Team();
-                updateTeam1.Getter(updateTable.teamsOnTable[0]);
-                Team updateTeam2 = new Team();
-                updateTeam2.Getter(updateTable.teamsOnTable[1]);
+                    Team updateTeam1 = new Team();
+                    updateTeam1.Getter(updateTable.teamsOnTable[0]);
+                    Team updateTeam2 = new Team();
+                    updateTeam2.Getter(updateTable.teamsOnTable[1]);
 
-                int diffTeam1 = 0;
-                int diffTeam2 = 0;
+                    int diffTeam1 = 0;
+                    int diffTeam2 = 0;
 
-                for (int i = 0; i < maxGamePerRound; i++)
-                {
-                    addGame.Getter(updateTable.tableGameIds[i]);
-                    updateGames[i] = addGame;
-                    updateGames[i].gamePoints[0] = Convert.ToInt32(updateInput[i, 0].Text);
-                    newTableValueGamePointsTotal[0] += Convert.ToInt32(updateInput[i, 0].Text);
-                    updateGames[i].gamePoints[1] = Convert.ToInt32(updateInput[i, 1].Text);
-                    newTableValueGamePointsTotal[1] += Convert.ToInt32(updateInput[i, 1].Text);
-
-                    if (updateGames[i].gamePoints[0] > updateGames[i].gamePoints[1])
+                    for (int i = 0; i < maxGamePerRound; i++)
                     {
-                        diffTeam1 += updateGames[i].gamePoints[0] - updateGames[i].gamePoints[1];
+                        addGame.Getter(updateTable.tableGameIds[i]);
+                        updateGames[i] = addGame;
+                        updateGames[i].gamePoints[0] = Convert.ToInt32(updateInput[i, 0].Text);
+                        newTableValueGamePointsTotal[0] += Convert.ToInt32(updateInput[i, 0].Text);
+                        updateGames[i].gamePoints[1] = Convert.ToInt32(updateInput[i, 1].Text);
+                        newTableValueGamePointsTotal[1] += Convert.ToInt32(updateInput[i, 1].Text);
+
+                        if (updateGames[i].gamePoints[0] > updateGames[i].gamePoints[1])
+                        {
+                            diffTeam1 += updateGames[i].gamePoints[0] - updateGames[i].gamePoints[1];
+                            diffTeam2 += updateGames[i].gamePoints[1] - updateGames[i].gamePoints[0];
+                        }
+                        else
+                        {
+                            diffTeam2 += updateGames[i].gamePoints[1] - updateGames[i].gamePoints[0];
+                            diffTeam1 += updateGames[i].gamePoints[0] - updateGames[i].gamePoints[1];
+                        }
+
+
+                        updateGames[i].Setter();
                     }
-                    else
+
+                    updateTable.winPointsAtGame[0] = Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+                    updateTable.winPointsAtGame[1] = Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                    updateTable.Setter();
+
+                    if (updateTeam1.gamePointsTotal > 0)
                     {
-                        diffTeam2 += updateGames[i].gamePoints[1] - updateGames[i].gamePoints[0];
+                        updateTeam1.gamePointsTotal -= prevTableValueGamePointsTotal[0];
                     }
+                    updateTeam1.gamePointsTotal += newTableValueGamePointsTotal[0];
+                    if (updateTeam1.winPoints > 0)
+                    {
+                        updateTeam1.winPoints -= prevTableValues[0, 0];
+                    }
+                    updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
 
+                    updateTeam1.gamePointsTotalDiff = updateTeam1.gamePointsTotalDiff - prevTableValues[4, 0] + diffTeam1;
+                    updateTeam1.Setter();
 
-                    updateGames[i].Setter();
-                }
+                    if (updateTeam2.gamePointsTotal > 0)
+                    {
+                        updateTeam2.gamePointsTotal -= prevTableValueGamePointsTotal[1];
+                    }
+                    updateTeam2.gamePointsTotal += newTableValueGamePointsTotal[1];
+                    if (updateTeam2.winPoints > 0)
+                    {
+                        updateTeam2.winPoints -= prevTableValues[0, 1];
+                    }
+                    updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                    updateTeam2.gamePointsTotalDiff = updateTeam2.gamePointsTotalDiff - prevTableValues[4, 1] + diffTeam2;
+                    updateTeam2.Setter();
 
-                updateTable.winPointsAtGame[0] = Convert.ToInt32(tbx_iWinPointsTeam1.Text);
-                updateTable.winPointsAtGame[1] = Convert.ToInt32(tbx_iWinPointsTeam2.Text);
-                updateTable.Setter();
+                    Log.Update("Table:" + Convert.ToString(updateTable.tableId) + " Team1:" + updateTeam1.teamName + " Team2:" + updateTeam2.teamName);
+                    Log.Update("Team 1 - WinPoints:" + Convert.ToString(prevTableValues[0, 0]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
+                    Log.Update("Team 2 - WinPoints:" + Convert.ToString(prevTableValues[0, 1]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
+                    Log.Update("Game 1:" + Convert.ToString(prevTableValues[1, 0]) + "->" + Convert.ToString(updateGames[0].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[1, 1]) + "->" + Convert.ToString(updateGames[0].gamePoints[1]));
+                    Log.Update("Game 2:" + Convert.ToString(prevTableValues[2, 0]) + "->" + Convert.ToString(updateGames[1].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[2, 1]) + "->" + Convert.ToString(updateGames[1].gamePoints[1]));
+                    Log.Update("Game 3:" + Convert.ToString(prevTableValues[3, 0]) + "->" + Convert.ToString(updateGames[2].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[3, 1]) + "->" + Convert.ToString(updateGames[2].gamePoints[1]));
+                    Log.Update("GamePointsTotal:" + Convert.ToString(prevTableValueGamePointsTotal[0]) + "->" + Convert.ToString(newTableValueGamePointsTotal[0]) + " | " + Convert.ToString(prevTableValueGamePointsTotal[1]) + "->" + Convert.ToString(newTableValueGamePointsTotal[1]));
+                    Log.Update("Diff:" + Convert.ToString(prevTableValues[4, 0]) + "->" + Convert.ToString(diffTeam1) + " | " + Convert.ToString(prevTableValues[4, 1]) + "->" + Convert.ToString(diffTeam2));
 
-                if (updateTeam1.gamePointsTotal > 0)
+                    mainWindow.ShowSaver();
+                    cmbx_selectTable.SelectedIndex = cmbx_selectTable.SelectedIndex;
+                    ShowGatheredInfo(updateTable);
+                    cmbx_selectTeam1.SelectedIndex = -1;
+                    cmbx_selectTeam2.SelectedIndex = -1;
+                    cmbx_selectTeam1.Visibility = Visibility.Hidden;
+                    cmbx_selectTeam2.Visibility = Visibility.Hidden;
+                    btn_Edit_GameData.Visibility = Visibility.Visible;
+                    btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
+                    btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
+                    btn_TableSetBack.Visibility = Visibility.Hidden;
+                } else
                 {
-                    updateTeam1.gamePointsTotal -= prevTableValueGamePointsTotal[0];
+                    mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                            "Nicht alle Eingabefelder überprüft!",
+                                            "Überprüfen Sie bitte erneut ALLE Eingabefelder und bestätigen Sie die Überprüfung!");
                 }
-                updateTeam1.gamePointsTotal += newTableValueGamePointsTotal[0];
-                if (updateTeam1.winPoints > 0)
-                {
-                    updateTeam1.winPoints -= prevTableValues[0, 0];
-                }
-                updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
-                if (updateTeam1.gamePointsTotalDiff > 0)
-                {
-                    updateTeam1.gamePointsTotalDiff -= prevTableValues[4, 0];
-                }
-                updateTeam1.gamePointsTotalDiff += diffTeam1;
-                updateTeam1.Setter();
-
-                if (updateTeam2.gamePointsTotal > 0)
-                {
-                    updateTeam2.gamePointsTotal -= prevTableValueGamePointsTotal[1];
-                }
-                updateTeam2.gamePointsTotal += newTableValueGamePointsTotal[1];
-                if (updateTeam2.winPoints > 0)
-                {
-                    updateTeam2.winPoints -= prevTableValues[0, 1];
-                }
-                updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
-                if (updateTeam1.gamePointsTotalDiff > 0)
-                {
-                    updateTeam1.gamePointsTotalDiff -= prevTableValues[4, 1];
-                }
-                updateTeam2.gamePointsTotalDiff += diffTeam2;
-                updateTeam2.Setter();
-
-                Log.Update("Table:" + Convert.ToString(updateTable.tableId) + " Team1:" + updateTeam1.teamName + " Team2:" + updateTeam2.teamName);
-                Log.Update("Team 1 - WinPoints:" + Convert.ToString(prevTableValues[0, 0]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
-                Log.Update("Team 2 - WinPoints:" + Convert.ToString(prevTableValues[0, 1]) + "->" + Convert.ToString(updateTable.winPointsAtGame[0]));
-                Log.Update("Game 1:" + Convert.ToString(prevTableValues[1, 0]) + "->" + Convert.ToString(updateGames[0].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[1, 1]) + "->" + Convert.ToString(updateGames[0].gamePoints[1]));
-                Log.Update("Game 2:" + Convert.ToString(prevTableValues[2, 0]) + "->" + Convert.ToString(updateGames[1].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[2, 1]) + "->" + Convert.ToString(updateGames[1].gamePoints[1]));
-                Log.Update("Game 3:" + Convert.ToString(prevTableValues[3, 0]) + "->" + Convert.ToString(updateGames[2].gamePoints[0]) + " | " + Convert.ToString(prevTableValues[3, 1]) + "->" + Convert.ToString(updateGames[2].gamePoints[1]));
-                Log.Update("GamePointsTotal:" + Convert.ToString(prevTableValueGamePointsTotal[0]) + "->" + Convert.ToString(newTableValueGamePointsTotal[0]) + " | " + Convert.ToString(prevTableValueGamePointsTotal[1]) + "->" + Convert.ToString(newTableValueGamePointsTotal[1]));
-                Log.Update("Diff:" + Convert.ToString(prevTableValues[4, 0]) + "->" + Convert.ToString(diffTeam1) + " | " + Convert.ToString(prevTableValues[4, 1]) + "->" + Convert.ToString(diffTeam2));
-
-                cmbx_selectTable.SelectedIndex = cmbx_selectTable.SelectedIndex;
-                ShowGatheredInfo(updateTable);
-                cmbx_selectTeam1.SelectedIndex = -1;
-                cmbx_selectTeam2.SelectedIndex = -1;
-                cmbx_selectTeam1.Visibility = Visibility.Hidden;
-                cmbx_selectTeam2.Visibility = Visibility.Hidden;
-                btn_Edit_GameData.Visibility = Visibility.Visible;
-                btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
-                btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
-                btn_TableSetBack.Visibility = Visibility.Hidden;
 
             }
             else
@@ -711,7 +740,7 @@ namespace Preiswattera_3000
         {
             tableSelected = true;
             bool allreadyfilled = true;
-
+            
             Table selectedTable = new Table(cmbx_selectTable.SelectedIndex + 1, runId);
             foreach (int gameId in selectedTable.tableGameIds)
             {
@@ -721,6 +750,13 @@ namespace Preiswattera_3000
                     cmbx_selectTeam1.Visibility = Visibility.Visible;
                     cmbx_selectTeam2.Visibility = Visibility.Visible;
                     btn_Edit_GameData.Visibility = Visibility.Hidden;
+                    btn_Save.Visibility = Visibility.Visible;
+                    lbl_oTeam1Number.Visibility = Visibility.Hidden;
+                    lbl_oTeam2Number.Visibility = Visibility.Hidden;
+                    lbl_oTeam1Player1.Content = String.Empty;
+                    lbl_oTeam1Player2.Content = String.Empty;
+                    lbl_oTeam2Player1.Content = String.Empty;
+                    lbl_oTeam2Player2.Content = String.Empty;
                     break;
                 }
                 else
@@ -733,6 +769,7 @@ namespace Preiswattera_3000
                     lbl_oTeam2Number.Visibility = Visibility.Visible;
                     lbl_oTeam1Number.Content = Convert.ToString(selectedTable.teamsOnTable[0]);
                     lbl_oTeam2Number.Content = Convert.ToString(selectedTable.teamsOnTable[1]);
+                    break;
                 }
             }
 
@@ -778,6 +815,20 @@ namespace Preiswattera_3000
                     return false;
                 }
             } else
+            {
+                return false;
+            }
+        }
+
+        private bool UserCheckAfterEdit()
+        {
+            if (Convert.ToBoolean(cbx_t1g1.IsChecked) && Convert.ToBoolean(cbx_t1g2.IsChecked) && Convert.ToBoolean(cbx_t1g3.IsChecked) && Convert.ToBoolean(cbx_t1wp.IsChecked) &&
+                Convert.ToBoolean(cbx_t2g1.IsChecked) && Convert.ToBoolean(cbx_t2g2.IsChecked) && Convert.ToBoolean(cbx_t2g3.IsChecked) && Convert.ToBoolean(cbx_t2wp.IsChecked))
+            {
+                cnvs_CheckAfterEdit.Visibility = Visibility.Hidden;
+                return true;
+            }
+            else
             {
                 return false;
             }
@@ -837,6 +888,18 @@ namespace Preiswattera_3000
                     if (clear)
                     {
                         SwitchTbx(false);
+                        if (!team1Selected)
+                        {
+                            lbl_oTeam1Player1.Content = String.Empty;
+                            lbl_oTeam1Player2.Content = String.Empty;
+                            cmbx_selectTeam1.SelectedIndex = -1;
+                        }
+                        if (!team2Selected)
+                        {
+                            lbl_oTeam2Player1.Content = String.Empty;
+                            lbl_oTeam2Player2.Content = String.Empty;
+                            cmbx_selectTeam2.SelectedIndex = -1;
+                        }
                     }
                     return false;
                 }

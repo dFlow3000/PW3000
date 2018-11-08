@@ -50,11 +50,11 @@ C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\PrepaireMenue.g.cs
 C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\PrepaireMenue.baml
 C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\SignUpTeams.g.cs
 C:\Users\dawo\Documents\DaWo\Test\PW\PW\obj\Debug\SignUpTeams.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.pdb
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\Preiswattera_3000.exe.config
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\Preiswattera_3000.exe
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\Preiswattera_3000.pdb
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.dll
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\PdfSharp.pdb
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csprojAssemblyReference.cache
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\AddTeam.g.cs
@@ -62,6 +62,7 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\AddTournament.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\ChangePassword.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Evaluation.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Eva_Team_Data.g.cs
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InsertRunData.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadOrCreateTournament.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadTournament.g.cs
@@ -77,11 +78,13 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\App.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000_Content.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000_MarkupCompile.cache
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000_MarkupCompile.lref
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\App.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\AddTeam.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\AddTournament.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\ChangePassword.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Evaluation.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Eva_Team_Data.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InsertRunData.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadOrCreateTournament.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\LoadTournament.baml
@@ -93,6 +96,9 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\RunMenue.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Settings.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\ShowTeam.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\SignUpTeams.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Styles\Button_Styles.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Styles\Form_Styles.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Styles\Label_Styles.baml
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000.g.resources
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000.Properties.Resources.resources
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.GenerateResource.cache
@@ -100,7 +106,3 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CoreCompileInput
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\PW.csproj.CopyComplete
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000.exe
 C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Preiswattera_3000.pdb
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.g.cs
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\InfoWindow.baml
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\App.baml
-C:\Users\dawo\Documents\GitHub\PW3000\PW\PW\obj\Debug\Styles\Button_Styles.baml

@@ -37,15 +37,15 @@
             <Canvas Margin="0,0,0,-2">
                 <GroupBox x:Name="gbx_AdminSettings_PW" Header="Passwort" Width="504" Height="116" Canvas.Left="10" Canvas.Top="10">
                     <Canvas Margin="0,0,0,120">
-                        <Button x:Name="btn_EditPassword" Style="{StaticResource DefaultIAButton}" IsEnabled="true" Content="Passwort ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="204" Height="38" Click="btn_EditPassword_Click" Canvas.Left="172" Canvas.Top="26"/>
+                        <Button x:Name="btn_EditPassword" Style="{StaticResource DefaultIAButton}" IsEnabled="true" Content="Passwort ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="204" Height="38" Click="btn_EditPassword_Click" Canvas.Left="24" Canvas.Top="24"/>
                     </Canvas>
                 </GroupBox>
                 <GroupBox x:Name="gbx_AdminSettings_Color" Header="Hintergrundfarbe ändern" Canvas.Top="153" Height="225" Width="504" Canvas.Left="10">
                     <Canvas Margin="0,0,674,-98">
-                        <Button x:Name="btn_EditColorGreen" Style="{StaticResource DefaultIAButton}" Content="Grün" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGreen_Click" Canvas.Left="10" Canvas.Top="126"/>
-                        <Button x:Name="btn_EditColorGray" Style="{StaticResource DefaultIAButton}" Content="Grau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGray_Click" Canvas.Left="270" Canvas.Top="126"/>
-                        <Button x:Name="btn_EditColorBlue" Style="{StaticResource DefaultIAButton}" Content="Blau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorBlue_Click" Canvas.Left="270" Canvas.Top="28"/>
-                        <Button x:Name="btn_EditColorRed_Copy" Style="{StaticResource DefaultIAButton}" Content="Rot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorRed_Click" Canvas.Left="10" Canvas.Top="28"/>
+                        <Button x:Name="btn_EditColorGreen" Style="{StaticResource ActionMenueButton_Green}" Content="Grün" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGreen_Click" Canvas.Left="10" Canvas.Top="126"/>
+                        <Button x:Name="btn_EditColorGray" Style="{StaticResource ActionMenueButton_Gray}" Content="Grau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorGray_Click" Canvas.Left="270" Canvas.Top="126"/>
+                        <Button x:Name="btn_EditColorBlue" Style="{StaticResource ActionMenueButton_Blue}" Content="Blau" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorBlue_Click" Canvas.Left="270" Canvas.Top="28"/>
+                        <Button x:Name="btn_EditColorRed_Copy" Style="{StaticResource ActionMenueButton_Red}" Content="Rot" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Height="38" Click="btn_EditColorRed_Click" Canvas.Left="10" Canvas.Top="28"/>
                     </Canvas>
                 </GroupBox>
             </Canvas>

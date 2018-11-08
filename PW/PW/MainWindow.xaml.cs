@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Nocksoft.IO.ConfigFiles;
 using System.IO;
+using System.Threading;
 
 namespace Preiswattera_3000
 {
@@ -172,7 +173,7 @@ namespace Preiswattera_3000
 
                 if (!newPlayer.payedStartFee)
                 {
-                    playerNotPayed[i - 1] = newPlayer.playerId + " | " + newPlayer.playerFirstname + " | " + newPlayer.playerLastname;
+                    playerNotPayed[i - 1] = newPlayer.playerId + " " + newPlayer.playerFirstname + " " + newPlayer.playerLastname;
                     OnenotPayed = true;
                 }
             }
@@ -184,7 +185,7 @@ namespace Preiswattera_3000
                 {
                     if (playerNotPayed[i] != null)
                     {
-                        errorMessage += playerNotPayed[i] + "; ";
+                        errorMessage += playerNotPayed[i] + " || ";
                     }
                 }
 
@@ -325,6 +326,28 @@ namespace Preiswattera_3000
         }
         #endregion
 
+        #region Saver - Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        
+        public void ShowSaver()
+        {
+            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
+            {
+                timer1.Stop();
+                Saver.Visibility = Visibility.Hidden;
+            }
+
+            Saver.Visibility = Visibility.Visible;
+            timer1.Interval = 1000;
+            timer1.Tick += new EventHandler(TimerEventProcessor);
+            timer1.Start();
+        }
+
+        #endregion
+
+
+        #region Titlebar - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         private void btn_MainWindowClose_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
@@ -338,6 +361,14 @@ namespace Preiswattera_3000
         private void DragDropTitelBar(object sender, RoutedEventArgs e)
         {
             this.DragMove();
+        }
+
+        #endregion
+
+        private void btn_PWHeader_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
+            MainContent.Content = creOLoaTnmt;
         }
     }
 }

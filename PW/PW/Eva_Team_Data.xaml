@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Loaded="Eva_Team_Data_Loaded"
         ResizeMode="NoResize"
-        WindowStyle="ThreeDBorderWindow"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Title="Info zu gewonnen Spielen    |    Spiel-Punkte-Differenz" Height="400" Width="440.478">
     <Window.Background>
@@ -18,8 +18,25 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Button x:Name="btn_WindowInfo" Style="{StaticResource InfoButton}"  FontSize="16" Content="i" Margin="0,0,406,344" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_WindowInfo_Click"/>
-        <Canvas x:Name="Header" Height="10" Margin="21,22,260,357">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="199*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="67*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btn_WindowInfo" Style="{StaticResource InfoButton}" Grid.Column="0" FontSize="16" Content="i" Margin="8,36,7,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btn_WindowInfo_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Canvas x:Name="Header" Margin="39,10,4,297" Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel x:Name="stp_GameId_Header" Canvas.Left="10" Width="63">
                 <Label x:Name="lbl_sGameNr" Content=" Spiel-Nr " FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
@@ -61,7 +78,7 @@
                 </Label>
             </StackPanel>
         </Canvas>
-        <Canvas x:Name="Footer" Margin="21,229,33,90" Width="380">
+        <Canvas x:Name="Footer" Margin="0,211,18,49" Grid.Row="1" Grid.Column="1">
             <StackPanel x:Name="stp_GameId_Footer" Canvas.Left="10" Width="63">
                 <Label x:Name="lbl_sTotal" Content="Gesamt:" FontSize="12" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold" Margin="0,0,-6,0">
                     <Label.Background>
@@ -119,7 +136,7 @@
                 </Label.Background>
             </Label>
         </Canvas>
-        <ScrollViewer HorizontalAlignment="Left" Height="167" Margin="21,62,0,0" VerticalAlignment="Top" Width="397" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer HorizontalAlignment="Left" Height="167" Margin="39,44,0,0" VerticalAlignment="Top" Width="397" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1" Grid.ColumnSpan="2">
             <Canvas x:Name="Data" Height="500">
                 <StackPanel x:Name="stp_GameId" Canvas.Left="10" Width="63"/>
                 <StackPanel x:Name="stp_TeamPoints" Canvas.Left="78" Width="94"/>
@@ -127,6 +144,17 @@
                 <StackPanel x:Name="stp_DiffPoints" Canvas.Left="281" Width="94"/>
             </Canvas>
         </ScrollViewer>
-        <Button x:Name="btn_CloseTeamGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="156,311,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_CloseTeamGameInfo_Click"/>
+        <Button x:Name="btn_CloseTeamGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="132,293,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_CloseTeamGameInfo_Click" Grid.Row="1" Grid.Column="1"/>
+        <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="2"/>
+            <Label Content="Auswertung | Detailansicht" Style="{StaticResource ExtraWindowTitelbarLabel}" Width="314" Height="34" Canvas.Left="42"/>
+            <Image Height="34" Width="25" Source="Icons\105469_-_lupe_search_zoom-512.png" Canvas.Left="3"/>
+            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="403" Height="34"/>
+            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="361" Width="37"/>
+            <Label x:Name="lbl_sTeamNr" Content="Team-Nummer: " Canvas.Left="50" Canvas.Top="39"/>
+            <Label x:Name="lbl_oTeamNr" Content="" Canvas.Left="139" Canvas.Top="39"/>
+            <Label x:Name="lbl_sTeamName" Content="Teamname: " Canvas.Left="187" Canvas.Top="39"/>
+            <Label x:Name="lbl_oTeamName" Content="" Canvas.Left="254" Canvas.Top="39"/>
+        </Canvas>
     </Grid>
 </Window>

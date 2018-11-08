@@ -46,9 +46,9 @@
                     <Canvas>
                         <Label x:Name="lbl_sTAP1Firstname" Content="Vorname:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="10" Canvas.Top="51" Width="109"/>
                         <Label x:Name="lbl_sTAP1Lastname" Content="Nachname:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="10" Canvas.Top="93"/>
-                        <TextBox x:Name="tbx_iTAP1Firstname" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbx_iTAP1Lastname" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="CreateTeamName"/>
-                        <CheckBox x:Name="cbx_iTAP1Payed" Content="Startgebühr bezahlt" Canvas.Left="124" Canvas.Top="160" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbx_iTAP1Firstname" TabIndex="0" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbx_iTAP1Lastname"  TabIndex="1" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="CreateTeamName"/>
+                        <CheckBox x:Name="cbx_iTAP1Payed"    TabIndex="2" Content="Startgebühr bezahlt" Canvas.Left="124" Canvas.Top="160" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     </Canvas>
                 </GroupBox>
                 <GroupBox x:Name="gB_sTeamAdderPlayer2" Header="Spieler 2" Height="268" Canvas.Left="576" Canvas.Top="89" Width="524" FontSize="20">
@@ -63,9 +63,9 @@
                     <Canvas>
                         <Label x:Name="lbl_sTAP2Firstname" Content="Vorname:" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="51" Width="109" Canvas.Left="10"/>
                         <Label x:Name="lbl_sTAP2Lastname" Content="Nachname:" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="93" Canvas.Left="10"/>
-                        <TextBox x:Name="tbx_iTAP2Firstname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" Canvas.Left="124"/>
-                        <TextBox x:Name="tbx_iTAP2Lastname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" Canvas.Left="124" TextChanged="CreateTeamName"/>
-                        <CheckBox x:Name="cbx_iTAP2Payed" Content="Startgebühr bezahlt" Canvas.Top="160" Canvas.Left="124"/>
+                        <TextBox x:Name="tbx_iTAP2Firstname" TabIndex="3"  Height="33" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" Canvas.Left="124"/>
+                        <TextBox x:Name="tbx_iTAP2Lastname" TabIndex="4"  Height="33" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" Canvas.Left="124" TextChanged="CreateTeamName"/>
+                        <CheckBox x:Name="cbx_iTAP2Payed"   TabIndex="5"  Content="Startgebühr bezahlt" Canvas.Top="160" Canvas.Left="124"/>
                     </Canvas>
                 </GroupBox>
                 <GroupBox x:Name="gB_sTeamAdderExtraInfo" Header="Zusatzinformationen" Height="134" Canvas.Left="19" Canvas.Top="397" Width="1091" FontSize="20">
@@ -88,7 +88,7 @@
             </Canvas>
         </GroupBox>
         <Button x:Name="btn_MainMenue" Content="Zurück" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Margin="187,10,0,0" Click="btn_MainMenue_Click"/>
-        <Button x:Name="btn_Save" Content="Speichern" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Left" Margin="458,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click"/>
+        <Button x:Name="btn_Save" TabIndex="6" Content="Speichern" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Left" Margin="458,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click"/>
         <Button x:Name="btn_Clear" Content="Abbrechen" Style="{StaticResource DefaultButtonStyle}" HorizontalAlignment="Left" Margin="723,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Clear_Click"/>
         <Label x:Name="lbl_sSaved" Content="Gespeichert!" HorizontalAlignment="Left" Margin="0,392,0,0" Grid.Row="2" VerticalAlignment="Top" Width="740" FontSize="24" HorizontalContentAlignment="Center" Foreground="#FF068D00" FontWeight="Bold" Visibility="Hidden" Height="42"/>
     </Grid>

@@ -60,6 +60,7 @@ namespace Preiswattera_3000
             lbl_sTeamHeader.Foreground = brush; 
             lbl_sWinPointsHeader.Foreground = brush; 
             lbl_sGamePointsHeader.Foreground = brush;
+            lbl_sGamePointsTotalHeader.Foreground = brush;
             lbl_sInfoHeader.Foreground = brush;
 
 
@@ -80,6 +81,8 @@ namespace Preiswattera_3000
                 Label lbl_teamName = new Label();
                 Label lbl_winPoints = new Label();
                 Label lbl_gamePointsDiff = new Label();
+                Label lbl_gamePointsTotal = new Label();
+
 
                 int x = 0;
                 int last = allTeams.Length;
@@ -95,16 +98,19 @@ namespace Preiswattera_3000
                     lbl_teamName = new Label();
                     lbl_winPoints = new Label();
                     lbl_gamePointsDiff = new Label();
+                    lbl_gamePointsTotal = new Label();
 
                     lbl_rowNumber.Background = Brushes.Transparent;
                     lbl_teamName.Background = Brushes.Transparent;
                     lbl_winPoints.Background = Brushes.Transparent;
                     lbl_gamePointsDiff.Background = Brushes.Transparent;
+                    lbl_gamePointsTotal.Background = Brushes.Transparent;
 
                     lbl_rowNumber.Content = Convert.ToString(x);
                     lbl_teamName.Content = team.teamName;
                     lbl_winPoints.Content = Convert.ToString(team.winPoints);
                     lbl_gamePointsDiff.Content = Convert.ToString(team.gamePointsTotalDiff);
+                    lbl_gamePointsTotal.Content = Convert.ToString(team.gamePointsTotal);
 
                     btn_teamGameInfo.Uid = Convert.ToString(team.teamId);
                     btn_teamGameInfo.Content = "i";
@@ -120,33 +126,38 @@ namespace Preiswattera_3000
                     lbl_teamName.FontSize = 16;
                     lbl_winPoints.FontSize = 16;
                     lbl_gamePointsDiff.FontSize = 16;
+                    lbl_gamePointsTotal.FontSize = 16;
 
                     lbl_rowNumber.HorizontalContentAlignment = HorizontalAlignment.Right;
                     lbl_teamName.HorizontalContentAlignment = HorizontalAlignment.Center;
                     lbl_winPoints.HorizontalContentAlignment = HorizontalAlignment.Center;
                     lbl_gamePointsDiff.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    lbl_gamePointsTotal.HorizontalContentAlignment = HorizontalAlignment.Center;
                     #endregion
-                    switch (x)
-                    {
-                        case 1:
-                            lbl_rowNumber.Background = Brushes.DarkGoldenrod;
-                            lbl_teamName.Background = Brushes.DarkGoldenrod;
-                            lbl_winPoints.Background = Brushes.DarkGoldenrod;
-                            lbl_gamePointsDiff.Background = Brushes.DarkGoldenrod;
-                            break;
-                        case 2:
-                            lbl_rowNumber.Background = Brushes.Silver;
-                            lbl_teamName.Background = Brushes.Silver;
-                            lbl_winPoints.Background = Brushes.Silver;
-                            lbl_gamePointsDiff.Background = Brushes.Silver;
-                            break;
-                        case 3:
-                            lbl_rowNumber.Background = Brushes.SandyBrown;
-                            lbl_teamName.Background = Brushes.SandyBrown;
-                            lbl_winPoints.Background = Brushes.SandyBrown;
-                            lbl_gamePointsDiff.Background = Brushes.SandyBrown;
-                            break;
-                    }
+                    //switch (x)
+                    //{
+                    //    case 1:
+                    //        lbl_rowNumber.Background = Brushes.DarkGoldenrod;
+                    //        lbl_teamName.Background = Brushes.DarkGoldenrod;
+                    //        lbl_winPoints.Background = Brushes.DarkGoldenrod;
+                    //        lbl_gamePointsDiff.Background = Brushes.DarkGoldenrod;
+                    //        lbl_gamePointsTotal.Background = Brushes.DarkGoldenrod;
+                    //        break;
+                    //    case 2:
+                    //        lbl_rowNumber.Background = Brushes.Silver;
+                    //        lbl_teamName.Background = Brushes.Silver;
+                    //        lbl_winPoints.Background = Brushes.Silver;
+                    //        lbl_gamePointsDiff.Background = Brushes.Silver;
+                    //        lbl_gamePointsTotal.Background = Brushes.Silver;
+                    //        break;
+                    //    case 3:
+                    //        lbl_rowNumber.Background = Brushes.SandyBrown;
+                    //        lbl_teamName.Background = Brushes.SandyBrown;
+                    //        lbl_winPoints.Background = Brushes.SandyBrown;
+                    //        lbl_gamePointsDiff.Background = Brushes.SandyBrown;
+                    //        lbl_gamePointsTotal.Background = Brushes.SandyBrown;
+                    //        break;
+                    //}
 
                     if (x == last)
                     {
@@ -158,6 +169,8 @@ namespace Preiswattera_3000
                         lbl_winPoints.Foreground = Brushes.White;
                         lbl_gamePointsDiff.Background = Brushes.Black;
                         lbl_gamePointsDiff.Foreground = Brushes.White;
+                        lbl_gamePointsTotal.Background = Brushes.Black;
+                        lbl_gamePointsTotal.Foreground = Brushes.White;
                     }
                     
                     if(x >= 1 && x <= 3)
@@ -166,21 +179,30 @@ namespace Preiswattera_3000
                         lbl_teamName.FontWeight = FontWeights.Bold;
                         lbl_winPoints.FontWeight = FontWeights.Bold;
                         lbl_gamePointsDiff.FontWeight = FontWeights.Bold;
+                        lbl_gamePointsTotal.FontWeight = FontWeights.Bold;
                     }
 
                     #region add Button n Lable to Table
                     stp_posNumber.Children.Add(lbl_rowNumber);
                     sep = new Separator();
                     stp_posNumber.Children.Add(sep);
+
                     stp_TeamName.Children.Add(lbl_teamName);
                     sep = new Separator();
                     stp_TeamName.Children.Add(sep);
+
                     stp_WinPoints.Children.Add(lbl_winPoints);
                     sep = new Separator();
                     stp_WinPoints.Children.Add(sep);
+
                     stp_GamePointsDiff.Children.Add(lbl_gamePointsDiff);
                     sep = new Separator();
                     stp_GamePointsDiff.Children.Add(sep);
+
+                    stp_GamePointsTotal.Children.Add(lbl_gamePointsTotal);
+                    sep = new Separator();
+                    stp_GamePointsTotal.Children.Add(sep);
+
                     stp_TeamGameInfo.Children.Add(btn_teamGameInfo);
                     sep = new Separator();
                     stp_TeamGameInfo.Children.Add(sep);
@@ -231,6 +253,26 @@ namespace Preiswattera_3000
                             Team temp = teams[b];
                             teams[b] = teams[b + 1];
                             teams[b + 1] = temp;
+                        }
+                    }
+                }
+            }
+
+            for (int a = 1; a < teams.Length; a++)
+            {
+                for (int b = 0; b < teams.Length - a; b++)
+                {
+                    if (teams[b].winPoints == teams[b + 1].winPoints)
+                    {
+                        if (teams[b].gamePointsTotalDiff == teams[b + 1].gamePointsTotalDiff)
+                        {
+                            if (teams[b].gamePointsTotal < teams[b + 1].gamePointsTotal)
+                            {
+                                // swap movies[b] with movies[b+1]
+                                Team temp = teams[b];
+                                teams[b] = teams[b + 1];
+                                teams[b + 1] = temp;
+                            }
                         }
                     }
                 }
@@ -290,7 +332,7 @@ namespace Preiswattera_3000
 
         private static void SetTableHeader(ref string i_line, XFont i_font, PdfPage i_page, XGraphics i_graph, ref int i_yPoint)
         {
-            i_line = Const.posHeader + "|" + Const.teamNumberHeader + "|" + Const.teamNameHeader + "|" + Const.winPointsHeader + "|" + Const.gamePointsDiffHeader;
+            i_line = Const.posHeader + "|" + Const.teamNumberHeader + "|" + Const.teamNameHeader + "|" + Const.winPointsHeader + "|" + Const.gamePointsDiffHeader + "|" + Const.gamePointsTotalHeader;
             i_graph.DrawString(i_line, i_font, XBrushes.Black, new XRect(40, i_yPoint, i_page.Width.Point, i_page.Height.Point), XStringFormats.TopLeft);
             i_yPoint += 20;
             i_line = "";
@@ -311,7 +353,7 @@ namespace Preiswattera_3000
             SetTableRowGrid(i_fontHeader, i_page, i_graph, ref i_yPoint);
         }
 
-    public static void SaveEva()
+        public static void SaveEva()
         {
             Tournament tnmt = new Tournament();
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
@@ -461,6 +503,11 @@ namespace Preiswattera_3000
             {
                 retVal += "-";
             }
+            retVal += "+";
+            foreach (char c in Const.gamePointsTotalHeader)
+            {
+                retVal += "-";
+            }
 
             return retVal;
         }
@@ -503,7 +550,14 @@ namespace Preiswattera_3000
                 retVal += " ";
             }
 
-            retVal += Convert.ToString(i_team.gamePointsTotalDiff);
+            retVal += Convert.ToString(i_team.gamePointsTotalDiff) + " |";
+
+            for (int i = 1; i < Const.gamePointsTotalHeaderLength - Convert.ToString(i_team.gamePointsTotal).Length; i++)
+            {
+                retVal += " ";
+            }
+
+            retVal += Convert.ToString(i_team.gamePointsTotal);
 
 
             return retVal;

@@ -52,6 +52,8 @@ namespace Preiswattera_3000
 
             gB_sTeamAdder.Header = "Team-Nummer " + Convert.ToString(newTeam.teamId);
 
+            tbx_iTAP1Firstname.Focus();
+
             FillSignedUpTeams();
         }
 
@@ -184,22 +186,26 @@ namespace Preiswattera_3000
                             Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
                         }
 
+                    } 
+                    
+                    if (CheckIfPayed()) {
+                        player1 = new Player(true);
+                        player2 = new Player(true);
+
+                        player1.playerFirstname = tbx_iTAP1Firstname.Text;
+                        player1.playerLastname = tbx_iTAP1Lastname.Text;
+                        player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
+
+                        player2.playerFirstname = tbx_iTAP2Firstname.Text;
+                        player2.playerLastname = tbx_iTAP2Lastname.Text;
+                        player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
+
+                        newTeam.teamName = tbx_oTeamName.Text;
+                        newTeam.SaveTeam(player1, player2);
+                        mainWindow.ShowSaver();
+                        AddTeam_Loaded(sender, e);
+                        ClearTbx();
                     }
-                    player1 = new Player(true);
-                    player2 = new Player(true);
-
-                    player1.playerFirstname = tbx_iTAP1Firstname.Text;
-                    player1.playerLastname = tbx_iTAP1Lastname.Text;
-                    player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
-
-                    player2.playerFirstname = tbx_iTAP2Firstname.Text;
-                    player2.playerLastname = tbx_iTAP2Lastname.Text;
-                    player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
-
-                    newTeam.teamName = tbx_oTeamName.Text;
-                    newTeam.SaveTeam(player1, player2);
-                    AddTeam_Loaded(sender, e);
-                    ClearTbx();
                 }
             } else
             {
@@ -213,6 +219,8 @@ namespace Preiswattera_3000
                                         "\nBitte verfolständigen Sie diese!");
             }
         }
+
+
         
         /// <summary>
         /// Clear all inputs
@@ -264,6 +272,30 @@ namespace Preiswattera_3000
             else
             {
                 return 2;
+            }
+        }
+
+        private bool CheckIfPayed()
+        {
+            if (!Convert.ToBoolean(cbx_iTAP1Payed.IsChecked) || !Convert.ToBoolean(cbx_iTAP2Payed.IsChecked))
+            {
+                if (MessageBox.Show("Nicht alle Startgebühren wurden als gezahlt gekennzeichnet!"+
+                                "\nWollen Sie trotzdem speichern?",
+                                "Zahlung der Startgebühr nicht bestätigt",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            } else if (Convert.ToBoolean(cbx_iTAP1Payed.IsChecked) && Convert.ToBoolean(cbx_iTAP2Payed.IsChecked))
+            {
+                return true;
+            } else
+            {
+                return false;
             }
         }
 

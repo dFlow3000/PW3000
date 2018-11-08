@@ -144,5 +144,25 @@ namespace Preiswattera_3000
             thisButton.Uid = String.Empty;
         }
         #endregion
+
+
+        #region Titlebar - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void btn_MainWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_MainWindowClose_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void DragDropTitelBar(object sender, RoutedEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        #endregion
     }
 }

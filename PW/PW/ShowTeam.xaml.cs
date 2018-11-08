@@ -74,6 +74,10 @@ namespace Preiswattera_3000
             List<string> allPlayedGames = new List<string>();
             INIFile gIni = new INIFile(Game.iniPath);
             INIFile teamIni = new INIFile(Team.iniPath);
+            int gameCnt = 0;
+
+            cmbx_oiTeamPlayedGames.IsEnabled = false;
+            btn_ShowGameInfo.IsEnabled = false;
 
             for (int i = 1; i <= Convert.ToInt32(gIni.GetValue(Const.fileSec, Game.fsX_gameCnt)); i++)
             {
@@ -82,10 +86,12 @@ namespace Preiswattera_3000
 
                 if (playedGame.gameTeams[0] == selectedTeam.teamId)
                 {
+                    gameCnt++;
                     allPlayedGames.Add("D:" + playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[1]), Team.tS_teamName));
                 }
                 else if (playedGame.gameTeams[1] == selectedTeam.teamId)
                 {
+                    gameCnt++;
                     allPlayedGames.Add("D:" + playedGame.dpndRun + "| S:" + playedGame.gameId + " gegen " + teamIni.GetValue(Team.teamSec + Convert.ToString(playedGame.gameTeams[0]), Team.tS_teamName));
                 }
             }
@@ -93,6 +99,12 @@ namespace Preiswattera_3000
             foreach (string game in allPlayedGames)
             {
                 cmbx_oiTeamPlayedGames.Items.Add(game);
+            }
+
+            if (gameCnt > 0)
+            {
+                cmbx_oiTeamPlayedGames.IsEnabled = true;
+                btn_ShowGameInfo.IsEnabled = true;
             }
         }
 
@@ -143,6 +155,8 @@ namespace Preiswattera_3000
         {
             if (cmbx_oiTeamShowerSelectTeam.SelectedIndex != -1)
             {
+                tbx_iTSP1Firstname.Focus();
+
                 Tournament tnmt = new Tournament();
                 tnmt.Getter();
 
@@ -268,6 +282,7 @@ namespace Preiswattera_3000
                         selectedTeam.teamName = tbx_oTeamName.Text;
                     }
                     selectedTeam.Setter();
+                    mainWindow.ShowSaver();
                     ShowTeam_Loaded(sender, e);
                     FillShowTeam(selectedTeam, player1, player2);
                 }
@@ -366,6 +381,7 @@ namespace Preiswattera_3000
         {
             if (cmbx_oiTeamShowerSelectTeam.SelectedIndex != -1)
             {
+                btn_EditTeam.IsEnabled = true;
                 selectedTeam.Getter(cmbx_oiTeamShowerSelectTeam.SelectedIndex + 1);
                 Log.Info("Team Getter Id " + Convert.ToString(cmbx_oiTeamShowerSelectTeam.SelectedIndex + 1));
                 player1.Getter(selectedTeam.teamPlayer[0]);

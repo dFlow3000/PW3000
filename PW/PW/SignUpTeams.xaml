@@ -40,8 +40,8 @@
                     <Canvas>
                         <Label x:Name="lbl_sSUTP1Firstname" Content="Vorname:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="10" Canvas.Top="51" Width="109"/>
                         <Label x:Name="lbl_sSUTP1Lastname" Content="Nachname:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="10" Canvas.Top="93"/>
-                        <TextBox x:Name="tbx_iSUTP1Firstname" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbx_iSUTP1Lastname" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="CreateTeamName"/>
+                        <TextBox x:Name="tbx_iSUTP1Firstname" TabIndex="0" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbx_iSUTP1Lastname" TabIndex="1" Height="33" Canvas.Left="124" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="CreateTeamName"/>
                     </Canvas>
                 </GroupBox>
                 <GroupBox x:Name="gB_sSignUpPlayer2" Header="Spieler 2" Height="268" Canvas.Left="576" Canvas.Top="89" Width="524" FontSize="20">
@@ -56,8 +56,8 @@
                     <Canvas>
                         <Label x:Name="lbl_sSUTP2Firstname" Content="Vorname:" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="51" Width="109" Canvas.Left="10"/>
                         <Label x:Name="lbl_sSUTP2Lastname" Content="Nachname:" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="93" Canvas.Left="10"/>
-                        <TextBox x:Name="tbx_iSUTP2Firstname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" Canvas.Left="124"/>
-                        <TextBox x:Name="tbx_iSUTP2Lastname" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" Canvas.Left="124" TextChanged="CreateTeamName"/>
+                        <TextBox x:Name="tbx_iSUTP2Firstname" TabIndex="2" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="55" Width="320" Canvas.Left="124"/>
+                        <TextBox x:Name="tbx_iSUTP2Lastname" TabIndex="3" Height="33" TextWrapping="Wrap" Text="" Canvas.Top="97" Width="320" Canvas.Left="124" TextChanged="CreateTeamName"/>
                     </Canvas>
                 </GroupBox>
                 <Label x:Name="lbl_sMultiCreate" Visibility="Hidden" Content="Anzahl:" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Right" Canvas.Left="460" Canvas.Top="368"/>
@@ -82,7 +82,7 @@
             </Canvas>
         </GroupBox>
         <Button x:Name="btn_MainMenue" Content="Zurück" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Margin="187,10,0,0" Click="btn_MainMenue_Click"/>
-        <Button x:Name="btn_Save" Content="Speichern" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Margin="458,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click"/>
+        <Button x:Name="btn_Save" TabIndex="4" Content="Speichern" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Margin="458,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Save_Click"/>
         <Button x:Name="btn_Clear" Content="Abbrechen" Style="{StaticResource DefaultButtonStyle}" FontSize="22" HorizontalAlignment="Left" Margin="723,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="240" Height="70" Click="btn_Clear_Click"/>
         <Button x:Name="btn_WindowInfo" Height="35" Width="35" Style="{StaticResource InfoButton}" Content="i" Margin="18,13,1077,22" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Click="btn_WindowInfo_Click"/>
     </Grid>

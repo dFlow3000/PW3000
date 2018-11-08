@@ -175,12 +175,14 @@ namespace Preiswattera_3000
         public const int posHeaderLength = 6;
         public const string teamNumberHeader = "Team # ";
         public const int teamNumberHeaderLength = 6;
-        public const string teamNameHeader = "            Teamname            ";
+        public const string teamNameHeader = "         Teamname         ";
         public const int teamNameHeaderLength = 32;
         public const string winPointsHeader = "Gewinn ";
         public const int winPointsHeaderLength = 6;
         public const string gamePointsDiffHeader = "Differenz";
         public const int gamePointsDiffHeaderLength = 9;
+        public const string gamePointsTotalHeader = "Spiel ";
+        public const int gamePointsTotalHeaderLength = 6;
         #endregion
 
         #region 5 - Color for Backgroundchange +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

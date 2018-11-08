@@ -75,6 +75,10 @@ namespace Preiswattera_3000
 
             Team team = new Team();
             team.Getter(teamId);
+
+            lbl_oTeamName.Content = team.teamName;
+            lbl_oTeamNr.Content = Convert.ToString(team.teamId);
+
             if (winCnt == team.winPoints)
             {
                 lbl_swinPoints.Content = Convert.ToString(team.winPoints);
@@ -110,13 +114,17 @@ namespace Preiswattera_3000
                 winCnt++;
             } else
             {
-                lbl_DiffPoints.Content = "0";
-                lbl_DiffPoints.Background = Brushes.LightGray;
-                lbl_DiffPoints.Foreground = Brushes.SlateGray;
-                lbl_TeamPoints.Background = Brushes.LightGray;
-                lbl_TeamPoints.Foreground = Brushes.SlateGray;
-                lbl_AponPoints.Background = Brushes.LightGray;
-                lbl_AponPoints.Foreground = Brushes.SlateGray;
+                //lbl_DiffPoints.Content = "0";
+                lbl_DiffPoints.Content = Convert.ToString(i_game.gamePoints[i_teamPos] - i_game.gamePoints[i_aponPos]);
+                lbl_oSumDiffPoints.Content = Convert.ToString(Convert.ToInt32(lbl_oSumDiffPoints.Content) + Convert.ToInt32(lbl_DiffPoints.Content));
+                lbl_GameId.Background = Brushes.IndianRed;
+                lbl_GameId.Foreground = Brushes.Black;
+                lbl_DiffPoints.Background = Brushes.IndianRed;
+                lbl_DiffPoints.Foreground = Brushes.Black;
+                lbl_TeamPoints.Background = Brushes.IndianRed;
+                lbl_TeamPoints.Foreground = Brushes.Black;
+                lbl_AponPoints.Background = Brushes.IndianRed;
+                lbl_AponPoints.Foreground = Brushes.Black;
             }
 
 
@@ -148,6 +156,25 @@ namespace Preiswattera_3000
             new Eva_Team_DataInfo(infoWinCon.InfoWindowText);
             infoWinCon.FillInfoWindow(infoWinCon.InfoWindowText);
         }
+        #endregion
+
+        #region Titlebar - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void btn_MainWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_MainWindowClose_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void DragDropTitelBar(object sender, RoutedEventArgs e)
+        {
+            this.DragMove();
+        }
+
         #endregion
     }
 

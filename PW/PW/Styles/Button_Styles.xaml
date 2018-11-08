@@ -59,14 +59,14 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <SolidColorBrush Color="#FFB90000" Opacity="0.5"/>
+                        <SolidColorBrush Color="Red" Opacity="0.5"/>
                     </Setter.Value>
                 </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <!-- _____________________Close TitelBar Button_____________________-->
+    <!-- _____________________Min TitelBar Button_____________________-->
     <Style BasedOn="{StaticResource DefaultTitleBarButton}"
            TargetType="Button"
            x:Key="TitleBarMinButton">
@@ -79,7 +79,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <SolidColorBrush Color="Black" Opacity="0.5"/>
+                        <SolidColorBrush Color="Gray" Opacity="0.5"/>
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -258,6 +258,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="FontFamily" Value="Bradley Hand ITC"/>
                 <Setter Property="Foreground">
                     <Setter.Value>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
