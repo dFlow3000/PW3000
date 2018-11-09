@@ -104,16 +104,17 @@ namespace Preiswattera_3000
                 if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) != 0)
                 {
                     btn_GoToAddTeam.Style = (Style)Application.Current.Resources["DisabledButton"];
+                    addTeamImg.Opacity = 0.5;
                     btn_GoToAddTeam.Uid = NO_TEAM_ADDING;
                 }
 
                 if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) == 0)
                 {
-                    btn_GoToTnmtData.Content = "Turnier starten!";
+                    //btn_GoToTnmtData.Content = "";
                     btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
                 } else
                 {
-                    btn_GoToTnmtData.Content = "Spiel erfassen";
+                    //btn_GoToTnmtData.Content = "";
                     btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tournamentData.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
                 }
 

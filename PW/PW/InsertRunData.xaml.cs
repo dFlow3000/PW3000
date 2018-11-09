@@ -438,7 +438,7 @@ namespace Preiswattera_3000
                 mainWindow.MessageBar(MainWindow.WarnMessage,
                     "Gespeicherter Spielstand wurde verändert!",
                     "Sie haben einen bereits erfassten Spielstand verändert!" +
-                    "\nÜberprüfen Sie bitte erneut alle Eingaben und bestätigen Sie die Überprüfung!");
+                    "\nÜberprüfen Sie bitte erneut alle Eingabefelder auf ihre Richtigkeit und bestätigen Sie die Überprüfung!");
             }
         }
 
@@ -548,7 +548,7 @@ namespace Preiswattera_3000
                 } else
                 {
                     mainWindow.MessageBar(MainWindow.ErrorMessage,
-                                            "Nicht alle Eingabefelder überprüft!",
+                                            "Nicht alle Überprüfungen wurde bestätigt",
                                             "Überprüfen Sie bitte erneut ALLE Eingabefelder und bestätigen Sie die Überprüfung!");
                 }
 
@@ -573,6 +573,8 @@ namespace Preiswattera_3000
             btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
             btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
             btn_TableSetBack.Visibility = Visibility.Hidden;
+            btn_Edit_GameData_UserCheck.Visibility = Visibility.Hidden;
+            cnvs_CheckAfterEdit.Visibility = Visibility.Hidden;
         }
 
         private void btn_TableSetBack_Click(object sender, RoutedEventArgs e)

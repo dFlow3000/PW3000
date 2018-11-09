@@ -138,73 +138,77 @@ namespace Preiswattera_3000
         {
             if (CheckInput())
             {
-                if (!CheckTeamNameAllreadyExists())
+                if (CheckTeamNameLength())
                 {
-                    if (checkIfSignedUpTeam() == 1)
+                    if (!CheckTeamNameAllreadyExists())
                     {
-                        if (!mainWindow.keepDeleting)
+                        if (checkIfSignedUpTeam() == 1)
                         {
-                            if (MessageBox.Show("Team aus Anmeldeliste wird übernommen!" +
-                                                                             "\nSoll Team aus der Anmeldeliste entfernt werden?",
-                                                                             "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
-                                                                             MessageBoxButton.YesNo,
-                                                                             MessageBoxImage.Question) == MessageBoxResult.Yes)
+                            if (!mainWindow.keepDeleting)
                             {
-                                Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
-                                if (MessageBox.Show("Soll bei unverändert übernommenen Teams immer gelöscht werden?" +
-                                                    "\nDie Auswahl wird bei einem Neustart des Programms zurückgesetzt!",
-                                                     "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
-                                                     MessageBoxButton.YesNo,
-                                                     MessageBoxImage.Question) == MessageBoxResult.Yes)
+                                if (MessageBox.Show("Team aus Anmeldeliste wird übernommen!" +
+                                                                                 "\nSoll Team aus der Anmeldeliste entfernt werden?",
+                                                                                 "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
+                                                                                 MessageBoxButton.YesNo,
+                                                                                 MessageBoxImage.Question) == MessageBoxResult.Yes)
                                 {
-                                    mainWindow.keepDeleting = true;
-                                    preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
                                     Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
-                                    Log.Update("Keep deleting signed up team after adding: true");
-                                }
-                                else
-                                {
-                                    mainWindow.keepDeleting = false;
+                                    if (MessageBox.Show("Soll bei unverändert übernommenen Teams immer gelöscht werden?" +
+                                                        "\nDie Auswahl wird bei einem Neustart des Programms zurückgesetzt!",
+                                                         "Angemeldetes Team aufnehmen und aus Anmeldeliste löschen",
+                                                         MessageBoxButton.YesNo,
+                                                         MessageBoxImage.Question) == MessageBoxResult.Yes)
+                                    {
+                                        mainWindow.keepDeleting = true;
+                                        preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
+                                        Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
+                                        Log.Update("Keep deleting signed up team after adding: true");
+                                    }
+                                    else
+                                    {
+                                        mainWindow.keepDeleting = false;
+                                    }
                                 }
                             }
+                            else
+                            {
+                                preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
+                                Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
+                            }
                         }
-                        else
+                        else if (checkIfSignedUpTeam() == 0)
                         {
-                            preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
-                            Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
+                            if (MessageBox.Show("Ausgewähltes Team aus Anmeldetliste unterschiedlich zu aktuellem Team" +
+                                                "\nTeam aufnehmen und ausgewähltes Team aus Anmeldeliste löschen?",
+                                                  "Unterschied Anmeldeliste und aktuellem Team",
+                                                  MessageBoxButton.YesNo,
+                                                  MessageBoxImage.Question) == MessageBoxResult.Yes)
+                            {
+                                preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
+                                Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
+                            }
+
                         }
-                    }
-                    else if (checkIfSignedUpTeam() == 0)
-                    {
-                        if (MessageBox.Show("Ausgewähltes Team aus Anmeldetliste unterschiedlich zu aktuellem Team" +
-                                            "\nTeam aufnehmen und ausgewähltes Team aus Anmeldeliste löschen?",
-                                              "Unterschied Anmeldeliste und aktuellem Team",
-                                              MessageBoxButton.YesNo,
-                                              MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+                        if (CheckIfPayed())
                         {
-                            preSignedUpTeam.deleteSignedUpTeam(preSignedUpTeam);
-                            Log.Delete("Signed Up Team after adding it: " + preSignedUpTeam.suTeamName);
+                            player1 = new Player(true);
+                            player2 = new Player(true);
+
+                            player1.playerFirstname = tbx_iTAP1Firstname.Text;
+                            player1.playerLastname = tbx_iTAP1Lastname.Text;
+                            player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
+
+                            player2.playerFirstname = tbx_iTAP2Firstname.Text;
+                            player2.playerLastname = tbx_iTAP2Lastname.Text;
+                            player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
+
+                            newTeam.teamName = tbx_oTeamName.Text;
+                            newTeam.SaveTeam(player1, player2);
+                            mainWindow.ShowSaver();
+                            AddTeam_Loaded(sender, e);
+                            ClearTbx();
                         }
-
-                    } 
-                    
-                    if (CheckIfPayed()) {
-                        player1 = new Player(true);
-                        player2 = new Player(true);
-
-                        player1.playerFirstname = tbx_iTAP1Firstname.Text;
-                        player1.playerLastname = tbx_iTAP1Lastname.Text;
-                        player1.payedStartFee = Convert.ToBoolean(cbx_iTAP1Payed.IsChecked);
-
-                        player2.playerFirstname = tbx_iTAP2Firstname.Text;
-                        player2.playerLastname = tbx_iTAP2Lastname.Text;
-                        player2.payedStartFee = Convert.ToBoolean(cbx_iTAP2Payed.IsChecked);
-
-                        newTeam.teamName = tbx_oTeamName.Text;
-                        newTeam.SaveTeam(player1, player2);
-                        mainWindow.ShowSaver();
-                        AddTeam_Loaded(sender, e);
-                        ClearTbx();
                     }
                 }
             } else
@@ -272,6 +276,20 @@ namespace Preiswattera_3000
             else
             {
                 return 2;
+            }
+        }
+
+        private bool CheckTeamNameLength()
+        {
+            if (tbx_oTeamName.Text.Length > 32)
+            {
+                mainWindow.MessageBar(MainWindow.ErrorMessage,
+                                        "Teamname zu lang",
+                                        "Der angegebene Teamname ist zu lang! Kürzen Sie ihn auf max. 30 Zeichen!");
+                return false;
+            } else
+            {
+                return true;
             }
         }
 

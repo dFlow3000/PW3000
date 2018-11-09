@@ -22,12 +22,14 @@ namespace Preiswattera_3000
     {
         public int pGWd_runId;
         public int pGWd_gameId;
+        public int pGWd_reqTeamId;
 
-        public PlayedGameInfo(int i_runId, int i_gameId)
+        public PlayedGameInfo(int i_runId, int i_gameId, int i_reqTeamId)
         {
             InitializeComponent();
             pGWd_gameId = i_gameId;
             pGWd_runId = i_runId;
+            pGWd_reqTeamId = i_reqTeamId;
         }
 
         private void PlayedGameInfo_Loaded (object sender, RoutedEventArgs e)
@@ -35,6 +37,9 @@ namespace Preiswattera_3000
             INIFile teamIni = new INIFile(Team.iniPath);
             INIFile gameIni = new INIFile(Game.iniPath);
             INIFile tnmtIni = new INIFile(Tournament.iniPath);
+
+            Team reqTeam = new Team();
+            reqTeam.Getter(pGWd_reqTeamId);
 
             Button[] iA_Btns =
             {
@@ -59,11 +64,54 @@ namespace Preiswattera_3000
 
             lbl_oGamePointsTeam1.Content = Convert.ToString(playedGame.gamePoints[0]);
             lbl_oGamePointsTeam2.Content = Convert.ToString(playedGame.gamePoints[1]);
+
+            lbl_sWinOrLost.Content = reqTeam.teamName;
+
+            if (playedGame.gamePoints[0] < playedGame.gamePoints[1])
+            {
+                if (reqTeam.teamId == playedGame.gameTeams[0])
+                {
+                    lbl_sWinOrLost.Content += " hat verloren";
+                } else
+                {
+                    lbl_sWinOrLost.Content += " hat gewonnen";
+                }
+            } else
+            {
+                if (reqTeam.teamId == playedGame.gameTeams[0])
+                {
+                    lbl_sWinOrLost.Content += " hat gewonnen";
+                }
+                else
+                {
+                    lbl_sWinOrLost.Content += " hat verloren";
+                }
+            }
+
         }
 
         private void btn_ClosePlayedGameInfo_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        #region Titlebar - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void btn_MainWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_MainWindowClose_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void DragDropTitelBar(object sender, RoutedEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        #endregion
     }
 }

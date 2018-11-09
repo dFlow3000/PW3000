@@ -25,6 +25,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="1150"/>
         </Grid.ColumnDefinitions>
+        <Image Source="Icons\cards.png" Grid.RowSpan="2" Opacity="0.02" Grid.Column="1" Margin="10,10,0,-10"/>
         <ContentControl x:Name="MainContent" Grid.Column="1" Grid.Row="1" Margin="10,0,0,18" >
             <ContentControl.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -35,11 +36,21 @@
         </ContentControl>
         <DockPanel x:Name="ActionMenue" Grid.Column="0" Grid.Row="1" Visibility="Visible" Height="Auto" OpacityMask="#FFB9B0B0">
             <StackPanel>
-                <Button x:Name="btn_GoToAddTeam" Style="{StaticResource ActionMenueButton}" Content="Team erfassen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28"/>
-                <Button x:Name="btn_GoToShowTeam" Style="{StaticResource ActionMenueButton}" Content="Team anzeigen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28"/>
-                <Button x:Name="btn_GoToTnmtData" Style="{StaticResource ActionMenueButton}" Content="Spiel erfassen" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28"/>
-                <Button x:Name="btn_GoToEvaluation" Style="{StaticResource ActionMenueButton}" Content="Rangliste" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28"/>
-                <Button x:Name="btn_GoTournamentMenue" Style="{StaticResource ActionMenueButton}" Content="Turnier Info" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28"/>
+                <Button x:Name="btn_GoToAddTeam" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28">
+                    <Image x:Name="addTeamImg" Source="Icons\addTeam_schrift.png" Height="157" Width="274"/>
+                </Button>
+                <Button x:Name="btn_GoToShowTeam" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28">
+                    <Image x:Name="showTeamImg" Source="Icons\showTeam_schrift.png" Height="159" Width="235"/>
+                </Button>
+                <Button x:Name="btn_GoToTnmtData" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28">
+                    <Image x:Name="insertGameImg" Source="Icons\insertGame_schrift.png" Height="153" Width="250"/>
+                </Button>
+                <Button x:Name="btn_GoToEvaluation" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28">
+                    <Image x:Name="evaImg" Source="Icons\Eva_schrift.png" Height="138" Width="229"/>
+                </Button>
+                <Button x:Name="btn_GoTournamentMenue" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28">
+                    <Image x:Name="tmntInfoImg" Source="Icons\TnmtInfo.png" Height="148" Width="245"/>
+                </Button>
             </StackPanel>
         </DockPanel>
         <Canvas x:Name="cnvs_PWHeader" Visibility="Hidden" Margin="0,0,0,18" Grid.Row="1">
@@ -90,7 +101,7 @@
         <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar">
             <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="1400" Grid.ColumnSpan="2"/>
             <Label Content="Preiswattera 3000" Style="{StaticResource MainWindowTitelbarLabel}" Width="362" Height="34" Canvas.Left="42"/>
-            <Image Height="28" Width="42" Source="Icons\pw3000_L2n_icon.ico" Canvas.Top="3"/>
+            <Image Height="36" Width="50" Source="Icons\cards.png" Canvas.Top="-2"/>
             <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="1363" Height="34"/>
             <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="1321" Width="37"/>
         </Canvas>
@@ -100,7 +111,7 @@
                     <BlurEffect Radius="150"/>
                 </Rectangle.Effect>
             </Rectangle>
-            <Image Height="139" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Icons\4.ico" Canvas.Left="468" Canvas.Top="309" Width="186"/>
+            <Image Height="203" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Icons\save.png" Canvas.Left="384" Canvas.Top="289" Width="382"/>
         </Canvas>
     </Grid>
 </Window>

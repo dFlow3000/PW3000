@@ -20,7 +20,7 @@
         <Button x:Name="btn_WindowInfo" Style="{StaticResource InfoButton}" Height="35" Width="35" Content="i" Margin="20,23,1075,12" Click="btn_WindowInfo_Click"/>
         <Label x:Name="lbl_sEvaluationHeader" Content="Rangliste" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Height="66" Width="966" Margin="82,4,82,0" HorizontalContentAlignment="Center"/>
         <Canvas x:Name="canvasEvaluation1" Margin="42,89,59,741" Grid.RowSpan="2">
-            <StackPanel x:Name="stp_posNumber1" Canvas.Top="10" Width="67">
+            <StackPanel x:Name="stp_posNumber1" Canvas.Top="10" Width="100" Canvas.Left="38">
                 <Label x:Name="lbl_sPosHeader" Content=" Platz " FontSize="20" HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -30,7 +30,7 @@
                     </Label.Background>
                 </Label>
             </StackPanel>
-            <StackPanel x:Name="stp_TeamName1" Canvas.Left="72" Canvas.Top="10" Width="405">
+            <StackPanel x:Name="stp_TeamName1" Canvas.Left="173" Canvas.Top="10" Width="405">
                 <Label x:Name="lbl_sTeamHeader" Content=" Team " FontSize="20"  HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -40,7 +40,7 @@
                     </Label.Background>
                 </Label>
             </StackPanel>
-            <StackPanel x:Name="stp_WinPoints1" Canvas.Left="482" Canvas.Top="10" Width="170">
+            <StackPanel x:Name="stp_WinPoints1" Canvas.Left="606" Canvas.Top="10" Width="170">
                 <Label x:Name="lbl_sWinPointsHeader"  Content=" Gewinn-Punkte " FontSize="20"  HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -50,18 +50,9 @@
                     </Label.Background>
                 </Label>
             </StackPanel>
-            <StackPanel x:Name="stp_GamePoints1" Canvas.Left="793" Canvas.Top="10" Width="136">
-                <Label x:Name="lbl_sGamePointsHeader"  Content=" Spiel-Punkte " FontSize="20"  HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
-                    <Label.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="0"/>
-                            <GradientStop Color="#FF363636" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Label.Background>
-                </Label>
-            </StackPanel>
-            <StackPanel x:Name="stp_GamePointsTotal1" Canvas.Left="657" Canvas.Top="10" Width="131">
-                <Label x:Name="lbl_sGamePointsTotalHeader"  Content=" Differenz " FontSize="20"  HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
+            <StackPanel x:Name="stp_GamePoints1" Canvas.Left="793" Canvas.Top="10" Width="136"/>
+            <StackPanel x:Name="stp_GamePointsTotal1" Canvas.Left="793" Canvas.Top="10" Width="131">
+                <Label x:Name="lbl_sGamePointsHeader"  Content=" Differenz " FontSize="20"  HorizontalContentAlignment="Center" Foreground="#FFEA0D0D" FontWeight="Bold">
                     <Label.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -88,15 +79,13 @@
         </Label>
         <ScrollViewer HorizontalAlignment="Left" Margin="10,70,0,25" Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Width="1110">
             <Canvas x:Name="canvasEvaluation" Width="1027" MinHeight="2000">
-                <StackPanel x:Name="stp_posNumber" Canvas.Top="10" Width="67">
+                <StackPanel x:Name="stp_posNumber" Canvas.Top="10" Width="100" Canvas.Left="35">
                 </StackPanel>
-                <StackPanel x:Name="stp_TeamName" Canvas.Left="72" Canvas.Top="10" Width="402">
+                <StackPanel x:Name="stp_TeamName" Canvas.Left="174" Canvas.Top="10" Width="402">
                 </StackPanel>
-                <StackPanel x:Name="stp_WinPoints" Canvas.Left="483" Canvas.Top="10" Width="166">
+                <StackPanel x:Name="stp_WinPoints" Canvas.Left="607" Canvas.Top="10" Width="166">
                 </StackPanel>
-                <StackPanel x:Name="stp_GamePointsDiff" Canvas.Left="658" Canvas.Top="10" Width="131">
-                </StackPanel>
-                <StackPanel x:Name="stp_GamePointsTotal" Canvas.Left="794" Canvas.Top="10" Width="136">
+                <StackPanel x:Name="stp_GamePointsDiff" Canvas.Left="796" Canvas.Top="10" Width="131">
                 </StackPanel>
                 <StackPanel x:Name="stp_TeamGameInfo" Canvas.Left="932" Canvas.Top="10" Width="85">
                 </StackPanel>

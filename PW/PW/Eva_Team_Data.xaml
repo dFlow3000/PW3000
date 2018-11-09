@@ -148,7 +148,7 @@
         <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="2"/>
             <Label Content="Auswertung | Detailansicht" Style="{StaticResource ExtraWindowTitelbarLabel}" Width="314" Height="34" Canvas.Left="42"/>
-            <Image Height="34" Width="25" Source="Icons\105469_-_lupe_search_zoom-512.png" Canvas.Left="3"/>
+            <Image Height="34" Width="74" Source="Icons\Lupe.png" Canvas.Left="-17"/>
             <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="403" Height="34"/>
             <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="361" Width="37"/>
             <Label x:Name="lbl_sTeamNr" Content="Team-Nummer: " Canvas.Left="50" Canvas.Top="39"/>

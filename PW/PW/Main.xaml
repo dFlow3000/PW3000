@@ -33,28 +33,31 @@
                         <Label x:Name="lbl_oTableCnt" Content=" " Canvas.Left="692" Canvas.Top="22"/>
                     </Canvas>
                 </GroupBox>
-                <GroupBox Header="Aktuelle Informationen" Height="168" Canvas.Left="10" Canvas.Top="38" Width="1078">
+                <GroupBox Header="Aktuelle Informationen" Height="203" Canvas.Left="10" Canvas.Top="38" Width="1078">
                     <Canvas>
-                        <Label x:Name="lbl_sActRun" Content="Aktueller Durchgang:" Canvas.Left="8" Canvas.Top="21"/>
-                        <Label x:Name="lbl_oActRun" Content=" " Canvas.Left="209" Canvas.Top="21"/>
-                        <Label x:Name="lbl_sfinishedGamesCnt" Content="Abgeschlossene Spiele:" Canvas.Left="9" Canvas.Top="80"/>
-                        <Label x:Name="lbl_ofinishedGamesAct" Content=" " Canvas.Left="239" Canvas.Top="80"/>
-                        <Label x:Name="lbl_sfinishedGamesSeperator" Content="/" Canvas.Left="281" Canvas.Top="80"/>
-                        <Label x:Name="lbl_sfinishedGamesOverall" Content=" " Canvas.Left="325" Canvas.Top="80"/>
-                        <ProgressBar x:Name="pgb_ActRun" Height="33" Canvas.Left="604" Canvas.Top="25" Width="394"/>
-                        <Label x:Name="lbl_sPGB_ActRun" Content="Act Run" Canvas.Left="604" Canvas.Top="22" Width="394" HorizontalContentAlignment="Center"/>
-                        <ProgressBar x:Name="pgb_Tournament" Height="37" Canvas.Left="604" Canvas.Top="70" Width="394"/>
-                        <Label x:Name="lbl_sPGB_Tournament" Content="Tournament Name" Canvas.Left="604" Canvas.Top="70" Width="394" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="lbl_sActRun" Content="Aktueller Durchgang:" Canvas.Left="8" Canvas.Top="21" Width="216" HorizontalContentAlignment="Right"/>
+                        <Label x:Name="lbl_oActRun" Content=" " Canvas.Left="239" Canvas.Top="21"/>
+                        <Label x:Name="lbl_sfilledTableCnt" Content="Erfasste Tische:" Canvas.Left="9" Canvas.Top="73" Width="215" HorizontalContentAlignment="Right"/>
+                        <Label x:Name="lbl_ofilledTableAct" Content=" " Canvas.Left="239" Canvas.Top="73"/>
+                        <Label x:Name="lbl_sfilledTableSeperator" Content="/" Canvas.Left="281" Canvas.Top="73"/>
+                        <Label x:Name="lbl_sTableCntOverall" Content=" " Canvas.Left="325" Canvas.Top="73"/>
+                        <ProgressBar x:Name="pgb_ActRun" Height="37" Canvas.Left="604" Canvas.Top="47" Width="394"/>
+                        <Label x:Name="lbl_sPGB_ActRun" Content="Act Run" Canvas.Left="604" Canvas.Top="47" Width="394" HorizontalContentAlignment="Center" Height="37"/>
+                        <ProgressBar x:Name="pgb_Tournament" Height="37" Canvas.Left="604" Canvas.Top="91" Width="394"/>
+                        <Label x:Name="lbl_sPGB_Tournament" Content="Tournament Name" Canvas.Left="604" Canvas.Top="91" Width="394" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="lbl_sfinishedGamesCnt" Content="Abgeschlossene Spiele:" Canvas.Left="9" Canvas.Top="123"/>
+                        <Label x:Name="lbl_ofinishedGamesAct" Content=" " Canvas.Left="239" Canvas.Top="123"/>
+                        <Label x:Name="lbl_sfinishedGamesSeperator" Content="/" Canvas.Left="281" Canvas.Top="123"/>
+                        <Label x:Name="lbl_sfinishedGamesOverall" Content=" " Canvas.Left="325" Canvas.Top="123"/>
                     </Canvas>
                 </GroupBox>
             </Canvas>
         </GroupBox>
         <Button x:Name="btn_QuitTnmt" Style="{StaticResource CloseTnmtButton}" Content="Turnier Beenden" HorizontalAlignment="Left" Margin="450,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="240" Height="70" Click="btn_QuitTnmt_Click"/>
-        <Button x:Name="btn_GoToSettings" Content="" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="1078,10,0,0" VerticalAlignment="Top" Width="42" Height="40" Foreground="#FF994E4E" Click="btn_GoToSettings_Click">
+        <Button x:Name="btn_GoToSettings" Content="" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="1066,10,0,0" VerticalAlignment="Top" Width="54" Height="48" Foreground="#FF994E4E" Click="btn_GoToSettings_Click">
             <Button.Background>
-                <ImageBrush ImageSource="Icons\settings-icon-11.png"/>
+                <ImageBrush ImageSource="Icons\settings.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_GoToSettings_Copy" Style="{StaticResource SettingsButton}" Content="" HorizontalAlignment="Left" Margin="1078,10,0,0" VerticalAlignment="Top" Width="42" Height="40" Click="btn_GoToSettings_Click"/>
     </Grid>
 </UserControl>

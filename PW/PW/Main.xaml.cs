@@ -46,6 +46,18 @@ namespace Preiswattera_3000
             int gamePerRunCnt = Convert.ToInt32(tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtGameProRunCnt));
             int overAllGameCnt = teamCnt / 2 * gamePerRunCnt;
             int actGameCnt = 0;
+            int filledTableCnt = 0;
+            int tableCntOverall = Convert.ToInt32(tableIni.GetValue(Table.fileSec, Table.fsX_tableCnt));
+            for(int i = 1; i <= Convert.ToInt32(tableIni.GetValue(Table.fileSec, Table.fsX_tableSecCnt)); i++)
+            {
+                Table checkFilledTable = new Table();
+                checkFilledTable.Getter(i, actRun);
+                if (checkFilledTable.teamsOnTable[0] != 0)
+                {
+                    filledTableCnt++;
+                }
+            }
+
             for(int i = 1; i <= Convert.ToInt32(gIni.GetValue(Const.fileSec, Game.fsX_gameCnt)); i++)
             {
                 if (Convert.ToInt32(gIni.GetValue(Game.gameSec + Convert.ToString(i), Game.gS_dpndRun)) == actRun)
@@ -66,6 +78,8 @@ namespace Preiswattera_3000
                 lbl_oActRun.Content = "Tunier noch nicht gestartet!";
                 lbl_ofinishedGamesAct.Visibility = Visibility.Hidden;
                 lbl_sfinishedGamesOverall.Visibility = Visibility.Hidden;
+                lbl_ofilledTableAct.Visibility = Visibility.Hidden;
+                lbl_sTableCntOverall.Visibility = Visibility.Hidden;
                 pgb_ActRun.Visibility = Visibility.Hidden;
                 lbl_sPGB_ActRun.Visibility = Visibility.Hidden;
             }
@@ -74,12 +88,16 @@ namespace Preiswattera_3000
                 lbl_oActRun.Content = tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct);
                 lbl_ofinishedGamesAct.Visibility = Visibility.Visible;
                 lbl_sfinishedGamesOverall.Visibility = Visibility.Visible;
+                lbl_ofilledTableAct.Visibility = Visibility.Visible;
+                lbl_sTableCntOverall.Visibility = Visibility.Visible;
                 pgb_ActRun.Visibility = Visibility.Visible;
                 lbl_sPGB_ActRun.Visibility = Visibility.Visible;
 
             }
             lbl_ofinishedGamesAct.Content = Convert.ToString(actGameCnt);
             lbl_sfinishedGamesOverall.Content = Convert.ToString(overAllGameCnt);
+            lbl_ofilledTableAct.Content = Convert.ToString(filledTableCnt);
+            lbl_sTableCntOverall.Content = Convert.ToString(tableCntOverall);
             double value;
             if (actGameCnt > 0)
             {
@@ -90,7 +108,9 @@ namespace Preiswattera_3000
             }
             pgb_ActRun.Value = value;
             lbl_sPGB_ActRun.Content = actRun + ". Durchgang";
-            if (actRun > 0)
+            Run actRunObj = new Run();
+            actRunObj.Getter(actRun);
+            if (actRun > 0 && actRunObj.completeState == true)
             {
                 value = actRun * 100 / runCnt;
             } else
@@ -102,14 +122,11 @@ namespace Preiswattera_3000
 
             if(pgb_Tournament.Value == 100)
             {
-                // Farbverlauf
-                LinearGradientBrush lgbrush = new LinearGradientBrush();
-                lgbrush.StartPoint = new System.Windows.Point(0.5, 0);
-                lgbrush.EndPoint = new System.Windows.Point(0.5, 1);
-                lgbrush.GradientStops.Add(new GradientStop(Colors.White, 1.0));
-                lgbrush.GradientStops.Add(new GradientStop(Colors.LimeGreen, 0.0));
                 
-                mainWindow.btn_GoToEvaluation.Background = lgbrush;
+                if (actRunObj.completeState == true)
+                {
+                    mainWindow.btn_GoToEvaluation.Style = (Style)Application.Current.Resources["FinalEvaReadyButton"];
+                }
             }
 
             // Overall Section

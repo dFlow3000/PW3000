@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>pw3000_L2n_icon.ico</ApplicationIcon>
+    <ApplicationIcon>cards_256_iD8_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -260,6 +260,23 @@
     <Resource Include="Icons\Lock-01.png" />
     <Resource Include="Icons\105469_-_lupe_search_zoom-512.png" />
     <Resource Include="Icons\4.ico" />
+    <Resource Include="Icons\cards.png" />
+    <Resource Include="cards_256_iD8_icon.ico" />
+    <Resource Include="Icons\cards_256_iD8_icon.ico" />
+    <Resource Include="Icons\Lupe.png" />
+    <Resource Include="Icons\addTeam.png" />
+    <Resource Include="Icons\showTeam.png" />
+    <Resource Include="Icons\showTeamSimple.png" />
+    <Resource Include="Icons\TnmtInfo.png" />
+    <Resource Include="Icons\Evaluation.png" />
+    <Resource Include="Icons\Eva_schrift.png" />
+    <Resource Include="Icons\addTeam_schrift.png" />
+    <Resource Include="Icons\showTeam_schrift.png" />
+    <Resource Include="Icons\insertGame_schrift.png" />
+    <Resource Include="Icons\settings.png" />
+    <Resource Include="Icons\save.png" />
+    <Resource Include="Icons\createTnmt.png" />
+    <Resource Include="Icons\loadTnmt.png" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

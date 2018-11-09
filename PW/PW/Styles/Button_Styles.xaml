@@ -163,6 +163,27 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!-- _____________________User Check Edit Button______________________-->
+    <Style BasedOn="{StaticResource DefaultIAButton}"
+           TargetType="Button"
+           x:Key="UserCheckEditButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF13CD00" Opacity="0.6"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#FF13CD00"  Opacity="0.6"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontWeight" Value="ExtraBold"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <!-- _____________________Close Tournament Button_____________________-->
     <Style BasedOn="{StaticResource DefaultIAButton}"
@@ -203,8 +224,14 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!-- ____________________Final Eva Ready Button_______________-->
+    <Style BasedOn="{StaticResource StartTnmtButton}"
+           TargetType="Button"
+           x:Key="FinalEvaReadyButton">
+    </Style>
 
-    <!-- _____________________Settings Button_____________________-->
+        <!-- _____________________Settings Button_____________________-->
     <Style BasedOn="{StaticResource DefaultButtonStyle}"
             TargetType="Button"
            x:Key="SettingsButton">
@@ -254,7 +281,11 @@
     <Style BasedOn="{StaticResource LoadOrTurnamentButton}"
            TargetType="Button"
            x:Key="ShowHeaderButtonStyle">
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Foreground" Value="White"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">

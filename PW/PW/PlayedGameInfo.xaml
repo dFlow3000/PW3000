@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Preiswattera_3000"
         mc:Ignorable="d"
         Loaded="PlayedGameInfo_Loaded"
-        WindowStyle="ThreeDBorderWindow"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="Spiel-Information" Height="299.199" Width="488.617">
     <Window.Background>
@@ -22,16 +23,22 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="556"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lbl_oTeam1" Content="Team1" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="189" HorizontalContentAlignment="Right" Height="36" FontWeight="Bold" FontSize="18"/>
-        <Label x:Name="lbl_oTeam2" Content="Team2" HorizontalAlignment="Left" Margin="281,41,0,0" VerticalAlignment="Top" Width="190" HorizontalContentAlignment="Left" Height="36" FontWeight="Bold" FontSize="18"/>
-        <Label x:Name="lbl_sVs" Content="gegen" HorizontalAlignment="Left" Margin="204,41,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="72" Height="36" FontWeight="Bold" FontStyle="Italic" FontSize="18"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="24" Margin="239,77,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <Label Content="Erzielte Spielpunkte" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Width="461" HorizontalContentAlignment="Center" FontSize="16"/>
-        <Label x:Name="lbl_oGamePointsTeam1" Content="" HorizontalAlignment="Left" Margin="144,140,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
-        <Label x:Name="lbl_oGamePointsTeam2" Content="" HorizontalAlignment="Left" Margin="260,140,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="239,132,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
-        <Button x:Name="btn_ClosePlayedGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="183,220,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_ClosePlayedGameInfo_Click"/>
-        <Label x:Name="lbl_oGameInfo" Content="" HorizontalAlignment="Left" Margin="0,4,0,0" VerticalAlignment="Top" Width="481" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="20"/>
-
+        <Label x:Name="lbl_oTeam1" Content="Team1" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="189" HorizontalContentAlignment="Right" Height="36" FontWeight="Bold" FontSize="18"/>
+        <Label x:Name="lbl_oTeam2" Content="Team2" HorizontalAlignment="Left" Margin="281,69,0,0" VerticalAlignment="Top" Width="190" HorizontalContentAlignment="Left" Height="36" FontWeight="Bold" FontSize="18"/>
+        <Label x:Name="lbl_sVs" Content="gegen" HorizontalAlignment="Left" Margin="204,69,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="72" Height="36" FontWeight="Bold" FontStyle="Italic" FontSize="18"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="24" Margin="239,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Label x:Name="lbl_sWinOrLost" Content="" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="461" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+        <Label x:Name="lbl_oGamePointsTeam1" Content="" HorizontalAlignment="Left" Margin="144,188,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
+        <Label x:Name="lbl_oGamePointsTeam2" Content="" HorizontalAlignment="Left" Margin="260,188,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="53" Margin="239,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Button x:Name="btn_ClosePlayedGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="183,248,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_ClosePlayedGameInfo_Click"/>
+        <Label x:Name="lbl_oGameInfo" Content="" HorizontalAlignment="Left" Margin="0,36,0,0" VerticalAlignment="Top" Width="489" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="20"/>
+        <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar">
+            <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="489" Grid.ColumnSpan="2"/>
+            <Label Content="Spiel-Info" Style="{StaticResource ExtraWindowTitelbarLabel}" Width="362" Height="34" Canvas.Left="42"/>
+            <Image Height="34" Width="74" Source="Icons\Lupe.png" Canvas.Left="-17"/>
+            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="452" Height="34"/>
+            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="409" Width="36"/>
+        </Canvas>
     </Grid>
 </Window>
