@@ -39,6 +39,8 @@ namespace Preiswattera_3000
             Settings.SwitchColorStyleDefaultButton(iA_Btn);
 
             lbl_oPrepMenueHeader.Content = tnmtIni.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtName);
+
+            mainWindow.btn_PWHeader.Uid = mainWindow.NO_RETURN;
         }
 
         private void btn_SignUpTeams_Click(object sender, RoutedEventArgs e)

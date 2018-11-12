@@ -18,7 +18,9 @@
         <Label Content="Geben Sie den Pfad zu den Turnier Daten an:" HorizontalAlignment="Left" Margin="10,244,-369,0" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="40" Width="1110" FontSize="20"/>
         <TextBox x:Name="tbx_filePath" HorizontalAlignment="Left" Height="33" Margin="232,289,-43,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="562" FontSize="22"/>
         <Button x:Name="btn_ExplorerSearch" Style="{StaticResource DefaultIAButton}" Content="Durchsuchen" HorizontalAlignment="Left" Margin="801,289,-202,0" VerticalAlignment="Top" Width="152" Click="btn_ExplorerSearch_Click" Height="33" FontSize="20"/>
-        <Button x:Name="btn_LoadTnmt" Style="{StaticResource DefaultIAButton}" Content="Turnier laden!" Height="142" Margin="367,396,0,-152" Grid.Column="0" Width="384" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_LoadTnmt_Click"/>
+        <Button x:Name="btn_LoadTnmt" Style="{StaticResource DefaultIAButton}" Height="142" Margin="367,396,0,-152" Grid.Column="0" Width="384" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_LoadTnmt_Click">
+            <Image Source="Icons\loadTnmtFromFolder.png" Height="242" Width="286"/>
+        </Button>
 
     </Grid>
 </UserControl>

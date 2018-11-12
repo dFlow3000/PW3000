@@ -9,13 +9,16 @@
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="750"/>
+            <ColumnDefinition Width="814"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="385"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btn_createTournament" Style="{StaticResource LoadOrTurnamentButton}" Content="Turnier erstellen" HorizontalAlignment="Left" Margin="10,10,-369,0" VerticalAlignment="Top" Width="1110" Height="366" FontSize="100" Click="btn_createTournament_Click"/>
-
-        <Button x:Name="btn_loadTournament" Style="{StaticResource LoadOrTurnamentButton}" Content="Turnier laden"  HorizontalAlignment="Left" Margin="10,381,-369,-364" VerticalAlignment="Top" Width="1110" Height="369" FontSize="100" Click="btn_loadTournament_Click"/>
+        <Button x:Name="btn_createTournament" Style="{StaticResource LoadOrTurnamentButton}" HorizontalAlignment="Left" Margin="10,10,-306,0" VerticalAlignment="Top" Width="1110" Height="366" FontSize="100" Click="btn_createTournament_Click">
+            <Image Source="Icons\createTnmt_Cont.png"/>
+        </Button>
+        <Button x:Name="btn_loadTournament" Style="{StaticResource LoadOrTurnamentButton}" HorizontalAlignment="Left" Margin="10,381,-306,-364" VerticalAlignment="Top" Width="1110" Height="369" FontSize="100" Click="btn_loadTournament_Click">
+            <Image Source="Icons\loadTnmt_Cont.png" Height="403" Width="685"/>
+        </Button>
     </Grid>
 </UserControl>

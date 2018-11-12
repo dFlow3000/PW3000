@@ -249,6 +249,7 @@
     <Resource Include="Icons\Settings_black-512.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="start.png" />
     <Resource Include="Icons\settings-icon-11.png" />
     <Resource Include="Icons\info.png" />
     <Resource Include="Icons\error-icon-4.png" />
@@ -277,6 +278,16 @@
     <Resource Include="Icons\save.png" />
     <Resource Include="Icons\createTnmt.png" />
     <Resource Include="Icons\loadTnmt.png" />
+    <Resource Include="Icons\createTnmt_Cont.png" />
+    <Resource Include="Icons\loadTnmt_Cont.png" />
+    <Resource Include="Icons\endTnmt.png" />
+    <Resource Include="Icons\startTnmt.png" />
+    <Resource Include="Icons\start.png" />
+    <Resource Include="Icons\preTeamAdd.png" />
+    <Resource Include="Icons\startTnmt_White.png" />
+    <Resource Include="Icons\createTnmt_Black.png" />
+    <Resource Include="Icons\loadTnmtFromFolder.png" />
+    <Resource Include="Icons\back.png" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

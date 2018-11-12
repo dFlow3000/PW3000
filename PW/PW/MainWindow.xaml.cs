@@ -34,6 +34,7 @@ namespace Preiswattera_3000
         public bool selection = false;
         #endregion
         public string NO_TEAM_ADDING = "NoAdding";
+        public string NO_RETURN = "NoReturn";
         public bool keepDeleting = false;
         public Button[] actionMenueButton = new Button[5];
         public MainWindow()
@@ -75,7 +76,6 @@ namespace Preiswattera_3000
                 tnmt.Getter();
 
                 // Set for first run after creating new Tournament
-                btn_GoToTnmtData.Content = "Turnier starten!";
                 btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
 
                 ActionMenue.Visibility = Visibility.Hidden;
@@ -236,7 +236,6 @@ namespace Preiswattera_3000
                         {
                             UserControl runMenue = new RunMenue(this);
                             MainContent.Content = runMenue;
-                            btn_GoToTnmtData.Content = "Spiel erfassen";
                             btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
                             btn_GoToAddTeam.Style = (Style)Application.Current.Resources["DisabledButton"];
                             btn_GoToAddTeam.Uid = NO_TEAM_ADDING;
@@ -368,8 +367,12 @@ namespace Preiswattera_3000
 
         private void btn_PWHeader_Click(object sender, RoutedEventArgs e)
         {
-            UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
-            MainContent.Content = creOLoaTnmt;
+            Button thisBtn = (Button)sender;
+            if (thisBtn.Uid != NO_RETURN)
+            {
+                UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
+                MainContent.Content = creOLoaTnmt;
+            }
         }
     }
 }

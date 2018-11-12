@@ -9,9 +9,15 @@
              d:DesignHeight="760" d:DesignWidth="1130"
              FontSize="72">
     <Grid>
-        <Button x:Name="btn_SignUpTeams" Style="{StaticResource DefaultIAButton}" Content="Vorläufige Teamanmeldung" HorizontalAlignment="Left" Margin="313,279,0,0" VerticalAlignment="Top" Width="496" Height="160" FontSize="36" Click="btn_SignUpTeams_Click"/>
-        <Button x:Name="btn_StartTournament" Style="{StaticResource StartTnmtButton}" Content="Turnier beginnen!" HorizontalAlignment="Left" Margin="637,482,0,0" VerticalAlignment="Top" Width="326" Height="160" FontSize="36" Click="btn_StartTournament_Click"/>
-        <Button x:Name="btn_endTournament" Style="{StaticResource CloseTnmtButton}" Content="Turnier auflösen!" HorizontalAlignment="Left" Margin="153,482,0,0" VerticalAlignment="Top" Width="326" Height="160" FontSize="36" Click="btn_endTournament_Click"/>
+        <Button x:Name="btn_SignUpTeams" Style="{StaticResource DefaultIAButton}" HorizontalAlignment="Left" Margin="313,279,0,0" VerticalAlignment="Top" Width="496" Height="160" FontSize="36" Click="btn_SignUpTeams_Click">
+            <Image Source="Icons\preTeamAdd.png" Height="187" Width="266"/>
+        </Button>
+        <Button x:Name="btn_StartTournament" Style="{StaticResource StartTnmtButton}" HorizontalAlignment="Left" Margin="637,482,0,0" VerticalAlignment="Top" Width="326" Height="160" FontSize="36" Click="btn_StartTournament_Click">
+            <Image Source="Icons\startTnmt_White.png" Height="264" Width="262"/>
+        </Button>
+        <Button x:Name="btn_endTournament" Style="{StaticResource CloseTnmtButton}" HorizontalAlignment="Left" Margin="153,482,0,0" VerticalAlignment="Top" Width="326" Height="160" FontSize="36" Click="btn_endTournament_Click">
+            <Image Source="Icons\endTnmt.png" Height="180" Width="310"/>
+        </Button>
         <Label x:Name="lbl_oPrepMenueHeader" Content="Preiswatten 2019" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="122" Width="1110" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </UserControl>

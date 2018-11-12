@@ -25,7 +25,9 @@
         <TextBox x:Name="tbx_TnmtName" Margin="260,86,-129,0" Grid.Row="1" TextWrapping="Wrap" Text="" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="tbx_TnmtRunCnt" Margin="260,84,-129,0" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Text="" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="tbx_TnmtGameCnt" Margin="260,82,-129,0" Grid.Row="3" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center" IsEnabled="False"/>
-        <Button x:Name="btn_StartTnmt" Style="{StaticResource DefaultIAButton}" Content="Turnier erstellen!" Height="142" Margin="367,0,0,0" Grid.Row="4" Grid.Column="0" Width="384" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_StartTnmt_Click"/>
+        <Button x:Name="btn_StartTnmt" Style="{StaticResource DefaultIAButton}" Height="142" Margin="367,0,0,0" Grid.Row="4" Grid.Column="0" Width="384" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_StartTnmt_Click">
+            <Image Source="Icons\createTnmt_Black.png" Height="152" Width="229"/>
+        </Button>
 
     </Grid>
 </UserControl>

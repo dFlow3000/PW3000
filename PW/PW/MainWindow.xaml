@@ -37,51 +37,26 @@
         <DockPanel x:Name="ActionMenue" Grid.Column="0" Grid.Row="1" Visibility="Visible" Height="Auto" OpacityMask="#FFB9B0B0">
             <StackPanel>
                 <Button x:Name="btn_GoToAddTeam" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToAddTeam_Click" FontSize="28">
-                    <Image x:Name="addTeamImg" Source="Icons\addTeam_schrift.png" Height="157" Width="274"/>
+                    <Image x:Name="addTeamImg" Source="Icons\addTeam_schrift.png" Height="143" Width="235"/>
                 </Button>
                 <Button x:Name="btn_GoToShowTeam" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28">
-                    <Image x:Name="showTeamImg" Source="Icons\showTeam_schrift.png" Height="159" Width="235"/>
+                    <Image x:Name="showTeamImg" Source="Icons\showTeam_schrift.png" Height="143" Width="235"/>
                 </Button>
                 <Button x:Name="btn_GoToTnmtData" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28">
-                    <Image x:Name="insertGameImg" Source="Icons\insertGame_schrift.png" Height="153" Width="250"/>
+                    <Image x:Name="insertGameImg" Source="Icons\insertGame_schrift.png" Height="143" Width="235"/>
                 </Button>
                 <Button x:Name="btn_GoToEvaluation" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28">
-                    <Image x:Name="evaImg" Source="Icons\Eva_schrift.png" Height="138" Width="229"/>
+                    <Image x:Name="evaImg" Source="Icons\Eva_schrift.png" Height="138" Width="235"/>
                 </Button>
                 <Button x:Name="btn_GoTournamentMenue" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="153" IsEnabled="true" Click="btn_GoTournamentMenue_Click" FontSize="28">
-                    <Image x:Name="tmntInfoImg" Source="Icons\TnmtInfo.png" Height="148" Width="245"/>
+                    <Image x:Name="tmntInfoImg" Source="Icons\TnmtInfo.png" Height="143" Width="235"/>
                 </Button>
             </StackPanel>
         </DockPanel>
         <Canvas x:Name="cnvs_PWHeader" Visibility="Hidden" Margin="0,0,0,18" Grid.Row="1">
             <Button x:Name="btn_PWHeader" Style="{StaticResource ShowHeaderButtonStyle}" Width="250" Height="768" Click="btn_PWHeader_Click">
-                <TextBlock TextWrapping="Wrap" FontSize="38" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="P
-                           R
-                           E
-                           I
-                           S
-                           W
-                           A
-                           T
-                           T
-                           E
-                           R
-                           A
-                           3
-                           0
-                           0
-                           0" Height="705" RenderTransformOrigin="0.5,0.5" Width="227">
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleX="-0.076"/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-0.499"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
+                <Image Source="Icons\start.png" Height="184" Width="250" Canvas.Left="-126" Canvas.Top="-118"/>
             </Button>
-
         </Canvas>
         <Canvas x:Name="cnvs_MessageBar" Visibility="Hidden" Margin="0,0,0,18" Grid.Row="1">
             <Rectangle x:Name="rec_Background" Fill="#FFB2B2B2" HorizontalAlignment="Left" Height="768" Stroke="Black" VerticalAlignment="Top" Width="1400" Grid.ColumnSpan="2" Opacity="0.8"/>
