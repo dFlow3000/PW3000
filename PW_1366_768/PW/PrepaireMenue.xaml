@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Preiswattera_3000.PrepaireMenue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Preiswattera_3000"
+             mc:Ignorable="d" 
+             Loaded="PrepaireMenue_Loaded"
+             d:DesignHeight="652" d:DesignWidth="1030"
+             FontSize="72">
+    <Grid>
+        <Button x:Name="btn_SignUpTeams" Style="{StaticResource DefaultIAButton}" HorizontalAlignment="Left" Margin="265,229,0,0" VerticalAlignment="Top" Width="496" Height="160" FontSize="36" Click="btn_SignUpTeams_Click">
+            <Image Source="Icons\preTeamAdd.png" Height="187" Width="266"/>
+        </Button>
+        <Button x:Name="btn_StartTournament" Style="{StaticResource StartTnmtButton}" HorizontalAlignment="Left" Margin="597,430,0,0" VerticalAlignment="Top" Width="326" Height="160" FontSize="36" Click="btn_StartTournament_Click">
+            <Image Source="Icons\startTnmt_White.png" Height="264" Width="262"/>
+        </Button>
+        <Button x:Name="btn_endTournament" Style="{StaticResource CloseTnmtButton}" HorizontalAlignment="Left" Margin="101,430,0,0" VerticalAlignment="Top" Width="326" Height="160" FontSize="36" Click="btn_endTournament_Click">
+            <Image Source="Icons\endTnmt.png" Height="160" Width="296"/>
+        </Button>
+        <Label x:Name="lbl_oPrepMenueHeader" Content="Preiswatten 2019" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="122" Width="1010" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Preiswattera_3000.AddTournament"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Preiswattera_3000"
+             Loaded="AddTournament_Loaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="652" d:DesignWidth="1030"
+             Background="Transparent">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="750"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87"/>
+            <RowDefinition Height="169"/>
+            <RowDefinition Height="156"/>
+            <RowDefinition Height="119"/>
+            <RowDefinition Height="367"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lbl_TnmtName" Content="Legen Sie einen Namen für Ihr Turnier fest:" Grid.Column="0" Grid.Row="1" Margin="0,0,-279,0" VerticalAlignment="Top" Height="67" FontSize="36" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="1030"/>
+        <Label x:Name="lbl_TnmtRunCnt" Content="Legen Sie die Anzahl der Durchgänge fest:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="1030" FontSize="36" Margin="0,0,-279,0" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbl_TnmtGameCnt" Content="Legen Sie die Anzahl der Spiele pro Durchgang fest:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="1020" FontSize="36" Margin="0,0,-269,0" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tbx_TnmtName" Margin="202,72,-71,0" Grid.Row="1" TextWrapping="Wrap" Text="" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tbx_TnmtRunCnt" Margin="202,69,-71,0" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Text="" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tbx_TnmtGameCnt" Margin="202,64,-71,0" Grid.Row="3" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Height="40" FontSize="24" HorizontalContentAlignment="Center" IsEnabled="False"/>
+        <Button x:Name="btn_StartTnmt" Style="{StaticResource DefaultIAButton}" Height="94" Margin="351,17,0,0" Grid.Row="4" Grid.Column="0" Width="326" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Click="btn_StartTnmt_Click">
+            <Image Source="Icons\createTnmt_Black.png" Height="102" Width="219" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
+
+    </Grid>
+</UserControl>

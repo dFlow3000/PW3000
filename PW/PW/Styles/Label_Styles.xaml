@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Preiswattera_3000.Styles">
+
+    <!-- ______________________________Titelbar Label_________________________________________-->
+    <!-- _________________Titelbar Label___________________-->
+    <Style TargetType="Label"
+           x:Key="titelbarLabel">
+        <Setter Property="FontFamily" Value="Lucida Console"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!-- _________________MainWindow Titelbar Label___________________-->
+    <Style TargetType="Label"
+           BasedOn="{StaticResource titelbarLabel}"
+           x:Key="MainWindowTitelbarLabel">
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+    <!-- _________________ExtraWindow Titelbar Label___________________-->
+    <Style TargetType="Label"
+           BasedOn="{StaticResource titelbarLabel}"
+           x:Key="ExtraWindowTitelbarLabel">
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+</ResourceDictionary>
