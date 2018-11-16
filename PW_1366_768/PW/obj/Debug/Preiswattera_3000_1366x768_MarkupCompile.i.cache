@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\App.xaml
-21775506594
+22659619693
 1154062384
-39471083997
+40-704733690
 161715558832
-AddTeam.xaml;AddTournament.xaml;ChangePassword.xaml;Evaluation.xaml;Eva_Team_Data.xaml;InfoWindow.xaml;InsertRunData.xaml;LoadOrCreateTournament.xaml;LoadTournament.xaml;Main.xaml;MainWindow.xaml;PlayedGameInfo.xaml;PrepaireMenue.xaml;RunMenue.xaml;Settings.xaml;ShowTeam.xaml;SignUpTeams.xaml;Styles\Button_Styles.xaml;Styles\Form_Styles.xaml;Styles\Label_Styles.xaml;TeamSwap.xaml;
+AddTeam.xaml;AddTournament.xaml;ChangePassword.xaml;Evaluation.xaml;Eva_Team_Data.xaml;InfoWindow.xaml;InsertRunData.xaml;LoadOrCreateTournament.xaml;LoadTournament.xaml;Main.xaml;MainWindow.xaml;PlayedGameHistory.xaml;PlayedGameInfo.xaml;PrepaireMenue.xaml;RunMenue.xaml;Settings.xaml;ShowTeam.xaml;SignUpTeams.xaml;Styles\Button_Styles.xaml;Styles\Form_Styles.xaml;Styles\Label_Styles.xaml;TeamSwap.xaml;
 
-False
+True
 

@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Loaded="MainWindow_Loaded"
         Title="Preiswattera 3000" Height="700" Width="1300"
-        ResizeMode="CanMinimize"
-        WindowStyle="None">
+        ResizeMode="CanMinimize" WindowStyle="None"
+        AllowsTransparency="True">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFA8A8A8" Offset="0.513"/>
@@ -25,6 +25,10 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="1150"/>
         </Grid.ColumnDefinitions>
+        <Border BorderBrush="LimeGreen"
+             BorderThickness="1.5"
+             Background="White">
+        </Border>
         <Image Source="Icons\cards.png" Grid.RowSpan="2" Opacity="0.02" Grid.Column="1" Margin="10,10,100,10"/>
         <ContentControl x:Name="MainContent" Grid.Column="1" Grid.Row="1" Margin="10,0,110,18" >
             <ContentControl.Background>
@@ -75,10 +79,50 @@
         </Canvas>
         <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar">
             <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="1300" Grid.ColumnSpan="2"/>
-            <Label Content="Preiswattera 3000" Style="{StaticResource MainWindowTitelbarLabel}" Width="362" Height="34" Canvas.Left="42"/>
-            <Image Height="36" Width="50" Source="Icons\cards.png" Canvas.Top="-2"/>
-            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="1263" Height="34"/>
-            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="1221" Width="37"/>
+            <Rectangle Style="{StaticResource titleBarWindowBorder}" HorizontalAlignment="Left" Height="665" VerticalAlignment="Top" Width="1" Grid.ColumnSpan="2" Canvas.Top="34"/>
+            <Rectangle Style="{StaticResource titleBarWindowBorder}" HorizontalAlignment="Left" Height="666" VerticalAlignment="Top" Width="1" Grid.ColumnSpan="2" Canvas.Top="34" Canvas.Left="1299"/>
+            <Rectangle Style="{StaticResource titleBarWindowBorder}" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1299" Grid.ColumnSpan="2" Canvas.Top="699" RenderTransformOrigin="0.5,0.5"/>
+            <Label Content="Preiswattera 3000" Style="{StaticResource MainWindowTitelbarLabel}" Width="362" Height="36" Canvas.Left="57" Canvas.Top="-2"/>
+            <Image Height="31" Width="52" Source="Icons\icon_little.png"/>
+            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="1269" Canvas.Top="3" Height="28"/>
+            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top"  Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="1237" Canvas.Top="3" RenderTransformOrigin="0.966,0.621" Height="28"/>
+            <Button x:Name="btn_QuickSettings" Style="{StaticResource TitleBarSettingsButton}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top"  Click="btn_QuickSettings_Click" BorderBrush="{x:Null}" Canvas.Left="1185" Canvas.Top="2" RenderTransformOrigin="0.966,0.621" Height="28" Width="34" Panel.ZIndex="10">
+                <Image Source="Icons\settings_little.png" Height="26" Width="34" RenderTransformOrigin="0.5,0.5"/>
+            </Button>
+            <Canvas x:Name="cnvs_QuickSettings" Visibility="Hidden" Height="88" Width="73" Canvas.Left="1145" Canvas.Top="31" Panel.ZIndex="1">
+                <Button x:Name="btn_BackgroundQuickSettings" Style="{StaticResource TitleBarSettingsBackgroundButton}" Height="130" Width="141" Canvas.Left="-67">
+                    <Canvas>
+                        <Button x:Name="btn_ColorRed" Style="{StaticResource TitleBarSettingsButton}" Height="24" Canvas.Left="-60" Canvas.Top="-62" Width="119" Click="btn_ColorRed_Click">
+                            <Canvas>
+                                <Image Source="Icons\colorSwitch.png" Height="26" Width="40" Canvas.Left="-58" Canvas.Top="-13"/>
+                                <Label Content="Rot" Canvas.Left="-17" Canvas.Top="-14" Height="27" FontSize="16"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="btn_ColorGray" Style="{StaticResource TitleBarSettingsButton}" Height="24" Canvas.Left="-60" Canvas.Top="-38" Width="119" Click="btn_ColorGray_Click">
+                            <Canvas>
+                                <Image Source="Icons\colorSwitch.png" Height="26" Width="40" Canvas.Left="-58" Canvas.Top="-13"/>
+                                <Label Content="Grau" Canvas.Left="-17" Canvas.Top="-14" Height="27" FontSize="16"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="btn_ColorBlue" Style="{StaticResource TitleBarSettingsButton}" Height="24" Canvas.Left="-60" Canvas.Top="-14" Width="119" Click="btn_ColorBlue_Click">
+                            <Canvas>
+                                <Image Source="Icons\colorSwitch.png" Height="26" Width="40" Canvas.Left="-58" Canvas.Top="-13"/>
+                                <Label Content="Blau" Canvas.Left="-17" Canvas.Top="-14" Height="27" FontSize="16"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="btn_ColorGreen" Style="{StaticResource TitleBarSettingsButton}" Height="24" Canvas.Left="-60" Canvas.Top="10" Width="119" Click="btn_ColorGreen_Click">
+                            <Canvas>
+                                <Image Source="Icons\colorSwitch.png" Height="26" Width="40" Canvas.Left="-58" Canvas.Top="-13"/>
+                                <Label Content="Grün" Canvas.Left="-17" Canvas.Top="-14" Height="27" FontSize="16"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="btn_Settings" Content="Einstellungen" Style="{StaticResource TitleBarSettingsButton}" Height="24" Canvas.Left="-60" Canvas.Top="34" Width="119" Click="btn_Settings_Click"/>
+                    </Canvas>
+                </Button>
+            </Canvas>
+            <Button x:Name="btn_QuickRun" Style="{StaticResource TitleBarSettingsButton}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top"  Click="btn_QuickRun_Click" BorderBrush="{x:Null}" Canvas.Left="1145" Canvas.Top="2" RenderTransformOrigin="0.966,0.621" Height="28" Width="34" Panel.ZIndex="10">
+                <Image Source="Icons\jump.png" Height="26" Width="24" RenderTransformOrigin="0.5,0.5"/>
+            </Button>
         </Canvas>
         <Canvas x:Name="Saver" Visibility="Hidden" Grid.Column="1" Grid.Row="1" Margin="0,0,110,0">
             <Rectangle x:Name="rec_BackgroundSaver" Fill="Lime" HorizontalAlignment="Left" Height="262" Stroke="Black" VerticalAlignment="Top" Width="1060" Grid.ColumnSpan="2" Opacity="0.5" Canvas.Top="210" Canvas.Left="-2">

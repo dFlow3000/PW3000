@@ -56,6 +56,9 @@ namespace Preiswattera_3000
             INIFile gameIni = new INIFile(Game.iniPath);
             Tournament tnmt = new Tournament();
             tnmt.Getter();
+
+            Data.MinHeight = tnmt.tnmtGameProRunCnt * tnmt.tnmtRunCnt * 28 + 100;
+
             int gameCnt = Convert.ToInt32(gameIni.GetValue(Const.fileSec, Game.fsX_gameCnt));
             int playedGameCnt = tnmt.tnmtGameProRunCnt * tnmt.tnmtRunCnt;
 

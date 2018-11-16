@@ -6,10 +6,10 @@
     <!-- _________________Titelbar Label___________________-->
     <Style TargetType="Label"
            x:Key="titelbarLabel">
-        <Setter Property="FontFamily" Value="Lucida Console"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="WhiteSmoke"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
     </Style>
 
     <!-- _________________MainWindow Titelbar Label___________________-->
@@ -26,4 +26,147 @@
         <Setter Property="FontSize" Value="18"/>
     </Style>
 
+    <!-- ____________________________________________Evaluation Label ________________________________________________-->
+    <!-- ___________________________________Evaluation Cells Default Label___________________________________-->
+    <Style TargetType="Label"
+           x:Key="EvaCellDefLabel">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="Label"
+           x:Key="EvaCellTopsLabel">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="Label"
+           x:Key="EvaCellFlopsLabel">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="Label"
+           x:Key="EvaCellMouseOverLabel">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Gray" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="Label"
+           BasedOn="{StaticResource EvaCellMouseOverLabel}"
+           x:Key="EvaCellMouseOverTopsLabel">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+
+    <!-- ____________________________________________Played Game History Label ________________________________________________-->
+    <!-- ___________________________________Played Game History Default Label___________________________________-->
+    <Style TargetType="Label"
+           x:Key="playedGameHistoryDefLabel">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryRunTableHeaderLabel">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF767676" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryTeamNamesLabel">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF767676" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryGameDataLabel">
+        <Setter Property="Background">
+            <Setter.Value>
+                <!-- #FFB0AEAE -->
+                <SolidColorBrush Color="Transparent" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Courier New"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryGameDataMouseOverLabel">
+        <Setter Property="Background" Value="#FF979494"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Courier New"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryRunTableHeaderLabel_NOTPLAYED">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF767676" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryTeamNamesLabel_NOTPLAYED">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF767676" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style TargetType="Label"
+           BasedOn="{StaticResource playedGameHistoryDefLabel}"
+           x:Key="playedGameHistoryGameDataLabel_NOTPLAYED">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Transparent" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
 </ResourceDictionary>

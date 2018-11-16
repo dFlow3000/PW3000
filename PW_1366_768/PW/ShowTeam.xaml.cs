@@ -78,6 +78,7 @@ namespace Preiswattera_3000
 
             cmbx_oiTeamPlayedGames.IsEnabled = false;
             btn_ShowGameInfo.IsEnabled = false;
+            btn_ShowGameHistory.IsEnabled = true;
 
             for (int i = 1; i <= Convert.ToInt32(gIni.GetValue(Const.fileSec, Game.fsX_gameCnt)); i++)
             {
@@ -105,6 +106,7 @@ namespace Preiswattera_3000
             {
                 cmbx_oiTeamPlayedGames.IsEnabled = true;
                 btn_ShowGameInfo.IsEnabled = true;
+                btn_ShowGameHistory.IsEnabled = true;
             }
         }
 
@@ -481,7 +483,12 @@ namespace Preiswattera_3000
             }
         }
         #endregion
-        
+
+        private void btn_ShowGameHistory_Click(object sender, RoutedEventArgs e)
+        {
+            Window playedGameHistory = new PlayedGameHistory(selectedTeam.teamId);
+            playedGameHistory.Show();
+        }
     }
 
     public class ShowTeamInfo

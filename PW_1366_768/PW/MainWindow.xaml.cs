@@ -66,7 +66,19 @@ namespace Preiswattera_3000
             UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
             MainContent.Content = creOLoaTnmt;
 
-            if (!checkIfTournamentIsRuning(tournamentData))
+            btn_QuickSettings.MouseEnter += new MouseEventHandler(ShowQuickSettings);
+            btn_QuickSettings.MouseLeave += new MouseEventHandler(DontShowQuickSettings);
+            btn_BackgroundQuickSettings.MouseEnter += new MouseEventHandler(ShowQuickSettings);
+            btn_BackgroundQuickSettings.MouseLeave += new MouseEventHandler(DontShowQuickSettings);
+            if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) == 0)
+            {
+                btn_QuickRun.IsEnabled = false;
+            } else
+            {
+                btn_QuickRun.IsEnabled = true;
+            }
+
+                if (!checkIfTournamentIsRuning(tournamentData))
             {
                 // No running Tournament! Start New One and get needed Parameters
                 //UserControl addTnmt = new AddTournament(this);
@@ -119,6 +131,16 @@ namespace Preiswattera_3000
                 }
 
             }
+        }
+
+        private void ShowQuickSettings(object sender, RoutedEventArgs e)
+        {
+            cnvs_QuickSettings.Visibility = Visibility.Visible;
+        }
+
+        private void DontShowQuickSettings(object sender, RoutedEventArgs e)
+        {
+            cnvs_QuickSettings.Visibility = Visibility.Hidden;
         }
 
         #region Check - Function +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -399,6 +421,58 @@ namespace Preiswattera_3000
                 UserControl creOLoaTnmt = new LoadOrCreateTournament(this);
                 MainContent.Content = creOLoaTnmt;
             }
+        }
+
+        private void btn_QuickSettings_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl settings = new Settings(this);
+            this.MainContent.Content = settings;
+        }
+
+        private void btn_ColorRed_Click(object sender, RoutedEventArgs e)
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            this.Background = Settings.BackgroundSetUp(Const.Red.red1, Const.Red.red2, Const.Red.red3);
+            Settings.SwitchColorStyleActionMenue(this, Const.Red.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Red.color);
+        }
+
+        private void btn_ColorGray_Click(object sender, RoutedEventArgs e)
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            this.Background = Settings.BackgroundSetUp(Const.Gray.gray1, Const.Gray.gray2, Const.Gray.gray3);
+            Settings.SwitchColorStyleActionMenue(this, Const.Gray.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Gray.color);
+        }
+
+        private void btn_ColorBlue_Click(object sender, RoutedEventArgs e)
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            this.Background = Settings.BackgroundSetUp(Const.Blue.blue1, Const.Blue.blue2, Const.Blue.blue3);
+            Settings.SwitchColorStyleActionMenue(this, Const.Blue.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Blue.color);
+        }
+
+        private void btn_ColorGreen_Click(object sender, RoutedEventArgs e)
+        {
+            INIFile tnmtIni = new INIFile(Tournament.iniPath);
+            this.Background = Settings.BackgroundSetUp(Const.Green.green1, Const.Green.green2, Const.Green.green3);
+            Settings.SwitchColorStyleActionMenue(this, Const.Green.color);
+            tnmtIni.SetValue(Const.fileSec, Tournament.fsX_ColorMode, Const.Green.color);
+        }
+
+        private void btn_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl settings = new Settings(this);
+            this.MainContent.Content = settings;
+        }
+
+        private void btn_QuickRun_Click(object sender, RoutedEventArgs e)
+        {
+            Tournament tnmt = new Tournament();
+            tnmt.Getter();
+            UserControl inserRunData = new InsertRunData(this, tnmt.tnmtActRun);
+            this.MainContent.Content = inserRunData;
         }
     }
 }

@@ -29,7 +29,7 @@
                 <BlurEffect Radius="70"/>
             </Canvas.Effect>
         </Canvas>
-        <GroupBox x:Name="gB_sTeamShower" Header="Team-Nummer" HorizontalAlignment="Left" Height="459" Margin="10,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1010" FontSize="20">
+        <GroupBox x:Name="gB_sTeamShower" Header="Team-Nummer" HorizontalAlignment="Left" Height="464" Margin="10,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1010" FontSize="20">
             <GroupBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFF03636" Offset="0"/>
@@ -88,7 +88,7 @@
                         <CheckBox x:Name="cbx_iTAP2Payed" TabIndex="6" IsEnabled="false" Content="Startgebühr bezahlt" Canvas.Top="119" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="137"/>
                     </Canvas>
                 </GroupBox>
-                <GroupBox x:Name="gB_sTeamShowerInfo" Header="Team-Informationen" Height="153" Canvas.Top="262" Width="978" Canvas.Left="10">
+                <GroupBox x:Name="gB_sTeamShowerInfo" Header="Team-Informationen" Height="165" Canvas.Top="262" Width="978" Canvas.Left="10">
                     <GroupBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFF03636" Offset="0"/>
@@ -100,9 +100,10 @@
                     <Canvas Margin="0,0,0,1">
                         <Label x:Name="lbl_sTeamWinPoints" Content="Gewinn-Punkte:" Canvas.Left="10" Canvas.Top="4" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Width="164"/>
                         <Label x:Name="lbl_oTeamWinPoints" Content="" Canvas.Left="174" Canvas.Top="4"/>
-                        <Label x:Name="lbl_sTeamPlayedGames" Content="gespielte Spiele:" Canvas.Left="360" Canvas.Top="13" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Width="167" RenderTransformOrigin="0.395,0.27"/>
-                        <ComboBox x:Name="cmbx_oiTeamPlayedGames" IsEnabled="False" Canvas.Left="527" Canvas.Top="17" Width="435" SelectionChanged="cmbx_oiTeamPlayedGames_SelectionChanged"/>
-                        <Button x:Name="btn_ShowGameInfo" IsEnabled="False" Style="{StaticResource DefaultIAButton}" Content="Spiel-Informationen anzeigen" Canvas.Left="527" Canvas.Top="59" Width="308" Click="btn_ShowGameInfo_Click" Height="37"/>
+                        <Label Visibility="Hidden" x:Name="lbl_sTeamPlayedGames" Content="gespielte Spiele:" Canvas.Left="354" Canvas.Top="4" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Width="167" RenderTransformOrigin="0.395,0.27"/>
+                        <ComboBox Visibility="Hidden" x:Name="cmbx_oiTeamPlayedGames" IsEnabled="False" Canvas.Left="521" Canvas.Top="8" Width="435" SelectionChanged="cmbx_oiTeamPlayedGames_SelectionChanged"/>
+                        <Button Visibility="Hidden" x:Name="btn_ShowGameInfo" IsEnabled="False" Style="{StaticResource DefaultIAButton}" Content="Spiel-Informationen anzeigen" Canvas.Left="521" Canvas.Top="46" Width="308" Click="btn_ShowGameInfo_Click" Height="37"/>
+                        <Button x:Name="btn_ShowGameHistory" IsEnabled="False" Style="{StaticResource DefaultIAButton}" Content="Spielhistorie anzeigen" Canvas.Left="526" Canvas.Top="8" Width="231" Click="btn_ShowGameHistory_Click" Height="37"/>
                         <Label x:Name="lbl_sTeamGamePointsDiff" Content="Spiel-Punkte-Diff:" Canvas.Top="41" Width="174" HorizontalAlignment="Left" HorizontalContentAlignment="Right" RenderTransformOrigin="0.511,-0.811"/>
                         <Label x:Name="lbl_oTeamGamePointsDiff" Content="" Canvas.Left="174" Canvas.Top="41"/>
                         <Label x:Name="lbl_sTeamGamePoints" Content="Spiel-Punkte:" Canvas.Top="78" Width="174" HorizontalAlignment="Left" HorizontalContentAlignment="Right" RenderTransformOrigin="0.511,-0.811"/>

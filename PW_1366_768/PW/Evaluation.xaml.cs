@@ -29,6 +29,8 @@ namespace Preiswattera_3000
         private static int yShiftNormalRow = 20;
         private static int yShiftTabelRow = 12;
         private MainWindow mainWindow;
+        private Label[,] tabelLabel;
+        int last = 0;
         public Evaluation(MainWindow i_mainWindow)
         {
             InitializeComponent();
@@ -84,7 +86,10 @@ namespace Preiswattera_3000
                 Label lbl_gamePointsDiff = new Label();
 
                 int x = 0;
-                int last = allTeams.Length;
+                last = allTeams.Length;
+
+                tabelLabel = new Label[allTeams.Length, 4];
+
                 //do
                 //{
                 foreach (Team team in allTeams)
@@ -98,11 +103,16 @@ namespace Preiswattera_3000
                     lbl_winPoints = new Label();
                     lbl_gamePointsDiff = new Label();
                     
-                    lbl_rowNumber.Background = Brushes.Transparent;
-                    lbl_teamName.Background = Brushes.Transparent;
-                    lbl_winPoints.Background = Brushes.Transparent;
-                    lbl_gamePointsDiff.Background = Brushes.Transparent;
-                    
+                    //lbl_rowNumber.Background = Brushes.Transparent;
+                    //lbl_teamName.Background = Brushes.Transparent;
+                    //lbl_winPoints.Background = Brushes.Transparent;
+                    //lbl_gamePointsDiff.Background = Brushes.Transparent;
+
+                    lbl_rowNumber.Style = (Style)Application.Current.Resources["EvaCellDefLabel"];
+                    lbl_teamName.Style = (Style)Application.Current.Resources["EvaCellDefLabel"];
+                    lbl_winPoints.Style = (Style)Application.Current.Resources["EvaCellDefLabel"];
+                    lbl_gamePointsDiff.Style = (Style)Application.Current.Resources["EvaCellDefLabel"];
+
                     lbl_rowNumber.Content = Convert.ToString(x);
                     lbl_teamName.Content = team.teamName;
                     lbl_winPoints.Content = Convert.ToString(team.winPoints);
@@ -113,16 +123,16 @@ namespace Preiswattera_3000
                     lbl_winPoints.Uid = Convert.ToString(x);
                     lbl_gamePointsDiff.Uid = Convert.ToString(x);
 
-                    //lbl_rowNumber.MouseEnter += new MouseEventHandler(MarkUpActRow);
-                    //lbl_teamName.MouseEnter += new MouseEventHandler(MarkUpActRow);
-                    //lbl_winPoints.MouseEnter += new MouseEventHandler(MarkUpActRow);
-                    //lbl_gamePointsDiff.MouseEnter += new MouseEventHandler(MarkUpActRow);
-                    //lbl_rowNumber.MouseLeave += new MouseEventHandler(MarkDwActRow);
-                    //lbl_teamName.MouseLeave += new MouseEventHandler(MarkDwActRow);
-                    //lbl_winPoints.MouseLeave += new MouseEventHandler(MarkDwActRow);
-                    //lbl_gamePointsDiff.MouseLeave += new MouseEventHandler(MarkDwActRow);
+                    lbl_rowNumber.MouseEnter += new MouseEventHandler(MarkUpActRow);
+                    lbl_teamName.MouseEnter += new MouseEventHandler(MarkUpActRow);
+                    lbl_winPoints.MouseEnter += new MouseEventHandler(MarkUpActRow);
+                    lbl_gamePointsDiff.MouseEnter += new MouseEventHandler(MarkUpActRow);
+                    lbl_rowNumber.MouseLeave += new MouseEventHandler(MarkDownActRow);
+                    lbl_teamName.MouseLeave += new MouseEventHandler(MarkDownActRow);
+                    lbl_winPoints.MouseLeave += new MouseEventHandler(MarkDownActRow);
+                    lbl_gamePointsDiff.MouseLeave += new MouseEventHandler(MarkDownActRow);
 
-                    btn_teamGameInfo.Uid = Convert.ToString(team.teamId);
+                    btn_teamGameInfo.Uid = Convert.ToString(team.teamId) + "|" + Convert.ToString(x);
                     btn_teamGameInfo.Content = "i";
                     btn_teamGameInfo.Height = 31.28;
                     btn_teamGameInfo.FontWeight = FontWeights.Bold;
@@ -131,12 +141,14 @@ namespace Preiswattera_3000
                     btn_teamGameInfo.Foreground = Brushes.WhiteSmoke;
                     btn_teamGameInfo.Style = (Style)Application.Current.Resources["InfoButton"];
                     btn_teamGameInfo.Click += new RoutedEventHandler(OpenTeamGameInfo);
+                    btn_teamGameInfo.MouseEnter += new MouseEventHandler(MarkUpActRow);
+                    btn_teamGameInfo.MouseLeave += new MouseEventHandler(MarkDownActRow);
 
-                    lbl_rowNumber.FontSize = 16;
-                    lbl_teamName.FontSize = 16;
-                    lbl_winPoints.FontSize = 16;
-                    lbl_gamePointsDiff.FontSize = 16;
-                    
+                    //lbl_rowNumber.FontSize = 16;
+                    //lbl_teamName.FontSize = 16;
+                    //lbl_winPoints.FontSize = 16;
+                    //lbl_gamePointsDiff.FontSize = 16;
+
                     lbl_rowNumber.HorizontalContentAlignment = HorizontalAlignment.Right;
                     lbl_teamName.HorizontalContentAlignment = HorizontalAlignment.Center;
                     lbl_winPoints.HorizontalContentAlignment = HorizontalAlignment.Center;
@@ -145,23 +157,24 @@ namespace Preiswattera_3000
 
                     if (x == last)
                     {
-                        lbl_rowNumber.Background = Brushes.Black;
-                        lbl_rowNumber.Foreground = Brushes.White;
-                        lbl_teamName.Background = Brushes.Black;
-                        lbl_teamName.Foreground = Brushes.White;
-                        lbl_winPoints.Background = Brushes.Black;
-                        lbl_winPoints.Foreground = Brushes.White;
-                        lbl_gamePointsDiff.Background = Brushes.Black;
-                        lbl_gamePointsDiff.Foreground = Brushes.White;
+                        lbl_rowNumber.Style = (Style)Application.Current.Resources["EvaCellFlopsLabel"];
+                        lbl_teamName.Style = (Style)Application.Current.Resources["EvaCellFlopsLabel"];
+                        lbl_winPoints.Style = (Style)Application.Current.Resources["EvaCellFlopsLabel"];
+                        lbl_gamePointsDiff.Style = (Style)Application.Current.Resources["EvaCellFlopsLabel"];
                     }
                     
                     if(x >= 1 && x <= 3)
                     {
-                        lbl_rowNumber.FontWeight = FontWeights.Bold;
-                        lbl_teamName.FontWeight = FontWeights.Bold;
-                        lbl_winPoints.FontWeight = FontWeights.Bold;
-                        lbl_gamePointsDiff.FontWeight = FontWeights.Bold;
+                        lbl_rowNumber.Style = (Style)Application.Current.Resources["EvaCellTopsLabel"];
+                        lbl_teamName.Style = (Style)Application.Current.Resources["EvaCellTopsLabel"];
+                        lbl_winPoints.Style = (Style)Application.Current.Resources["EvaCellTopsLabel"];
+                        lbl_gamePointsDiff.Style = (Style)Application.Current.Resources["EvaCellTopsLabel"];
                     }
+
+                    tabelLabel[x - 1, 0] = lbl_rowNumber;
+                    tabelLabel[x - 1, 1] = lbl_teamName;
+                    tabelLabel[x - 1, 2] = lbl_winPoints;
+                    tabelLabel[x - 1, 3] = lbl_gamePointsDiff;
 
                     #region add Button n Lable to Table
                     stp_posNumber.Children.Add(lbl_rowNumber);
@@ -200,43 +213,101 @@ namespace Preiswattera_3000
             }
         }
 
-        //private void MarkUpActRow(object sender, EventArgs e)
-        //{
-        //    Label actLabel = (Label)sender;
-        //    stp_posNumber.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_TeamName.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_WinPoints.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_GamePointsDiff.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_TeamGameInfo.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //}
+        private void MarkUpActRow(object sender, EventArgs e)
+        {
+            Button actBtn = new Button();
+            Label actLabel = new Label();
+            Object actObj = new Object();
+            if (sender is Button)
+            {
+                actBtn = (Button)sender;
+                int btnUidCuted = CutBtnUid(actBtn.Uid, 1);
+                for (int i = 0; i < 4; i++)
+                {
+                    if (btnUidCuted >= 1 && btnUidCuted <= 3)
+                    {
+                        tabelLabel[(btnUidCuted - 1), i].Style = (Style)Application.Current.Resources["EvaCellMouseOverTopsLabel"];
+                    }
+                    else
+                    {
+                        tabelLabel[(btnUidCuted - 1), i].Style = (Style)Application.Current.Resources["EvaCellMouseOverLabel"];
+                    }
+                }
+            } else if (sender is Label)
+            {
+                actLabel = (Label)sender;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (Convert.ToInt32(actLabel.Uid) >= 1 && Convert.ToInt32(actLabel.Uid) <= 3)
+                    {
+                        tabelLabel[(Convert.ToInt32(actLabel.Uid) - 1), i].Style = (Style)Application.Current.Resources["EvaCellMouseOverTopsLabel"];
+                    }
+                    else
+                    {
+                        tabelLabel[(Convert.ToInt32(actLabel.Uid) - 1), i].Style = (Style)Application.Current.Resources["EvaCellMouseOverLabel"];
+                    }
+                }
+            }
+        }
 
-        //private void MarkDwActRow(object sender, EventArgs e)
-        //{
-        //    Label actLabel = (Label)sender;
-        //    stp_posNumber.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_TeamName.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_WinPoints.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_GamePointsDiff.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //    stp_TeamGameInfo.Children[Convert.ToInt32(actLabel.Uid)].MouseEnter += new MouseEventHandler(MarkUpActCell);
-        //}
+        private void MarkDownActRow(object sender, EventArgs e)
+        {
+            Button actBtn = new Button();
+            Label actLabel = new Label();
+            if (sender is Button)
+            {
+                actBtn = (Button)sender;
+                int btnUidCuted = CutBtnUid(actBtn.Uid, 1);
+                for (int i = 0; i < 4; i++)
+                {
+                    if (btnUidCuted >= 1 && btnUidCuted <= 3)
+                    {
+                        tabelLabel[(btnUidCuted - 1), i].Style = (Style)Application.Current.Resources["EvaCellTopsLabel"];
+                    }
+                    else if (btnUidCuted == last)
+                    {
+                        tabelLabel[(btnUidCuted - 1), i].Style = (Style)Application.Current.Resources["EvaCellFlopsLabel"];
+                    }
+                    else
+                    {
+                        tabelLabel[(btnUidCuted - 1), i].Style = (Style)Application.Current.Resources["EvaCellDefLabel"];
+                    }
+                }
+            } else if (sender is Label)
+            {
+                actLabel = (Label)sender;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (Convert.ToInt32(actLabel.Uid) >= 1 && Convert.ToInt32(actLabel.Uid) <= 3)
+                    {
+                        tabelLabel[(Convert.ToInt32(actLabel.Uid) - 1), i].Style = (Style)Application.Current.Resources["EvaCellTopsLabel"];
+                    }
+                    else if (Convert.ToInt32(actLabel.Uid) == last)
+                    {
+                        tabelLabel[(Convert.ToInt32(actLabel.Uid) - 1), i].Style = (Style)Application.Current.Resources["EvaCellFlopsLabel"];
+                    }
+                    else
+                    {
+                        tabelLabel[(Convert.ToInt32(actLabel.Uid) - 1), i].Style = (Style)Application.Current.Resources["EvaCellDefLabel"];
+                    }
+                }
+            }
+        }
 
-
-        //private void MarkDwActCell(object sender, EventArgs e)
-        //{
-        //    ((Label)sender).Background = Brushes.Transparent;
-        //    ((Label)sender).Foreground = Brushes.Black;
-        //    stp_posNumber.Children[Convert.ToInt32(((Label)sender).Uid)].MouseEnter += new MouseEventHandler(MarkUpActRow);
-        //    stp_TeamName.Children[Convert.ToInt32(((Label)sender).Uid)].MouseEnter += new MouseEventHandler(MarkUpActRow);
-        //    stp_WinPoints.Children[Convert.ToInt32(((Label)sender).Uid)].MouseEnter += new MouseEventHandler(MarkUpActRow);
-        //    stp_GamePointsDiff.Children[Convert.ToInt32(((Label)sender).Uid)].MouseEnter += new MouseEventHandler(MarkUpActRow);
-        //    stp_TeamGameInfo.Children[Convert.ToInt32(((Label)sender).Uid)].MouseEnter += new MouseEventHandler(MarkUpActRow);
-        //}
-
-        //private void MarkUpActCell(object sender, EventArgs e)
-        //{
-        //    ((Label)sender).Background = Brushes.Black;
-        //    ((Label)sender).Foreground = Brushes.White;
-        //}
+        private int CutBtnUid(string i_uid, int i_mode)
+        {
+            char[] trims = { '|' }; 
+            if(i_mode == 0)
+            {
+                return (Convert.ToInt32(i_uid.Substring(0, i_uid.IndexOf('|'))));
+            } else if (i_mode == 1)
+            {
+                return (Convert.ToInt32(i_uid.Substring(i_uid.IndexOf('|') + 1)));
+            } else
+            {
+                return 0;
+            }
+        }
 
         #region Sort - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private static void SortTeamsByWinAndGamePoints(Team[] teams)
@@ -586,7 +657,7 @@ namespace Preiswattera_3000
         private void OpenTeamGameInfo(object sender, EventArgs e)
         {
             Button btn_activ = (Button)sender;
-            Window teamGameInfo = new Eva_Team_Data(Convert.ToInt32(btn_activ.Uid));
+            Window teamGameInfo = new Eva_Team_Data(CutBtnUid(btn_activ.Uid, 0));
             teamGameInfo.Show();
         }
 

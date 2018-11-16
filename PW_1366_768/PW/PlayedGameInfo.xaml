@@ -36,9 +36,9 @@
         <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar">
             <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="489" Grid.ColumnSpan="2"/>
             <Label Content="Spiel-Info" Style="{StaticResource ExtraWindowTitelbarLabel}" Width="362" Height="34" Canvas.Left="42"/>
-            <Image Height="34" Width="74" Source="Icons\Lupe.png" Canvas.Left="-17"/>
-            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="452" Height="34"/>
-            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="409" Width="36"/>
+            <Image Height="32" Width="72" Source="Icons\Lupe.png" Canvas.Left="-17"/>
+            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="460" Canvas.Top="2"/>
+            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="426" Canvas.Top="2"/>
         </Canvas>
     </Grid>
 </Window>

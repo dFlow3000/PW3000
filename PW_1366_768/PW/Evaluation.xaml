@@ -77,8 +77,8 @@
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Label.Foreground>
         </Label>
-        <ScrollViewer HorizontalAlignment="Left" Margin="10,70,0,37" Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Width="1010">
-            <Canvas x:Name="canvasEvaluation" Width="1027" MinHeight="2000">
+        <ScrollViewer HorizontalAlignment="Left" Margin="10,70,0,37" Grid.Row="1" VerticalScrollBarVisibility="Visible" Width="1010">
+            <Canvas x:Name="canvasEvaluation" Width="1010" MinHeight="2000">
                 <StackPanel x:Name="stp_posNumber" Canvas.Top="10" Width="100" Canvas.Left="31">
                 </StackPanel>
                 <StackPanel x:Name="stp_TeamName" Canvas.Left="138" Canvas.Top="10" Width="430">

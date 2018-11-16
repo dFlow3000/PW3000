@@ -899,9 +899,9 @@ namespace Preiswattera_3000
 
 
                     INIFile tableIni = new INIFile(Table.iniPath);
-                    int tableSecCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableSecCnt));
+                    int tableCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableCnt));
 
-                    for (int i = 1; i <= tableSecCnt; i++)
+                    for (int i = 1; i <= tableCnt; i++)
                     {
                         Table newTable = new Table();
                         newTable.Getter(i, runId);
@@ -972,9 +972,9 @@ namespace Preiswattera_3000
 
 
                     INIFile tableIni = new INIFile(Table.iniPath);
-                    int tableSecCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableSecCnt));
+                    int tableCnt = Convert.ToInt32(tableIni.GetValue(Const.fileSec, Table.fsX_tableCnt));
 
-                    for (int i = 1; i <= tableSecCnt; i++)
+                    for (int i = 1; i <= tableCnt; i++)
                     {
                         Table newTable = new Table();
                         newTable.Getter(i, runId);

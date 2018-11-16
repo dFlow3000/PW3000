@@ -164,3 +164,5 @@ C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\obj\Debug\Preiswattera_3000
 C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\obj\Debug\Preiswattera_3000_1366x768.pdb
 C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\obj\Debug\TeamSwap.g.cs
 C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\obj\Debug\TeamSwap.baml
+C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\obj\Debug\PlayedGameHistory.g.cs
+C:\Users\dawo\Documents\GitHub\PW3000\PW_1366_768\PW\obj\Debug\PlayedGameHistory.baml

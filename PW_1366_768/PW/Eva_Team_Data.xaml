@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="Info zu gewonnen Spielen    |    Spiel-Punkte-Differenz" Height="400" Width="440.478">
+        Title="Info zu gewonnen Spielen    |    Spiel-Punkte-Differenz" Height="400" Width="440.004">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFD42C2C" Offset="0.513"/>
@@ -137,7 +137,7 @@
             </Label>
         </Canvas>
         <ScrollViewer HorizontalAlignment="Left" Height="167" Margin="39,44,0,0" VerticalAlignment="Top" Width="397" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1" Grid.ColumnSpan="2">
-            <Canvas x:Name="Data" Height="500">
+            <Canvas x:Name="Data">
                 <StackPanel x:Name="stp_GameId" Canvas.Left="10" Width="63"/>
                 <StackPanel x:Name="stp_TeamPoints" Canvas.Left="78" Width="94"/>
                 <StackPanel x:Name="stp_AponPoints" Canvas.Left="177" Width="99"/>
@@ -147,10 +147,13 @@
         <Button x:Name="btn_CloseTeamGameInfo" Style="{StaticResource DefaultIAButton}" FontSize="16" Content="Schließen" HorizontalAlignment="Left" Margin="132,293,0,0" VerticalAlignment="Top" Width="116" Height="38" Click="btn_CloseTeamGameInfo_Click" Grid.Row="1" Grid.Column="1"/>
         <Canvas x:Name="TitleBar" MouseLeftButtonDown="DragDropTitelBar" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Rectangle Style="{StaticResource titleBar}" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="2"/>
+            <Rectangle Style="{StaticResource titleBarWindowBorder}" HorizontalAlignment="Left" Height="366" VerticalAlignment="Top" Width="1" Grid.ColumnSpan="2" Canvas.Top="34"/>
+            <Rectangle Style="{StaticResource titleBarWindowBorder}" HorizontalAlignment="Left" Height="365" VerticalAlignment="Top" Width="1" Grid.ColumnSpan="2" Canvas.Top="34" Canvas.Left="439"/>
+            <Rectangle Style="{StaticResource titleBarWindowBorder}" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="2" Canvas.Top="399" RenderTransformOrigin="0.5,0.5"/>
             <Label Content="Auswertung | Detailansicht" Style="{StaticResource ExtraWindowTitelbarLabel}" Width="314" Height="34" Canvas.Left="42"/>
-            <Image Height="34" Width="74" Source="Icons\Lupe.png" Canvas.Left="-17"/>
-            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="X" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="37" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="403" Height="34"/>
-            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="_" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="34" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="361" Width="37"/>
+            <Image Height="31" Width="71" Source="Icons\Lupe.png" Canvas.Left="-17"/>
+            <Button x:Name="btn_MainWindowClose" Style="{StaticResource TitleBarCloseButton}" Content="" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Click="btn_MainWindowClose_Click" BorderBrush="{x:Null}" Canvas.Left="411" Canvas.Top="2"/>
+            <Button x:Name="btn_MainWindowClose_Copy" Style="{StaticResource TitleBarMinButton}" Content="" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" Click="btn_MainWindowClose_Copy_Click" BorderBrush="{x:Null}" Canvas.Left="377" Canvas.Top="2"/>
             <Label x:Name="lbl_sTeamNr" Content="Team-Nummer: " Canvas.Left="50" Canvas.Top="39"/>
             <Label x:Name="lbl_oTeamNr" Content="" Canvas.Left="139" Canvas.Top="39"/>
             <Label x:Name="lbl_sTeamName" Content="Teamname: " Canvas.Left="187" Canvas.Top="39"/>

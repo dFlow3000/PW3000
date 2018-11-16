@@ -103,6 +103,9 @@
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlayedGameHistory.xaml.cs">
+      <DependentUpon>PlayedGameHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlayedGameInfo.xaml.cs">
       <DependentUpon>PlayedGameInfo.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PlayedGameHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PlayedGameInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +320,10 @@
     <Resource Include="Icons\teamSwap.png" />
     <Resource Include="Icons\switchBtn.png" />
     <Resource Include="Icons\wait.png" />
+    <Resource Include="Icons\colorSwitch.png" />
+    <Resource Include="Icons\settings_little.png" />
+    <Resource Include="Icons\icon_little.png" />
+    <Resource Include="Icons\jump.png" />
     <Content Include="Settings.svg" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@
             <Setter.Value>
                 <SolidColorBrush Color="Black" Opacity="0.1"/>
             </Setter.Value>
-        </Setter> 
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -42,8 +42,10 @@
            TargetType="Button"
            x:Key="DefaultTitleBarButton">
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Lucida Console"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Width" Value="29"/>
+        <Setter Property="Height" Value="29"/>
     </Style>
 
     <!-- _____________________Close TitelBar Button_____________________-->
@@ -52,14 +54,34 @@
            x:Key="TitleBarCloseButton">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="Transparent"/>
+                <RadialGradientBrush>
+                    <GradientStop Color="Red" Offset="0"/>
+                    <GradientStop Color="#FF4B0000" Offset="1"/>
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="50">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Transparent"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <SolidColorBrush Color="Red" Opacity="0.5"/>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFB20505" Offset="0"/>
+                            <GradientStop Color="#FF250000" Offset="1"/>
+                        </RadialGradientBrush>
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -72,19 +94,100 @@
            x:Key="TitleBarMinButton">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="Transparent"/>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFFFD100" Offset="0"/>
+                    <GradientStop Color="#FF463600" Offset="1"/>
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="50">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Transparent"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <SolidColorBrush Color="Gray" Opacity="0.5"/>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FFC19F02" Offset="0"/>
+                            <GradientStop Color="#FF2C2200" Offset="1"/>
+                        </RadialGradientBrush>
                     </Setter.Value>
                 </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
+    <!-- _____________________TitleBar Settings Button_____________________-->
+    <Style BasedOn="{StaticResource DefaultTitleBarButton}"
+           TargetType="Button"
+           x:Key="TitleBarSettingsButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF474747" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Transparent"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FFA4A4A4" Offset="0"/>
+                            <GradientStop Color="#FF272727" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- _____________________TitleBar Settings Background Button_____________________-->
+    <Style BasedOn="{StaticResource DefaultTitleBarButton}"
+           TargetType="Button"
+           x:Key="TitleBarSettingsBackgroundButton">
+        <Setter Property="Background" Value="#FF767676"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Transparent"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <!-- ____________________________________Interaction Button____________________________________ -->
     <!-- _____________________Default IA Button_____________________-->
@@ -102,7 +205,7 @@
                 </Setter>
                 <Setter Property="Foreground" Value="Gray"/>
             </Trigger>
-        </Style.Triggers> 
+        </Style.Triggers>
     </Style>
     <!-- _____________________Default IA Button Red_____________________-->
     <Style BasedOn="{StaticResource DefaultIAButton}"
@@ -118,7 +221,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- _____________________Default IA Button Blue_____________________-->
     <Style BasedOn="{StaticResource DefaultIAButton}"
            TargetType="Button"
@@ -163,7 +266,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- _____________________User Check Edit Button______________________-->
     <Style BasedOn="{StaticResource DefaultIAButton}"
            TargetType="Button"
@@ -224,14 +327,14 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- ____________________Final Eva Ready Button_______________-->
     <Style BasedOn="{StaticResource StartTnmtButton}"
            TargetType="Button"
            x:Key="FinalEvaReadyButton">
     </Style>
 
-        <!-- _____________________Settings Button_____________________-->
+    <!-- _____________________Settings Button_____________________-->
     <Style BasedOn="{StaticResource DefaultButtonStyle}"
             TargetType="Button"
            x:Key="SettingsButton">
@@ -276,7 +379,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- ________________________________________ShowHeaderButton Style_____________________________________-->
     <Style BasedOn="{StaticResource LoadOrTurnamentButton}"
            TargetType="Button"
@@ -328,7 +431,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- _____________________ActionMenueButton_Red_____________________-->
     <Style BasedOn="{StaticResource ActionMenueButton}"
            TargetType="Button"
@@ -343,7 +446,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- _____________________ActionMenueButton_Green___________________-->
     <Style BasedOn="{StaticResource ActionMenueButton}"
            TargetType="Button"
@@ -358,7 +461,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- _____________________ActionMenueButton_Gray_____________________-->
     <Style BasedOn="{StaticResource ActionMenueButton}"
            TargetType="Button"
@@ -373,7 +476,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- _____________________ActionMenueButton_Blue_____________________-->
     <Style BasedOn="{StaticResource ActionMenueButton}"
            TargetType="Button"
@@ -410,7 +513,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- ____________________________________________Info Button___________________________________________-->
     <Style  BasedOn="{StaticResource DefaultButtonStyle}"
             TargetType="Button"
@@ -434,10 +537,11 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- ____________________________________________Team Swap Button________________________________________________-->
     <!-- ___________________________________Teams DefaultButton TeamSwap___________________________________-->
     <Style  TargetType="Button"
+            BasedOn="{StaticResource DefaultButtonStyle}"
             x:Key="TeamSwapDefaultButton">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Foreground" Value="Black"/>
@@ -463,6 +567,16 @@
            x:Key="TeamSwapSelectedBlackButton">
         <Setter Property="Background" Value="Black"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#FFD4D4D4" Opacity="0.5"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ___________________________________Teams selected TeamSwap White___________________________________-->
@@ -472,5 +586,14 @@
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#FFD4D4D4" Opacity="0.5"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
