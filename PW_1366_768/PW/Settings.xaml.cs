@@ -38,6 +38,19 @@ namespace Preiswattera_3000
             lbl_oTnmtName.Content = tnmt.tnmtName;
             lbl_oRunCnt.Content = tnmt.tnmtRunCnt;
             lbl_oGamePerRunCnt.Content = tnmt.tnmtGameProRunCnt;
+            if(mainWindow.debugMode)
+            {
+                cnvs_DebugModeActiv.Visibility = Visibility.Visible;
+                cnvs_DebugModeDeactiv.Visibility = Visibility.Hidden;
+                mainWindow.cnvs_debugModeActiv.Visibility = Visibility.Visible;
+                mainWindow.debugMode = true;
+            } else
+            {
+                cnvs_DebugModeActiv.Visibility = Visibility.Hidden;
+                cnvs_DebugModeDeactiv.Visibility = Visibility.Visible;
+                mainWindow.cnvs_debugModeActiv.Visibility = Visibility.Hidden;
+                mainWindow.debugMode = false;
+            }
         }
 
         #region Button - Function ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -201,6 +214,22 @@ namespace Preiswattera_3000
                 i_btn[i].Style = (Style)Application.Current.Resources["DefaultIAButton_" + colorMode];
             }
         }
-        #endregion 
+        #endregion
+
+        private void toggleSwitchDeactiv_Click(object sender, RoutedEventArgs e)
+        {
+            cnvs_DebugModeActiv.Visibility = Visibility.Visible;
+            cnvs_DebugModeDeactiv.Visibility = Visibility.Hidden;
+            mainWindow.cnvs_debugModeActiv.Visibility = Visibility.Visible;
+            mainWindow.debugMode = true;
+        }
+
+        private void btn_ToggleSwitchActiv_Click(object sender, RoutedEventArgs e)
+        {
+            cnvs_DebugModeActiv.Visibility = Visibility.Hidden;
+            cnvs_DebugModeDeactiv.Visibility = Visibility.Visible;
+            mainWindow.cnvs_debugModeActiv.Visibility = Visibility.Hidden;
+            mainWindow.debugMode = false;
+        }
     }
 }

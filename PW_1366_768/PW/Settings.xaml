@@ -35,9 +35,26 @@
         </GroupBox>
         <GroupBox x:Name="gbx_AdminSettings" Header="Programm-Einstellungen" HorizontalAlignment="Left" Height="420" Margin="484,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="536" FontSize="20">
             <Canvas Margin="0,0,0,-2">
-                <GroupBox x:Name="gbx_AdminSettings_PW" Header="Passwort" Width="504" Height="116" Canvas.Left="10" Canvas.Top="10">
+                <GroupBox x:Name="gbx_AdminSettings_PW" Header="Passwort" Width="220" Height="116" Canvas.Left="18" Canvas.Top="22">
                     <Canvas Margin="0,0,0,120">
-                        <Button x:Name="btn_EditPassword" Style="{StaticResource DefaultIAButton}" IsEnabled="true" Content="Passwort ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="204" Height="38" Click="btn_EditPassword_Click" Canvas.Left="24" Canvas.Top="24"/>
+                        <Button x:Name="btn_EditPassword" Style="{StaticResource DefaultIAButton}" IsEnabled="true" Content="Passwort ändern" HorizontalAlignment="Left" VerticalAlignment="Top" Width="204" Height="38" Click="btn_EditPassword_Click" Canvas.Left="2" Canvas.Top="21"/>
+                    </Canvas>
+                </GroupBox>
+                <GroupBox x:Name="gbx_AdminSettings_DebugMode" Header="Entwickler-Modus" Width="264" Height="116" Canvas.Left="250" Canvas.Top="22">
+                    <Canvas Margin="0,5,0,17">
+
+                        <Canvas x:Name="cnvs_DebugModeDeactiv" Visibility="Visible" Margin="0,0,0,1">
+                            <Button x:Name="btn_ToggleSwitchBackgroundDeactiv" Style="{StaticResource DebugModeToggleButtonBackgroundDeactiv}" Canvas.Left="10" Canvas.Top="25" Width="50" Height="28"/>
+                            <Button x:Name="btn_ToggleSwitchDeactiv" Style="{StaticResource DebugModeToggleButton}" Content="" Canvas.Left="10" Canvas.Top="24" Width="27" Height="30" Click="toggleSwitchDeactiv_Click"/>
+                            <Label Content="OFF" FontSize="12" Width="33" Canvas.Left="32" Canvas.Top="26" Height="28"/>
+                        </Canvas>
+                        <Canvas x:Name="cnvs_DebugModeActiv" Visibility="Hidden" Margin="0,0,0,1">
+                            <Button x:Name="btn_ToggleSwitchBackgroundActiv" Style="{StaticResource DebugModeToggleButtonBackgroundActiv}" Canvas.Left="10" Canvas.Top="25" Width="50">
+                                <Label Content="ON" FontSize="12" Width="55"/>
+                            </Button>
+                            <Button x:Name="btn_ToggleSwitchActiv" Style="{StaticResource DebugModeToggleButton}" Content="" Canvas.Left="35" Canvas.Top="24" Width="27" Height="30" Click="btn_ToggleSwitchActiv_Click"/>
+                        </Canvas>
+                        <Label Content="Debug - Mode" Canvas.Left="70" Canvas.Top="20"/>
                     </Canvas>
                 </GroupBox>
                 <GroupBox x:Name="gbx_AdminSettings_Color" Header="Hintergrundfarbe ändern" Canvas.Top="153" Height="225" Width="504" Canvas.Left="10">

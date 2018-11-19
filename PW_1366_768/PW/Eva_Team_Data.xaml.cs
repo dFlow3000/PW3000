@@ -82,14 +82,7 @@ namespace Preiswattera_3000
             lbl_oTeamName.Content = team.teamName;
             lbl_oTeamNr.Content = Convert.ToString(team.teamId);
 
-            if (winCnt == team.winPoints)
-            {
-                lbl_swinPoints.Content = Convert.ToString(team.winPoints);
-            }
-            else
-            {
-                lbl_swinPoints.Content = Convert.ToString(winCnt) + "(+" + Convert.ToString(team.winPoints - winCnt) + ")";
-            }
+            lbl_swinPoints.Content = Convert.ToString(team.winPoints);
 
         }
 

@@ -363,6 +363,78 @@
         </Style.Triggers>
     </Style>
 
+    <!-- _____________________Settings Debug Mode Button_____________________-->
+    <Style TargetType="Button"
+           x:Key="DebugModeToggleButtonBackgroundDeactiv">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF3A3A3A" Offset="0"/>
+                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Black"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="DebugModeToggleButtonBackgroundActiv">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF064006" Offset="0"/>
+                    <GradientStop Color="#FF8AFF8A" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Black"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="DebugModeToggleButton">
+        <Setter Property="Background" Value="#FF666666"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Black"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- ____________________________________Load or Create Tournament Button_______________________________-->
     <Style BasedOn="{StaticResource DefaultButtonStyle}"
            TargetType="Button"

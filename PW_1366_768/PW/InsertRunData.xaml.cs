@@ -279,8 +279,8 @@ namespace Preiswattera_3000
                         gamesOnTable[i].Setter();
                     }
 
-                    team1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
-                    team2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                    team1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text) - Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+                    team2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text) - Convert.ToInt32(tbx_iWinPointsTeam1.Text);
 
                     team1.Setter();
                     team2.Setter();
@@ -361,12 +361,11 @@ namespace Preiswattera_3000
             btn_Edit_GameData_Autorisation.Visibility = Visibility.Visible;
             btn_Edit_GameData.Visibility = Visibility.Hidden;
             pwbx_EditPassword.Focus();
-
         }
 
         private void btn_Edit_GameData_Autorisation_Click(object sender, RoutedEventArgs e)
         {
-            if (Crypto.Encrypt(pwbx_EditPassword.Password.ToString()))
+            if (Crypto.Encrypt(pwbx_EditPassword.Password.ToString()) || mainWindow.debugMode)
             {
                 btn_Edit_GameData_Save.Visibility = Visibility.Visible;
                 btn_Edit_GameData_Clear.Visibility = Visibility.Visible;
@@ -521,8 +520,9 @@ namespace Preiswattera_3000
                     newTable.GetTableByTeam(newTeam.teamId, runId);
 
                     // Switch winPoints OLDTEAM
-                    oldTeam.winPoints -= Convert.ToInt32(retValues[0] == 0 ? tbx_iWinPointsTeam1.Text : tbx_iWinPointsTeam2.Text);
-                    oldTeam.winPoints += newTable.winPointsAtGame[newTable.teamsOnTable[0] == newTeam.teamId? 0 : 1];
+                    oldTeam.winPoints -= retValues[0] == 0 ? Convert.ToInt32(tbx_iWinPointsTeam1.Text) - Convert.ToInt32(tbx_iWinPointsTeam2.Text): 
+                                                             Convert.ToInt32(tbx_iWinPointsTeam2.Text) - Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+                    oldTeam.winPoints += newTable.winPointsAtGame[newTable.teamsOnTable[0] == newTeam.teamId? 0 : 1] - newTable.winPointsAtGame[newTable.teamsOnTable[0] == newTeam.teamId ? 1 : 0];
 
                     int[] gameNdiff = getGamePointsTotalFromNewTable(newTable, newTable.teamsOnTable[0] == newTeam.teamId ? 0 : 1);
 
@@ -537,8 +537,9 @@ namespace Preiswattera_3000
                     oldTeam.gamePointsTotalDiff += gameNdiff[1];
                     
                     // Switch winPoints NEWTEAM
-                    newTeam.winPoints -= newTable.winPointsAtGame[newTable.teamsOnTable[0] == newTeam.teamId ? 0 : 1];
-                    newTeam.winPoints += Convert.ToInt32(retValues[0] == 0 ? tbx_iWinPointsTeam1.Text : tbx_iWinPointsTeam2.Text);
+                    newTeam.winPoints -= newTable.winPointsAtGame[newTable.teamsOnTable[0] == newTeam.teamId ? 0 : 1] - newTable.winPointsAtGame[newTable.teamsOnTable[0] == newTeam.teamId ? 1 : 0];
+                    newTeam.winPoints += retValues[0] == 0 ? Convert.ToInt32(tbx_iWinPointsTeam1.Text) - Convert.ToInt32(tbx_iWinPointsTeam2.Text):
+                                                             Convert.ToInt32(tbx_iWinPointsTeam2.Text) - Convert.ToInt32(tbx_iWinPointsTeam1.Text);
 
                     // Switch gamePointsTotal NEWTEAM
                     newTeam.gamePointsTotal -= gameNdiff[0];
@@ -604,9 +605,11 @@ namespace Preiswattera_3000
                     newTeam.Getter(Convert.ToInt32(retValues[0] == 0 ? lbl_oTeam1Number.Content : lbl_oTeam2Number.Content));
 
                     // Switch winPoints
-                    newTeam.winPoints += Convert.ToInt32(retValues[0] == 0 ? tbx_iWinPointsTeam1.Text : tbx_iWinPointsTeam2.Text);
-                    oldTeam.winPoints -= Convert.ToInt32(retValues[0] == 0 ? tbx_iWinPointsTeam1.Text : tbx_iWinPointsTeam2.Text);
-                    
+                    newTeam.winPoints += retValues[0] == 0 ? Convert.ToInt32(tbx_iWinPointsTeam1.Text) - Convert.ToInt32(tbx_iWinPointsTeam2.Text):
+                                                             Convert.ToInt32(tbx_iWinPointsTeam2.Text) - Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+                    oldTeam.winPoints -= retValues[0] == 0 ? Convert.ToInt32(tbx_iWinPointsTeam1.Text) - Convert.ToInt32(tbx_iWinPointsTeam2.Text):
+                                                             Convert.ToInt32(tbx_iWinPointsTeam2.Text) - Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+
                     // Switch gamePointsTotal
                     newTeam.gamePointsTotal += (retValues[0] == 0 ? Convert.ToInt32(tbx_1GamePoints1Team.Text) : Convert.ToInt32(tbx_1GamePoints2Team.Text)) +
                                                (retValues[0] == 0 ? Convert.ToInt32(tbx_2GamePoints1Team.Text) : Convert.ToInt32(tbx_2GamePoints2Team.Text)) +
@@ -715,11 +718,9 @@ namespace Preiswattera_3000
                         updateTeam1.gamePointsTotal -= prevTableValueGamePointsTotal[0];
                     }
                     updateTeam1.gamePointsTotal += newTableValueGamePointsTotal[0];
-                    if (updateTeam1.winPoints > 0)
-                    {
-                        updateTeam1.winPoints -= prevTableValues[0, 0];
-                    }
-                    updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+
+                    updateTeam1.winPoints -= prevTableValues[0, 0] - prevTableValues[0 ,1];
+                    updateTeam1.winPoints += Convert.ToInt32(tbx_iWinPointsTeam1.Text) - Convert.ToInt32(tbx_iWinPointsTeam2.Text);
 
                     updateTeam1.gamePointsTotalDiff = updateTeam1.gamePointsTotalDiff - prevTableValues[4, 0] + diffTeam1;
                     updateTeam1.Setter();
@@ -729,11 +730,10 @@ namespace Preiswattera_3000
                         updateTeam2.gamePointsTotal -= prevTableValueGamePointsTotal[1];
                     }
                     updateTeam2.gamePointsTotal += newTableValueGamePointsTotal[1];
-                    if (updateTeam2.winPoints > 0)
-                    {
-                        updateTeam2.winPoints -= prevTableValues[0, 1];
-                    }
-                    updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text);
+
+                    updateTeam2.winPoints -= prevTableValues[0, 1] - prevTableValues[0, 0];
+                    updateTeam2.winPoints += Convert.ToInt32(tbx_iWinPointsTeam2.Text) - Convert.ToInt32(tbx_iWinPointsTeam1.Text);
+
                     updateTeam2.gamePointsTotalDiff = updateTeam2.gamePointsTotalDiff - prevTableValues[4, 1] + diffTeam2;
                     updateTeam2.Setter();
 
@@ -757,6 +757,16 @@ namespace Preiswattera_3000
                     btn_Edit_GameData_Save.Visibility = Visibility.Hidden;
                     btn_Edit_GameData_Clear.Visibility = Visibility.Hidden;
                     btn_TeamSwap.Visibility = Visibility.Hidden;
+
+                    if(mainWindow.debugMode)
+                    {
+                        mainWindow.DebugMessageBar("INSERT TNMT DATA", "Team 1: " + updateTeam1.teamName + "| Id:" + Convert.ToString(updateTeam1.teamId) +
+                                                                       " ||| Team 2: " + updateTeam2.teamName + "| Id:" + Convert.ToString(updateTeam2.teamId) +
+                                                                       "\n" + "WinPoints: " + Convert.ToString(updateTeam1.winPoints) + " | " + Convert.ToString(updateTeam2.winPoints) +
+                                                                       "\n" + "Diff: " + Convert.ToString(updateTeam1.gamePointsTotalDiff) + " | " + Convert.ToString(updateTeam2.gamePointsTotalDiff) +
+                                                                       "\n" + "GamePoints: " + Convert.ToString(updateTeam1.gamePointsTotal) + " | " + Convert.ToString(updateTeam2.gamePointsTotal));
+                    }
+
                 } else
                 {
                     mainWindow.MessageBar(MainWindow.ErrorMessage,

@@ -32,6 +32,7 @@ namespace Preiswattera_3000
         #endregion
         public bool isClicked = false;
         public bool selection = false;
+        public bool debugMode = false;
         #endregion
         public string NO_TEAM_ADDING = "NoAdding";
         public string NO_RETURN = "NoReturn";
@@ -78,7 +79,7 @@ namespace Preiswattera_3000
                 btn_QuickRun.IsEnabled = true;
             }
 
-                if (!checkIfTournamentIsRuning(tournamentData))
+            if (!checkIfTournamentIsRuning(tournamentData))
             {
                 // No running Tournament! Start New One and get needed Parameters
                 //UserControl addTnmt = new AddTournament(this);
@@ -88,7 +89,7 @@ namespace Preiswattera_3000
                 tnmt.Getter();
 
                 // Set for first run after creating new Tournament
-                btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
+                //btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
 
                 ActionMenue.Visibility = Visibility.Hidden;
                 cnvs_PWHeader.Visibility = Visibility.Visible;
@@ -120,14 +121,25 @@ namespace Preiswattera_3000
                     btn_GoToAddTeam.Uid = NO_TEAM_ADDING;
                 }
 
-                if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) == 0)
+                if (Convert.ToInt32(teamData.GetValue(Const.fileSec, Team.fsX_teamCnt)) > 0)
                 {
-                    //btn_GoToTnmtData.Content = "";
-                    btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
+                    btn_GoToTnmtData.IsEnabled = true;
+                    insertGameImg.Opacity = 1;
+                    if (Convert.ToInt32(tournamentData.GetValue(Tournament.tnmtSec, Tournament.tnS_tnmtRunCntAct)) == 0)
+                    {
+                        //btn_GoToTnmtData.Content = "";
+                        btn_GoToTnmtData.Style = (Style)Application.Current.Resources["StartTnmtButton"];
+                    }
+                    else
+                    {
+                        //btn_GoToTnmtData.Content = "";
+                        btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tournamentData.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
+                    }
                 } else
                 {
-                    //btn_GoToTnmtData.Content = "";
-                    btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tournamentData.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
+                    btn_GoToTnmtData.IsEnabled = false;
+                    btn_GoToTnmtData.Style = (Style)Application.Current.Resources["DisabledButton"];
+                    insertGameImg.Opacity = 0.5;
                 }
 
             }
@@ -335,6 +347,19 @@ namespace Preiswattera_3000
                 default:break;
             }
             return retVal;
+        }
+
+        public void DebugMessageBar(string i_MessageHeader, string i_MessageText)
+        {
+            if (debugMode)
+            {
+                cnvs_MessageBar.Visibility = Visibility.Visible;
+                lbl_oMessageHeader.Content = i_MessageHeader;
+                lbl_oMessageText.Content = i_MessageText;
+                rec_Bar.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF60FFF8"));
+                bar_DebugImg.Visibility = Visibility.Visible;
+                btn_Ok.Visibility = Visibility.Visible;
+            }
         }
 
         private void btn_Ok_Click(object sender, RoutedEventArgs e)

@@ -192,6 +192,7 @@ namespace Preiswattera_3000
 
                         if (CheckIfPayed())
                         {
+                            INIFile tnmtIni = new INIFile(Tournament.iniPath);
                             player1 = new Player(true);
                             player2 = new Player(true);
 
@@ -208,6 +209,10 @@ namespace Preiswattera_3000
                             mainWindow.ShowSaver();
                             AddTeam_Loaded(sender, e);
                             ClearTbx();
+
+                            mainWindow.btn_GoToTnmtData.IsEnabled = true;
+                            mainWindow.insertGameImg.Opacity = 1;
+                            mainWindow.btn_GoToTnmtData.Style = (Style)Application.Current.Resources["ActionMenueButton_" + tnmtIni.GetValue(Const.fileSec, Tournament.fsX_ColorMode)];
                         }
                     }
                 }

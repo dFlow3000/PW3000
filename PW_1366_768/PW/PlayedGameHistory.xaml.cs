@@ -34,7 +34,8 @@ namespace Preiswattera_3000
         {
             public int runId;
             public int tableId;
-            public int winPoints;
+            public int winPointsTeamCalled;
+            public int winPointsTeamOppond;
             public int gameId;
             public int calledTeamPoints;
             public int oppondTeamPoints;
@@ -260,10 +261,11 @@ namespace Preiswattera_3000
                         {
                             lbl_runId.Content = String.Empty;
                             lbl_gameId.Content = String.Empty;
-                            lbl_calledTeam.Content = "Gewinn-Punkte: " + Convert.ToString(gameData[i, 0].winPoints);
+                            lbl_calledTeam.Content = "Gewinn-Punkte: " + Convert.ToString(gameData[i, 0].winPointsTeamCalled);
                             lbl_calledTeam.HorizontalContentAlignment = HorizontalAlignment.Right;
-                            lbl_colon.Content = String.Empty;
-                            lbl_oppondTeam.Content = String.Empty;
+                            lbl_colon.Content = "zu";
+                            lbl_colon.HorizontalContentAlignment = HorizontalAlignment.Center;
+                            lbl_oppondTeam.Content = Convert.ToString(gameData[i, 0].winPointsTeamOppond);
                             lbl_diffCalledTeam.Content = String.Empty;
 
                             if (gameData[i, 0].tableId != NOT_PLAYED)
@@ -313,7 +315,7 @@ namespace Preiswattera_3000
             }
             lbl_oGamePointsTotal.Content = "Spiel-Punkte gesamt: " + (gamePointsTotal < 10 ? "  " : " ") + Convert.ToString(gamePointsTotal);
             lbl_oGamePointsTotal.HorizontalContentAlignment = HorizontalAlignment.Right;
-            lbl_oWinPointsTotal.Content ="Gewinn-Punkte gesamt:" + (calledTeam.winPoints < 10 ? "  " : " ") + Convert.ToString(calledTeam.winPoints);
+            lbl_oWinPointsTotal.Content ="Gewinn-Punkte gesamt:" + (calledTeam.winPoints < 10 && calledTeam.winPoints > -10 ? "  " : " ") + Convert.ToString(calledTeam.winPoints);
             lbl_oWinPointsTotal.HorizontalContentAlignment = HorizontalAlignment.Right;
             lbl_oDiffTotal.Content = "Gesamt: " + (diffTotal < 10 && diffTotal > -10 ? "  " : " ") + Convert.ToString(diffTotal);
             lbl_oDiffTotal.HorizontalContentAlignment = HorizontalAlignment.Right;
@@ -353,7 +355,8 @@ namespace Preiswattera_3000
                     Game playedGame = new Game();
                     playedGame.Getter(playedTable.tableGameIds[x]);
                     retVal[(i - 1), x].runId = i;
-                    retVal[(i - 1), x].winPoints = playedTable.teamsOnTable[0] == i_calledTeamId ? playedTable.winPointsAtGame[0] : playedTable.winPointsAtGame[1];
+                    retVal[(i - 1), x].winPointsTeamCalled = playedTable.teamsOnTable[0] == i_calledTeamId ? playedTable.winPointsAtGame[0] : playedTable.winPointsAtGame[1];
+                    retVal[(i - 1), x].winPointsTeamOppond = playedTable.teamsOnTable[0] == i_calledTeamId ? playedTable.winPointsAtGame[1] : playedTable.winPointsAtGame[0];
                     if (playedGame.gameTeams[0] != 0)
                     {
                         retVal[(i - 1), x].calledTeamId = i_calledTeamId;

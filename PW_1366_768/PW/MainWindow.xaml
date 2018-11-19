@@ -46,8 +46,8 @@
                 <Button x:Name="btn_GoToShowTeam" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="134" IsEnabled="true" Click="btn_GoToShowTeam_Click" FontSize="28">
                     <Image x:Name="showTeamImg" Source="Icons\showTeam_schrift.png" Height="124" Width="235"/>
                 </Button>
-                <Button x:Name="btn_GoToTnmtData" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="134" IsEnabled="true" Click="btn_GoToTnmtData_Click" FontSize="28">
-                    <Image x:Name="insertGameImg" Source="Icons\insertGame_schrift.png" Height="124" Width="235"/>
+                <Button x:Name="btn_GoToTnmtData" IsEnabled="False"  Style="{StaticResource DisabledButton}" HorizontalAlignment="Left" Width="245" Height="134" Click="btn_GoToTnmtData_Click" FontSize="28">
+                    <Image x:Name="insertGameImg" Source="Icons\insertGame_schrift.png" Height="124" Width="235" Opacity="0.5"/>
                 </Button>
                 <Button x:Name="btn_GoToEvaluation" Style="{StaticResource ActionMenueButton}" HorizontalAlignment="Left" Width="245" Height="134" IsEnabled="true" Click="btn_GoToEvaluation_Click" FontSize="28">
                     <Image x:Name="evaImg" Source="Icons\Eva_schrift.png" Height="124" Width="235"/>
@@ -64,7 +64,7 @@
         </Canvas>
         <Canvas x:Name="cnvs_MessageBar" Visibility="Hidden" Margin="0,0,0,18" Grid.Row="1">
             <Rectangle x:Name="rec_Background" Fill="#FFB2B2B2" HorizontalAlignment="Left" Height="768" Stroke="Black" VerticalAlignment="Top" Width="1400" Grid.ColumnSpan="2" Opacity="0.8"/>
-            <Rectangle x:Name="rec_Bar" HorizontalAlignment="Left" Height="412" VerticalAlignment="Top" Width="1580" Grid.ColumnSpan="2" Canvas.Top="136" Fill="#FFECECEC" Canvas.Left="-80">
+            <Rectangle x:Name="rec_Bar" HorizontalAlignment="Left" Height="412" VerticalAlignment="Top" Width="1580" Grid.ColumnSpan="2" Canvas.Top="136" Fill="White" Canvas.Left="-80">
                 <Rectangle.Effect>
                     <BlurEffect Radius="90"/>
                 </Rectangle.Effect>
@@ -73,6 +73,7 @@
             <Image x:Name="bar_InfoImg" Visibility="Hidden" Height="100" Canvas.Left="78" Canvas.Top="296" Width="100" Source="Icons\information-1481584_960_720.png"/>
             <Image x:Name="bar_WarnImg" Visibility="Hidden" Height="100" Canvas.Left="78" Canvas.Top="296" Width="100" Source="Icons\warning-icon-png-12.jpg"/>
             <Image x:Name="bar_AskImg" Visibility="Hidden" Height="100" Canvas.Left="78" Canvas.Top="296" Width="100" Source="Icons\question-mark-1750942_960_720.png"/>
+            <Image x:Name="bar_DebugImg" Visibility="Hidden" Height="100" Canvas.Left="78" Canvas.Top="296" Width="100" Source="Icons\debug_img.png"/>
             <Label x:Name="lbl_oMessageHeader" Content="Message Typ" FontSize="30" Grid.ColumnSpan="2" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="1138" Canvas.Left="250" Canvas.Top="241"/>
             <Label x:Name="lbl_oMessageText" Content="Message Typ" FontSize="16" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" VerticalAlignment="Top" Width="1138" Height="132" Grid.Column="1" Canvas.Left="250" Canvas.Top="296"/>
             <Button x:Name="btn_Ok" Content="OK"  Style="{StaticResource DefaultIAButton}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Canvas.Left="664" Canvas.Top="442" Click="btn_Ok_Click"/>
@@ -89,6 +90,10 @@
             <Button x:Name="btn_QuickSettings" Style="{StaticResource TitleBarSettingsButton}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top"  Click="btn_QuickSettings_Click" BorderBrush="{x:Null}" Canvas.Left="1185" Canvas.Top="2" RenderTransformOrigin="0.966,0.621" Height="28" Width="34" Panel.ZIndex="10">
                 <Image Source="Icons\settings_little.png" Height="26" Width="34" RenderTransformOrigin="0.5,0.5"/>
             </Button>
+            <Canvas x:Name="cnvs_debugModeActiv" Visibility="Hidden">
+                <Image Source="Icons\debug_mode.png" Height="34" Width="49" Canvas.Left="581" Canvas.Top="-1"/>
+                <Label Content="DEBUG-MODE" Canvas.Left="630" Canvas.Top="-1" FontSize="20"/>
+            </Canvas>
             <Canvas x:Name="cnvs_QuickSettings" Visibility="Hidden" Height="88" Width="73" Canvas.Left="1145" Canvas.Top="31" Panel.ZIndex="1">
                 <Button x:Name="btn_BackgroundQuickSettings" Style="{StaticResource TitleBarSettingsBackgroundButton}" Height="130" Width="141" Canvas.Left="-67">
                     <Canvas>
